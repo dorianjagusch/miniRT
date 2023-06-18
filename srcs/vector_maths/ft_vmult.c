@@ -6,11 +6,12 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 17:12:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:44:43 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
+#include <math.h>
 
 //important: if dot(v, u) > 0 acute angle => suface is tilted toward camera
 double ft_v3dot(t_vec3 v, t_vec3 u)

@@ -6,11 +6,16 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 17:03:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:11:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int32_t ft_trace(t_img *img, double coord)
+{
+	return (0xFF00AA);
+}
 
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 {

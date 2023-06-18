@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 16:36:35 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:59:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_options(void)
 	ft_printf("\n\t*********************\n");
 	ft_printf("\t****   Options   ****\n");
 	ft_printf("\t*********************\n\n");
-	ft_printf("");
+	ft_printf("\n");
+	exit (0);
 }
 
 void	draw_help(t_img *img)

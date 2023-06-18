@@ -6,11 +6,18 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:04:15 by djagusch          #+#    #+#             */
-/*   Updated: 2023/01/13 07:34:31 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:48:43 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_islower(int c)
+{
+	if ('A' <= c && c <= 'Z')
+		return (0);
+	return (1);
+}
 
 int	ft_tolower(int c)
 {

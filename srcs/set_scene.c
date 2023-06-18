@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 17:28:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:06:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static int	count_objects(int fd, char *av)
 	int		count;
 
 	line = get_next_line(fd);
+	ft_printf("%p\n", line);
 	while (line)
 	{
 		if (!ft_empty_str(line))
@@ -111,12 +112,17 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
+	if (scene->n_objs = 0)
+		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));
+	if (!scene->objs)
+		ft_error(ENOMEM);
 	line = get_next_line(fd);
 	while (line);
 	{
 		process_line(scene, line);
-		free(line);
-		get_next_line(fd);
+		if (line)
+			free(line);
+		line = get_next_line(fd);
 	}
 }

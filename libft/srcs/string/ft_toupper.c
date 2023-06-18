@@ -6,11 +6,18 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:56:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/01/13 07:34:31 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:49:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_isupper(int c)
+{
+	if ('a' <= c && c <= 'z')
+		return (0);
+	return (1);
+}
 
 int	ft_toupper(int c)
 {

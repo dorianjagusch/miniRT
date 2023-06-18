@@ -15,16 +15,16 @@
 
 # include <mlx.h>
 # include <math.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
 # ifdef __APPLE__
 #  include "macos_keys.h"
 # else
 #  include "linux_keys.h"
 # endif
 # include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <fcntl.h>
 # include "errors.h"
 # include "vector.h"
 # include "scene.h"
@@ -76,9 +76,9 @@ void	ft_error(int error);
 void	set_active(t_img *img, u_int8_t *active);
 
 // VIEW HANDLERS
-int		ft_toggle_help(t_img *img);
-int		ft_toggle_move(t_img *img);
-int		ft_change_bounces(t_img *img, int key);
+int			ft_toggle_help(t_img *img);
+void		ft_toggle_move(t_img *img);
+void		ft_change_bounces(t_img *img, int key);
 
 // INPUT HANDLERS
 int		mouse_position(int x, int y, t_img *img);

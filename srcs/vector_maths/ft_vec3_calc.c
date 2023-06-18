@@ -6,11 +6,12 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 17:09:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/18 18:45:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
+#include <math.h>
 
 double	ft_v3norm(t_vec3 *v) //measure
 {
@@ -29,8 +30,6 @@ double ft_cos_angle(t_vec3 v, t_vec3 u)
 	res = ft_v3dot(v, u) / (ft_v3mag(v) * ft_v3mag(u));
 	return (res);
 }
-
-
 
 t_vec3 ft_reflect(t_vec3 v, t_vec3 normal)
 {
