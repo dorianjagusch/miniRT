@@ -6,12 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 23:59:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:11:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 
+#include "minirt.h"
+//set loop in per pixel function for bounces and modify ray in hitshader or call relect function
+// and reassign ray while saving the colour
 perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray		ray;
@@ -22,8 +24,9 @@ perpixel(t_img *img, t_vec2 pxl)
 	//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
 	get_closest(&(img->scene), &ray, &payload);
 	if (payload.distance == DBL_MAX)
-		return (miss_shader());
-	return (hit_shader(img->scene, payload, ray));
+		miss_shader();
+	ray.colour = hit_shader(img->scene, payload, ray);
+
 }
 
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)

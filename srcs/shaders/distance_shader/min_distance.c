@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 00:00:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:13:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 {
 	int			i;
 	double		new_dist;
+	t_payload	payload;
 
 	i = 0;
 	payload->distance = DBL_MAX;
@@ -43,5 +44,8 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 		}
 		i++;
 	}
+	if (payload->distance != DBL_MAX)
+		payload = get_intersection(scene->objs, ray, payload);
 	return (payload);
+
 }
