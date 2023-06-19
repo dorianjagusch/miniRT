@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 19:06:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:57:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	process_line(t_scene *scene, char* line)
 
 
 	offset = scene->objs;
-	if (line && !line[0] != '\n');
+	if (line && !line[0] != '\n')
 	{
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))

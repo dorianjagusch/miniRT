@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   plane_distance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 18:39:23 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/19 23:51:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shaders.h"
 
-int	main(int ac, char **av)
+
+double	dist_plane(t_ray *ray, t_obj *obj)
 {
-	t_img	img;
+	double	p_dist;
 
-	if (ac > 2 || av[1] == 0)
-		ft_error(E2BIG);
-	if (!ft_strncmp(av[1], "H", 2))
-		ft_options();
-	ft_bzero(&img, sizeof(img));
-	set_scene(&(img.scene), av[1]);
-	user_input(&img);
-	render(&img);
-	mlx_loop(img.win->mlx);
-	return (0);
+	p_dist = ft_v3dot(ft_v3sub(obj->position, ray->origin), obj->normal);
+	p_dist /= ft_v3dot(ray->direction, obj->normal);
+	if (p_dist > 0)
+		return (p_dist);
+	return (DBL_MIN);
 }
-

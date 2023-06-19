@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 18:39:23 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/19 18:32:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 
-int	main(int ac, char **av)
-{
-	t_img	img;
-
-	if (ac > 2 || av[1] == 0)
-		ft_error(E2BIG);
-	if (!ft_strncmp(av[1], "H", 2))
-		ft_options();
-	ft_bzero(&img, sizeof(img));
-	set_scene(&(img.scene), av[1]);
-	user_input(&img);
-	render(&img);
-	mlx_loop(img.win->mlx);
-	return (0);
-}
+#include "vector_math.h"
+#include "ray.h"
 

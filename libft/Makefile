@@ -6,18 +6,24 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/18 17:26:52 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/19 18:08:19 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
+CFLAGS = -I$I -std=c99 -O3 -Wall -Wextra -Werror
+OS = $(shell uname)
 
-CFLAGS = -I$I -std=c99 -O3
-# -Wall -Wextra -Werror
+#ifneq ($(OS),Darwin)
+CFLAGS += -Wno-unused-result
+#endif
 
 NAME = libft.a
 
+S := srcs
+O := objs
 I := ../incl
+
 HEADER = $I/libft.h
 
 FILES = ft_atoi ft_bzero ft_calloc ft_isalnum \
@@ -41,11 +47,10 @@ FILES = ft_atoi ft_bzero ft_calloc ft_isalnum \
 	ft_lenbase get_next_line ft_free_array ft_print_array \
 	ft_count_elements ft_abs ft_bits ft_which_extr \
 	ft_free_int_array ft_print_matrix int ft_empty_str \
-	ft_atoll int
-S := srcs
+	ft_atoll
+
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name $(FILE).c))
 
-O := objs
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 

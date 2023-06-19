@@ -6,11 +6,11 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 18:44:43 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:29:11 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "vector_math.h"
 #include <math.h>
 
 //important: if dot(v, u) > 0 acute angle => suface is tilted toward camera

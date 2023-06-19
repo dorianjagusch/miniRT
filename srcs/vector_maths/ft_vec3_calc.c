@@ -6,11 +6,11 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 18:45:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:29:11 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "vector_math.h"
 #include <math.h>
 
 double	ft_v3norm(t_vec3 *v) //measure
