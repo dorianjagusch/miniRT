@@ -6,23 +6,23 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 16:55:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:14:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "vector.h"
+# include "vector_math.h"
 
 enum e_obj
 {
 	sphere,
 	plane,
 	cylinder,
-	Camera,
-	Light,
-	Ambient
+	Ccmera,
+	light,
+	ambient
 };
 
 typedef struct s_light
@@ -68,16 +68,9 @@ typedef struct s_scene
 
 } t_scene;
 
-typedef struct s_dist_func
-{
-	int	type;
-	int	(*dist_funct)(t_obj, t_camera);
-} t_dist_func;
-
-
 void	ft_skip_ws(char **line);
-int		ft_skip_num(char **line, int mode);
-int		get_colour(char **line);
+void	ft_skip_num(char **line, int mode);
+int32_t	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 

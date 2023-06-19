@@ -26,12 +26,15 @@
 # endif
 # include "libft.h"
 # include "errors.h"
-# include "vector.h"
+# include "vector_math.h"
 # include "scene.h"
+# include "shaders.h"
+# include <float.h>
 
 // DEFAULTS
 # define WIDTH 500
 # define HEIGHT 500
+# define TOTAL (WIDTH * HEIGHT)
 # define BOUNCES 4
 # define EXT_LEN 3
 # define EXTENSION ".rt"
@@ -76,13 +79,14 @@ void	ft_error(int error);
 void	set_active(t_img *img, u_int8_t *active);
 
 // VIEW HANDLERS
-int			ft_toggle_help(t_img *img);
-void		ft_toggle_move(t_img *img);
-void		ft_change_bounces(t_img *img, int key);
+int		ft_toggle_help(t_img *img);
+void	ft_toggle_move(t_img *img);
+void	ft_change_bounces(t_img *img, int key);
 
 // INPUT HANDLERS
+int		user_input(t_img *img);
 int		mouse_position(int x, int y, t_img *img);
-int 	mouse_handler(int mouse_action, int x, int y, t_img *img);
+int		mouse_handler(int mouse_action, int x, int y, t_img *img);
 int		ft_close_win(t_img *img);
 void	ft_close(int error);
 int		key_handler(int key, t_img *img);
@@ -90,8 +94,8 @@ void	ft_focal(int mouse_action, int x, int y, t_img *img);
 void	ft_move(t_img *img, int key);
 
 // COLOUR FUNCTIONS
+int32_t	create_trgb(int t, int r, int g, int b);
 int		get_t(int trgb);
-int		create_trgb(int t, int r, int g, int b);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);

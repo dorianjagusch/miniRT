@@ -6,15 +6,24 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 19:11:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:59:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int32_t ft_trace(t_img *img, double coord)
+perpixel(t_img *img, t_vec2 pxl)
 {
-	return (0xFF00AA);
+	t_ray		ray;
+	t_payload	payload;
+
+
+	ray.origin = img->scene.cam.pos;
+	//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
+	get_closest(&(img->scene), &ray, &payload);
+	if (payload.distance == DBL_MAX)
+		return (miss_shader());
+	return (hit_shader(img->scene, payload, ray));
 }
 
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
@@ -29,7 +38,6 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 void	render(t_img *img)
 {
 	t_vec2	pxl;
-	double	coord;
 	int		tot_res;
 
 	tot_res = HEIGHT * WIDTH;
@@ -39,9 +47,8 @@ void	render(t_img *img)
 		pxl.x = 0;
 		while (pxl.x < WIDTH)
 		{
-			coord = pxl.x + WIDTH * pxl.y;
-			my_mlx_pixel_put(img, pxl, ft_trace(img, coord));
-			pxl.y++;
+			my_mlx_pixel_put(img, pxl, perpixel(img, pxl));
+			pxl.x++;
 		}
 		pxl.y++;
 	}

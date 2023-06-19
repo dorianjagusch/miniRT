@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/18 18:58:57 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/19 23:41:02 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = gcc
-CFLAGS = -I$I
-#OS := $(shell uname -a)
-#ifeq ($(OS),Darwin)
-#	CCFLAGS += -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Werror -Wextra -I$I
+OS := $(shell uname)
+ifeq ($(OS),Darwin)
+CFLAGS += -framework OpenGL -framework AppKit
+MINILIBX = mlx/libmlx.a
+else
+CFLAGS += -lXext -lX11
 MINILIBX = mlx_linux/libmlx.a
-#else
-#CFLAGS += -lXext -lX11
-#MINILIBX = minilibx/libmlx_li
-#ndif
+endif
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -41,26 +41,33 @@ I = incl
 FILES = get_colour \
 	set_scene \
 	main \
+	ft_vsub \
 	ft_vec3_calc \
 	ft_vmult \
 	ft_vadd \
+	rays \
 	render \
+	cylinder_distance \
+	plane_distance \
+	sphere_distance \
+	min_distance \
 	input \
-	minirt \
 	clean_up \
 	ft_help \
+	set_image \
 	getters \
 	handlers \
-	error_handling \
+	error_handling.c
 
-HEADER = minirt \
+HEADER = vector_math \
+	minirt \
 	linux_keys \
 	libft \
+	shaders \
 	macos_keys \
 	errors \
 	scene \
-	vector \
-	mlx
+	mlx.h
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
@@ -82,13 +89,13 @@ print:
 	@echo $(OBJS)
 
 #	ifeq ($(OS),Darwin)
-#		@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
+#	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
 #	else
 # -I/usr/lib -I/usr/include
 #	$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -lm -Llibft -lft  -o $(NAME)
 #	endif
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(HEADER) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -O3
+	@$(CC) $(CFLAGS) $(HEADER) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -O3
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -107,7 +114,7 @@ $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 else
 $O/%.o: $S/%.c $(HEADER) | $O
-		@$(CC) -I$I -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) -I$I -I/usr/include -Imlx_linux -O3 -c $< -o $@
 endif
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
@@ -120,7 +127,7 @@ clean:
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean
-	$(MAKE) -C libft fclean
+	@$(MAKE) -C libft fclean
 	@$(RM) $(NAME)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 

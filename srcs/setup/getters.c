@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 18:21:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:24:53 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void	ft_skip_ws(char **line)
 {
 	while (**line == ' ')
-		*line++;
+		*line += 1;
 }
 
-int	ft_skip_num(char **line, int mode)
+void	ft_skip_num(char **line, int mode)
 {
 	int flag;
 
 	flag = 0;
 	while (ft_isdigit(**line) || (mode != INT && **line == '.' && !flag))
 	{
-		if (**line = '.')
+		if (**line == '.')
 			flag++;
-		*line++;
+		*line += 1;
 	}
 	if (ft_isspace(**line))
-		return (1);
+		return ;
 	ft_error(num_err);
 }
 
-int	get_colour(char **line)
+int32_t	get_colour(char **line)
 {
 	int	colour[4];
 	int	res;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 19:11:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:26:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	user_input(t_img *img)
 	return (0);
 }
 
-int	prep_image(t_img *img)
+static int	prep_image(t_img *img)
 {
 	int	check;
 
@@ -34,9 +34,6 @@ int	prep_image(t_img *img)
 	if (!img->addr)
 		return (ENOMEM);
 	img->bits |= ADDR_INIT;
-	if (check)
-		return (check);
-	user_input(img);
 	if (check)
 		return (check);
 	return (0);
@@ -56,7 +53,5 @@ void	set_image(t_img *img)
 		ft_error (ENOMEM);
 	img->bits |= WIN_WIN_INIT;
 	prep_image(img);
-	user_input(img);
-	render(img):
-	mlx_loop(mlx);
+
 }
