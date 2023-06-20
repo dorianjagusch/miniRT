@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 23:51:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:34:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ static double	dist_sphere(t_ray *ray, t_obj *obj)
 	discriminant = parameter.y * parameter.y - 4 * parameter.x * parameter.z;
 	if (discriminant < 0)
 		return (DBL_MAX);
-	return (-1.0 * (parameter.y * sqrt(discriminant) / 2.0 * parameter.x))
+	return (-1.0 * (parameter.y * sqrt(discriminant) / (2.0 * parameter.x)))
 
 }

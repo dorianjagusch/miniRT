@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/20 23:08:54 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/21 00:04:46 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ O = objs
 I = incl
 
 FILES = get_colour \
+	colour_vec \
 	render \
 	cylinder_distance \
 	plane_distance \
@@ -60,7 +61,7 @@ FILES = get_colour \
 	set_image \
 	getters \
 	handlers \
-	error_handling \
+	error_handling
 
 HEADER = vector_math \
 	minirt \

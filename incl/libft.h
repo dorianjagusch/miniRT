@@ -32,6 +32,12 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}			t_range;
+
 int		ft_atoi(const char *str);
 double	ft_atof(const char *str);
 void	ft_bzero(void *s, size_t n);
