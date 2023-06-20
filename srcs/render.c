@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 00:11:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:04:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ perpixel(t_img *img, t_vec2 pxl)
 	t_ray		ray;
 	t_payload	payload;
 
-
-	ray.origin = img->scene.cam.pos;
-	//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
-	get_closest(&(img->scene), &ray, &payload);
-	if (payload.distance == DBL_MAX)
-		miss_shader();
-	ray.colour = hit_shader(img->scene, payload, ray);
-
+	while (i < BOUNCES)
+	{
+		ray.origin = img->scene.cam.pos;
+		//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
+		get_closest(&(img->scene), &ray, &payload);
+		if (payload.distance == DBL_MAX)
+			return (miss());
+		ray.colour += hit_shader(img->scene, payload, ray);
+		ray.direction = ft_v3multf(ray.direction, -1),
+		ray.direction = ft_v3reflect(ray.direction, payload.hitnorm);
+		ray.origin = payload.hitpoint + payload.hitnorm * 0.0001;
+	}
 }
 
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)

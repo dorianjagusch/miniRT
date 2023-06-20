@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 00:06:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:45:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	direction;
-	t_vec4	colour;
 }			t_ray;
 
 typedef struct s_payload
 {
 	int		id;
 	double	distance;
-	t_vec3	intersection;
-	t_vec3	normal;
+	t_vec3	hitpoint;
+	t_vec3	hitnorm;
+	double	light_dir;
+	double	light_dist;
+
 }			t_payload;
 
 typedef struct s_dist_func
@@ -42,6 +44,7 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload);
 double	dist_sphere(t_ray *ray, t_obj *obj);
 double	dist_plane(t_ray *ray, t_obj *obj);
 double	dist_cylinder(t_ray *ray, t_obj *obj);
-
+double 	light_dist(t_obj *objs, t_payload *payload);
+t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
 
 #endif

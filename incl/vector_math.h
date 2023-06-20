@@ -46,14 +46,16 @@ double	ft_v3mag(t_vec3 v);
 t_vec3	ft_v3multf(t_vec3 v, double val);
 double	ft_v3norm(t_vec3 *v);
 double	ft_v3dot(t_vec3 v, t_vec3 u);
-t_vec3	ft_cross(t_vec3 v, t_vec3 u);
-double	ft_cos_angle(t_vec3 v, t_vec3 u);
+t_vec3	ft_cross(t_vec3 v, t_vec3 u); //currently unused
+double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused
 t_vec3	ft_reflect(t_vec3 v, t_vec3 normal);
+void	ft_v3clamp(t_vec4 *v, double low, double high); //currently unused
 
 t_vec4	ft_v4add(t_vec4 v, t_vec4 u);
 t_vec4	ft_v4addf(t_vec4 v, double val);
 t_vec4	ft_v4sub(t_vec4 v, t_vec4 u);
 t_vec4	ft_v4subf(t_vec4 v, double val);
 t_vec4	ft_v4multf(t_vec4 v, double val);
+t_vec4	ft_v4clamp(t_vec4 v, double low, double high);
 
 #endif

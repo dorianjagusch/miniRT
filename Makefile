@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/19 23:41:02 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/20 23:08:54 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,25 +39,28 @@ O = objs
 I = incl
 
 FILES = get_colour \
-	set_scene \
+	render \
+	cylinder_distance \
+	plane_distance \
+	light \
+	sphere_distance \
+	min_distance \
+	get_normal \
 	main \
 	ft_vsub \
 	ft_vec3_calc \
 	ft_vmult \
 	ft_vadd \
-	rays \
-	render \
-	cylinder_distance \
-	plane_distance \
-	sphere_distance \
-	min_distance \
+	ft_vclamp \
+	hit_shader \
 	input \
 	clean_up \
+	set_scene \
 	ft_help \
 	set_image \
 	getters \
 	handlers \
-	error_handling.c
+	error_handling \
 
 HEADER = vector_math \
 	minirt \
@@ -86,7 +89,7 @@ minilib: $(MINILIBX)
 libft: $(CFLAGS)
 
 print:
-	@echo $(OBJS)
+	@echo $(SRCS)
 
 #	ifeq ($(OS),Darwin)
 #	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
@@ -114,7 +117,10 @@ $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 else
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) $(CFLAGS
+
+
+	) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 endif
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 

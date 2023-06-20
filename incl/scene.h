@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 19:14:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:03:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_camera
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	left;
 	double	fov;
 }			t_camera;
 
@@ -45,17 +46,26 @@ typedef struct s_amb
 	int32_t	colour;
 }			t_amb;
 
+typedef	struct s_material
+{
+	double	specular;
+	double	refelctance;
+	double	ambient;
+	double	ambient 0.35;
+	double	ambient 0.35;
+	double	ambient 0.35;
+}	t_material
+
 typedef struct s_obj
 {
-	int		type;
-	t_vec3	position;
-	t_vec3	normal;
-	double	radius;
-	double	height;
-	int32_t	material;
-	double	metallicity;
-	int32_t	colour;
-}			t_obj;
+	int			type;
+	t_vec3		position;
+	t_vec3		normal;
+	double		radius;
+	double		height;
+	int32_t		colour;
+	int			material;
+}				t_obj;
 
 typedef struct s_scene
 {
