@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 22:03:33 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:46:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_light
 {
 	t_vec3	pos;
 	double	ratio;
-	int32_t	colour;
+	t_vec4	colour;
 }			t_light;
 
 typedef struct s_camera
@@ -43,18 +43,8 @@ typedef struct s_camera
 typedef struct s_amb
 {
 	double	ratio;
-	int32_t	colour;
+	t_vec4	colour;
 }			t_amb;
-
-typedef	struct s_material
-{
-	double	specular;
-	double	refelctance;
-	double	ambient;
-	double	ambient 0.35;
-	double	ambient 0.35;
-	double	ambient 0.35;
-}	t_material
 
 typedef struct s_obj
 {
@@ -63,7 +53,7 @@ typedef struct s_obj
 	t_vec3		normal;
 	double		radius;
 	double		height;
-	int32_t		colour;
+	t_vec4		colour;
 	int			material;
 }				t_obj;
 
@@ -80,7 +70,7 @@ typedef struct s_scene
 
 void	ft_skip_ws(char **line);
 void	ft_skip_num(char **line, int mode);
-int32_t	get_colour(char **line);
+t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 

@@ -30,6 +30,7 @@
 # include "scene.h"
 # include "shaders.h"
 # include <float.h>
+# include "materials.h"
 
 // DEFAULTS
 # define WIDTH 500

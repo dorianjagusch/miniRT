@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 18:24:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/21 23:12:20 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_skip_ws(char **line)
 
 void	ft_skip_num(char **line, int mode)
 {
-	int flag;
+	int	flag;
 
 	flag = 0;
 	while (ft_isdigit(**line) || (mode != INT && **line == '.' && !flag))
@@ -34,11 +34,11 @@ void	ft_skip_num(char **line, int mode)
 	ft_error(num_err);
 }
 
-int32_t	get_colour(char **line)
+t_vec4	get_colour(char **line)
 {
-	int	colour[4];
-	int	res;
-	int	i;
+	int		colour[4];
+	t_vec4	res;
+	int		i;
 
 	i = 1;
 	while (i < 4)
@@ -52,7 +52,8 @@ int32_t	get_colour(char **line)
 			ft_error(num_err);
 		*line += 2;
 	}
-	return (create_trgb(0xFF, colour[1], colour[2], colour[3]));
+	res = ft_trgbtov4(colour);
+	ft_rgbtonorm(&res);
 }
 
 double	get_double(char **line, int mode)

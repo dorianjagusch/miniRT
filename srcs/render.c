@@ -6,35 +6,44 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 23:27:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:35:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+t_vec4	miss(t_img *img)
+{
+
+}
+
 //set loop in per pixel function for bounces and modify ray in hitshader or call relect function
 // and reassign ray while saving the colour
-perpixel(t_img *img, t_vec2 pxl)
+int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray		ray;
 	t_payload	payload;
 	t_vec4		colour;
-	double		loss;
+	int			i;
 
-	loss = 0.7
+	i = 0;
 	ray.origin = img->scene.cam.pos;
 	//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
 	while (i < BOUNCES)
 	{
 		get_closest(&(img->scene), &ray, &payload);
 		if (payload.distance == DBL_MAX)
-			return (miss());
-		colour = ft_v4add(colour, hit_shader(img->scene, payload, ray));
+		{
+			colour = ft_v4add(colour, miss(img));
+			break;
+		}
+		colour = ft_v4add(colour, hit_shader(&(img->scene), &payload));
 		ray.direction = ft_v3multf(ray.direction, -1),
 		ray.direction = ft_v3reflect(ray.direction, payload.hitnorm);
-		ray.origin = payload.hitpoint + payload.hitnorm * 0.0001;
+		ray.origin = ft_v3add(payload.hitpoint, ft_v3multf(payload.hitnorm, 0.0001));
+		i++;
 	}
-	colour = ft_v4clamp(colour);
+	ft_v4clamp(&colour, 0, 1);
 	return (ft_v4toint32(colour));
 }
 

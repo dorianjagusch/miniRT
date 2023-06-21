@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/21 00:04:46 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/21 22:32:08 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,15 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 ### SET UP ###
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I$I
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -I$I $(HEADER)
 OS := $(shell uname)
 ifeq ($(OS),Darwin)
 CFLAGS += -framework OpenGL -framework AppKit
 MINILIBX = mlx/libmlx.a
 else
-CFLAGS += -lXext -lX11
 MINILIBX = mlx_linux/libmlx.a
+CFLAGS +=
 endif
 
 RM = /bin/rm -f
@@ -53,6 +53,7 @@ FILES = get_colour \
 	ft_vmult \
 	ft_vadd \
 	ft_vclamp \
+	ft_vscale \
 	hit_shader \
 	input \
 	clean_up \
@@ -71,14 +72,13 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
-	mlx.h
+	mlx
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
-OBJ := $(notdir $(SRCS))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
-O_DIRS = $(dir $(OBJS))
+O_DIRS := $(dir $(OBJS))
 
 NAME = miniRT
 
@@ -87,20 +87,23 @@ all: $(NAME)
 
 minilib: $(MINILIBX)
 
-libft: $(CFLAGS)
+libft: $(LIBFT)
 
 print:
-	@echo $(SRCS)
+	@echo $(O_DIRS)
 
-#	ifeq ($(OS),Darwin)
-#	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
-#	else
-# -I/usr/lib -I/usr/include
-#	$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -lm -Llibft -lft  -o $(NAME)
-#	endif
+test: $(SRC)
+	gcc -I$I -c $<
+
+ifeq ($(OS),Darwin)
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(HEADER) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -O3
+	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+else
+$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -O3
+	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+endif
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -113,17 +116,15 @@ $(LIBFT):
 $O:
 	@mkdir -p $@ $(O_DIRS)
 
+
 ifeq ($(OS),Darwin)
 $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 else
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) $(CFLAGS
-
-
-	) -I/usr/include -Imlx_linux -O3 -c $< -o $@
-endif
+	@$(CC) -I$I -O3 -c $< -o $@
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+endif
 
 clean:
 	@$(MAKE) -C $(dir $(MINILIBX)) clean

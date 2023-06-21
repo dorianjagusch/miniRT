@@ -126,6 +126,7 @@ char	*get_next_line(int fd);
 long	ft_max(long a, long b);
 long	ft_min(long a, long b);
 double	ft_powerf(double x, int exp);
+double	ft_scale(double value, t_range range_old, t_range range_new);
 void	ft_free(void *ptr);
 void	*ft_free_array(char ***array, size_t elements);
 #endif

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/20 22:45:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:43:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,29 @@ typedef struct s_ray
 
 typedef struct s_payload
 {
-	int		id;
+	int		obj_id;
 	double	distance;
 	t_vec3	hitpoint;
 	t_vec3	hitnorm;
-	double	light_dir;
+	t_vec3	light_dir;
 	double	light_dist;
-
+	int		material;
 }			t_payload;
 
 typedef struct s_dist_func
 {
-	int	type;
-	int	(*dist_funct)(t_ray *, t_obj *);
+	int		type;
+	double	(*dist_funct)(t_ray *, t_obj *);
 }		t_dist_func;
 
 void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload);
+double	get_dist(t_ray *ray, t_obj *obj);
 double	dist_sphere(t_ray *ray, t_obj *obj);
 double	dist_plane(t_ray *ray, t_obj *obj);
 double	dist_cylinder(t_ray *ray, t_obj *obj);
-double 	light_dist(t_obj *objs, t_payload *payload);
+double 	light_distance(t_scene *scene, t_payload *payload);
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
+
+t_vec4	hit_shader(t_scene *scene, t_payload *payload);
 
 #endif

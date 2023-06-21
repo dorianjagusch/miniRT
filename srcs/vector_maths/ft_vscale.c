@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_normal.c                                       :+:      :+:    :+:   */
+/*   ft_vscale.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:23:18 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/21 23:06:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shaders.h"
 #include "vector_math.h"
+#include "libft.h"
 
-
-t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
+void	ft_v3scale(t_vec3 *v, t_range old, t_range new)
 {
-	t_vec3 normal;
+	(*v).x = ft_scale((*v).x, old, new);
+	(*v).y = ft_scale((*v).y, old, new);
+	(*v).z = ft_scale((*v).z, old, new);
+}
 
-	if (obj->type == sphere)
-	{
-		normal = ft_v3sub(hitpoint, obj->position);
-		ft_v3norm(&normal);
-		return (normal);
-	}
-	else if (obj->type == plane)
-		return (obj->normal);
-	else if (obj->type == cylinder)
-		return ((t_vec3){0});
+
+void	ft_v4scale(t_vec4 *v, t_range old, t_range new)
+{
+	(*v).v = ft_scale((*v).v, old, new);
+	(*v).x = ft_scale((*v).x, old, new);
+	(*v).y = ft_scale((*v).y, old, new);
+	(*v).z = ft_scale((*v).z, old, new);
 }
