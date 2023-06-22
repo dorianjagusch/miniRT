@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 23:06:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:44:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_v3scale(t_vec3 *v, t_range old, t_range new)
 	(*v).y = ft_scale((*v).y, old, new);
 	(*v).z = ft_scale((*v).z, old, new);
 }
-
 
 void	ft_v4scale(t_vec4 *v, t_range old, t_range new)
 {

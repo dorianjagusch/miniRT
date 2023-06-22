@@ -6,14 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:39:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:45:01 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 #include "libft.h"
 
-void	ft_v3cscale(t_vec4 *v, double min, double max)
+void	ft_v3clamp(t_vec4 *v, double min, double max)
 {
 	v->x = ft_min(ft_max(v->x, min), max);
 	v->y = ft_min(ft_max(v->y, min), max);

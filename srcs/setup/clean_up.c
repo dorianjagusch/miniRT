@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 16:55:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:30:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	free_img(t_img *img)
 		free(img->win);
 	if (img->bits & OBJ_INIT)
 		free(img->win);
-
 }
