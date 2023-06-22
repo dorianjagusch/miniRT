@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/21 22:32:08 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/22 15:29:45 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,12 @@ COLOUR_END=\033[0m
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -I$I $(HEADER)
 OS := $(shell uname)
-ifeq ($(OS),Darwin)
+# ifeq ($(OS),Darwin)
 CFLAGS += -framework OpenGL -framework AppKit
 MINILIBX = mlx/libmlx.a
-else
-MINILIBX = mlx_linux/libmlx.a
-CFLAGS +=
-endif
+# else
+# MINILIBX = mlx_linux/libmlx.a
+# endif
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -90,20 +89,17 @@ minilib: $(MINILIBX)
 libft: $(LIBFT)
 
 print:
-	@echo $(O_DIRS)
+	@echo $(dir $(MINILIBX))
 
-test: $(SRC)
-	gcc -I$I -c $<
-
-ifeq ($(OS),Darwin)
+# ifeq ($(OS),Darwin)
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -O3
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-else
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -O3
-	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-endif
+# else
+# $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+# 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -O3 -o $(NAME)
+# 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+# endif
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -116,15 +112,15 @@ $(LIBFT):
 $O:
 	@mkdir -p $@ $(O_DIRS)
 
-
-ifeq ($(OS),Darwin)
-$O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
-else
+# ifeq ($(OS),Darwin)
 $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) -I$I -O3 -c $< -o $@
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
-endif
+# else
+# $O/%.o: $S/%.c $(HEADER) | $O
+# 	@$(CC) -I$I -O3 -c $< -o $@
+# 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+# endif
 
 clean:
 	@$(MAKE) -C $(dir $(MINILIBX)) clean
