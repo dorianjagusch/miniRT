@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/22 13:48:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:51:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	ft_skip_ws(char **line)
 {
+	ft_printf("in WS\n");
 	while (**line == ' ')
 		*line += 1;
+	ft_printf("out WS\n");
 }
 
 void	ft_skip_num(char **line, int mode)
 {
 	int	flag;
-
+	
 	flag = 0;
-	while (ft_isdigit(**line) || (mode != INT && **line == '.' && !flag))
+	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
 	{
 		if (**line == '.')
 			flag++;
 		*line += 1;
 	}
-	if (ft_isspace(**line))
+	if (ft_isspace(**line) || **line == ',')
 		return ;
 	ft_error(num_err);
 }
@@ -39,7 +41,7 @@ t_vec4	get_colour(char **line)
 	int		colour[4];
 	t_vec4	res;
 	int		i;
-
+	
 	i = 1;
 	while (i < 4)
 	{
@@ -50,6 +52,7 @@ t_vec4	get_colour(char **line)
 			ft_error(range_err);
 		if (*(*line + 1) != ',' && i < 3)
 			ft_error(num_err);
+		i++;
 		*line += 2;
 	}
 	res = ft_trgbtov4(colour);

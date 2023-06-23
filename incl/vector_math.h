@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/22 13:54:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:42:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ double	vec3_mag(t_vec3 v);
 t_vec3	vec3_multf(t_vec3 v, double val);
 void	vec3_normalize(t_vec3 *v);
 double	vec3_dot(t_vec3 v, t_vec3 u);
-t_vec3	ft_cross(t_vec3 v, t_vec3 u); //currently unused
+t_vec3	vec3_cross(t_vec3 v, t_vec3 u);
 double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused
 t_vec3	vec3_reflect(t_vec3 v, t_vec3 normal);
-void	vec3_scale(t_vec3 *v, t_range old, t_range new); //currently unused
+void	vec3_scale(t_vec3 *v, t_range old, t_range new);
 void	vec3_clamp(t_vec4 *v, double min, double max);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);

@@ -22,27 +22,26 @@ ensuring accurate mapping of coordinates in the ray-tracing process.*/
 //which transforms points and vectors from camera space to world space
 void init_camera_dir(t_camera *cam)
 {
-    cam->forward = vec3_sub(cam->target, cam->pos);//
     cam->right = vec3_cross(cam->up, cam->forward);
-    cam->up = vec3_cross(forward, cam->right);
+    cam->up = vec3_cross(cam->forward, cam->right);
 	cam->aspect_ratio = (double)WIDTH / (double)HEIGHT;
-    vec3_normalize(&cam->forward);
     vec3_normalize(&cam->right);
     vec3_normalize(&cam->up);
 }
 
 t_ray create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
-    t_ray primary_ray;
-    double norm_coord_X;
-    double norm_coord_Y;
+    t_ray	primary_ray;
+	double	norm_coord_x;
+    double	norm_coord_y;
 
-    norm_coord_X = (2.0 * pxl.x) / (double) WIDTH - 1.0;
-    norm_coord_Y = 1.0 - (2.0 * pxl.y) / (double) HEIGHT;
+    norm_coord_x = ((2.0 * (pxl.x + 0.5)) / WIDTH - 1.0) * cam->aspect_ratio * tan(M_PI_4); //tan(fov / 2 * M_PI / 180)
+    norm_coord_y = 1.0 - (2.0 * (pxl.y + 0.5)) / HEIGHT * tan(M_PI_4);
     // Transform the normalized coordinates to world space using the camera-to-world matrix, in theory
-    primary_ray.dir = vec3_add(cam.forward, vec3_add(vec3_scale(cam->right, norm_coord_X), vec3_scale(cam->up, norm_coord_Y))); //seperate calcs
-    normalize(primary_ray.dir);
+    //primary_ray.direction = vec3_add(cam->forward, vec3_add(vec3_scale(cam->right, norm_coord_X), vec3_scale(cam->up, norm_coord_Y))); //seperate calcs
     primary_ray.origin = cam->pos;
+    primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, -1}, primary_ray.origin);
+	vec3_normalize(&primary_ray.direction);
     return (primary_ray);
 }
 

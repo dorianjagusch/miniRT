@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:37:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:55:06 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	get_unique(t_scene *scene, char *line)
 {
 	static int	flag[3];
-
+	ft_printf("in get_unique\n");
 	if (ft_strncmp("A ", line, 2) && !flag[0])
 	{
 		scene->amb.ratio = get_double(&line, RATIO);
@@ -66,10 +66,12 @@ static void	get_object(t_scene *scene, char *line, t_obj *offset)
 static void	process_line(t_scene *scene, char *line)
 {
 	static t_obj	*offset;
+	int				i  = 0;
 
 	offset = scene->objs;
 	if (line && line[0] != '\n')
 	{
+		ft_printf("line %d start\n", i);
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))
 			get_unique(scene, line);
@@ -78,6 +80,7 @@ static void	process_line(t_scene *scene, char *line)
 			get_object(scene, line, offset);
 			offset++;
 		}
+		ft_printf("line %d done\n", i++);
 	}
 }
 
@@ -87,11 +90,12 @@ static int	count_objects(int fd, char *av)
 	int		count;
 
 	line = get_next_line(fd);
-	ft_printf("%p\n", line);
 	while (line)
-	{
+	{	
 		if (!ft_empty_str(line))
 			count++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	if (close(fd) < 0)
 		ft_error(errno);
@@ -125,4 +129,5 @@ void	set_scene(t_scene *scene, char *av)
 			free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 }

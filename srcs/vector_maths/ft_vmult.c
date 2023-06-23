@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:36:38 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:41:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double vec3_mag(t_vec3 v)
 }
 /*the cross product vec3_cross(forward, right) is used to calculate the up vector, which is perpendicular to both the forward and right vectors.
 It determines the upward direction relative to the camera's orientation.*/
-t_vec3 ft_cross(t_vec3 v, t_vec3 u)
+t_vec3 vec3_cross(t_vec3 v, t_vec3 u)
 {
 	t_vec3	res;
 

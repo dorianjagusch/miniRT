@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 19:05:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:46:04 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 enum e_errors
 {
-	file_err,
+	file_err = 160,
 	num_err,
 	range_err,
 	ident_err,

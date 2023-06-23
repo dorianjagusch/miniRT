@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/22 13:42:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:34:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	prep_image(t_img *img)
 
 void	set_image(t_img *img)
 {
-	int		i;
 	void	*mlx;
 
 	mlx = mlx_init();
