@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 23:12:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:48:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_vec4	get_colour(char **line)
 	}
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
+	return (res);
 }
 
 double	get_double(char **line, int mode)
@@ -71,6 +72,7 @@ double	get_double(char **line, int mode)
 	if (mode == ANGLE && 0 <= res && res <= 180)
 		return (res);
 	ft_error(num_err);
+	return (DBL_MAX);
 }
 
 t_vec3	get_vec3(char **line)

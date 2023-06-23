@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:08:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:35:22 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double	get_dist(t_ray *ray, t_obj *obj);
 double	dist_sphere(t_ray *ray, t_obj *obj);
 double	dist_plane(t_ray *ray, t_obj *obj);
 double	dist_cylinder(t_ray *ray, t_obj *obj);
-double 	light_distance(t_scene *scene, t_payload *payload);
+void	light_distance(t_scene *scene, t_payload *payload);
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
 t_vec4	hit_shader(t_scene *scene, t_payload *payload);
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl);

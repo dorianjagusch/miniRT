@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 10:38:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:37:50 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 
 double	get_dist(t_ray *ray, t_obj *obj)
 {
-	static const t_dist_func func[] =
-	{
-		{sphere, &dist_sphere},
-		{plane, &dist_plane},
-		{cylinder, &dist_cylinder}
+	static const t_dist_func	func[] = {
+	{sphere, &dist_sphere},
+	{plane, &dist_plane},
+	{cylinder, &dist_cylinder}
 	};
 
 	return (func[obj->type].dist_funct(ray, obj));

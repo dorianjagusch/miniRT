@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/23 11:23:05 by smorphet         ###   ########.fr        #
+#    Updated: 2023/06/23 11:35:03 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,12 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -I$I $(HEADER)
 OS := $(shell uname)
 # ifeq ($(OS),Darwin)
+# ifeq ($(OS),Darwin)
 CFLAGS += -framework OpenGL -framework AppKit
 MINILIBX = mlx/libmlx.a
+# else
+# MINILIBX = mlx_linux/libmlx.a
+# endif
 # else
 # MINILIBX = mlx_linux/libmlx.a
 # endif
@@ -91,11 +95,19 @@ libft: $(LIBFT)
 
 print:
 	@echo $(dir $(MINILIBX))
+	@echo $(dir $(MINILIBX))
 
+# ifeq ($(OS),Darwin)
 # ifeq ($(OS),Darwin)
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -O3
+	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -O3
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+# else
+# $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+# 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -O3 -o $(NAME)
+# 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+# endif
 # else
 # $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 # 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -O3 -o $(NAME)
@@ -114,9 +126,15 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 # ifeq ($(OS),Darwin)
+# ifeq ($(OS),Darwin)
 $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) -I$I -O3 -c $< -o $@
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+# else
+# $O/%.o: $S/%.c $(HEADER) | $O
+# 	@$(CC) -I$I -O3 -c $< -o $@
+# 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+# endif
 # else
 # $O/%.o: $S/%.c $(HEADER) | $O
 # 	@$(CC) -I$I -O3 -c $< -o $@

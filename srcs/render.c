@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:22:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:38:42 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 t_vec4	miss(t_img *img)
 {
-
+	return (img->scene.amb.colour);
 }
 
-//set loop in per pixel function for bounces and modify ray in hitshader or call relect function
+//set loop in per pixel function for bounces and modify ray in hitshader 
+//or call relect function
 // and reassign ray while saving the colour
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {

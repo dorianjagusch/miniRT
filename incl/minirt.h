@@ -35,7 +35,6 @@
 // DEFAULTS
 # define WIDTH 500
 # define HEIGHT 500
-# define TOTAL (WIDTH * HEIGHT)
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"

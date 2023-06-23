@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:20:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:33:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	vec3_normalize(t_vec3 *v) //measure performance and compare to finvsqrt
 	v->z /= mag;
 }
 
-double ft_cos_angle(t_vec3 v, t_vec3 u)
+double	ft_cos_angle(t_vec3 v, t_vec3 u)
 {
-	double res;
+	double	res;
 
 	res = vec3_dot(v, u) / (vec3_mag(v) * vec3_mag(u));
 	return (res);
 }
 
-t_vec3 vec3_reflect(t_vec3 v, t_vec3 normal)
+t_vec3 ft_v3reflect(t_vec3 v, t_vec3 normal)
 {
 	t_vec3	res;
 

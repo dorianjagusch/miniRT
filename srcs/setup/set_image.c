@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:56:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:42:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ void	set_image(t_img *img)
 	if (!mlx)
 		ft_error(ENOMEM);
 	img->win->win = mlx_new_window(img->win->mlx,
-		WIDTH, HEIGHT, "miniRT");
+			WIDTH, HEIGHT, "miniRT");
 	if (!img->win->win)
 		ft_error (ENOMEM);
 	img->bits |= WIN_WIN_INIT;
 	prep_image(img);
-
 }

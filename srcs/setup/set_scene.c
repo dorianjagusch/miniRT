@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:07:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:37:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_unique(t_scene *scene, char *line)
 {
-	static int flag[3];
+	static int	flag[3];
 
 	if (ft_strncmp("A ", line, 2) && !flag[0])
 	{
@@ -63,13 +63,12 @@ static void	get_object(t_scene *scene, char *line, t_obj *offset)
 	offset->colour = get_colour(&line);
 }
 
-static void	process_line(t_scene *scene, char* line)
+static void	process_line(t_scene *scene, char *line)
 {
 	static t_obj	*offset;
 
-
 	offset = scene->objs;
-	if (line && !line[0] != '\n')
+	if (line && line[0] != '\n')
 	{
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))
@@ -104,8 +103,8 @@ static int	count_objects(int fd, char *av)
 
 void	set_scene(t_scene *scene, char *av)
 {
-	int	fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
 		ft_error(file_err);
@@ -113,13 +112,13 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
-	if (scene->n_objs = 0)
+	if (scene->n_objs == 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));
 	if (!scene->objs)
 		ft_error(ENOMEM);
 	line = get_next_line(fd);
-	while (line);
+	while (line)
 	{
 		process_line(scene, line);
 		if (line)

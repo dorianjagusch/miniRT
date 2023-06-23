@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_math.h                                           :+:      :+:    :+:   */
+/*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/18 17:38:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:54:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-    #define VECTOR_H
+#ifndef VECTOR_MATH_H
+# define VECTOR_MATH_H
 
-#include "libft.h"
+# include "libft.h"
 
 typedef struct s_vec2
 {

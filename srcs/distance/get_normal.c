@@ -6,17 +6,16 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:22:00 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:38:07 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "vector_math.h"
 
-
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
 {
-	t_vec3 normal;
+	t_vec3	normal;
 
 	if (obj->type == sphere)
 	{
@@ -28,4 +27,5 @@ t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
 		return (obj->normal);
 	else if (obj->type == cylinder)
 		return ((t_vec3){0});
+	return ((t_vec3){0});
 }
