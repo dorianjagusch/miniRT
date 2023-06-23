@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vmult.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 18:29:11 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:38:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include <math.h>
 
 //important: if dot(v, u) > 0 acute angle => suface is tilted toward camera
-double ft_v3dot(t_vec3 v, t_vec3 u)
+double vec3_dot(t_vec3 v, t_vec3 u)
 {
 	return (v.x * u.x + v.y * u.y + v.z * u.z);
 }
 
-double ft_v3mag(t_vec3 v)
+double vec3_mag(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
-
+/*the cross product vec3_cross(forward, right) is used to calculate the up vector, which is perpendicular to both the forward and right vectors.
+It determines the upward direction relative to the camera's orientation.*/
 t_vec3 ft_cross(t_vec3 v, t_vec3 u)
 {
 	t_vec3	res;
@@ -34,7 +35,7 @@ t_vec3 ft_cross(t_vec3 v, t_vec3 u)
 	return (res);
 }
 
-t_vec3	ft_v3multf(t_vec3 v, double val)
+t_vec3	vec3_multf(t_vec3 v, double val)
 {
 	t_vec3	res;
 
@@ -44,7 +45,7 @@ t_vec3	ft_v3multf(t_vec3 v, double val)
 	return (res);
 }
 
-t_vec4	ft_v4multf(t_vec4 v, double val)
+t_vec4	vec4_multf(t_vec4 v, double val)
 {
 	t_vec4	res;
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vadd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 18:29:11 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:38:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec3	ft_v3add(t_vec3 v, t_vec3 u)
+t_vec3	vec3_add(t_vec3 v, t_vec3 u)
 {
 	t_vec3	res;
 
@@ -22,7 +22,7 @@ t_vec3	ft_v3add(t_vec3 v, t_vec3 u)
 	return (res);
 }
 
-t_vec3	ft_v3addf(t_vec3 v, double val)
+t_vec3	vec3_addf(t_vec3 v, double val)
 {
 	t_vec3	res;
 
@@ -32,7 +32,7 @@ t_vec3	ft_v3addf(t_vec3 v, double val)
 	return (res);
 }
 
-t_vec4	ft_v4add(t_vec4 v, t_vec4 u)
+t_vec4	vec4_add(t_vec4 v, t_vec4 u)
 {
 	t_vec4	res;
 
@@ -43,7 +43,7 @@ t_vec4	ft_v4add(t_vec4 v, t_vec4 u)
 	return (res);
 }
 
-t_vec4	ft_v4addf(t_vec4 v, double val)
+t_vec4	vec4_addf(t_vec4 v, double val)
 {
 	t_vec4	res;
 

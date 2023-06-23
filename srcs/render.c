@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:35:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:22:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	int			i;
 
 	i = 0;
-	ray.origin = img->scene.cam.pos;
-	//ray.direction = (((pxl.x + pxl.y * WIDTH) / TOTAL) * 2) - 1;
+	ray = create_primary_ray(&img->scene.cam, pxl);//
 	while (i < BOUNCES)
 	{
 		get_closest(&(img->scene), &ray, &payload);
 		if (payload.distance == DBL_MAX)
 		{
-			colour = ft_v4add(colour, miss(img));
+			colour = vec4_add(colour, miss(img));
 			break;
 		}
-		colour = ft_v4add(colour, hit_shader(&(img->scene), &payload));
-		ray.direction = ft_v3multf(ray.direction, -1),
-		ray.direction = ft_v3reflect(ray.direction, payload.hitnorm);
-		ray.origin = ft_v3add(payload.hitpoint, ft_v3multf(payload.hitnorm, 0.0001));
+		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
+		ray.direction = vec3_multf(ray.direction, -1),
+		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
+		ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
 		i++;
 	}
-	ft_v4clamp(&colour, 0, 1);
-	return (ft_v4toint32(colour));
+	vec4_clamp(&colour, 0, 1);
+	return (vec4_toint32(colour));
 }
 
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)

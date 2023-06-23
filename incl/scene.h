@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:46:40 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:08:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ typedef struct s_light
 typedef struct s_camera
 {
 	t_vec3	pos;
-	t_vec3	dir;
-	t_vec3	left;
+	t_vec3	right;
+	t_vec3	up;
+	t_vec3	forward;
+	double	aspect_ratio;
 	double	fov;
 }			t_camera;
-
-typedef struct s_ray
-{
-	t_vec3 origin;
-    t_vec3 direction;
-	//t_vec3	T;
-}				t_ray;
 
 typedef struct s_amb
 {
@@ -80,5 +75,6 @@ void	ft_skip_num(char **line, int mode);
 t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
+void	init_camera_dir(t_camera *cam);
 
 #endif

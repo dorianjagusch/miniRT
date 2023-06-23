@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:43:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:38:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 	}
 	if (payload->distance != DBL_MAX)
 	{
-		payload->hitpoint = ft_v3add(ray->origin, ft_v3multf(ray->direction, payload->distance));
+		payload->hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, payload->distance));
 		payload->hitnorm = get_normal(&(scene->objs[i]), payload->hitpoint);
 		payload->material = scene->objs[i].material;
 	}

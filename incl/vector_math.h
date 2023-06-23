@@ -37,30 +37,30 @@ typedef struct s_vec4
 }			t_vec4;
 
 // VECTOR MATHS
-t_vec3	ft_v3add(t_vec3 v, t_vec3 u);
-t_vec3	ft_v3addf(t_vec3 v, double val);
-t_vec3	ft_v3sub(t_vec3 v, t_vec3 u);
-t_vec3	ft_v3subf(t_vec3 v, double val);
+t_vec3	vec3_add(t_vec3 v, t_vec3 u);
+t_vec3	vec3_addf(t_vec3 v, double val);
+t_vec3	vec3_sub(t_vec3 v, t_vec3 u);
+t_vec3	vec3_subf(t_vec3 v, double val);
 
-double	ft_v3mag(t_vec3 v);
-t_vec3	ft_v3multf(t_vec3 v, double val);
-void	ft_v3norm(t_vec3 *v);
-double	ft_v3dot(t_vec3 v, t_vec3 u);
+double	vec3_mag(t_vec3 v);
+t_vec3	vec3_multf(t_vec3 v, double val);
+void	vec3_normalize(t_vec3 *v);
+double	vec3_dot(t_vec3 v, t_vec3 u);
 t_vec3	ft_cross(t_vec3 v, t_vec3 u); //currently unused
 double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused
-t_vec3	ft_v3reflect(t_vec3 v, t_vec3 normal);
-void	ft_v3scale(t_vec3 *v, t_range old, t_range new); //currently unused
-void	ft_v3clamp(t_vec4 *v, double min, double max);
+t_vec3	vec3_reflect(t_vec3 v, t_vec3 normal);
+void	vec3_scale(t_vec3 *v, t_range old, t_range new); //currently unused
+void	vec3_clamp(t_vec4 *v, double min, double max);
 
-t_vec4	ft_v4add(t_vec4 v, t_vec4 u);
-t_vec4	ft_v4addf(t_vec4 v, double val);
-t_vec4	ft_v4sub(t_vec4 v, t_vec4 u);
-t_vec4	ft_v4subf(t_vec4 v, double val);
-t_vec4	ft_v4multf(t_vec4 v, double val);
-void	ft_v4clamp(t_vec4 *v, double min, double max);
-void	ft_v4scale(t_vec4 *v, t_range old, t_range new);
+t_vec4	vec4_add(t_vec4 v, t_vec4 u);
+t_vec4	vec4_addf(t_vec4 v, double val);
+t_vec4	vec4_sub(t_vec4 v, t_vec4 u);
+t_vec4	vec4_subf(t_vec4 v, double val);
+t_vec4	vec4_multf(t_vec4 v, double val);
+void	vec4_clamp(t_vec4 *v, double min, double max);
+void	vec4_scale(t_vec4 *v, t_range old, t_range new);
 void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);
 t_vec4	ft_int32tov4(int32_t colour);
-int32_t	ft_v4toint32(t_vec4 colour);
+int32_t	vec4_toint32(t_vec4 colour);
 #endif

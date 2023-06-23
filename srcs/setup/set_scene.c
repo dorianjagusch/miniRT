@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/19 17:57:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:07:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ static void	get_unique(t_scene *scene, char *line)
 	else if (ft_strncmp("C ", line, 2) && !flag[2])
 	{
 		scene->cam.pos = get_vec3(&line);
-		scene->cam.dir = get_vec3(&line);
+		scene->cam.forward = get_vec3(&line);
 		scene->cam.fov = get_double(&line, ANGLE);
+		init_camera_dir(&scene->cam);
 		flag[2] = 1;
 	}
 	else

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   colour_vec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 23:04:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:38:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 #include "minirt.h"
 
-int32_t	ft_v4toint32(t_vec4 colour)
+int32_t	vec4_toint32(t_vec4 colour)
 {
 	int32_t r;
 	int32_t g;

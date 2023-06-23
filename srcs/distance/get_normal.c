@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 22:23:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:22:00 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
 
 	if (obj->type == sphere)
 	{
-		normal = ft_v3sub(hitpoint, obj->position);
-		ft_v3norm(&normal);
+		normal = vec3_sub(hitpoint, obj->position);
+		vec3_normalize(&normal);
 		return (normal);
 	}
 	else if (obj->type == plane)
