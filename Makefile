@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/23 11:35:03 by smorphet         ###   ########.fr        #
+#    Updated: 2023/06/23 14:40:30 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,18 +19,18 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I$I $(HEADER)
+CFLAGS = -Wall -Werror -Wextra
 OS := $(shell uname)
-# ifeq ($(OS),Darwin)
-# ifeq ($(OS),Darwin)
+
+ifeq ($(OS),Darwin)
 CFLAGS += -framework OpenGL -framework AppKit
 MINILIBX = mlx/libmlx.a
-# else
-# MINILIBX = mlx_linux/libmlx.a
-# endif
-# else
-# MINILIBX = mlx_linux/libmlx.a
-# endif
+LIBS = -L$(dir $(MINILIBX)) -lmlx -Llibft -lft
+else
+MINILIBX = mlx_linux/libmlx.a
+LIBS = -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux \
+	-L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+endif
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -66,7 +66,9 @@ FILES = get_colour \
 	getters \
 	handlers \
 	error_handling \
-	camera
+	camera \
+	print_scene \
+	print_objs
 
 HEADER = vector_math \
 	minirt \
@@ -76,7 +78,8 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
-	mlx
+	mlx \
+	print_helpers
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
@@ -97,22 +100,12 @@ print:
 	@echo $(dir $(MINILIBX))
 	@echo $(dir $(MINILIBX))
 
-# ifeq ($(OS),Darwin)
-# ifeq ($(OS),Darwin)
+# Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
+# need to figure out why it precompiles them
+
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -O3
-	@$(CC) $(CFLAGS) $(OBJS) -L$(dir $(MINILIBX)) -lmlx -Llibft -lft -O3
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-# else
-# $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-# 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -O3 -o $(NAME)
-# 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-# endif
-# else
-# $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-# 	@$(CC) $(CFLAGS) $(OBJS) -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -O3 -o $(NAME)
-# 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-# endif
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -125,21 +118,9 @@ $(LIBFT):
 $O:
 	@mkdir -p $@ $(O_DIRS)
 
-# ifeq ($(OS),Darwin)
-# ifeq ($(OS),Darwin)
 $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) -I$I -O3 -c $< -o $@
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
-# else
-# $O/%.o: $S/%.c $(HEADER) | $O
-# 	@$(CC) -I$I -O3 -c $< -o $@
-# 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
-# endif
-# else
-# $O/%.o: $S/%.c $(HEADER) | $O
-# 	@$(CC) -I$I -O3 -c $< -o $@
-# 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
-# endif
 
 clean:
 	@$(MAKE) -C $(dir $(MINILIBX)) clean

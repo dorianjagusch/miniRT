@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:35:22 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:57:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_payload
 	double	light_dist;
 	int		material;
 }			t_payload;
+
+typedef struct s_print_func
+{
+	int		type;
+	void	(*print_funct)(t_obj);
+}		t_print_func;
 
 typedef struct s_dist_func
 {

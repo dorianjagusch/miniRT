@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 12:51:14 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:50:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_skip_ws(char **line)
 void	ft_skip_num(char **line, int mode)
 {
 	int	flag;
-	
+
 	flag = 0;
 	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
 	{
@@ -32,7 +32,10 @@ void	ft_skip_num(char **line, int mode)
 		*line += 1;
 	}
 	if (ft_isspace(**line) || **line == ',')
+	{
+		ft_printf("Number skip success\n");
 		return ;
+	}
 	ft_error(num_err);
 }
 
@@ -41,16 +44,18 @@ t_vec4	get_colour(char **line)
 	int		colour[4];
 	t_vec4	res;
 	int		i;
-	
+
 	i = 1;
+	ft_printf("In get colour %s\n", *line);
 	while (i < 4)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
-		ft_skip_num(line, INT);
+		ft_printf("got int %d\n", i);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-		if (*(*line + 1) != ',' && i < 3)
+		ft_printf("colour scan on %c\n", *(*line + 1));
+		if ((*(*line + 1) != ',') && i < 3)
 			ft_error(num_err);
 		i++;
 		*line += 2;
@@ -67,14 +72,27 @@ double	get_double(char **line, int mode)
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
+	{
+		ft_printf("res: %f, left: %s", res, *line);
 		return (res);
-	if (mode == REAL)
+	}
+	else if (mode == REAL)
+	{
+		ft_printf("res: %f, left: %s", res, *line);
 		return (res);
-	if (mode == BALANCE && -1 <= res && res <= 1)
+	}
+	else if (mode == BALANCE && -1 <= res && res <= 1)
+	{
+		ft_printf("res: %f, left: %s", res, *line);
 		return (res);
-	if (mode == ANGLE && 0 <= res && res <= 180)
+	}
+	else if (mode == ANGLE && 0 <= res && res <= 180)
+	{
+		ft_printf("res: %f, left: %s", res, *line);
 		return (res);
-	ft_error(num_err);
+	}
+	else
+		ft_error(num_err);
 	return (DBL_MAX);
 }
 

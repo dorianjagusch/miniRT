@@ -31,6 +31,7 @@
 # include "shaders.h"
 # include <float.h>
 # include "materials.h"
+# include "print_helpers.h"
 
 // DEFAULTS
 # define WIDTH 500
