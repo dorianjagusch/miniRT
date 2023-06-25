@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/25 12:32:46 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/25 22:33:15 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,12 +51,14 @@ FILES = get_colour \
 	min_distance \
 	get_normal \
 	main \
-	ft_vsub \
-	ft_vec3_calc \
-	ft_vmult \
-	ft_vadd \
-	ft_vclamp \
-	ft_vscale \
+	vec3_rotate \
+	vec_mult \
+	vec3_reflect \
+	vec_scale \
+	vec3_normalize \
+	vec3_sub \
+	vec3_add \
+	vec_clamp \
 	hit_shader \
 	input \
 	clean_up \

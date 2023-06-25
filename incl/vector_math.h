@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:42:14 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/25 22:30:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_MATH_H
 
 # include "libft.h"
+# include <math.h>
 
 typedef struct s_vec2
 {
@@ -51,6 +52,7 @@ double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused
 t_vec3	vec3_reflect(t_vec3 v, t_vec3 normal);
 void	vec3_scale(t_vec3 *v, t_range old, t_range new);
 void	vec3_clamp(t_vec4 *v, double min, double max);
+t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);
 t_vec4	vec4_addf(t_vec4 v, double val);

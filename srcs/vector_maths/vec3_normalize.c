@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec3_calc.c                                     :+:      :+:    :+:   */
+/*   vec3_normalize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:34:39 by smorphet         ###   ########.fr       */
+/*   Created: 2023/06/25 22:14:55 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/25 22:15:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,4 @@ void	vec3_normalize(t_vec3 *v) //measure performance and compare to finvsqrt
 	v->x /= mag;
 	v->y /= mag;
 	v->z /= mag;
-}
-
-double ft_cos_angle(t_vec3 v, t_vec3 u)
-{
-	double res;
-
-	res = vec3_dot(v, u) / (vec3_mag(v) * vec3_mag(u));
-	return (res);
-}
-
-t_vec3 vec3_reflect(t_vec3 v, t_vec3 normal)
-{
-	t_vec3	res;
-
-	res = vec3_add(v, vec3_multf(normal, -2 * vec3_dot(v, normal)));
-	return (res);
 }

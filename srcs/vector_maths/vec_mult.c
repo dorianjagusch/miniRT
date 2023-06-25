@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vmult.c                                         :+:      :+:    :+:   */
+/*   vec3_mult.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:41:39 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/06/25 22:15:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <math.h>
 
 //important: if dot(v, u) > 0 acute angle => suface is tilted toward camera
-double vec3_dot(t_vec3 v, t_vec3 u)
+double	vec3_dot(t_vec3 v, t_vec3 u)
 {
 	return (v.x * u.x + v.y * u.y + v.z * u.z);
 }
 
-double vec3_mag(t_vec3 v)
+double	vec3_mag(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
