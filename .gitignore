@@ -1,4 +1,2 @@
-.vscode
-Makefile
 *.o
 *.h.gch

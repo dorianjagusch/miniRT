@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/23 14:40:30 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/25 12:32:46 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MINILIBX = mlx/libmlx.a
 LIBS = -L$(dir $(MINILIBX)) -lmlx -Llibft -lft
 else
 MINILIBX = mlx_linux/libmlx.a
-LIBS = -Llibft -lft -$(dir $(MINILIBX)) -lmlx_Linux \
+LIBS = -Llibft -lft -L$(dir $(MINILIBX)) -lmlx_Linux \
 	-L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 endif
 
@@ -104,7 +104,7 @@ print:
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3 -g
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
