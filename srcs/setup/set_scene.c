@@ -21,9 +21,9 @@ static void	get_unique(t_scene *scene, char **line)
 		*line += 2; // needs to be 2 to skip the A and white space
 		ft_printf("fill ambient\n");
 		scene->amb.ratio = get_double(line, RATIO);
-		printf("filled ratio = %f\n", scene->amb.ratio);
-		printf("line before amb.colour: %s\n", *line);
+		printf("ambient colours: \n");
 		scene->amb.colour = get_colour(line);
+		printf("filled ratio = %f\n", scene->amb.ratio);
 		ft_printf("filled colour\n");
 		flag[0] = 1;
 		ft_printf("filled ambient\n");
@@ -31,20 +31,33 @@ static void	get_unique(t_scene *scene, char **line)
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
 		ft_printf("fill light\n");
+		*line += 2; // needs to be 2 to skip the L and white space
 		scene->light.pos = get_vec3(line);
+		ft_skip_ws(line);
 		scene->light.ratio = get_double(line, RATIO);
+		printf("_____________________\n");
+		printf("\n\nlight.pos.x: %f, light.pos.y: %f, light.pos.z: %f\n", scene->light.pos.x, scene->light.pos.y, scene->light.pos.z);
+		printf("light colours: \n");
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
+		printf("light ratio = %f\n", scene->light.ratio);
+		printf("_____________________\n");
 		ft_printf("filled light\n");
 	}
 	else if (ft_strncmp("C ", *line, 2) == 0 && !flag[2])
 	{
 		ft_printf("fill camera\n");
+		*line += 2; // needs to be 2 to skip the C and white space
 		scene->cam.pos = get_vec3(line);
 		scene->cam.forward = get_vec3(line);
 		scene->cam.fov = get_double(line, ANGLE);
 		init_camera_dir(&scene->cam);
 		flag[2] = 1;
+		printf("_____________________\n");
+		printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
+		printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
+		printf("\n\ncam.fov: %f\n", scene->cam.fov);
+		printf("_____________________\n");
 		ft_printf("filled camera\n");
 	}
 	else

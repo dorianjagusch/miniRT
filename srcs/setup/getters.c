@@ -25,17 +25,16 @@ void	ft_skip_num(char **line, int mode)
 	int	flag;
 
 	flag = 0;
-	ft_printf("line start of skip num: %s\n", *line);
-	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
+	while ((ft_isdigit(**line) || **line == '-' || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
 	{
 		if (**line == '.')
 			flag++;
 		*line += 1;
 	}
-	if (ft_isspace(**line) || **line == ',')
+	if (ft_isspace(**line) || **line == ',') //added '-' might potentiall cause issues
 	{
 		ft_printf("Number skip success\n");
-		ft_printf("line at return of skip num: %s\n", *line);
+		ft_printf("line at return of skip num: |%s|\n", *line);
 		return ;
 	}
 	ft_error(num_err);
@@ -53,10 +52,8 @@ t_vec4	get_colour(char **line)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
-		ft_printf("got int %d colour[%d] = %d line = %s\n", i, i, colour[i], *line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-		// ft_printf("colour scan on %c\n", *(*line + 1));
         while (**line != ',' || **line == '\n') //  && !ft_isspace(**line)  we need to move passed the numbers already used
             (*line)++;
 		if ((**line != ',') && i < 3) //unsure what this is checking?
@@ -64,10 +61,10 @@ t_vec4	get_colour(char **line)
 		i++;
 		*line += 1;
 	}
-	ft_printf("%d\n", colour[0]);
-	ft_printf("%d\n", colour[1]);
-	ft_printf("%d\n", colour[2]);
-	ft_printf("%d\n", colour[3]);
+	ft_printf("colour 0 = %d\n", colour[0]);
+	ft_printf("colour 1 = %d\n", colour[1]);
+	ft_printf("colour 2 = %d\n", colour[2]);
+	ft_printf("colour 3 = %d\n", colour[3]);
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
 	return (res);
@@ -78,12 +75,11 @@ double	get_double(char **line, int mode)
 	double	res;
 
 	res = 0;
-	printf("before res: %f, left: %s\n", res, *line); //
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
 	{
-		printf("from ratio res: %f, left: %s", res, *line); //filled ratio is inconsistent?
+		//printf("from ratio res: %f, left: %s", res, *line);
 		return (res);
 	}
 	else if (mode == REAL)
@@ -98,7 +94,7 @@ double	get_double(char **line, int mode)
 	}
 	else if (mode == ANGLE && 0 <= res && res <= 180)
 	{
-		ft_printf("res: %d, left: %s", res, *line);
+		ft_printf("from ANGLE res: %d, left: %s", res, *line);
 		return (res);
 	}
 	else
@@ -109,17 +105,27 @@ double	get_double(char **line, int mode)
 t_vec3	get_vec3(char **line)
 {
 	t_vec3	vec;
-	int		i;
 
-	i = 0;
+	printf("in vec3\n");
 	ft_skip_ws(line);
 	vec.x = ft_atof(*line);
+	printf("vec.x = %f\n", vec.x);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
+	if (**line == ',') 
+		*line += 1; //added in to skip ','
 	vec.y = ft_atof(*line);
+	printf("vec.y = %f\n", vec.y);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
+	if (**line == ',')
+		*line += 1; 
 	vec.z = ft_atof(*line);
-	ft_skip_num(line, REAL);
+	printf("vec.z = %f\n", vec.z);
+	ft_printf("line before final skip_num vec3 = |%s|", *line);
+	if (**line == '-') //not an elegant soloution to this issue
+		*line += 1;
+	ft_skip_num(line, REAL); //is getting stuck here at the camera positioning due to negative numbers '-'
+	printf("leaving vec3\n");
 	return (vec);
 }
