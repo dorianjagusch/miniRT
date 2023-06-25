@@ -14,10 +14,10 @@
 
 void	ft_skip_ws(char **line)
 {
-	ft_printf("in WS\n");
+	//ft_printf("in WS\n");
 	while (**line == ' ')
 		*line += 1;
-	ft_printf("out WS\n");
+	//ft_printf("out WS\n");
 }
 
 void	ft_skip_num(char **line, int mode)
@@ -47,21 +47,27 @@ t_vec4	get_colour(char **line)
 	t_vec4	res;
 	int		i;
 
+	colour[0] = 0; //potentially causing issues?
 	i = 1;
-	ft_printf("In get colour %s\n", *line);
-	while (i < 4)
+	while (i < 4)  // why is this 4? ive changed it to 3 for testing
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
-		ft_printf("got int %d\n", i);
+		ft_printf("got int %d colour[%d] = %d line = %s\n", i, i, colour[i], *line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-		ft_printf("colour scan on %c\n", *(*line + 1));
-		if ((*(*line + 1) != ',') && i < 3)
+		// ft_printf("colour scan on %c\n", *(*line + 1));
+        while (**line != ',' || **line == '\n') //  && !ft_isspace(**line)  we need to move passed the numbers already used
+            (*line)++;
+		if ((**line != ',') && i < 3) //unsure what this is checking?
 			ft_error(num_err);
 		i++;
-		*line += 2;
+		*line += 1;
 	}
+	ft_printf("%d\n", colour[0]);
+	ft_printf("%d\n", colour[1]);
+	ft_printf("%d\n", colour[2]);
+	ft_printf("%d\n", colour[3]);
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
 	return (res);
@@ -71,26 +77,28 @@ double	get_double(char **line, int mode)
 {
 	double	res;
 
+	res = 0;
+	printf("before res: %f, left: %s\n", res, *line); //
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
 	{
-		ft_printf("from ratio res: %d, left: %s", res, *line); //filled ratio is inconsistent, also why is res %f?
+		printf("from ratio res: %f, left: %s", res, *line); //filled ratio is inconsistent?
 		return (res);
 	}
 	else if (mode == REAL)
 	{
-		ft_printf("res: %f, left: %s", res, *line);
+		ft_printf("res: %d, left: %s", res, *line);
 		return (res);
 	}
 	else if (mode == BALANCE && -1 <= res && res <= 1)
 	{
-		ft_printf("res: %f, left: %s", res, *line);
+		ft_printf("res: %d, left: %s", res, *line);
 		return (res);
 	}
 	else if (mode == ANGLE && 0 <= res && res <= 180)
 	{
-		ft_printf("res: %f, left: %s", res, *line);
+		ft_printf("res: %d, left: %s", res, *line);
 		return (res);
 	}
 	else

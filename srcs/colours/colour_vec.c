@@ -39,7 +39,6 @@ t_vec4	ft_int32tov4(int32_t colour)
 t_vec4	ft_trgbtov4(int colour[4])
 {
 	t_vec4	result;
-
 	result.v = 1;
 	result.x = colour[1];
 	result.y = colour[2];

@@ -18,10 +18,11 @@ static void	get_unique(t_scene *scene, char **line)
 	ft_printf("in get_unique\n");
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
-		*line += 1;
+		*line += 2; // needs to be 2 to skip the A and white space
 		ft_printf("fill ambient\n");
 		scene->amb.ratio = get_double(line, RATIO);
-		ft_printf("filled ratio = %d\n", scene->amb.ratio);
+		printf("filled ratio = %f\n", scene->amb.ratio);
+		printf("line before amb.colour: %s\n", *line);
 		scene->amb.colour = get_colour(line);
 		ft_printf("filled colour\n");
 		flag[0] = 1;
