@@ -6,11 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/22 13:25:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/25 23:26:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "print_helpers.h"
+
 
 int	main(int ac, char **av)
 {
@@ -22,9 +24,10 @@ int	main(int ac, char **av)
 		ft_options();
 	ft_bzero(&img, sizeof(img));
 	set_scene(&(img.scene), av[1]);
-	printf("segfault marker- its something to do with MLX init\n\n"); 
-	user_input(&img);//
+	print_scene(img.scene);
+	set_image(&img);
+	user_input(&img);
 	render(&img);
-	mlx_loop(img.win->mlx);
+	mlx_loop(img.win.mlx);
 	return (0);
 }

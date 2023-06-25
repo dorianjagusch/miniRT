@@ -36,8 +36,8 @@
 # include "print_helpers.h"
 
 // DEFAULTS
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 860
+# define HEIGHT 540
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
@@ -53,11 +53,11 @@ typedef struct s_window
 {
 	void	*mlx;
 	void	*win;
-} t_window;
+}			t_window;
 
 typedef struct s_img
 {
-	t_window	*win;
+	t_window	win;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
@@ -65,11 +65,8 @@ typedef struct s_img
 	int			endian;
 	int			move;
 	t_scene		scene;
-	u_int8_t	bits;
-	int			active;
-	int			win_id;
-	int			win_num;
 	int			is_help;
+	int			error;
 }				t_img;
 
 // MINIRT
@@ -79,7 +76,6 @@ void	render(t_img *img);
 void	free_img(t_img *img);
 void	ft_options(void);
 void	ft_error(int error);
-void	set_active(t_img *img, u_int8_t *active);
 
 // VIEW HANDLERS
 int		ft_toggle_help(t_img *img);
@@ -90,11 +86,13 @@ void	ft_change_bounces(t_img *img, int key);
 int		user_input(t_img *img);
 int		mouse_position(int x, int y, t_img *img);
 int		mouse_handler(int mouse_action, int x, int y, t_img *img);
-int		ft_close_win(t_img *img);
-void	ft_close(int error);
+int		ft_close(t_img *img);
 int		key_handler(int key, t_img *img);
 void	ft_focal(int mouse_action, int x, int y, t_img *img);
 void	ft_move(t_img *img, int key);
+
+int		ft_close_win(t_img *img);
+void	set_active(t_img *img, u_int8_t *active);
 
 // COLOUR FUNCTIONS
 int32_t	create_trgb(int t, int r, int g, int b);

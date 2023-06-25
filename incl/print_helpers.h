@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 14:15:11 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/25 23:27:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_plane(t_obj obj);
 void	print_cylinder(t_obj obj);
 void	print_triangle(t_obj obj);
 void	print_objs(t_obj obj);
+void	print_ray(t_ray ray);
 void	print_light(t_light light);
 void	print_camera(t_camera cam);
 void	print_scene(t_scene scene);
