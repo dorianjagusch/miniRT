@@ -21,7 +21,7 @@ static void	get_unique(t_scene *scene, char **line)
 		*line += 1;
 		ft_printf("fill ambient\n");
 		scene->amb.ratio = get_double(line, RATIO);
-		ft_printf("filled ratio\n");
+		ft_printf("filled ratio = %d\n", scene->amb.ratio);
 		scene->amb.colour = get_colour(line);
 		ft_printf("filled colour\n");
 		flag[0] = 1;

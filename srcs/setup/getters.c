@@ -25,6 +25,7 @@ void	ft_skip_num(char **line, int mode)
 	int	flag;
 
 	flag = 0;
+	ft_printf("line start of skip num: %s\n", *line);
 	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
 	{
 		if (**line == '.')
@@ -34,6 +35,7 @@ void	ft_skip_num(char **line, int mode)
 	if (ft_isspace(**line) || **line == ',')
 	{
 		ft_printf("Number skip success\n");
+		ft_printf("line at return of skip num: %s\n", *line);
 		return ;
 	}
 	ft_error(num_err);
@@ -73,7 +75,7 @@ double	get_double(char **line, int mode)
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
 	{
-		ft_printf("res: %f, left: %s", res, *line);
+		ft_printf("from ratio res: %d, left: %s", res, *line); //filled ratio is inconsistent, also why is res %f?
 		return (res);
 	}
 	else if (mode == REAL)
