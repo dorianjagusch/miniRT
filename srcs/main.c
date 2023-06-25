@@ -22,7 +22,8 @@ int	main(int ac, char **av)
 		ft_options();
 	ft_bzero(&img, sizeof(img));
 	set_scene(&(img.scene), av[1]);
-	user_input(&img);
+	printf("segfault marker- its something to do with MLX init\n\n"); 
+	user_input(&img);//
 	render(&img);
 	mlx_loop(img.win->mlx);
 	return (0);

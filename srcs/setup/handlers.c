@@ -42,6 +42,7 @@ int	ft_close_win(t_img *img)
 
 int	key_handler(int key, t_img *img)
 {
+	printf("key handler- entered\n");
 	if (key == MAIN_PAD_ESC)
 		ft_close_win(img);
 	else if (key == MAIN_PAD_SPACE)

@@ -74,27 +74,29 @@ double	get_double(char **line, int mode)
 {
 	double	res;
 
+	ft_printf("get_double b4 move line = |%s|\n", *line);
 	res = 0;
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
+	ft_printf("res = %f: get_double after move line = |%s|\n", res, *line);
 	if (mode == RATIO && 0 <= res && res <= 1)
 	{
-		//printf("from ratio res: %f, left: %s", res, *line);
+		printf("from ratio res: %f, left: %s\n", res, *line);
 		return (res);
 	}
 	else if (mode == REAL)
 	{
-		ft_printf("res: %d, left: %s", res, *line);
+		printf("from ratio res: %f, left: %s\n", res, *line);
 		return (res);
 	}
 	else if (mode == BALANCE && -1 <= res && res <= 1)
 	{
-		ft_printf("res: %d, left: %s", res, *line);
+		printf("from ratio res: %f, left: %s\n", res, *line);
 		return (res);
 	}
 	else if (mode == ANGLE && 0 <= res && res <= 180)
 	{
-		ft_printf("from ANGLE res: %d, left: %s", res, *line);
+		printf("from ratio res: %f, left: %s\n", res, *line);
 		return (res);
 	}
 	else
@@ -122,7 +124,6 @@ t_vec3	get_vec3(char **line)
 		*line += 1; 
 	vec.z = ft_atof(*line);
 	printf("vec.z = %f\n", vec.z);
-	ft_printf("line before final skip_num vec3 = |%s|", *line);
 	if (**line == '-') //not an elegant soloution to this issue
 		*line += 1;
 	ft_skip_num(line, REAL); //is getting stuck here at the camera positioning due to negative numbers '-'

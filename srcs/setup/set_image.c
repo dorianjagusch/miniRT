@@ -14,9 +14,13 @@
 
 int	user_input(t_img *img)
 {
-	mlx_key_hook(img->win->win, key_handler, img);
-	mlx_mouse_hook(img->win->win, mouse_handler, img);
-	mlx_hook(img->win->win, ON_DESTROY, 1L << 0, ft_close_win, img);
+	ft_printf("segfault marker- in user input\n");
+	mlx_key_hook(img->win, key_handler, img);
+	ft_printf("segfault marker\n");
+	mlx_mouse_hook(img->win, mouse_handler, img);
+	ft_printf("segfault marker\n");
+	mlx_hook(img->win, ON_DESTROY, 1L << 0, ft_close_win, img);
+	 ft_printf("segfault marker- before return in user input\n"); // if MLX is 
 	//mlx_hook(img->win->win, ON_MOUSEMOVE, (1L << 6), mouse_position, img);
 	return (0);
 }

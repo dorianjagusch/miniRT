@@ -68,23 +68,28 @@ static void	get_unique(t_scene *scene, char **line)
 static void	get_object(t_scene *scene, char *line, t_obj *offset)
 {
 	ft_printf("In get_object\n");
+	ft_printf("get_object line = %s\n", line);
 	if (ft_strncmp("sp ", line, 3))
 		offset->type = sphere;
-	else if (ft_strncmp("pl ", line, 3))
+	else if (ft_strncmp("pl ", line, 3)) //why is this sphere?
 		offset->type = sphere;
 	else if (ft_strncmp("cy ", line, 3))
 		offset->type = sphere;
 	else
 		ft_error(ident_err);
+	line += 3; //
 	offset->position = get_vec3(&line);
 	if (offset->type != sphere)
 		offset->normal = get_vec3(&line);
+	ft_skip_ws(&line);
 	if (offset->type != plane)
 		offset->radius = get_double(&line, REAL) / 2;
+	printf("radius = %f\n", offset->radius);
 	if (offset->type == plane)
 		offset->height = get_double(&line, REAL);
 	//offset->material = get_int(&line);
 	//offset->normal = get_int(&line);
+	ft_skip_ws(&line);
 	offset->colour = get_colour(&line);
 	ft_printf("Out get_object\n");
 }
@@ -99,12 +104,12 @@ static void	process_line(t_scene *scene, char *line)
 	{
 		ft_printf("line %d start\n", i);
 		ft_skip_ws(&line);
-		ft_printf("%c\n", *line);
+		ft_printf("%c\n", line);
 		if (line && ft_isupper(*line))
 			get_unique(scene, &line);
 		else if (line)
 		{
-			get_object(scene, line, offset);
+			get_object(scene, line, offset); // also what does the offset thing mean?
 			offset++;
 		}
 		ft_printf("line %d done\n", i++);
@@ -150,9 +155,8 @@ void	set_scene(t_scene *scene, char *av)
 	if (!scene->objs)
 		ft_error(ENOMEM);
 	line = get_next_line(fd);
-	while (line)
+	while (line != NULL)
 	{
-		ft_printf("%s", line);
 		process_line(scene, line);
 		if (line)
 			free(line);
