@@ -23,7 +23,9 @@ void	ft_skip_num(char **line, int mode)
 	int	flag;
 
 	flag = 0;
-	while ((ft_isdigit(**line) || **line == '-' || (mode != INT && **line == '.' && !flag)) && **line != '\0')
+	if(**line == '-' || **line == '+')
+		*line += 1;
+	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
 	{
 		if (**line == '.')
 			flag++;
@@ -39,8 +41,8 @@ t_vec4	get_colour(char **line)
 	int		colour[4];
 	t_vec4	res;
 	int		i;
-
-	colour[0] = 255; //potentially causing issues?
+  
+	colour[0] = 255;
 	i = 1;
 	while (i < 4)
 	{
@@ -88,8 +90,8 @@ t_vec3	get_vec3(char **line)
 	vec.x = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
-	if (**line == ',')
-		*line += 1; //added in to skip ','
+	if (**line == ',') 
+		*line += 1;
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);

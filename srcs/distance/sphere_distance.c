@@ -6,11 +6,12 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 01:22:16 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:41:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
+#include "minirt.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -20,7 +21,9 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	t_vec3	parameter;
 	double	discriminant;
 	t_vec2	res;
+	double	inv_divisor;
 
+	print_sphere(*obj);
 	c_dist = vec3_sub(ray->origin, obj->position);
 	parameter.x = vec3_dot(ray->direction, ray->direction);
 	parameter.y = 2.0 * vec3_dot(c_dist, ray->direction);
@@ -28,8 +31,9 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	discriminant = parameter.y * parameter.y - 4 * parameter.x * parameter.z;
 	if (discriminant < 0.0001)
 		return (DBL_MAX);
-	res.x = -parameter.y + sqrt(discriminant) / (2.0 * parameter.x);
-	res.y = -parameter.y - sqrt(discriminant) / (2.0 * parameter.x);
+	inv_divisor = 1 / (2.0 * parameter.x);
+	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;
+	res.y = (-parameter.y + sqrt(discriminant)) * inv_divisor;
 	if (res.x > 0)
 		return (res.x);
 	if (res.y > 0)

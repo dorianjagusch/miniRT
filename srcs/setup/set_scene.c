@@ -22,6 +22,8 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->amb.ratio = get_double(line, RATIO);
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
+		scene->amb.valid = 1;
+		ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
@@ -31,6 +33,10 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->light.ratio = get_double(line, RATIO);
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
+		scene->light.valid = 1;
+		printf("light ratio = %f\n", scene->light.ratio);
+		printf("_____________________\n");
+		ft_printf("filled light\n");
 	}
 	else if (ft_strncmp("C ", *line, 2) == 0 && !flag[2])
 	{
@@ -40,6 +46,13 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_double(line, ANGLE);
 		init_camera_dir(&scene->cam);
 		flag[2] = 1;
+		scene->cam.valid = 1;
+		printf("_____________________\n");
+		printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
+		printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
+		printf("\n\ncam.fov: %f\n", scene->cam.fov);
+		printf("_____________________\n");
+		ft_printf("filled camera\n");
 	}
 	else
 		ft_error(ident_err);
@@ -122,7 +135,8 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
-	if (scene->n_objs <= 0)
+	ft_printf("There are %d objects\n", scene->n_objs);
+	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));
 	if (!scene->objs)
@@ -130,7 +144,8 @@ void	set_scene(t_scene *scene, char *av)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		process_line(scene, line);
+		if (!ft_empty_str(line))
+			process_line(scene, line);
 		if (line)
 			free(line);
 		line = get_next_line(fd);
