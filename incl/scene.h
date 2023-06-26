@@ -30,6 +30,7 @@ typedef struct s_light
 	t_vec3	pos;
 	double	ratio;
 	t_vec4	colour;
+	int		valid;
 }			t_light;
 
 typedef struct s_camera
@@ -40,12 +41,14 @@ typedef struct s_camera
 	t_vec3	forward;
 	double	aspect_ratio;
 	double	fov;
+	int		valid;
 }			t_camera;
 
 typedef struct s_amb
 {
 	double	ratio;
 	t_vec4	colour;
+	int		valid;
 }			t_amb;
 
 typedef struct s_obj
@@ -76,5 +79,6 @@ t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	init_camera_dir(t_camera *cam);
+void	validate_scene(t_scene *scene);
 
 #endif
