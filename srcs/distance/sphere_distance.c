@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 13:41:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:49:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	double	inv_divisor;
 
 	print_sphere(*obj);
-	c_dist = vec3_sub(ray->origin, obj->position);
+	c_dist = vec3_sub(obj->position, ray->origin);
 	parameter.x = vec3_dot(ray->direction, ray->direction);
 	parameter.y = 2.0 * vec3_dot(c_dist, ray->direction);
 	parameter.z = vec3_dot(c_dist, c_dist) - obj->radius * obj->radius;

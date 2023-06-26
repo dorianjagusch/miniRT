@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 10:13:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:46:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_skip_num(char **line, int mode)
 	flag = 0;
 	if(**line == '-' || **line == '+')
 		*line += 1;
-	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
+	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
 	{
 		if (**line == '.')
 			flag++;
@@ -41,7 +41,7 @@ t_vec4	get_colour(char **line)
 	int		colour[4];
 	t_vec4	res;
 	int		i;
-  
+
 	colour[0] = 255;
 	i = 1;
 	while (i < 4)
@@ -70,7 +70,10 @@ double	get_double(char **line, int mode)
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
+	{
+		printf("print %f, s %s\n", res, *line);
 		return (res);
+	}
 	else if (mode == REAL)
 		return (res);
 	else if (mode == BALANCE && -1 <= res && res <= 1)
@@ -90,7 +93,7 @@ t_vec3	get_vec3(char **line)
 	vec.x = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
-	if (**line == ',') 
+	if (**line == ',')
 		*line += 1;
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL);

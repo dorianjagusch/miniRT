@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 09:59:35 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:50:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	{
  		print_objs((img->scene.objs[i]));
 		get_closest(&(img->scene), &ray, &payload);
+		if (payload.distance == DBL_MAX)
+			colour = (t_vec4){1, 0, 0, 0};
+		else
+			colour = (t_vec4){1, 1, 1, 1};
 	// 	printf("%f\n", payload.distance);
 	// 	if (payload.distance == DBL_MAX)
 	// 	{
@@ -57,7 +61,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	// 	ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
 		i++;
 	}
-	colour = draw_circle(pxl);
+	//colour = draw_circle(pxl);
 	vec4_clamp(&colour, 0, 1);
 	return (vec4_toint32(colour));
 }
