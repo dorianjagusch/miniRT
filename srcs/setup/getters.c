@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 14:50:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 10:13:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_skip_ws(char **line)
 {
-	while (**line == ' ')
+	while (ft_isspace(**line) && **line == '\n')
 		*line += 1;
 }
 
@@ -23,7 +23,6 @@ void	ft_skip_num(char **line, int mode)
 	int	flag;
 
 	flag = 0;
-	
 	if(**line == '-' || **line == '+')
 		*line += 1;
 	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
@@ -42,8 +41,8 @@ t_vec4	get_colour(char **line)
 	int		colour[4];
 	t_vec4	res;
 	int		i;
-
-	colour[0] = 1;
+  
+	colour[0] = 255;
 	i = 1;
 	while (i < 4)
 	{
@@ -97,10 +96,10 @@ t_vec3	get_vec3(char **line)
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
 	if (**line == ',')
-		*line += 1; 
-	vec.z = ft_atof(*line);
-	if (**line == '-')
 		*line += 1;
-	ft_skip_num(line, REAL);
+	vec.z = ft_atof(*line);
+	if (**line == '-') //not an elegant soloution to this issue
+		*line += 1;
+	ft_skip_num(line, REAL); //is getting stuck here at the camera positioning due to negative numbers '-'
 	return (vec);
 }

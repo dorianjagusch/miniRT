@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 01:24:55 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 10:03:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,21 @@ static void	get_unique(t_scene *scene, char **line)
 {
 	static int	flag[3];
 
-	ft_printf("in get_unique\n");
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
 		*line += 2; // needs to be 2 to skip the A and white space
-		ft_printf("fill ambient\n");
 		scene->amb.ratio = get_double(line, RATIO);
-		printf("ambient colours: \n");
 		scene->amb.colour = get_colour(line);
-		printf("filled ratio = %f\n", scene->amb.ratio);
-		ft_printf("filled colour\n");
 		flag[0] = 1;
 		scene->amb.valid = 1;
 		ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
-		ft_printf("fill light\n");
 		*line += 2; // needs to be 2 to skip the L and white space
 		scene->light.pos = get_vec3(line);
 		ft_skip_ws(line);
 		scene->light.ratio = get_double(line, RATIO);
-		printf("_____________________\n");
-		printf("\n\nlight.pos.x: %f, light.pos.y: %f, light.pos.z: %f\n", scene->light.pos.x, scene->light.pos.y, scene->light.pos.z);
-		printf("light colours: \n");
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
 		scene->light.valid = 1;
@@ -49,7 +40,6 @@ static void	get_unique(t_scene *scene, char **line)
 	}
 	else if (ft_strncmp("C ", *line, 2) == 0 && !flag[2])
 	{
-		ft_printf("fill camera\n");
 		*line += 2; // needs to be 2 to skip the C and white space
 		scene->cam.pos = get_vec3(line);
 		scene->cam.forward = get_vec3(line);
@@ -66,13 +56,10 @@ static void	get_unique(t_scene *scene, char **line)
 	}
 	else
 		ft_error(ident_err);
-	ft_printf("out get_unique\n");
 }
 
 static void	get_object(t_scene *scene, char *line, t_obj *offset)
 {
-	ft_printf("In get_object\n");
-	ft_printf("get_object line = %s\n", line);
 	if (!ft_strncmp("sp ", line, 3))
 		offset->type = sphere;
 	else if (!ft_strncmp("pl ", line, 3))
@@ -94,8 +81,6 @@ static void	get_object(t_scene *scene, char *line, t_obj *offset)
 	//offset->normal = get_int(&line);
 	ft_skip_ws(&line);
 	offset->colour = get_colour(&line);
-	ft_printf("Object type %d\n", offset->type);
-	ft_printf("Out get_object\n");
 }
 
 static void	process_line(t_scene *scene, char *line)
@@ -114,7 +99,6 @@ static void	process_line(t_scene *scene, char *line)
 			get_object(scene, line, offset); // also what does the offset thing mean? //just a pointer to keep track of the object
 			offset++;
 		}
-		ft_printf("line %d done\n", i++);
 	}
 }
 

@@ -5,17 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Launch",
+            "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/miniRT",
             "args": ["test_files/sphere.rt"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
-            "miDebuggerPath": "/usr/bin/lldb"
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
         },
     ]
 }

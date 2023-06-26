@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 13:40:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 09:59:35 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 
 void	render(t_img *img)
 {
-	t_vec2	pxl;
-	int		tot_res;
+	t_vec2		pxl;
+	int			tot_res;
+	u_int32_t	colour;
 
 	tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
@@ -83,7 +84,8 @@ void	render(t_img *img)
 		pxl.x = 0;
 		while (pxl.x < WIDTH)
 		{
-			my_mlx_pixel_put(img, pxl, perpixel(img, pxl));
+			colour = perpixel(img, pxl);
+			my_mlx_pixel_put(img, pxl, colour);
 			pxl.x++;
 		}
 		pxl.y++;
