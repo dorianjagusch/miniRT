@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/26 01:34:51 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/26 23:50:25 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ FILES = get_colour \
 	vec3_normalize \
 	vec3_sub \
 	vec3_add \
+	vec4_propadd \
 	vec_clamp \
 	hit_shader \
 	input \

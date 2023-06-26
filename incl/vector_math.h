@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/25 22:30:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 23:51:04 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);
 t_vec4	vec4_addf(t_vec4 v, double val);
+t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop);
 t_vec4	vec4_sub(t_vec4 v, t_vec4 u);
 t_vec4	vec4_subf(t_vec4 v, double val);
 t_vec4	vec4_multf(t_vec4 v, double val);
