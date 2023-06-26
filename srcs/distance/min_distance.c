@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 17:22:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 22:47:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 	}
 	if (payload->distance < DBL_MAX)
 	{
-		printf("distance: %f\n", payload->distance);
 		payload->hitpoint = vec3_add(ray->origin,
 				vec3_multf(ray->direction, payload->distance));
-		printf("x: %f\ty: %f\tz: %f\n", payload->hitpoint.x, payload->hitpoint.y, payload->hitpoint.z);
-		payload->hitnorm = get_normal(&(scene->objs[i]), payload->hitpoint);
+		payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
 		printf("HITNORM: x: %f\ty: %f\tz: %f\n", payload->hitnorm.x, payload->hitnorm.y, payload->hitnorm.z);
-		//payload->material = scene->objs[i].material;
+		payload->material = scene->objs[payload->obj_id].material;
+		light_distance(scene, payload);
 	}
 }
