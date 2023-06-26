@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 15:50:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:29:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,20 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	int			i;
 
 	i = 0;
+	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	while (i < BOUNCES)
 	{
- 		print_objs((img->scene.objs[i]));
 		get_closest(&(img->scene), &ray, &payload);
 		if (payload.distance == DBL_MAX)
-			colour = (t_vec4){1, 0, 0, 0};
-		else
-			colour = (t_vec4){1, 1, 1, 1};
-	// 	printf("%f\n", payload.distance);
-	// 	if (payload.distance == DBL_MAX)
-	// 	{
-	// 		colour = vec4_add(colour, miss(img));
-	// 		break;
-	// 	}
-	// 	colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
-	// 	ray.direction = vec3_multf(ray.direction, -1),
-	// 	ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
-	// 	ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
+		{
+			colour = vec4_add(colour, miss(img));
+			break;
+		}
+		colour = (t_vec4){1, payload.hitnorm.x + 0.5, payload.hitnorm.y + 0.5, payload.hitnorm.z + 0.5};//vec4_add(colour, hit_shader(&(img->scene), &payload));
+		ray.direction = vec3_multf(ray.direction, -1),
+		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
+		ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
 		i++;
 	}
 	//colour = draw_circle(pxl);

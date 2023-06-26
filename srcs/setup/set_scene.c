@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 10:03:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:19:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	get_object(t_scene *scene, char *line, t_obj *offset)
 	ft_skip_ws(&line);
 	if (offset->type != plane)
 		offset->radius = get_double(&line, REAL) / 2;
-	if (offset->type == plane)
+	if (offset->type == cylinder)
 		offset->height = get_double(&line, REAL);
 	//offset->material = get_int(&line);
 	//offset->normal = get_int(&line);
