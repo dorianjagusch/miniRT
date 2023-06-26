@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 		ft_options();
 	ft_bzero(&img, sizeof(img));
 	set_scene(&(img.scene), av[1]);
+	validate_scene(&img.scene);
 	print_scene(img.scene);
 	set_image(&img);
 	user_input(&img);

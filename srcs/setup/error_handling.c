@@ -19,7 +19,7 @@ void	ft_error(int error)
 		"Input format invalid. Consult the subject for format specifications.\n",
 		"Numerical value out of range\n",
 		"Identifier not recognised.\n",
-		"Missing not enough objects in scene.\n",
+		"Scene must have only one Camera, Ambient light and  at least one light.\n",
 	};
 
 	if (error < 160)
@@ -28,4 +28,15 @@ void	ft_error(int error)
 		ft_printf_fd(STDERR_FILENO, "%s\n", errors[error - 160]);
 	exit(error);
 	//ft_close(error);
+}
+
+
+void	validate_scene(t_scene *scene)
+{
+	if (scene->light.valid != 1)
+		ft_error(content_err);
+	if (scene->cam.valid != 1)
+		ft_error(content_err);
+	if (scene->amb.valid != 1)
+		ft_error(content_err);
 }

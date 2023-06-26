@@ -15,6 +15,7 @@
 static void	get_unique(t_scene *scene, char **line)
 {
 	static int	flag[3];
+
 	ft_printf("in get_unique\n");
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
@@ -26,6 +27,7 @@ static void	get_unique(t_scene *scene, char **line)
 		printf("filled ratio = %f\n", scene->amb.ratio);
 		ft_printf("filled colour\n");
 		flag[0] = 1;
+		scene->amb.valid = 1;
 		ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
@@ -40,6 +42,7 @@ static void	get_unique(t_scene *scene, char **line)
 		printf("light colours: \n");
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
+		scene->light.valid = 1;
 		printf("light ratio = %f\n", scene->light.ratio);
 		printf("_____________________\n");
 		ft_printf("filled light\n");
@@ -53,6 +56,7 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_double(line, ANGLE);
 		init_camera_dir(&scene->cam);
 		flag[2] = 1;
+		scene->cam.valid = 1;
 		printf("_____________________\n");
 		printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
 		printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
@@ -102,9 +106,7 @@ static void	process_line(t_scene *scene, char *line)
 	offset = scene->objs;
 	if (line && line[0] != '\n')
 	{
-		ft_printf("line %d start\n", i);
 		ft_skip_ws(&line);
-		ft_printf("%c\n", line);
 		if (line && ft_isupper(*line))
 			get_unique(scene, &line);
 		else if (line)
@@ -150,7 +152,7 @@ void	set_scene(t_scene *scene, char *av)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
 	ft_printf("There are %d objects\n", scene->n_objs);
-	if (scene->n_objs <= 0)
+	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));
 	if (!scene->objs)
@@ -158,7 +160,8 @@ void	set_scene(t_scene *scene, char *av)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		process_line(scene, line);
+		if (!ft_empty_str(line))
+			process_line(scene, line);
 		if (line)
 			free(line);
 		line = get_next_line(fd);
