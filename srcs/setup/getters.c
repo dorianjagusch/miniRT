@@ -29,7 +29,7 @@ void	ft_skip_num(char **line, int mode)
 			flag++;
 		*line += 1;
 	}
-	if (ft_isspace(**line) || **line == ',') //added '-' might potentiall cause issues
+	if (ft_isspace(**line) || **line == ',')
 		return ;
 	ft_error(num_err);
 }
@@ -40,17 +40,17 @@ t_vec4	get_colour(char **line)
 	t_vec4	res;
 	int		i;
 
-	colour[0] = 0; //potentially causing issues?
+	colour[0] = 255; //potentially causing issues?
 	i = 1;
-	while (i < 4)  // why is this 4? ive changed it to 3 for testing
+	while (i < 4)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-        while (**line != ',' || **line == '\n') //  && !ft_isspace(**line)  we need to move passed the numbers already used
+        while (**line != ',' || **line == '\n')
             (*line)++;
-		if ((**line != ',') && i < 3) //unsure what this is checking?
+		if ((**line != ',') && i < 3)
 			ft_error(num_err);
 		i++;
 		*line += 1;
@@ -68,10 +68,7 @@ double	get_double(char **line, int mode)
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
-	{
-		printf("from ratio res: %f, left: %s\n", res, *line); //removing this causes a segfault
 		return (res);
-	}
 	else if (mode == REAL)
 		return (res);
 	else if (mode == BALANCE && -1 <= res && res <= 1)
