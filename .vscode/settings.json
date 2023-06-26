@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "vector_math.h": "c"
+        "vector_math.h": "c",
+        "math.h": "c"
     }
 }
