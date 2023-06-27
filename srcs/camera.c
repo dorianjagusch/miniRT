@@ -55,12 +55,16 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	double	norm_coord_x;
 	double	norm_coord_y;
 
-	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * cam->aspect_ratio * tan(M_PI_4); //tan(cam->fov * DEG2RAD)
-	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5)) / HEIGHT) * tan(M_PI_4); //tan(cam->fov * DEG2RAD)
+	norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * cam->aspect_ratio * tan(M_PI_4); //tan(cam->fov * DEG2RAD)
+	//norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5)) / HEIGHT) * tan(M_PI_4); //tan(cam->fov * DEG2RAD)
+	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1.0) * tan(M_PI_4);
+
 	// Transform the normalized coordinates to world space using the camera-to-world matrix, in theory
 	//primary_ray.direction = vec3_add(cam->forward, vec3_add(vec3_scale(cam->right, norm_coord_X), vec3_scale(cam->up, norm_coord_Y))); //seperate calcs
 	primary_ray.origin = cam->pos;
+	//primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, -norm_coord_y, 1}, primary_ray.origin);
 	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);
+	
 	vec3_normalize(&primary_ray.direction);
 	return (primary_ray);
 }

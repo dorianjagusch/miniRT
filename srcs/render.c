@@ -53,7 +53,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 		}
 		//colour = (t_vec4){1, payload.hitnorm.x + 0.5, payload.hitnorm.y + 0.5, payload.hitnorm.z + 0.5};
 		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
-		printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
+		//printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
 		// ray.direction = vec3_multf(ray.direction, -1),
 		// ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
 		// ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
@@ -81,6 +81,7 @@ void	render(t_img *img)
 
 	tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
+	print_objs(img->scene.objs[0]);
 	img->scene.objs[0].colour = (t_vec4){1, 1, 0, 0};
 	while (pxl.y < HEIGHT)
 	{

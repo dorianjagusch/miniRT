@@ -33,6 +33,6 @@ void	light_distance(t_scene *scene, t_payload *payload)
 		}
 		i++;
 	}
-	printf("light_dist: %f\n", payload->light_dist);
+	//printf("light_dist: %f\n", payload->light_dist);
 	vec3_normalize(&(payload->light_dir));
 }

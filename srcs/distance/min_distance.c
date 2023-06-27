@@ -47,7 +47,7 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 		payload->hitpoint = vec3_add(ray->origin,
 				vec3_multf(ray->direction, payload->distance));
 		payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
-		printf("HITNORM: x: %f\ty: %f\tz: %f\n", payload->hitnorm.x, payload->hitnorm.y, payload->hitnorm.z);
+		//printf("HITNORM: x: %f\ty: %f\tz: %f\n", payload->hitnorm.x, payload->hitnorm.y, payload->hitnorm.z);
 		payload->material = scene->objs[payload->obj_id].material;
 		light_distance(scene, payload);
 	}
