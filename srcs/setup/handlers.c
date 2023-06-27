@@ -43,6 +43,7 @@ int	ft_close(t_img *img)
 
 int	key_handler(int key, t_img *img)
 {
+	printf("%d\n", key);
 	if (key == MAIN_PAD_ESC)
 		ft_close(img);
 	else if (key == MAIN_PAD_SPACE)
@@ -53,7 +54,7 @@ int	key_handler(int key, t_img *img)
 		ft_toggle_help(img);
 	else if (key == MAIN_PAD_UP || key == MAIN_PAD_DOWN || key == MAIN_PAD_LEFT
 		|| key == MAIN_PAD_RIGHT)
-		ft_move(img, key);
+		camera_move(key, img);
 	return (0);
 }
 

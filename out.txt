@@ -1,0 +1,96 @@
+line  80,200,200
+
+line  255,255,255
+
+========= SCENE ==========
+Ambient light
+Ratio: 0.500000
+Colour:
+R:0.313725	G:0.784314	B:0.784314
+--------------------------
+Point light
+Position:
+x:-10.000000	y:20.000000	z:30.000000
+Ratio: 0.800000
+Colour:
+R:1.000000	G:1.000000	B:1.000000
+--------------------------
+Camera
+Position:
+x:0.000000	y:0.000000	z:0.000000
+Direction:
+x:0.000000	y:0.000000	z:1.000000
+Right:
+x:1.000000	y:0.000000	z:0.000000
+Up:
+x:0.000000	y:1.000000	z:0.000000
+--------------------------
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+==========================
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 0.000000
+camera move called: cam up x cord after addition = 0.500000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 0.500000
+camera move called: cam up x cord after addition = 1.000000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 1.000000
+camera move called: cam up x cord after addition = 1.500000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 1.500000
+camera move called: cam up x cord after addition = 2.000000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 2.000000
+camera move called: cam up x cord after addition = 2.500000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000
+camera move called: cam up x cord = 2.500000
+camera move called: cam up x cord after addition = 3.000000
+Sphere
+Position:
+x:0.000000	y:0.000000	z:5.000000
+Radius:
+2.500000
+Colour:
+R:1.000000	G:0.000000	B:0.000000

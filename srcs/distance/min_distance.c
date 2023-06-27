@@ -34,8 +34,8 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 	payload->distance = DBL_MAX;
 	while (scene->objs && i < scene->n_objs)
 	{
-		printf("\n\n GET DISTANCE OBJS\n");
-		print_objs(scene->objs[i]);
+		//printf("\n\n GET DISTANCE OBJS\n");
+		//print_objs(scene->objs[i]);
 		new_dist = get_dist(ray, &(scene->objs[i]));
 		if (new_dist < payload->distance)
 		{

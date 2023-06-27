@@ -135,7 +135,6 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
-	ft_printf("There are %d objects\n", scene->n_objs);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));

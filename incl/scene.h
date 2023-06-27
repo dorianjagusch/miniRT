@@ -14,7 +14,6 @@
 # define SCENE_H
 
 # include "vector_math.h"
-
 enum e_obj
 {
 	sphere,
@@ -80,5 +79,6 @@ double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	init_camera_dir(t_camera *cam);
 void	validate_scene(t_scene *scene);
+
 
 #endif

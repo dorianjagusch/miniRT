@@ -101,4 +101,6 @@ int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
 
+void	camera_move(int key, t_img *img);
+
 #endif

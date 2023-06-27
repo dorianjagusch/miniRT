@@ -29,5 +29,6 @@ void	ft_move(t_img *img, int key)
 
 void	ft_change_bounces(t_img *img, int key)
 {
+
 	return ;
 }
