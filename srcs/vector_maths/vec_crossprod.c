@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_propadd.c                                      :+:      :+:    :+:   */
+/*   vec_crossprod.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 23:44:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 13:20:30 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/27 13:09:27 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/27 13:10:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop)
+t_vec3	vec3_cross(t_vec3 vec1, t_vec3 vec2)
 {
-	t_vec4	new_vec;
-	double	prop2;
+	t_vec3	result;
 
-	prop2 = 1 - prop;
-	new_vec.v = v1.v * prop + v2.v * prop2;
-	new_vec.x = v1.x * prop + v2.x * prop2;
-	new_vec.y = v1.y * prop + v2.y * prop2;
-	new_vec.z = v1.z * prop + v2.z * prop2;
-	return (new_vec);
+	result.x = vec1.y * vec2.z - vec1.z * vec2.y;
+	result.y = vec1.z * vec2.x - vec1.x * vec2.z;
+	result.z = vec1.x * vec2.y - vec1.y * vec2.x;
+	return (result);
 }
