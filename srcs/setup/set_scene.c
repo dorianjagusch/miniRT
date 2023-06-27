@@ -23,7 +23,7 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
 		scene->amb.valid = 1;
-		ft_printf("filled ambient\n");
+		//ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
@@ -34,25 +34,25 @@ static void	get_unique(t_scene *scene, char **line)
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
 		scene->light.valid = 1;
-		printf("light ratio = %f\n", scene->light.ratio);
-		printf("_____________________\n");
-		ft_printf("filled light\n");
+		// printf("light ratio = %f\n", scene->light.ratio);
+		// printf("_____________________\n");
+		// ft_printf("filled light\n");
 	}
 	else if (ft_strncmp("C ", *line, 2) == 0 && !flag[2])
 	{
-		*line += 2; // needs to be 2 to skip the C and white space
+		*line += 2;
 		scene->cam.pos = get_vec3(line);
 		scene->cam.forward = get_vec3(line);
 		scene->cam.fov = get_double(line, ANGLE);
 		init_camera_dir(&scene->cam);
 		flag[2] = 1;
 		scene->cam.valid = 1;
-		printf("_____________________\n");
-		printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
-		printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
-		printf("\n\ncam.fov: %f\n", scene->cam.fov);
-		printf("_____________________\n");
-		ft_printf("filled camera\n");
+		// printf("_____________________\n");
+		// printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
+		// printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
+		// printf("\n\ncam.fov: %f\n", scene->cam.fov);
+		// printf("_____________________\n");
+		// ft_printf("filled camera\n");
 	}
 	else
 		ft_error(ident_err);
@@ -68,7 +68,7 @@ static void	get_object(t_scene *scene, char *line, t_obj *offset)
 		offset->type = cylinder;
 	else
 		ft_error(ident_err);
-	line += 3; //
+	line += 3;
 	offset->position = get_vec3(&line);
 	if (offset->type != sphere)
 		offset->normal = get_vec3(&line);
