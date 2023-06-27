@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 13:21:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:05:55 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_vec3	vec3_reflect(t_vec3 v, t_vec3 normal);
 void	vec3_scale(t_vec3 *v, t_range old, t_range new);
 void	vec3_clamp(t_vec4 *v, double min, double max);
 t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
+t_vec3	vec3_compmult(t_vec3 v, t_vec3 u);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);
 t_vec4	vec4_addf(t_vec4 v, double val);
@@ -68,6 +69,7 @@ void	vec4_clamp(t_vec4 *v, double min, double max);
 t_vec4	vec4_rotate(t_vec4 vec, t_vec4 normal);
 void	vec4_scale(t_vec4 *v, t_range old, t_range new);
 t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop);
+t_vec4	vec4_compmult(t_vec4 v, t_vec4 u);
 
 void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);
