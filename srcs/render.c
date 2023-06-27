@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 23:49:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:44:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render(t_img *img)
 
 	tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
-	print_objs(img->scene.objs[0]);
+	//print_objs(img->scene.objs[0]);
 	while (pxl.y < HEIGHT)
 	{
 		pxl.x = 0;

@@ -36,8 +36,8 @@
 # include "print_helpers.h"
 
 // DEFAULTS
-# define WIDTH 860
-# define HEIGHT 540
+# define WIDTH 1080
+# define HEIGHT 1080
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"

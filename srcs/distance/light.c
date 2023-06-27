@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 23:35:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:48:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ void	light_distance(t_scene *scene, t_payload *payload)
 		}
 		i++;
 	}
-	//printf("light_dist: %f\n", payload->light_dist);
 	vec3_normalize(&(payload->light_dir));
 }

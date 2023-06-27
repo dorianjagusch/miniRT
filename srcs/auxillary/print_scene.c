@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/25 22:58:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:13:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ void	print_scene(t_scene scene)
 	print_camera(scene.cam);
 	printf("--------------------------\n");
 	while (i < scene.n_objs)
+	{
+		printf("Object #%d of %d\n", i, scene.n_objs);
 		print_objs(scene.objs[i++]);
+		printf("--------------------------\n");
+	}
 	printf("==========================\n");
 }

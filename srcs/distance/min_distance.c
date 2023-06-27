@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 22:47:36 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:09:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 	payload->distance = DBL_MAX;
 	while (scene->objs && i < scene->n_objs)
 	{
-		//printf("\n\n GET DISTANCE OBJS\n");
-		//print_objs(scene->objs[i]);
 		new_dist = get_dist(ray, &(scene->objs[i]));
 		if (new_dist < payload->distance)
 		{
 			payload->obj_id = i;
 			payload->distance = new_dist;
+			//printf("id:%d\n", payload->obj_id);
 		}
 		i++;
 	}

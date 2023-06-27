@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 17:19:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:22:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,35 @@ static void	get_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void	get_object(t_scene *scene, char *line, t_obj *offset)
+static void	get_object(t_scene *scene, char *line, int id)
 {
 	if (!ft_strncmp("sp ", line, 3))
-		offset->type = sphere;
+		scene->objs[id].type = sphere;
 	else if (!ft_strncmp("pl ", line, 3))
-		offset->type = plane;
+		scene->objs[id].type = plane;
 	else if (!ft_strncmp("cy ", line, 3))
-		offset->type = cylinder;
+		scene->objs[id].type = cylinder;
 	else
 		ft_error(ident_err);
 	line += 3;
-	offset->position = get_vec3(&line);
-	if (offset->type != sphere)
-		offset->normal = get_vec3(&line);
+	scene->objs[id].position = get_vec3(&line);
+	if (scene->objs[id].type != sphere)
+		scene->objs[id].normal = get_vec3(&line);
 	ft_skip_ws(&line);
-	if (offset->type != plane)
-		offset->radius = get_double(&line, REAL) / 2;
-	if (offset->type == cylinder)
-		offset->height = get_double(&line, REAL);
-	//offset->material = get_int(&line);
-	//offset->normal = get_int(&line);
+	if (scene->objs[id].type != plane)
+		scene->objs[id].radius = get_double(&line, REAL) / 2;
+	if (scene->objs[id].type == cylinder)
+		scene->objs[id].height = get_double(&line, REAL);
+	//scene->objs[id].material = get_int(&line);
+	//scene->objs[id].normal = get_int(&line);
 	ft_skip_ws(&line);
-	offset->colour = get_colour(&line);
+	scene->objs[id].colour = get_colour(&line);
 }
 
 static void	process_line(t_scene *scene, char *line)
 {
-	static t_obj	*offset;
-	int				i = 0;
+	static int	id;
 
-	offset = scene->objs;
 	if (line && line[0] != '\n')
 	{
 		ft_skip_ws(&line);
@@ -96,8 +94,8 @@ static void	process_line(t_scene *scene, char *line)
 			get_unique(scene, &line);
 		else if (line)
 		{
-			get_object(scene, line, offset); // also what does the offset thing mean? //just a pointer to keep track of the object
-			offset++;
+			get_object(scene, line, id);
+			id++;
 		}
 	}
 }

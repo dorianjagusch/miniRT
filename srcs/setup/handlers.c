@@ -43,7 +43,7 @@ int	ft_close(t_img *img)
 
 int	key_handler(int key, t_img *img)
 {
-	printf("%d\n", key);
+	//printf("%d\n", key);
 	if (key == MAIN_PAD_ESC)
 		ft_close(img);
 	else if (key == MAIN_PAD_SPACE)

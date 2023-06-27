@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 22:32:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:12:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 {
 	double	intensity;
-	t_vec4	colour;
+	t_vec4	light_col;
+	t_vec4	col;
 
 	if (payload->light_dist > 0)
+	{
 		payload->hitnorm = vec3_multf(payload->hitnorm, -1);
 		intensity = vec3_dot(payload->light_dir, payload->hitnorm);
-		//printf("instensity %f\n", intensity);
-		colour = vec4_multf((scene->objs[payload->obj_id]).colour, intensity);
-		//printf("Object colour:\nr:%f g:%f, b%f\n", scene->objs[payload->obj_id].colour.x, scene->objs[payload->obj_id].colour.y, scene->objs[payload->obj_id].colour.z);
-	return (colour);
+		light_col = vec4_multf(scene->light.colour, intensity);
+		//print_col(light_col);
+		col = vec4_compmult((scene->objs[payload->obj_id]).colour, light_col);
+		//printf("Object col:\nr:%f g:%f, b%f\n", scene->objs[payload->obj_id].col.x, scene->objs[payload->obj_id].col.y, scene->objs[payload->obj_id].col.z);
+	}
+	return (col);
 }
