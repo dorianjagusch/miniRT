@@ -61,38 +61,30 @@ void camera_move(int key, t_img *img)
 {
 	if (key == MAIN_PAD_UP)
 	{
-		//img->scene.cam.pos.x += 0.1;
-		img->scene.cam.forward.y += 0.1;
-		img->scene.cam.forward.z += 0.1;
+		img->scene.cam.pos.z -= 0.1;
 	}
 	if (key == MAIN_PAD_DOWN)
 	{
-		img->scene.cam.forward.x += 0.1;
-		img->scene.cam.forward.y += 0.1;
-		img->scene.cam.forward.z += 0.1;
+		img->scene.cam.pos.z += 0.1;
 	}
 		if (key == MAIN_PAD_RIGHT)
 	{
 		print_scene(img->scene);
-		img->scene.cam.forward.x -= 0.1;
-		img->scene.cam.forward.z += 0.1;
+		img->scene.cam.pos.x -= 0.1;
 	}
 	if (key == MAIN_PAD_LEFT)
 	{
 		print_scene(img->scene);
-		img->scene.cam.forward.x += 0.1;
-		img->scene.cam.forward.y += 0.1;
-		img->scene.cam.forward.z -= 0.1;
+		img->scene.cam.pos.x += 0.1;
 	}
-	vec3_normalize(&cam->forward);
+	vec3_normalize(&img->scene.cam.forward);
 	render(img);
 }
+
 void	init_camera_dir(t_camera *cam)
 {
-	cam->up.x = 0;
-	cam->up.y = 1;
-	cam->up.z = 0;
 	cam->right = vec3_cross(cam->up, cam->forward);
+	cam->up = vec3_cross(cam->forward, cam->right);
 	cam->aspect_ratio = (double)WIDTH / (double)HEIGHT;
 	vec3_normalize(&cam->right);
 	vec3_normalize(&cam->up);
@@ -111,10 +103,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	//primary_ray.direction = vec3_add(cam->forward, vec3_add(vec3_scale(cam->right, norm_coord_X), vec3_scale(cam->up, norm_coord_Y))); //seperate calcs
 	primary_ray.origin = cam->pos;
 	//primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, -norm_coord_y, 1}, primary_ray.origin);
-	//primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);	
-	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.forward);	
+	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);	
 	vec3_normalize(&primary_ray.direction);
 	return (primary_ray);
 }
-
-
