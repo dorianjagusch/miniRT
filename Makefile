@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/27 13:22:02 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/27 14:13:33 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ FILES = get_colour \
 	error_handling \
 	camera \
 	print_scene \
-	print_objs
+	print_objs \
+	print_misc
 
 HEADER = vector_math \
 	minirt \

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 17:12:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:03:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	//primary_ray.direction = vec3_add(cam->forward, vec3_add(vec3_scale(cam->right, norm_coord_X), vec3_scale(cam->up, norm_coord_Y))); //seperate calcs
 	primary_ray.origin = cam->pos;
 	//primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, -norm_coord_y, 1}, primary_ray.origin);
-	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);	
+	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);
 	vec3_normalize(&primary_ray.direction);
 	return (primary_ray);
 }
