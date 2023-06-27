@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/27 12:57:40 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/27 13:22:02 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,15 +51,18 @@ FILES = get_colour \
 	min_distance \
 	get_normal \
 	main \
-	vec_rotate \
 	vec_mult \
-	vec_reflect \
-	vec_scale \
-	vec_normalize \
 	vec_sub \
-	vec_add \
+	vec_normalize \
+	vec_rotate \
+	vec_scale \
 	vec_propadd \
+	vec_add \
+	vec_dotprod \
 	vec_clamp \
+	vec_crossprod \
+	vec_reflect \
+	vec_mag \
 	hit_shader \
 	input \
 	clean_up \
