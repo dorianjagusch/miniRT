@@ -41,6 +41,3 @@ double    dist_plane(t_ray *ray, t_obj *obj)
    else
         return DBL_MAX;
 }
-
-
-
