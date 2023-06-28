@@ -31,10 +31,10 @@ double    dist_plane(t_ray *ray, t_obj *obj)
 	double  denominator;
 
 	denominator = vec3_dot(ray->direction, obj->normal);
-    //denom = vec3_dot(ray->direction, vec3_multf(obj->normal, -1)); //do we need to invert
+    //denominator = vec3_dot(ray->direction, vec3_multf(obj->normal, -1)); //do we need to invert
 	if (denominator == 0)
 		return (DBL_MAX);
-	p_dist = (vec3_dot(obj->normal, vec3_sub(obj->position, ray->origin))) / denominator;
+	p_dist = (vec3_dot(vec3_multf(obj->normal, -1), vec3_sub(obj->position, ray->origin))) / denominator;
 	
 	if (denominator > 1e-6)//
         return p_dist;

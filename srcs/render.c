@@ -43,7 +43,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	i = 0;
 	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
-	print_objs(img->scene.objs[0]);
+	//print_objs(img->scene.objs[0]);
 	while (i < BOUNCES)
 	{
 		get_closest(&(img->scene), &ray, &payload);
