@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:18:48 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 21:18:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:31:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	dist_plane(t_ray *ray, t_obj *plane)
 	double	distance;
 
 	denominator = vec3_dot(plane->normal, ray->direction);
-	if (fabs(denominator) < 0.000001)
+	if (fabs(denominator) < 1.0E-08)
 		return (DBL_MAX);
 	distance = vec3_dot(vec3_sub(plane->position, ray->origin),
 			plane->normal) / denominator;
