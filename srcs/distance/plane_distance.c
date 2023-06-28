@@ -1,6 +1,15 @@
-#include <stdio.h>
-#include <math.h>
-#include <float.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane_distance.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/28 21:18:48 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/28 21:18:59 by djagusch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector_math.h"
 #include "scene.h"
 #include "shaders.h"
