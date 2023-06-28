@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 12:06:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:17:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	double	norm_coord_x;
 	double	norm_coord_y;
 
-	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * \
+	norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * \
 		cam->aspect_ratio * tan(M_PI_4);
-	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(M_PI_4);
+	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT)) - 1.0 * tan(M_PI_4);
 	primary_ray.origin = get_camera_position(cam);
 	primary_ray.direction.x = cos(cam->yaw) * cos(cam->pitch) + norm_coord_x;
 	primary_ray.direction.y = sin(cam->pitch) + norm_coord_y;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 12:08:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:15:43 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,27 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	t_ray		ray;
 	t_payload	payload;
 	t_vec4		colour;
-	t_vec4		norm_colour;
 	int			i;
 
 	i = 0;
 	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
-// 	while (i < BOUNCES)
-// 	{
-// 		get_closest(&(img->scene), &ray, &payload);
-// 		if (payload.distance == DBL_MAX)
-// 		{
-// 			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
-// 			break ;
-// 		}
-// 		//colour = (t_vec4){1, payload.hitnorm.x + 0.5, payload.hitnorm.y + 0.5, payload.hitnorm.z + 0.5};
-// 		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
-// 		//printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
-// 		ray.direction = vec3_multf(ray.direction, -1),
-// 		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
-// 		ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
-// 		i++;
-// 	}
-	print_vec3(ray.direction, "RayDir");
-	colour = (t_vec4){1, ray.direction.x,
-		ray.direction.y, ray.direction.z};
+	while (i < BOUNCES)
+	{
+		get_closest(&(img->scene), &ray, &payload);
+		if (payload.distance == DBL_MAX)
+		{
+			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
+			break ;
+		}
+		//colour = (t_vec4){1, payload.hitnorm.x + 0.5, payload.hitnorm.y + 0.5, payload.hitnorm.z + 0.5};
+		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
+		//printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
+		ray.direction = vec3_multf(ray.direction, -1),
+		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
+		ray.origin = vec3_add(payload.hitpoint, vec3_multf(payload.hitnorm, 0.0001));
+		i++;
+	}
 	vec4_clamp(&colour, 0, 1);
 	return (vec4_toint32(colour));
 }
