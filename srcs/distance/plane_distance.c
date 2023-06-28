@@ -17,17 +17,20 @@ double	dist_plane(t_ray *ray, t_obj *obj)
 {
 	double	p_dist;
 	double	angle;
-
+	t_vec3	temp;
+	
 	printf("------------\n");
 	printf("Origin: x: %f y: %f z: %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
 	printf("Position: x: %f y: %f z: %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
 	printf("Normal: x: %f y: %f z: %f\n", obj->normal.x, obj->normal.y, obj->normal.z);
-	angle = vec3_dot(ray->direction, obj->normal);
+	vec3_normalize(&obj->normal);
+	angle = vec3_dot(obj->normal, ray->direction);
 	printf("angle: %f\n", angle);
 	if (angle < 0.001)
 		return (DBL_MAX);
-	p_dist = vec3_dot(vec3_sub(ray->origin, obj->position), obj->normal);
+	temp = vec3_sub(ray->origin, obj->position); //here is fucked
 	p_dist /= angle;
+	printf("p_dist = \n", p_dist);
 	if (p_dist > 0)
 		return (p_dist);
 	return (DBL_MAX);

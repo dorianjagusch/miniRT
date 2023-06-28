@@ -38,14 +38,14 @@ void	print_light(t_light light)
 void	print_camera(t_camera cam)
 {
 	printf("Camera\n");
-	printf("Position:\nx:%f\ty:%f\tz:%f\n",
-		cam.pos.x, cam.pos.y, cam.pos.z);
-	printf("Direction:\nx:%f\ty:%f\tz:%f\n",
-		cam.forward.x, cam.forward.y, cam.forward.z);
-	printf("Right:\nx:%f\ty:%f\tz:%f\n",
-		cam.right.x, cam.right.y, cam.right.z);
-	printf("Up:\nx:%f\ty:%f\tz:%f\n",
-		cam.up.x, cam.up.y, cam.up.z);
+	// printf("Position:\nx:%f\ty:%f\tz:%f\n",
+	// 	cam.pos.x, cam.pos.y, cam.pos.z);
+	// printf("Direction:\nx:%f\ty:%f\tz:%f\n",
+	// 	cam.forward.x, cam.forward.y, cam.forward.z);
+	// printf("Right:\nx:%f\ty:%f\tz:%f\n",
+	// 	cam.right.x, cam.right.y, cam.right.z);
+	// printf("Up:\nx:%f\ty:%f\tz:%f\n",
+	// 	cam.up.x, cam.up.y, cam.up.z);
 }
 
 void	print_scene(t_scene scene)
