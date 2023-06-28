@@ -13,55 +13,34 @@
 #include "shaders.h"
 #include <stdio.h>//
 
+/*bool intersectPlane(const Vec3f &n, const Vec3f &p0, const Vec3f &l0, const Vec3f &l, float &t)
+{
+    // assuming vectors are all normalized
+    float denom = dotProduct(n, l);
+    if (denom > 1e-6) {
+        Vec3f p0l0 = p0 - l0;
+        t = dotProduct(p0l0, n) / denom; 
+        return (t >= 0);
+    }
+    return false;
+}*/
 
 double    dist_plane(t_ray *ray, t_obj *obj)
 {
-    double    p_dist;
-    double    angle;
-    double    temp;
+    double  p_dist; //t
+	double  denominator;
 
-    // printf("------------\n");
-    // printf("Origin: x: %f y: %f z: %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
-    // printf("Position: x: %f y: %f z: %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
-    // printf("Normal: x: %f y: %f z: %f\n", obj->normal.x, obj->normal.y, obj->normal.z);
-   // print_vec3(obj->normal, "before norm");
-    vec3_normalize(&obj->normal);
-    //print_vec3(obj->norma674540l, "after norm");
-    //angle = vec3_dot(vec3_multf(ray->direction, -1), obj->normal);
-    angle = vec3_dot(obj->normal, ray->direction);
-   printf("angle: %f\n", angle);
-    if (angle < 0.00000001)
-        return (DBL_MAX);
-    temp = vec3_dot(vec3_sub(ray->origin, obj->position), vec3_multf( obj->normal, -1));
-    p_dist = temp / sqrt(angle);
-    printf("p_dist = %f\n", p_dist);
-    if (p_dist > 0)
-        return (p_dist);
-    
-    return (DBL_MAX);
+	denominator = vec3_dot(ray->direction, obj->normal);
+    //denom = vec3_dot(ray->direction, vec3_multf(obj->normal, -1)); //do we need to invert
+	if (denominator == 0)
+		return (DBL_MAX);
+	p_dist = (vec3_dot(obj->normal, vec3_sub(obj->position, ray->origin))) / denominator;
+	
+	if (denominator > 1e-6)//
+        return p_dist;
+   else
+        return DBL_MAX;
 }
 
 
-// double	dist_plane(t_ray *ray, t_obj *obj)
-// {
-// 	double	p_dist; // what does this do
-// 	double	angle;
-// 	double	temp;
-	
-// 	printf("------------\n");
-// 	printf("Origin: x: %f y: %f z: %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
-// 	printf("Position: x: %f y: %f z: %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
-// 	printf("Normal: x: %f y: %f z: %f\n", obj->normal.x, obj->normal.y, obj->normal.z);
-// 	//vec3_normalize(&obj->normal); // does this work
-// 	angle = vec3_dot(obj->normal, ray->direction);
-// 	printf("angle: %f\n", angle);
-// 	if (angle < 0.001)
-// 		return (DBL_MAX);
-// 	temp = vec3_sub(ray->origin, obj->position); //do we need it
-// 	p_dist /= angle;
-// 	printf("p_dist = \n", p_dist);
-// 	if (p_dist > 0)
-// 		return (p_dist);
-// 	return (DBL_MAX);
-// }
 
