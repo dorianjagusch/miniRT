@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 12:15:43 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:59:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
 			break ;
 		}
-		//colour = (t_vec4){1, payload.hitnorm.x + 0.5, payload.hitnorm.y + 0.5, payload.hitnorm.z + 0.5};
-		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
+		colour = (t_vec4){1, payload.point2cam.x * 0.5 + 0.5, payload.point2cam.y * 0.5 + 0.5, payload.point2cam.z * 0.5 + 0.5};
+		//colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
 		//printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
 		ray.direction = vec3_multf(ray.direction, -1),
 		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);

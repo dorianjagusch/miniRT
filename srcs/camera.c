@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 12:17:33 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:03:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	init_camera(t_camera *cam, t_vec3 pos, t_vec3 forward)
 	t_vec3	dir_2d;
 
 	cam->look_at = vec3_add(pos, vec3_multf(forward, cam->zoom));
-	cam->right = vec3_cross(forward, (t_vec3){0, 1, 0});
-	cam->up = vec3_cross(cam->right, forward);
 	dir_2d = vec3_sub(pos, cam->look_at);
 	dir_2d.y = 0;
 	vec3_normalize(&dir_2d);
@@ -120,7 +118,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	double	norm_coord_x;
 	double	norm_coord_y;
 
-	norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * \
+	norm_coord_x = (1 - (2.0 * (pxl.x + 0.5) / WIDTH)) * \
 		cam->aspect_ratio * tan(M_PI_4);
 	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT)) - 1.0 * tan(M_PI_4);
 	primary_ray.origin = get_camera_position(cam);

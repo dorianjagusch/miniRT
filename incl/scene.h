@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 11:44:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:03:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct s_light
 typedef struct s_camera
 {
 	t_vec3	look_at;
-	t_vec3	up;
-	t_vec3	right;
 	double	yaw;
 	double	pitch;
 	double	zoom;
