@@ -96,11 +96,13 @@ t_vec3	get_vec3(char **line)
 	ft_skip_ws(line);
 	if (**line == ',') 
 		*line += 1;
+	ft_skip_ws(line),
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1; 
+	ft_skip_ws(line),
 	vec.z = ft_atof(*line);
 	if (**line == '-')
 		*line += 1;
