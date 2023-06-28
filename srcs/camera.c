@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 14:03:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:06:48 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void camera_move(int key, t_img *img)
 	if (key == MAIN_PAD_UP)
 	{
 		//img->scene.cam.look_at.z -= 0.1;
-		img->scene.cam.zoom += 1;
+		img->scene.cam.zoom += 0.1;
 	}
 	if (key == MAIN_PAD_DOWN)
 	{
-		img->scene.cam.look_at.z += 0.1;
+		img->scene.cam.look_at.z -= 0.1;
 	}
-		if (key == MAIN_PAD_RIGHT)
+	if (key == MAIN_PAD_RIGHT)
 	{
 		img->scene.cam.look_at.x -= 0.1;
 	}
@@ -63,24 +63,21 @@ void camera_move(int key, t_img *img)
 	render(img);
 }
 
-	//atan2((w2 * v1) - (w1 * v2), (w1 * v1) + (w2 * v2));
-	//yaw needs x and z, rotates around y axis 
-	//pitch need y and z, rotates around x axis
 void	init_camera(t_camera *cam, t_vec3 pos, t_vec3 forward)
 {
 	t_vec3	dir_2d;
 
 	cam->look_at = vec3_add(pos, vec3_multf(forward, cam->zoom));
-
-	dir_2d = vec3_sub(pos, cam->look_at); 
-	dir_2d.y = 0; //removed y axis, 2d plane
-	vec3_normalize(&dir_2d); //W angle in angle between 2 vec, 2nd comp is Z
-	cam->yaw = atan2(dir_2d.z, dir_2d.x); // 1 because flatten, v  = (1, ,0)
-
+	cam->right = vec3_cross(forward, (t_vec3){0, 1, 0});
+	cam->up = vec3_cross(cam->right, forward);
 	dir_2d = vec3_sub(pos, cam->look_at);
-	dir_2d.x = 0; //removed x axis, 2d plane
-	vec3_normalize(&dir_2d); //W angle in angle between 2 vec, 2nd comp is Z
-	cam->pitch = atan2(dir_2d.y, dir_2d.z); //because flatten, v = ( ,0,1)
+	dir_2d.y = 0;
+	vec3_normalize(&dir_2d);
+	cam->yaw = atan2(dir_2d.z, dir_2d.x);
+	dir_2d = vec3_sub(pos, cam->look_at);
+	dir_2d.x = 0;
+	vec3_normalize(&dir_2d);
+	cam->pitch = atan2(dir_2d.y, dir_2d.z);
 }
 
 t_vec3	get_direction_to_cam(t_camera *cam)
@@ -88,19 +85,13 @@ t_vec3	get_direction_to_cam(t_camera *cam)
 	t_vec3	yaw_pos;
 	t_vec3	pitch_pos;
 	t_vec3	dir;
-	//where its looking and how far and direction. unit circle stuff
-	//x = cos(theta)
-	// z = sin(theta)
+
 	yaw_pos.x = cos(cam->yaw);
 	yaw_pos.y = 0;
 	yaw_pos.z = sin(cam->yaw);
-	
-	// should this be x = (sin(yaw)* sin(pitch)) 
-	//y = sin(pitch) z = (cos(yas) * cos(pitch))
 	pitch_pos.x = 0;
 	pitch_pos.y = sin(cam->pitch);
 	pitch_pos.z = cos(cam->pitch);
-
 	dir = vec3_add(yaw_pos, pitch_pos);
 	vec3_normalize(&dir);
 	return (dir);
@@ -110,7 +101,7 @@ t_vec3	get_camera_direction(t_camera *cam)
 {
 	t_vec3	dir;
 
-	dir = vec3_multf(get_direction_to_cam(cam), -1.0); // dunno
+	dir = vec3_multf(get_direction_to_cam(cam), -1.0);
 	return (dir);
 }
 
@@ -118,8 +109,8 @@ t_vec3	get_camera_position(t_camera *cam)
 {
 	t_vec3	pos;
 
-	pos = vec3_multf(get_direction_to_cam(cam), cam->zoom); //is offset
-	pos = vec3_add(pos, cam->look_at); //actual position
+	pos = vec3_multf(get_direction_to_cam(cam), cam->zoom);
+	pos = vec3_add(pos, cam->look_at);
 	return (pos);
 }
 
@@ -129,19 +120,13 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	double	norm_coord_x;
 	double	norm_coord_y;
 
-	//normalise coords in reference to camera position and direction, get camera axis -matrix stuff
-	//avoid gimble locked situations
-	//Transform the normalized coordinates to world space using the camera-to-world matrix, in theory
-	norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * cam->aspect_ratio * tan(M_PI_4); //tan(cam->fov * DEG2RAD)
-	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1.0) * tan(M_PI_4);
-
-	//need matrix maths AND needs to work out to stop it over pitching and yawing
-	//pick an up axis, if looking down that becomes forward
-	//check for singularities- roational maths
-
+	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * \
+		cam->aspect_ratio * tan(M_PI_4);
+	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(M_PI_4);
 	primary_ray.origin = get_camera_position(cam);
-
-	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);
+	primary_ray.direction.x = cos(cam->yaw) * cos(cam->pitch) + norm_coord_x;
+	primary_ray.direction.y = sin(cam->pitch) + norm_coord_y;
+	primary_ray.direction.z = sin(cam->yaw) * cos(cam->pitch);
 	vec3_normalize(&primary_ray.direction);
 	return (primary_ray);
 }
