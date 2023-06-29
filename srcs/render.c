@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 21:31:56 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:52:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vec4	miss(t_img *img)
 {
-	return (img->scene.amb.colour);
+	return ((t_vec4){1, 0, 0, 0});
 }
 
 int32_t	perpixel(t_img *img, t_vec2 pxl)
@@ -25,7 +25,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	int			i;
 
 	i = 0;
-	colour = (t_vec4){1, 0, 0, 0};
+	colour = img->scene.amb.colour;
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	while (i < BOUNCES)
 	{
@@ -35,9 +35,9 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
 			break ;
 		}
-		colour = (t_vec4){1, payload.point2cam.x * 0.5 + 0.5, payload.point2cam.y * 0.5 + 0.5, payload.point2cam.z * 0.5 + 0.5};
-		print_vec3(payload.point2cam, "Hitnorm");
-		//colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
+		//colour = (t_vec4){1, payload.point2cam.x * 0.5 + 0.5, payload.point2cam.y * 0.5 + 0.5, payload.point2cam.z * 0.5 + 0.5};
+		// print_vec3(payload.point2cam, "Hitnorm");
+		colour = vec4_compmult(colour, hit_shader(&(img->scene), &payload));
 		//printf("shaded colour:\nr:%f g:%f, b:%f\n", colour.x, colour.y, colour.z);
 		ray.direction = vec3_multf(ray.direction, -1),
 		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);

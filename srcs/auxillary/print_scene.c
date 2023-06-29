@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 11:50:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:13:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	print_camera(t_camera cam)
 {
 	printf("Camera\n");
 	print_vec3(cam.look_at, "look_at");
-	print_vec3(cam.look_at, "up");
-	print_vec3(cam.look_at, "right");
 	printf("yaw: %f\n", cam.yaw);
 	printf("pitch: %f\n", cam.pitch);
 	printf("zoom: %f\n", cam.zoom);
