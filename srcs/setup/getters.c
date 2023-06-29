@@ -45,13 +45,15 @@ t_vec4	get_colour(char **line)
 
 	colour[0] = 1;
 	i = 1;
-	while (i < 4)
+	while (i <= 3)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-        while (**line != ',' || **line == '\n')
+		if (i == 3)
+			break;
+        while (**line != ',' || **line == '\n' || **line == '\0')
             (*line)++;
 		if ((**line != ',') && i < 3)
 			ft_error(num_err);
@@ -71,10 +73,7 @@ double	get_double(char **line, int mode)
 	res = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	if (mode == RATIO && 0 <= res && res <= 1)
-	{
-		printf("line %s\n", *line);
 		return (res);
-	}
 	else if (mode == REAL)
 		return (res);
 	else if (mode == BALANCE && -1 <= res && res <= 1)
@@ -96,13 +95,11 @@ t_vec3	get_vec3(char **line)
 	ft_skip_ws(line);
 	if (**line == ',') 
 		*line += 1;
-	ft_skip_ws(line),
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1; 
-	ft_skip_ws(line),
 	vec.z = ft_atof(*line);
 	if (**line == '-')
 		*line += 1;
