@@ -32,6 +32,7 @@ t_vec4	miss(t_img *img)
 //set loop in per pixel function for bounces and modify ray in hitshader
 //or call relect function
 // and reassign ray while saving the colour
+
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray		ray;

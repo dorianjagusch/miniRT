@@ -26,6 +26,7 @@ void	print_light(t_light light);
 void	print_camera(t_camera cam);
 void	print_scene(t_scene scene);
 void	print_vec3(t_vec3 vec, char *label);
-void	print_col(t_vec4 vec);
+void	print_vec4(t_vec4 vec, char *label);
+void	print_col(t_vec4 vec, char *label);
 
 #endif
