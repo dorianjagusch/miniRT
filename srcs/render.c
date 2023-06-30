@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 11:52:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:42:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	render(t_img *img)
 {
 	t_vec2		pxl;
 	int			tot_res;
-	u_int32_t	colour;
+	int			colour;
 
 	tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
@@ -71,6 +71,7 @@ void	render(t_img *img)
 		while (pxl.x < WIDTH)
 		{
 			colour = perpixel(img, pxl);
+			printf("%u/n", colour);
 			my_mlx_pixel_put(img, pxl, colour);
 			pxl.x++;
 		}

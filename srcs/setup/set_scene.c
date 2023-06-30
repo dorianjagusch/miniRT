@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 07:56:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:35:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ static int	count_objects(int fd, char *av)
 
 void	set_scene(t_scene *scene, char *av)
 {
-	int				fd;
-	volatile char	*line;
+	int		fd;
+	char	*line;
 
 	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
 		ft_error(file_err);

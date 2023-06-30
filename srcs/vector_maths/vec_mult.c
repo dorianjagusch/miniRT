@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:12:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:42:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vec4	vec4_multf(t_vec4 v, double val)
 {
 	t_vec4	res;
 
-	res.v = val;
+	res.v = 1;
 	res.x = val * v.x;
 	res.y = val * v.y;
 	res.z = val * v.z;

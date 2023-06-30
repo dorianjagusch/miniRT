@@ -15,7 +15,7 @@
 
 #include <stdio.h> //
 
-# include <mlx.h>
+# include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
