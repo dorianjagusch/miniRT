@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/30 11:19:56 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/30 16:17:23 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ FILES = get_colour \
 	vec_crossprod \
 	vec_reflect \
 	vec_mag \
+	vec_dist \
 	hit_shader \
 	input \
 	clean_up \

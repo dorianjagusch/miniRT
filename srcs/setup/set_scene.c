@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 12:24:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:09:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ static void	get_object(t_scene *scene, char *line, int id)
 		scene->objs[id].normal = get_vec3(&line);
 	ft_skip_ws(&line);
 	if (scene->objs[id].type != plane)
+	{
 		scene->objs[id].radius = get_double(&line, REAL) / 2;
+		scene->objs[id].radius2 = pow(scene->objs[id].radius, 2.0);
+	}
 	if (scene->objs[id].type == cylinder)
-		scene->objs[id].height = get_double(&line, REAL);
+		scene->objs[id].height = get_double(&line, REAL) / 2;
 	//scene->objs[id].material = get_int(&line);
 	//scene->objs[id].normal = get_int(&line);
 	ft_skip_ws(&line);

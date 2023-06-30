@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 11:51:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:13:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 
 	if (payload->light_dist > 0)
 	{
-		payload->hitnorm = vec3_multf(payload->hitnorm, -1);
 		diffuse_ref = vec3_dot(payload->light_dir, payload->hitnorm);
 		light_col = vec4_multf(scene->light.colour, diffuse_ref);
 		//print_col(light_col);

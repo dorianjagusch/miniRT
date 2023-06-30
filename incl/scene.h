@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 11:47:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:17:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_obj
 	t_vec3		position;
 	t_vec3		normal;
 	double		radius;
+	double		radius2;
 	double		height;
 	t_vec4		colour;
 	int			material;
