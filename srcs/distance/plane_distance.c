@@ -5,30 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 13:42:46 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/28 21:18:48 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/28 21:31:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector_math.h"
+#include "scene.h"
 #include "shaders.h"
-#include <stdio.h>//
 
-double	dist_plane(t_ray *ray, t_obj *obj)
+double	dist_plane(t_ray *ray, t_obj *plane)
 {
-	double	p_dist;
-	double	angle;
+	double	denominator;
+	t_vec3	oc;
+	double	distance;
 
-	printf("------------\n");
-	printf("Origin: x: %f y: %f z: %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
-	printf("Position: x: %f y: %f z: %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
-	printf("Normal: x: %f y: %f z: %f\n", obj->normal.x, obj->normal.y, obj->normal.z);
-	angle = vec3_dot(ray->direction, obj->normal);
-	printf("angle: %f\n", angle);
-	if (angle < 0.001)
+	denominator = vec3_dot(plane->normal, ray->direction);
+	if (fabs(denominator) < 1.0E-08)
 		return (DBL_MAX);
-	p_dist = vec3_dot(vec3_sub(ray->origin, obj->position), obj->normal);
-	p_dist /= angle;
-	if (p_dist > 0)
-		return (p_dist);
-	return (DBL_MAX);
+	distance = vec3_dot(vec3_sub(plane->position, ray->origin),
+			plane->normal) / denominator;
+	if (distance < 0)
+		return (DBL_MAX);
+	return (distance);
 }

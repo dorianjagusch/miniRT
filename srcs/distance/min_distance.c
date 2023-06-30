@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 15:09:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:58:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 		{
 			payload->obj_id = i;
 			payload->distance = new_dist;
-			//printf("id:%d\n", payload->obj_id);
 		}
 		i++;
 	}
@@ -47,8 +46,9 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 	{
 		payload->hitpoint = vec3_add(ray->origin,
 				vec3_multf(ray->direction, payload->distance));
+		payload->point2cam = vec3_sub(payload->hitpoint, ray->origin);
+		vec3_normalize(&payload->point2cam);
 		payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
-		//printf("HITNORM: x: %f\ty: %f\tz: %f\n", payload->hitnorm.x, payload->hitnorm.y, payload->hitnorm.z);
 		payload->material = scene->objs[payload->obj_id].material;
 		light_distance(scene, payload);
 	}

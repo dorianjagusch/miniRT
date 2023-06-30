@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 23:00:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:32:19 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	parameter.y = 2.0 * vec3_dot(c_dist, ray->direction);
 	parameter.z = vec3_dot(c_dist, c_dist) - obj->radius * obj->radius;
 	discriminant = parameter.y * parameter.y - 4 * parameter.x * parameter.z;
-	if (discriminant < 0.0001)
+	if (discriminant < 1.0E-08)
 		return (DBL_MAX);
 	inv_divisor = 1 / (2.0 * parameter.x);
 	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 13:57:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:57:53 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_payload
 	double	distance;
 	t_vec3	hitpoint;
 	t_vec3	hitnorm;
+	t_vec3	point2cam;
 	t_vec3	light_dir;
 	double	light_dist;
 	int		material;

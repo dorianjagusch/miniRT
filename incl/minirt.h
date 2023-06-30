@@ -15,7 +15,7 @@
 
 #include <stdio.h> //
 
-# include <mlx.h>
+# include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -36,8 +36,8 @@
 # include "print_helpers.h"
 
 // DEFAULTS
-# define WIDTH 1080
-# define HEIGHT 1080
+# define WIDTH 860
+# define HEIGHT 520
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
