@@ -20,6 +20,7 @@
 # define DEG2RAD 0.008726646259971647737
 #endif
 
+
 //responsible for constructing the camera-to-world matrix,
 //which transforms points and vectors from camera space to world space
 
@@ -44,20 +45,23 @@ void	camera_move(int key, t_img *img)
 	render(img);
 }
 
-t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
-{
-	t_ray	primary_ray;
-	double	norm_coord_x;
-	double	norm_coord_y;
 
-	norm_coord_x = (1 - (2.0 * (WIDTH - (pxl.x + 0.5)) / WIDTH)) * \
-	cam->aspect_ratio * tan(M_PI_4);
-	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1) * tan(M_PI_4);
-	primary_ray.origin = cam->pos;
-	primary_ray.direction = vec3_sub((t_vec3){cam->direction.x + norm_coord_x,
-			cam->direction.y + norm_coord_y,
-			cam->direction.z},
-			primary_ray.origin);
-	vec3_normalize(&primary_ray.direction);
-	return (primary_ray);
+t_ray    create_primary_ray(t_camera *cam, t_vec2 pxl)
+{
+    t_ray    primary_ray;
+    double    norm_coord_x;
+    double    norm_coord_y;
+
+	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * cam->aspect_ratio * tan(M_PI_4);
+	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(M_PI_4);
+
+	// norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * cam->aspect_ratio * tan(M_PI_4);
+	// norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1.0) * tan(M_PI_4);
+    primary_ray.origin = cam->pos;
+    primary_ray.direction = vec3_sub((t_vec3){cam->dir.x + norm_coord_x,
+            cam->dir.y + norm_coord_y,
+            cam->dir.z},
+            primary_ray.origin);
+    vec3_normalize(&primary_ray.direction);
+    return (primary_ray);
 }

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"vector_math.h": "c",
+			"math.h": "c",
+			"print_helpers.h": "c"
+		}
+	}
+}

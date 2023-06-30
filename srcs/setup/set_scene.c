@@ -12,22 +12,21 @@
 
 #include "minirt.h"
 
-static void	get_unique(t_scene *scene, char **line)
+static void get_unique(t_scene *scene, char **line)
 {
-	static int	flag[3];
+	static int flag[3];
 
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
-		*line += 2; // needs to be 2 to skip the A and white space
-		scene->amb.ratio = get_double(line, RATIO);
+		*line += 2;									// needs to be 2 to skip the A and white space
+		scene->amb.ratio = get_double(line, RATIO); // this needs to be changed to intensity
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
 		scene->amb.valid = 1;
-		//ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
-		*line += 2; // needs to be 2 to skip the L and white space
+		*line += 2;
 		scene->light.pos = get_vec3(line);
 		ft_skip_ws(line);
 		scene->light.ratio = get_double(line, RATIO);
@@ -38,27 +37,23 @@ static void	get_unique(t_scene *scene, char **line)
 	else if (ft_strncmp("C ", *line, 2) == 0 && !flag[2])
 	{
 		*line += 2;
-		t_vec3	pos = get_vec3(line);
-		t_vec3	forward = get_vec3(line);
+		scene->cam.pos = get_vec3(line);
+		scene->cam.dir = get_vec3(line);
 		scene->cam.fov = get_double(line, ANGLE);
-
 		scene->cam.aspect_ratio = (double)WIDTH / (double)HEIGHT;
-		//init_camera(&scene->cam, pos, forward);
+		vec3_normalize(&scene->cam.dir); 
 		flag[2] = 1;
 		scene->cam.valid = 1;
-		// printf("_____________________\n");
-		// printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
-		// printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
-		// printf("\n\ncam.fov: %f\n", scene->cam.fov);
-		// printf("_____________________\n");
-		// ft_printf("filled camera\n");
 	}
 	else
 		ft_error(ident_err);
 }
 
-static void	get_object(t_scene *scene, char *line, int id)
+static void get_object(t_scene *scene, char *line, int id)
 {
+	// TODO: rename this to something like create_object()
+	// TODO: should dispatch to create_plane(), create_cylinder() etc
+
 	if (!ft_strncmp("sp ", line, 3))
 		scene->objs[id].type = sphere;
 	else if (!ft_strncmp("pl ", line, 3))
@@ -70,22 +65,31 @@ static void	get_object(t_scene *scene, char *line, int id)
 	line += 3;
 	scene->objs[id].position = get_vec3(&line);
 	if (scene->objs[id].type != sphere)
+	{
 		scene->objs[id].normal = get_vec3(&line);
+		vec3_normalize(&scene->objs[id].normal);
+	}
 	ft_skip_ws(&line);
 	if (scene->objs[id].type != plane)
 		scene->objs[id].radius = get_double(&line, REAL) / 2;
 	if (scene->objs[id].type == cylinder)
 		scene->objs[id].height = get_double(&line, REAL);
-	//scene->objs[id].material = get_int(&line);
-	//scene->objs[id].normal = get_int(&line);
+	// scene->objs[id].material = get_int(&line);
+	// scene->objs[id].normal = get_int(&line);
 	ft_skip_ws(&line);
 	scene->objs[id].colour = get_colour(&line);
+
+	if (scene->objs[id].type == plane)
+	{
+		// see: plane equation
+		scene->objs[id].d = -vec3_dot(scene->objs[id].position, scene->objs[id].normal);
+	}
 }
 
-static void	process_line(t_scene *scene, char *line)
+static void process_line(t_scene *scene, char *line)
 {
-	static int	id;
-
+	static int id;
+	
 	if (line && line[0] != '\n')
 	{
 		ft_skip_ws(&line);
@@ -99,10 +103,10 @@ static void	process_line(t_scene *scene, char *line)
 	}
 }
 
-static int	count_objects(int fd, char *av)
+static int count_objects(int fd, char *av)
 {
-	char	*line;
-	int		count;
+	char *line;
+	int count;
 
 	line = get_next_line(fd);
 	count = 0;
@@ -121,10 +125,10 @@ static int	count_objects(int fd, char *av)
 	return (count - 3);
 }
 
-void	set_scene(t_scene *scene, char *av)
+void set_scene(t_scene *scene, char *av)
 {
-	int		fd;
-	char	*line;
+	int fd;
+	char *line;
 
 	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
 		ft_error(file_err);

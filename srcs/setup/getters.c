@@ -46,15 +46,13 @@ t_vec4	get_colour(char **line)
 	colour[0] = 1;
 	i = 1;
 	while (i <= 3)
+	while (i <= 3)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-		if (i == 3)
-			break;
-		printf("line before skip , |%s|\n", *line);
-        while (**line != ',' || **line == '\n' || **line == '\0')
+        while (**line != ',' || **line == '\n')
             (*line)++;
 		if ((**line != ',') && i < 3)
 			ft_error(num_err);

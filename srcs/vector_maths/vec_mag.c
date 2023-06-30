@@ -14,10 +14,18 @@
 
 double	vec3_mag(t_vec3 v)
 {
-	return (sqrt(vec3_dot(v, v)));
+	double	val;
+
+	val = sqrt(vec3_dot(v, v));
+
+	return val;
 }
 
 double	vec4_mag(t_vec4 v)
 {
-	return (sqrt(vec4_dot(v, v)));
+	double	val;
+
+	val = sqrt(vec4_dot(v, v));
+
+	return val;
 }

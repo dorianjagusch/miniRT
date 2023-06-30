@@ -36,8 +36,18 @@
 # include "print_helpers.h"
 
 // DEFAULTS
+
+
+
+#if 1
 # define WIDTH 860
 # define HEIGHT 520
+# define DEBUG_ONLY(...) ((void)0)
+#else
+# define WIDTH 32
+# define HEIGHT 32
+# define DEBUG_ONLY(...) __VA_ARGS__
+#endif
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
@@ -48,6 +58,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
+# define EPSILON 1e-08
 
 typedef struct s_window
 {
