@@ -10,20 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "shaders.h"
 #include <stdio.h>//
-
-/*bool intersectPlane(const Vec3f &n, const Vec3f &p0, const Vec3f &l0, const Vec3f &l, float &t)
-{
-    // assuming vectors are all normalized
-    float denom = dotProduct(n, l);
-    if (denom > 1e-6) {
-        Vec3f p0l0 = p0 - l0;
-        t = dotProduct(p0l0, n) / denom; 
-        return (t >= 0);
-    }
-    return false;
-}*/
 
 double    dist_plane(t_ray *ray, t_obj *obj)
 {
@@ -33,9 +22,9 @@ double    dist_plane(t_ray *ray, t_obj *obj)
 
 	denominator = vec3_dot(ray->direction, obj->normal);
     signed_dist = vec3_dot(obj->normal, ray->origin) + obj->d;
-    if (denominator > 0.0 && signed_dist >= 0.0)
+    if (denominator > EPSILON && signed_dist > EPSILON)
         return (DBL_MAX);
-    if (denominator < 0.0 && signed_dist <= 0.0)
+    if (denominator <  EPSILON && signed_dist <= EPSILON)
         return (DBL_MAX);
 
     p_dist = (-obj->d - vec3_dot(ray->origin, obj->normal)) / denominator;

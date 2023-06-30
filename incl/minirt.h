@@ -58,6 +58,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
+# define EPSILON 1e-08
 
 typedef struct s_window
 {

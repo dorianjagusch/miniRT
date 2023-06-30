@@ -28,11 +28,11 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	parameter.y = 2.0 * vec3_dot(c_dist, ray->direction);
 	parameter.z = vec3_dot(c_dist, c_dist) - obj->radius * obj->radius;
 	discriminant = parameter.y * parameter.y - 4 * parameter.x * parameter.z;
-	if (discriminant < 0.0001)
+	if (discriminant < EPSILON)
 		return (DBL_MAX);
 	inv_divisor = 1 / (2.0 * parameter.x);
-	res.x = (-parameter.y + sqrt(discriminant)) * inv_divisor;
-	res.y = (-parameter.y - sqrt(discriminant)) * inv_divisor;
+	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;
+	res.y = (-parameter.y + sqrt(discriminant)) * inv_divisor;
 	if (res.x > 0)
 		return (res.x);
 	if (res.y > 0)
