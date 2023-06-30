@@ -21,7 +21,6 @@ int	user_input(t_img *img)
 	return (0);
 }
 
-
 void	set_image(t_img *img)
 {
 	img->win.mlx = mlx_init();

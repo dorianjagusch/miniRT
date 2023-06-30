@@ -56,5 +56,5 @@ void	light_distance(t_scene *scene, t_payload *payload);
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
 t_vec4	hit_shader(t_scene *scene, t_payload *payload);
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl);
-
+void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload);
 #endif

@@ -21,9 +21,6 @@ t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 
 	DEBUG_ONLY(printf("\nlight_dist: %f\n", payload->light_dist));
 	DEBUG_ONLY(print_vec3(payload->light_dir, "light_dir"));
-	// colour = vec4_compmult(scene->objs[payload->obj_id].colour,
-	// 		vec4_multf(scene->amb.colour, scene->amb.ratio));
-	col = (t_vec4){1, 0, 0, 0};
 	if (payload->light_dist > 0)
 	{
 		DEBUG_ONLY(print_vec3(payload->hitnorm, "hitnorm"));
