@@ -24,6 +24,17 @@ double	get_dist(t_ray *ray, t_obj *obj)
 	return (func[obj->type].dist_funct(ray, obj));
 }
 
+void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload)
+{
+	payload->hitpoint = vec3_add(ray->origin,
+	vec3_multf(ray->direction, payload->distance));
+	payload->point2cam = vec3_sub(payload->hitpoint, ray->origin);
+	vec3_normalize(&payload->point2cam);
+	payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
+	payload->material = scene->objs[payload->obj_id].material;
+}
+
+
 void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 {
 	int			i;
@@ -40,15 +51,5 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 			payload->distance = new_dist;
 		}
 		i++;
-	}
-	if (payload->distance < DBL_MAX) //TODO: should change to -1 instead dblmacx, seperate functions
-	{
-		payload->hitpoint = vec3_add(ray->origin,
-				vec3_multf(ray->direction, payload->distance));
-		payload->point2cam = vec3_sub(payload->hitpoint, ray->origin);
-		vec3_normalize(&payload->point2cam);
-		payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
-		payload->material = scene->objs[payload->obj_id].material;
-		light_distance(scene, payload);
 	}
 }

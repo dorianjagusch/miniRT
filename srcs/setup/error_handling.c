@@ -27,9 +27,7 @@ void	ft_error(int error)
 	else
 		ft_printf_fd(STDERR_FILENO, "%s\n", errors[error - 160]);
 	exit(error);
-	//ft_close(error);
 }
-
 
 void	validate_scene(t_scene *scene)
 {
