@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/30 16:17:23 by djagusch         ###   ########.fr        #
+#    Updated: 2023/06/30 22:52:49 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ print:
 # Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
 # need to figure out why it precompiles them
 
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
+$(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) -fsanitize=address
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 

@@ -76,7 +76,7 @@ static void get_object(t_scene *scene, char *line, int id)
 		scene->objs[id].radius2 = pow(scene->objs[id].radius, 2.0);
 	}
 	if (scene->objs[id].type == cylinder)
-		scene->objs[id].height = get_double(&line, REAL) / 2;
+		scene->objs[id].height = get_double(&line, REAL);
 	//scene->objs[id].material = get_int(&line);
 	//scene->objs[id].normal = get_int(&line);
 	ft_skip_ws(&line);
