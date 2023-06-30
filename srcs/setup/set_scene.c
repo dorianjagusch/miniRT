@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 09:35:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:24:45 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	get_unique(t_scene *scene, char **line)
 		t_vec3	pos = get_vec3(line);
 		t_vec3	forward = get_vec3(line);
 		scene->cam.fov = get_double(line, ANGLE);
-		scene->cam.zoom = 1.0;
+
 		scene->cam.aspect_ratio = (double)WIDTH / (double)HEIGHT;
-		init_camera(&scene->cam, pos, forward);
+		//init_camera(&scene->cam, pos, forward);
 		flag[2] = 1;
 		scene->cam.valid = 1;
 		// printf("_____________________\n");

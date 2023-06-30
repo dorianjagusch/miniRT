@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 00:40:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:19:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ int	user_input(t_img *img)
 	return (0);
 }
 
-static int	prep_image(t_img *img)
-{
-	int	check;
-
-	img->img = mlx_new_image(img->win.mlx, WIDTH, HEIGHT);
-	if (!img->img)
-		ft_error(ENOMEM);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-	if (!img->addr)
-		ft_error (ENOMEM);
-	return (0);
-}
 
 void	set_image(t_img *img)
 {
@@ -44,5 +31,11 @@ void	set_image(t_img *img)
 			WIDTH, HEIGHT, "miniRT");
 	if (!img->win.win)
 		ft_error (ENOMEM);
-	prep_image(img);
+		img->img = mlx_new_image(img->win.mlx, WIDTH, HEIGHT);
+	if (!img->img)
+		ft_error(ENOMEM);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	if (!img->addr)
+		ft_error (ENOMEM);
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:13:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:21:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	print_light(t_light light)
 void	print_camera(t_camera cam)
 {
 	printf("Camera\n");
-	print_vec3(cam.look_at, "look_at");
-	printf("yaw: %f\n", cam.yaw);
-	printf("pitch: %f\n", cam.pitch);
-	printf("zoom: %f\n", cam.zoom);
+	print_vec3(cam.pos, "Position");
+	print_vec3(cam.direction, "Direction");
+	print_vec3(cam.right, "Right");
+	print_vec3(cam.up, "Left");
 	printf("aspect ratio: %f\n", cam.aspect_ratio);
 	printf("FOV: %f\n", cam.fov);
 }
