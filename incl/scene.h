@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 15:17:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:49:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_amb
 typedef struct s_obj
 {
 	int			type;
-	t_vec3		position;
+	t_vec3		pos;
 	t_vec3		normal;
 	double		radius;
 	double		radius2;

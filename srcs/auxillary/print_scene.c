@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 15:16:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:48:37 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_camera(t_camera cam)
 {
 	printf("Camera\n");
 	print_vec3(cam.pos, "Position");
-	print_vec3(cam.direction, "Direction");
+	print_vec3(cam.dir, "Direction");
 	print_vec3(cam.right, "Right");
 	print_vec3(cam.up, "Up");
 	printf("aspect ratio: %f\n", cam.aspect_ratio);

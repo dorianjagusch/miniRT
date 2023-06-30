@@ -6,13 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:18:16 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:03:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "vector_math.h"
-#include "scene.h"
+#include "minirt.h"
 #include <float.h>
 
 // double	dist_cylinder(t_ray *ray, t_obj *obj)
@@ -53,20 +53,23 @@ double dist_cylinder(t_ray *ray, t_obj *cylinder)
 	double	t;
 	t_vec3	caps[2];
 
-	t = vec3_dot(ray->direction, vec3_sub(cylinder->position, ray->origin));
+	printf("here\n");
+	t = vec3_dot(ray->direction, vec3_sub(cylinder->pos, ray->origin));
+	DEBUG_ONLY(printf("cosangle: %d\n"));
 	pot_hit = vec3_add(ray->origin, vec3_multf(ray->direction, t));
-	temp = vec3_sub(pot_hit, cylinder->position);
+	DEBUG_ONLY(print_vec3(pot_hit, "potential hit"));
+	temp = vec3_sub(pot_hit, cylinder->pos);
 	point_dist = sqrt(vec3_mag(temp));
-	if (pot_hit.y <= cylinder->position.y + cylinder->height
-		&& pot_hit.y >= cylinder->position.y - cylinder->height
+	if (pot_hit.y <= cylinder->pos.y + cylinder->height
+		&& pot_hit.y >= cylinder->pos.y - cylinder->height
 		&& point_dist <= cylinder->radius)
 		return (vec3_mag(vec3_sub(ray->origin, pot_hit)));
 	else
 	{
-		caps[0] = cylinder->position;
-		caps[0].y -= cylinder->height / 2;
-		caps[1] = cylinder->position;
-		caps[1].y += cylinder->height / 2;
+		caps[0] = cylinder->pos;
+		caps[0].y -= cylinder->height;
+		caps[1] = cylinder->pos;
+		caps[1].y += cylinder->height;
 		return (vec3_dist(ray->origin, caps[0]),
 			vec3_dist(ray->origin, caps[1]));
 	}

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:21:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:56:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void get_object(t_scene *scene, char *line, int id)
 	else
 		ft_error(ident_err);
 	line += 3;
-	scene->objs[id].position = get_vec3(&line);
+	scene->objs[id].pos = get_vec3(&line);
 	if (scene->objs[id].type != sphere)
 	{
 		scene->objs[id].normal = get_vec3(&line);
@@ -85,7 +85,7 @@ static void get_object(t_scene *scene, char *line, int id)
 	if (scene->objs[id].type == plane)
 	{
 		// see: plane equation
-		scene->objs[id].d = -vec3_dot(scene->objs[id].position, scene->objs[id].normal);
+		scene->objs[id].d = -vec3_dot(scene->objs[id].pos, scene->objs[id].normal);
 	}
 }
 

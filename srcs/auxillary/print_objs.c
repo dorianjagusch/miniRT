@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:13:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:05:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_sphere(t_obj obj)
 {
 	printf("Sphere\n");
 	printf("Position:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Radius:\n%f\n", obj.radius);
 }
 
@@ -25,7 +25,7 @@ void	print_plane(t_obj obj)
 {
 	printf("Plane\n");
 	printf("Position:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		obj.normal.x, obj.normal.y, obj.normal.z);
 }
@@ -34,9 +34,11 @@ void	print_cylinder(t_obj obj)
 {
 	printf("Cylinder\n");
 	printf("Position:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		obj.normal.x, obj.normal.y, obj.normal.z);
+	printf("Radius:\n%f\n", obj.radius);
+	printf("Height:\n%f\n", obj.height);
 }
 
 void	print_ray(t_ray ray)
@@ -53,15 +55,15 @@ void	print_triangle(t_obj obj)
 {
 	printf("Triangle\n");
 	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
-	printf("position 3:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
+	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
-		obj.position.x, obj.position.y, obj.position.z);
+		obj.pos.x, obj.pos.y, obj.pos.z);
 }
