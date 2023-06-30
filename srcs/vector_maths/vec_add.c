@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:09:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:33:02 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec4	vec4_add(t_vec4 v, t_vec4 u)
 {
 	t_vec4	res;
 
-	res.v = v.v;
+	res.v = 1;
 	res.x = v.x + u.x;
 	res.y = v.y + u.y;
 	res.z = v.z + u.z;
@@ -47,7 +47,7 @@ t_vec4	vec4_addf(t_vec4 v, double val)
 {
 	t_vec4	res;
 
-	res.v = v.v;
+	res.v = 1;
 	res.x = v.x + val;
 	res.y = v.y + val;
 	res.z = v.z + val;

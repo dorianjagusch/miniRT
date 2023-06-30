@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 13:12:26 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 07:40:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:39:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ double	vec4_mag(t_vec4 v)
 
 	val = sqrt(vec4_dot(v, v));
 
-	return val;
+	return (val);
 }
