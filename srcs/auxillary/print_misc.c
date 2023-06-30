@@ -20,7 +20,12 @@ void	print_vec3(t_vec3 vec, char *label)
 	printf("%s:\tx:%f\ty:%f\tz:%f\n", label, vec.x, vec.y, vec.z);
 }
 
-void	print_col(t_vec4 vec)
+void	print_vec4(t_vec4 vec, char *label)
 {
-	printf("Colour\tx:%f\ty:%f\tz:%f\n", vec.x, vec.y, vec.z);
+	printf("%s:\tx:%f\ty:%f\tz:%f\tv:%f\n", label, vec.x, vec.y, vec.z, vec.v);
+}
+
+void	print_col(t_vec4 vec, char *label)
+{
+	printf("%s:\tr:%f\tg:%f\tb:%f\n", label, vec.x, vec.y, vec.z);
 }

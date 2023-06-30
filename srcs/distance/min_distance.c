@@ -21,7 +21,6 @@ double	get_dist(t_ray *ray, t_obj *obj)
 	{plane, &dist_plane},
 	{cylinder, &dist_cylinder}
 	};
-
 	return (func[obj->type].dist_funct(ray, obj));
 }
 
@@ -42,7 +41,7 @@ void	get_closest(t_scene *scene, t_ray *ray, t_payload *payload)
 		}
 		i++;
 	}
-	if (payload->distance < DBL_MAX)
+	if (payload->distance < DBL_MAX) //TODO: should change to -1 instead dblmacx, seperate functions
 	{
 		payload->hitpoint = vec3_add(ray->origin,
 				vec3_multf(ray->direction, payload->distance));

@@ -17,6 +17,22 @@ t_vec4	miss(t_img *img)
 	return ((t_vec4){1, 0, 0, 0});
 }
 
+
+// t_vec4	draw_circle(t_vec2 pxl)
+// {
+// 	t_vec2 center = (t_vec2){WIDTH / 2,  HEIGHT / 2};
+// 	int		radius = 50;
+
+// 	int x_coord = (pxl.x - center.x);
+// 	int y_coord = (pxl.y - center.y);
+// 	if (x_coord * x_coord + y_coord * y_coord < radius * radius)
+// 		return ((t_vec4){1, 0.56789876855, 1, 1});
+// 	return ((t_vec4){1, 0, .78987, 0});
+// }
+//set loop in per pixel function for bounces and modify ray in hitshader
+//or call relect function
+// and reassign ray while saving the colour
+
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray		ray;
@@ -27,6 +43,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	i = 0;
 	colour = img->scene.amb.colour;
 	ray = create_primary_ray(&img->scene.cam, pxl);
+	//print_objs(img->scene.objs[0]);
 	while (i < BOUNCES)
 	{
 		get_closest(&(img->scene), &ray, &payload);

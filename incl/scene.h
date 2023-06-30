@@ -34,10 +34,10 @@ typedef struct s_light
 
 typedef struct s_camera
 {
-	t_vec3 	pos;
-	t_vec3	direction;
-	t_vec3 	right;
-	t_vec3	up;
+	t_vec3	pos;
+	t_vec3	dir;
+    t_vec3	right;
+    t_vec3	up;
 	double	aspect_ratio;
 	double	fov;
 	int		valid;
@@ -58,6 +58,7 @@ typedef struct s_obj
 	double		radius;
 	double		radius2;
 	double		height;
+	double		d; // d term of plane equation
 	t_vec4		colour;
 	int			material;
 }				t_obj;
@@ -79,10 +80,5 @@ t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	validate_scene(t_scene *scene);
-
-void	init_camera(t_camera *cam, t_vec3 pos, t_vec3 forward);
-t_vec3	get_camera_direction(t_camera *cam);
-t_vec3	get_camera_position(t_camera *cam);
-t_vec3	get_direction_to_cam(t_camera *cam);
 
 #endif

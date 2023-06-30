@@ -53,7 +53,6 @@ t_vec4	get_colour(char **line)
 			ft_error(range_err);
 		if (i == 3)
 			break;
-		printf("line before skip , |%s|\n", *line);
         while (**line != ',' || **line == '\n' || **line == '\0')
             (*line)++;
 		if ((**line != ',') && i < 3)
@@ -61,10 +60,6 @@ t_vec4	get_colour(char **line)
 		i++;
 		*line += 1;
 	}
-	printf("colour 0: %d\n", colour[0]);
-	printf("colour 1: %d\n", colour[1]);
-	printf("colour 2: %d\n", colour[2]);
-	printf("colour 3: %d\n", colour[3]);
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
 	return (res);

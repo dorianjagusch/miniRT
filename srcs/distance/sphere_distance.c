@@ -28,7 +28,7 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	parameter.y = 2.0 * vec3_dot(c_dist, ray->direction);
 	parameter.z = vec3_dot(c_dist, c_dist) - obj->radius2;
 	discriminant = parameter.y * parameter.y - 4 * parameter.x * parameter.z;
-	if (discriminant < 1.0E-08)
+	if (discriminant < EPSILON)
 		return (DBL_MAX);
 	inv_divisor = 1 / (2.0 * parameter.x);
 	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;
