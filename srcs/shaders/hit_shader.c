@@ -22,7 +22,7 @@ t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 
 	if (payload->light_dist > 0)
 	{
-		payload->hitnorm = vec3_multf(payload->hitnorm, -1);
+		// payload->hitnorm = vec3_multf(payload->hitnorm, -1);
 		DEBUG_ONLY(print_vec3(payload->hitnorm, "hitnorm"));
 		
 		intensity = vec3_dot(payload->light_dir, payload->hitnorm);

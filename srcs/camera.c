@@ -47,13 +47,13 @@ void camera_move(int key, t_img *img)
 
 t_ray create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
-	// TODO: why the hell does it render out objects position in opposite?
 	t_ray primary_ray;
 	double norm_coord_x;
 	double norm_coord_y;
 
-	norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * cam->aspect_ratio * tan(M_PI_4); // tan(cam->fov * DEG2RAD)
-	norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1.0) * tan(M_PI_4);
+	norm_coord_x = ((2.0 * (WIDTH - (pxl.x + 0.5)) / WIDTH) - 1.0) * cam->aspect_ratio * tan(M_PI_4);
+	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(M_PI_4);
+
 	// why does this not take into account the camera direction?
 	primary_ray.origin = cam->pos;
 	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);
