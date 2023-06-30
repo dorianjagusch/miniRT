@@ -19,7 +19,6 @@ t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 
 	DEBUG_ONLY(printf("\nlight_dist: %f\n", payload->light_dist));
 	DEBUG_ONLY(print_vec3(payload->light_dir, "light_dir"));
-
 	if (payload->light_dist > 0)
 	{
 		DEBUG_ONLY(print_vec3(payload->hitnorm, "hitnorm"));

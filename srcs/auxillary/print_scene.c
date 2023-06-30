@@ -39,7 +39,7 @@ void	print_camera(t_camera cam)
 {
 	printf("Camera\n");
 	print_vec3(cam.pos, "Position");
-	print_vec3(cam.direction, "Direction");
+	print_vec3(cam.dir, "Direction");
 	print_vec3(cam.right, "Right");
 	print_vec3(cam.up, "Left");
 	printf("aspect ratio: %f\n", cam.aspect_ratio);
