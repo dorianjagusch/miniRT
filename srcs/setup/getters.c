@@ -46,23 +46,20 @@ t_vec4	get_colour(char **line)
 	colour[0] = 1;
 	i = 1;
 	while (i <= 3)
-	while (i <= 3)
 	{
 		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
-        while (**line != ',' || **line == '\n')
+		if (i == 3)
+			break;
+        while (**line != ',' || **line == '\n' || **line == '\0')
             (*line)++;
 		if ((**line != ',') && i < 3)
 			ft_error(num_err);
 		i++;
 		*line += 1;
 	}
-	printf("colour 0: %d\n", colour[0]);
-	printf("colour 1: %d\n", colour[1]);
-	printf("colour 2: %d\n", colour[2]);
-	printf("colour 3: %d\n", colour[3]);
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
 	return (res);
