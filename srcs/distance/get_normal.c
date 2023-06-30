@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/26 18:59:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:54:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
 
 	if (obj->type == sphere)
 	{
-		normal = vec3_sub(hitpoint, obj->position);
+		normal = vec3_sub(hitpoint, obj->pos);
 		vec3_normalize(&normal);
 		return (normal);
 	}

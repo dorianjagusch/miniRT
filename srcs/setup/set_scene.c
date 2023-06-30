@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 12:24:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:56:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void get_unique(t_scene *scene, char **line)
 		scene->cam.dir = get_vec3(line);
 		scene->cam.fov = get_double(line, ANGLE);
 		scene->cam.aspect_ratio = (double)WIDTH / (double)HEIGHT;
-		vec3_normalize(&scene->cam.dir); 
+		vec3_normalize(&scene->cam.dir);
 		flag[2] = 1;
 		scene->cam.valid = 1;
 	}
@@ -63,7 +63,7 @@ static void get_object(t_scene *scene, char *line, int id)
 	else
 		ft_error(ident_err);
 	line += 3;
-	scene->objs[id].position = get_vec3(&line);
+	scene->objs[id].pos = get_vec3(&line);
 	if (scene->objs[id].type != sphere)
 	{
 		scene->objs[id].normal = get_vec3(&line);
@@ -71,25 +71,28 @@ static void get_object(t_scene *scene, char *line, int id)
 	}
 	ft_skip_ws(&line);
 	if (scene->objs[id].type != plane)
+	{
 		scene->objs[id].radius = get_double(&line, REAL) / 2;
+		scene->objs[id].radius2 = pow(scene->objs[id].radius, 2.0);
+	}
 	if (scene->objs[id].type == cylinder)
-		scene->objs[id].height = get_double(&line, REAL);
-	// scene->objs[id].material = get_int(&line);
-	// scene->objs[id].normal = get_int(&line);
+		scene->objs[id].height = get_double(&line, REAL) / 2;
+	//scene->objs[id].material = get_int(&line);
+	//scene->objs[id].normal = get_int(&line);
 	ft_skip_ws(&line);
 	scene->objs[id].colour = get_colour(&line);
 
 	if (scene->objs[id].type == plane)
 	{
 		// see: plane equation
-		scene->objs[id].d = -vec3_dot(scene->objs[id].position, scene->objs[id].normal);
+		scene->objs[id].d = -vec3_dot(scene->objs[id].pos, scene->objs[id].normal);
 	}
 }
 
 static void process_line(t_scene *scene, char *line)
 {
 	static int id;
-	
+
 	if (line && line[0] != '\n')
 	{
 		ft_skip_ws(&line);

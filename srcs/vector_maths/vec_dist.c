@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_mag.c                                          :+:      :+:    :+:   */
+/*   vec3_dist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 13:12:26 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:47:30 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/30 16:11:26 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/30 16:14:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-double	vec3_mag(t_vec3 v)
+double	vec3_dist(t_vec3 v1, t_vec3 v2)
 {
-	double	val;
-
-	val = sqrt(vec3_dot(v, v));
-	return (val);
-}
-
-double	vec4_mag(t_vec4 v)
-{
-	double	val;
-
-	val = sqrt(vec4_dot(v, v));
-	return (val);
+	return (vec3_mag(vec3_sub(v1, v2)));
 }

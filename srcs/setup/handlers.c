@@ -6,13 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/25 23:17:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:52:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	mouse_position(int x, int y, t_img *img)
+int	mouse_(int x, int y, t_img *img)
 {
 	return (0);
 }

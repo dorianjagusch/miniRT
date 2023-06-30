@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 14:05:55 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:14:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	vec3_scale(t_vec3 *v, t_range old, t_range new);
 void	vec3_clamp(t_vec4 *v, double min, double max);
 t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
 t_vec3	vec3_compmult(t_vec3 v, t_vec3 u);
+double	vec3_dist(t_vec3 v1, t_vec3 v2);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);
 t_vec4	vec4_addf(t_vec4 v, double val);
