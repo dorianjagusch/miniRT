@@ -31,8 +31,8 @@ double	dist_sphere(t_ray *ray, t_obj *obj)
 	if (discriminant < 0.0001)
 		return (DBL_MAX);
 	inv_divisor = 1 / (2.0 * parameter.x);
-	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;
-	res.y = (-parameter.y + sqrt(discriminant)) * inv_divisor;
+	res.x = (-parameter.y + sqrt(discriminant)) * inv_divisor;
+	res.y = (-parameter.y - sqrt(discriminant)) * inv_divisor;
 	if (res.x > 0)
 		return (res.x);
 	if (res.y > 0)

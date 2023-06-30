@@ -45,45 +45,21 @@ void camera_move(int key, t_img *img)
 	render(img);
 }
 
-t_ray create_primary_ray(t_camera *cam, t_vec2 pxl)
+
+t_ray    create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
-	t_ray primary_ray;
-	double norm_coord_x;
-	double norm_coord_y;
+    t_ray    primary_ray;
+    double    norm_coord_x;
+    double    norm_coord_y;
 
 	norm_coord_x = ((2.0 * (WIDTH - (pxl.x + 0.5)) / WIDTH) - 1.0) * cam->aspect_ratio * tan(M_PI_4);
 	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(M_PI_4);
 
-	// why does this not take into account the camera direction?
-	primary_ray.origin = cam->pos;
-	primary_ray.direction = vec3_sub((t_vec3){norm_coord_x, norm_coord_y, 1}, primary_ray.origin);
-	vec3_normalize(&primary_ray.direction);
-	return (primary_ray);
+    primary_ray.origin = cam->pos;
+    primary_ray.direction = vec3_sub((t_vec3){cam->dir.x + norm_coord_x,
+            cam->dir.y + norm_coord_y,
+            cam->dir.z},
+            primary_ray.origin);
+    vec3_normalize(&primary_ray.direction);
+    return (primary_ray);
 }
-
-// t_ray create_primary_ray(t_camera *cam, t_vec2 pxl)
-// {
-//     t_ray primary_ray;
-//     double norm_coord_x;
-//     double norm_coord_y;
-
-//     // Calculate normalized coordinates
-//     norm_coord_x = (1.0 - (2.0 * (pxl.x + 0.5) / WIDTH)) * tan(M_PI_4);
-//     norm_coord_y = ((2.0 * (pxl.y + 0.5) / HEIGHT) - 1.0) * tan(M_PI_4);
-
-//     // Transform normalized coordinates based on camera orientation
-//     t_vec3 camera_dir = vec3_normalize(cam->target - cam->pos);
-//     t_vec3 camera_right = vec3_normalize(vec3_cross(camera_dir, cam->up));
-//     t_vec3 camera_up = vec3_cross(camera_right, camera_dir);
-
-//     primary_ray.origin = cam->pos;
-//     primary_ray.direction = vec3_add3(
-//         vec3_mult(camera_right, norm_coord_x),
-//         vec3_mult(camera_up, norm_coord_y),
-//         vec3_mult(camera_dir, 1.0)
-//     );
-//     vec3_normalize(&primary_ray.direction);
-
-//     return primary_ray;
-// }
-

@@ -83,7 +83,6 @@ void	render(t_img *img)
 
 	tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
-	//print_objs(img->scene.objs[0]);
 	while (pxl.y < HEIGHT)
 	{
 		pxl.x = 0;

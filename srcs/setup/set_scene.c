@@ -23,11 +23,10 @@ static void get_unique(t_scene *scene, char **line)
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
 		scene->amb.valid = 1;
-		// ft_printf("filled ambient\n");
 	}
 	else if (ft_strncmp("L ", *line, 2) == 0 && !flag[1])
 	{
-		*line += 2; // needs to be 2 to skip the L and white space
+		*line += 2;
 		scene->light.pos = get_vec3(line);
 		ft_skip_ws(line);
 		scene->light.ratio = get_double(line, RATIO);
@@ -45,12 +44,6 @@ static void get_unique(t_scene *scene, char **line)
 		vec3_normalize(&scene->cam.dir); 
 		flag[2] = 1;
 		scene->cam.valid = 1;
-		// printf("_____________________\n");
-		// printf("\n\ncam.pos.x: %f, cam.pos.y: %f, cam.pos.z: %f\n", scene->cam.pos.x, scene->cam.pos.y, scene->cam.pos.z);
-		// printf("\n\ncam.forward.x: %f, cam.forward.y: %f, cam.forward.z: %f\n", scene->cam.forward.x, scene->cam.forward.y, scene->cam.forward.z);
-		// printf("\n\ncam.fov: %f\n", scene->cam.fov);
-		// printf("_____________________\n");
-		// ft_printf("filled camera\n");
 	}
 	else
 		ft_error(ident_err);
@@ -96,8 +89,7 @@ static void get_object(t_scene *scene, char *line, int id)
 static void process_line(t_scene *scene, char *line)
 {
 	static int id;
-
-	printf("ID from process line: %d\n\n", id);
+	
 	if (line && line[0] != '\n')
 	{
 		ft_skip_ws(&line);

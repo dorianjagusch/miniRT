@@ -23,6 +23,7 @@ void	light_distance(t_scene *scene, t_payload *payload)
 	hitray.origin = payload->hitpoint;
 	hitray.direction = payload->hitnorm;
 	payload->light_dir = vec3_sub(scene->light.pos, payload->hitpoint);
+	DEBUG_ONLY(print_vec3(scene->light.pos, "light position:"));
 	payload->light_dist = vec3_mag(payload->light_dir);
 	while (i < scene->n_objs)
 	{

@@ -36,6 +36,8 @@ typedef struct s_camera
 {
 	t_vec3	pos;
 	t_vec3	dir;
+    t_vec3	right;
+    t_vec3	up;
 	double	aspect_ratio;
 	double	fov;
 	int		valid;
