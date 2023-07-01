@@ -17,9 +17,10 @@ void	print_objs(t_obj obj)
 	static const t_print_func	printfunc[] = {
 	{sphere, &print_sphere},
 	{plane, &print_plane},
-	{cylinder, &print_cylinder}
+	{cylinder, &print_cylinder},
+	{disk, &print_disk} //needs to be disc
 	};
-
+	printf("type: %d\n", obj.type);
 	printfunc[obj.type].print_funct(obj);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		obj.colour.x, obj.colour.y, obj.colour.z);

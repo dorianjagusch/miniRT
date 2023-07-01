@@ -19,12 +19,16 @@ t_vec4	miss(t_img *img)
 
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
+	//TODO: the payload stuff needs to stop passing all of the payload stuff, debugging etc is easier when modular
+	//TODO: deep dive into functional programming and pure functions
 	t_ray		ray;
-	t_payload	payload;
+	t_payload	payload;//
+	//t_hitresult	hit_result;
 	t_vec4		colour;
 	int			i;
-
+	
 	i = 0;
+	payload.light_dist = 0;
 	colour = img->scene.amb.colour;
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	while (i < BOUNCES)

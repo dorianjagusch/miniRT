@@ -23,6 +23,15 @@ typedef struct s_ray
 	t_vec3	direction;
 }			t_ray;
 
+typedef struct s_hitresult
+{
+	int		obj_id;
+	double	distance;
+	t_vec3	hitpoint;
+	t_vec3	hitnorm;
+}			t_hitresult;
+
+
 typedef struct s_payload
 {
 	int		obj_id;
@@ -52,9 +61,10 @@ double	get_dist(t_ray *ray, t_obj *obj);
 double	dist_sphere(t_ray *ray, t_obj *obj);
 double	dist_plane(t_ray *ray, t_obj *obj);
 double	dist_cylinder(t_ray *ray, t_obj *obj);
+double dist_disk(t_ray *ray, t_obj *obj);
 void	light_distance(t_scene *scene, t_payload *payload);
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
-t_vec4	hit_shader(t_scene *scene, t_payload *payload);
+t_vec4	hit_shader(const t_scene *scene, const t_payload *payload);
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl);
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload);
 #endif

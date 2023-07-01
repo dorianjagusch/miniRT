@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -62,6 +62,7 @@ FILES = get_colour \
 	vec_clamp \
 	vec_crossprod \
 	vec_reflect \
+	vec_isnan \
 	vec_mag \
 	vec_dist \
 	hit_shader \

@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-static void get_unique(t_scene *scene, char **line)
+static void set_unique(t_scene *scene, char **line)
 {
 	static int flag[3];
 
@@ -49,44 +49,82 @@ static void get_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void get_object(t_scene *scene, char *line, int id)
+void create_sphere(t_obj *obj, char *line)
 {
-	// TODO: rename this to something like create_object()
-	// TODO: should dispatch to create_plane(), create_cylinder() etc
+	line += 3;
+	obj->pos = get_vec3(&line);
+	ft_skip_ws(&line);
+	obj->radius = get_double(&line, REAL) / 2;
+	obj->radius2 = pow(obj->radius, 2.0);
+	ft_skip_ws(&line);
+	obj->colour = get_colour(&line);
+}
 
+void create_cylinder(t_obj *obj, char *line)
+{
+	line += 3;
+	obj->pos = get_vec3(&line);
+	obj->normal = get_vec3(&line);
+	vec3_normalize(&obj->normal);
+	ft_skip_ws(&line);
+	obj->radius = get_double(&line, REAL) / 2;
+	obj->radius2 = pow(obj->radius, 2.0);
+	ft_skip_ws(&line);
+	obj->height = get_double(&line, REAL);
+	ft_skip_ws(&line);
+	obj->colour = get_colour(&line);
+}
+
+void create_plane(t_obj *obj, char *line)
+{
+	line += 3;
+	obj->pos = get_vec3(&line);
+	ft_skip_ws(&line);
+	obj->normal = get_vec3(&line);
+	vec3_normalize(&obj->normal);
+	ft_skip_ws(&line);
+	obj->colour = get_colour(&line);
+	obj->d = -vec3_dot(obj->pos, obj->normal);
+}
+
+void create_disk(t_obj *obj, char *line)
+{
+	line += 3;
+	obj->pos = get_vec3(&line);
+	ft_skip_ws(&line);
+	obj->normal = get_vec3(&line);
+	vec3_normalize(&obj->normal);
+	ft_skip_ws(&line);
+	obj->radius = get_double(&line, REAL) / 2;
+	ft_skip_ws(&line);
+	obj->colour = get_colour(&line);
+	obj->d = -vec3_dot(obj->pos, obj->normal);
+}
+
+static void set_object(t_scene *scene, char *line, int id)
+{
 	if (!ft_strncmp("sp ", line, 3))
+	{
 		scene->objs[id].type = sphere;
+		create_sphere(&scene->objs[id], line);
+	}
 	else if (!ft_strncmp("pl ", line, 3))
+	{
 		scene->objs[id].type = plane;
+		create_plane(&scene->objs[id], line);
+	}
 	else if (!ft_strncmp("cy ", line, 3))
+	{
 		scene->objs[id].type = cylinder;
+		create_cylinder(&scene->objs[id], line);
+	}
+	else if (!ft_strncmp("di ", line, 3))
+	{
+		scene->objs[id].type = disk;
+		create_disk(&scene->objs[id], line);
+	}
 	else
 		ft_error(ident_err);
-	line += 3;
-	scene->objs[id].pos = get_vec3(&line);
-	if (scene->objs[id].type != sphere)
-	{
-		scene->objs[id].normal = get_vec3(&line);
-		vec3_normalize(&scene->objs[id].normal);
-	}
-	ft_skip_ws(&line);
-	if (scene->objs[id].type != plane)
-	{
-		scene->objs[id].radius = get_double(&line, REAL) / 2;
-		scene->objs[id].radius2 = pow(scene->objs[id].radius, 2.0);
-	}
-	if (scene->objs[id].type == cylinder)
-		scene->objs[id].height = get_double(&line, REAL);
-	//scene->objs[id].material = get_int(&line);
-	//scene->objs[id].normal = get_int(&line);
-	ft_skip_ws(&line);
-	scene->objs[id].colour = get_colour(&line);
-
-	if (scene->objs[id].type == plane)
-	{
-		// see: plane equation
-		scene->objs[id].d = -vec3_dot(scene->objs[id].pos, scene->objs[id].normal);
-	}
 }
 
 static void process_line(t_scene *scene, char *line)
@@ -97,10 +135,10 @@ static void process_line(t_scene *scene, char *line)
 	{
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))
-			get_unique(scene, &line);
+			set_unique(scene, &line);
 		else if (line)
 		{
-			get_object(scene, line, id);
+			set_object(scene, line, id);
 			id++;
 		}
 	}

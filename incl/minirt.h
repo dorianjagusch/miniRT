@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+# include <assert.h>
 # ifdef __APPLE__
 #  include "macos_keys.h"
 # else
@@ -39,13 +40,13 @@
 
 
 
-# if 1
+# if 0
 #  define WIDTH 860
 #  define HEIGHT 520
 #  define DEBUG_ONLY(...) ((void)0)
 # else
-#  define WIDTH 32
-#  define HEIGHT 32
+#  define WIDTH 200
+#  define HEIGHT 200
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 # define BOUNCES 2

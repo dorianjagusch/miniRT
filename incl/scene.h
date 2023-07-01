@@ -14,14 +14,16 @@
 # define SCENE_H
 
 # include "vector_math.h"
+
 enum e_obj
 {
 	sphere,
 	plane,
 	cylinder,
-	Ccmera,
+	disk,
+	camera,
 	light,
-	ambient
+	ambient,
 };
 
 typedef struct s_light

@@ -40,6 +40,16 @@ void	print_cylinder(t_obj obj)
 	printf("Radius:\n%f\n", obj.radius);
 	printf("Height:\n%f\n", obj.height);
 }
+void	print_disk(t_obj obj)
+{
+	printf("Disk\n");
+	printf("Position:\nx:%f\ty:%f\tz:%f\n",
+		obj.pos.x, obj.pos.y, obj.pos.z);
+	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
+		obj.normal.x, obj.normal.y, obj.normal.z);
+	printf("Radius:\n%f\n", obj.radius);
+}
+
 
 void	print_ray(t_ray ray)
 {

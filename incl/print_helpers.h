@@ -20,6 +20,7 @@ void	print_sphere(t_obj obj);
 void	print_plane(t_obj obj);
 void	print_cylinder(t_obj obj);
 void	print_triangle(t_obj obj);
+void	print_disk(t_obj obj);
 void	print_objs(t_obj obj);
 void	print_ray(t_ray ray);
 void	print_light(t_light light);

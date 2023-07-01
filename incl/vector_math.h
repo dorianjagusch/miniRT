@@ -54,6 +54,7 @@ void	vec3_clamp(t_vec4 *v, double min, double max);
 t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
 t_vec3	vec3_compmult(t_vec3 v, t_vec3 u);
 double	vec3_dist(t_vec3 v1, t_vec3 v2);
+int		vec3_isnan(t_vec3 v);
 
 t_vec4	vec4_add(t_vec4 v, t_vec4 u);
 t_vec4	vec4_addf(t_vec4 v, double val);
@@ -71,6 +72,7 @@ t_vec4	vec4_rotate(t_vec4 vec, t_vec4 normal);
 void	vec4_scale(t_vec4 *v, t_range old, t_range new);
 t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop);
 t_vec4	vec4_compmult(t_vec4 v, t_vec4 u);
+int		vec4_isnan(t_vec4 v);
 
 void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);

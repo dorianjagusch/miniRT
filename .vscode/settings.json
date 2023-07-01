@@ -3,6 +3,8 @@
         "vector_math.h": "c",
         "math.h": "c",
         "print_helpers.h": "c",
-        "temp": "c"
+        "temp": "c",
+        "random": "c",
+        "minirt.h": "c"
     }
 }

@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-t_vec4	hit_shader(t_scene *scene, t_payload *payload)
+t_vec4	hit_shader(const t_scene *scene, const t_payload *payload)
 {
 	double	intensity;
 	t_vec4	light_col;
@@ -24,6 +24,7 @@ t_vec4	hit_shader(t_scene *scene, t_payload *payload)
 	if (payload->light_dist > 0)
 	{
 		DEBUG_ONLY(print_vec3(payload->hitnorm, "hitnorm"));
+		assert(!vec3_isnan(payload->hitnorm));
 
 		intensity = fmax(vec3_dot(payload->light_dir, payload->hitnorm), 0);
 		DEBUG_ONLY(printf("intensity: %f\n", intensity));
