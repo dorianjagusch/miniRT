@@ -33,11 +33,15 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload)
 
 	payload->hitpoint = vec3_add(ray->origin,
 	vec3_multf(ray->direction, payload->distance));
+	DEBUG_ONLY(printf("setting of hit point"));
+	DEBUG_ONLY(print_vec3(payload->hitpoint, "set hitpoint"));
 	assert(!vec3_isnan(payload->hitpoint));
 
 	payload->point2cam = vec3_sub(payload->hitpoint, ray->origin);
 	vec3_normalize(&payload->point2cam);
+	assert(!vec3_isnan(payload->hitpoint));
 	payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]), payload->hitpoint);
+	assert(!vec3_isnan(payload->hitnorm));
 	payload->material = scene->objs[payload->obj_id].material;
 }
 

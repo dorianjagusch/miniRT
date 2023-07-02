@@ -20,7 +20,7 @@ t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
 
 	if (obj->type == sphere)
 		normal = vec3_sub(hitpoint, obj->pos);
-	else if (obj->type == plane)
+	else if (obj->type == plane || obj->type == disk)
 		return (obj->normal);
 	else if (obj->type == cylinder)
 	{

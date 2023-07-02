@@ -60,7 +60,7 @@ typedef struct s_obj
 	double		radius;
 	double		radius2;
 	double		height;
-	double		d; // d term of plane equation
+	double		d;
 	t_vec4		colour;
 	int			material;
 }				t_obj;

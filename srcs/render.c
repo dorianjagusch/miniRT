@@ -23,7 +23,6 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	//TODO: deep dive into functional programming and pure functions
 	t_ray		ray;
 	t_payload	payload;//
-	//t_hitresult	hit_result;
 	t_vec4		colour;
 	int			i;
 	

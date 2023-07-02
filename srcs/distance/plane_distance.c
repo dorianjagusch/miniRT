@@ -25,8 +25,6 @@ double dist_disk(t_ray *ray, t_obj *obj)
         return (p_dist);
     intersection_point = vec3_add(ray->origin, vec3_multf(ray->direction, p_dist));
     distance_to_center = vec3_dist(intersection_point, obj->pos);
-    DEBUG_ONLY(printf("\n----------------------\n"));
-    DEBUG_ONLY(printf("p_dist = %f  disk_radius = %f    distance_to_center = %f\n", p_dist, obj->radius, distance_to_center));
     if (distance_to_center <= obj->radius)
         return (p_dist);
     return (DBL_MAX);
