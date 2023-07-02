@@ -77,7 +77,8 @@ FILES = get_colour \
 	camera \
 	print_scene \
 	print_objs \
-	print_misc
+	print_misc \
+	create_objs
 
 HEADER = vector_math \
 	minirt \

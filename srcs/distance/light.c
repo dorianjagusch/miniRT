@@ -14,7 +14,7 @@
 
 void	light_distance(t_scene *scene, t_payload *payload)
 {
-	//TODO: this currenty only handles one light?
+	//TODO: this currenty only handles one light was that something we needed changing??
 	int		i;
 	t_ray	hitray;
 

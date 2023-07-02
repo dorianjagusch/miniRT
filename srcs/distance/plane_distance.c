@@ -13,7 +13,8 @@
 #include "minirt.h"
 #include "shaders.h"
 
-double dist_disk(t_ray *ray, t_obj *obj)
+
+double dist_disk(t_ray *ray, t_obj *obj) //TODO: do we want these in seperate files?
 {
     double p_dist;
     t_vec3 intersection_point;

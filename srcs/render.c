@@ -19,10 +19,10 @@ t_vec4	miss(t_img *img)
 
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
-	//TODO: the payload stuff needs to stop passing all of the payload stuff, debugging etc is easier when modular
-	//TODO: deep dive into functional programming and pure functions
+	//TODO: the payload stuff should be split, hit_test and pixel struct so we can use const, debugging etc is easier when modular
+	//TODO: deep dive into pure functions, potentially add that in starting here
 	t_ray		ray;
-	t_payload	payload;//
+	t_payload	payload;// should split into a hit test and pixel so that debugging is easier
 	t_vec4		colour;
 	int			i;
 	
