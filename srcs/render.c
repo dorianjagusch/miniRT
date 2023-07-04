@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 16:40:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:16:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 {
 	char		*dst;
-	static int	i;
+
+	printf("1st debug print color: %d\n", colour);
 
 	dst = img->addr + ((int)pxl.y * img->line_length
 			+ (int)pxl.x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = colour;
+	printf("debug print color: %d\n", colour);
 }
 
 void	render(t_img *img)
