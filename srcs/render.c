@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 10:19:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:02:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	
 	i = 0;
 	payload.light_dist = 0;
-	colour = img->scene.amb.colour;
+	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	while (i < BOUNCES)
 	{
@@ -40,10 +40,10 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 		}
 		if (payload.distance == DBL_MAX)
 		{
-			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
+			colour = miss(img);
 			break ;
 		}
-		colour = vec4_compmult(colour, hit_shader(&(img->scene), &payload));
+		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
 		ray.direction = vec3_multf(ray.direction, -1),
 		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
 		ray.origin = payload.hitpoint;
@@ -57,12 +57,12 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 {
 	char		*dst;
 
-	printf("1st debug print color: %d\n", colour);
+	DEBUG_ONLY(printf("1st debug print color: %d\n", colour));
 
 	dst = img->addr + ((int)pxl.y * img->line_length
 			+ (int)pxl.x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = colour;
-	printf("debug print color: %d\n", colour);
+	DEBUG_ONLY(printf("debug print color: %d\n", colour));
 }
 
 void	render(t_img *img)

@@ -40,8 +40,8 @@
 
 
 
-# if DEBUG
-#  define WIDTH 860
+# if 1
+#  define WIDTH 1000
 #  define HEIGHT 520
 #  define DEBUG_ONLY(...) ((void)0)
 # else

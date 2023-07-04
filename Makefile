@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/04 10:26:28 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/04 12:10:17 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ FILES = get_colour \
 	render \
 	cylinder_distance \
 	plane_distance \
+	disk_distance \
 	light \
 	sphere_distance \
 	min_distance \
@@ -65,6 +66,7 @@ FILES = get_colour \
 	vec_isnan \
 	vec_mag \
 	vec_dist \
+	vec_neg \
 	hit_shader \
 	input \
 	clean_up \

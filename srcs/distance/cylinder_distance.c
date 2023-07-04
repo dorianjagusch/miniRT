@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 11:54:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:54:09 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,21 @@
 // The cylinder is a little tricky. For now I leave this annotated because I am
 // not sure, I'll understand this on Monday still.
 
+void	dist_cap(t_ray *ray, t_obj *obj, double dist_caps[2])
+{
+	t_obj	top_cap;
+
+	top_cap.pos = vec3_add(obj->pos, vec3_multf(obj->normal, obj->height));
+	top_cap.normal = obj->normal;
+	top_cap.radius =  obj->radius;
+	dist_caps[0] = dist_disk(ray, obj);
+	dist_caps[1] = dist_disk(ray, &top_cap);
+}
 
 /* The distance to the caps of the hitpoint is calculated here. Both are checked
 against the hitpoint positions.
 */
-static void	check_height(t_ray *ray, t_obj *obj, double *dist, int sign)
+static void	check_height(t_ray *ray, t_obj *obj, double *dist)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
@@ -31,12 +41,10 @@ static void	check_height(t_ray *ray, t_obj *obj, double *dist, int sign)
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
 	if (vec3_dot(obj->normal, vec3_sub(hitpoint, obj->pos)) <= 0)
 	{
-		DEBUG_ONLY(printf("exit top\n"));
 		*dist = DBL_MAX;
 	}
 	if (vec3_dot(obj->normal, vec3_sub(hitpoint, top_cap)) >= 0)
 	{
-		DEBUG_ONLY(printf("exit bottom\n"));
 		*dist = DBL_MAX;
 	}
 }
@@ -61,25 +69,22 @@ double	dist_cylinder(t_ray *ray, t_obj *obj)
 	t_vec3	params;
 	double	discriminant;
 	double	res[2];
+	double	dist_caps[2];
 
 	calc_temps(ray, obj, temp);
 	params.x = vec3_dot(temp[0], temp[0]);
 	params.y = 2 * vec3_dot(temp[0], temp[1]);
 	params.z = vec3_dot(temp[1], temp[1]) - (obj->radius2);
 	discriminant = params.y * params.y - 4 * params.x * params.z;
-	DEBUG_ONLY(printf("discirminant: %f\n", discriminant));
 	if (discriminant < EPSILON)
 		return (DBL_MAX);
 	res[0] = (-params.y - sqrt(discriminant)) / (2 * params.x);
-	DEBUG_ONLY(printf("Distance 1: %f\n", res[0]));
 	res[1] = (-params.y + sqrt(discriminant)) / (2 * params.x);
-	DEBUG_ONLY(printf("Distance 2:  %f\n", res[1]));
 	if (res[0] > EPSILON)
-		check_height(ray, obj, &(res[0]), '+');
-	DEBUG_ONLY(printf("Distance 1: %f\n", res[0]));
+		check_height(ray, obj, &(res[0]));
 	if (res[1] > EPSILON)
-		check_height(ray, obj, &(res[1]), '-');
-	DEBUG_ONLY(printf("Distance 2: %f\n", res[1]));
+		check_height(ray, obj, &(res[1]));
+	dist_cap(ray, obj, &dist_caps);
 	if (res[0] < res[1] && res[0] > EPSILON)
 		return (res[0]);
 	else if (res[1] != DBL_MAX && res[1] > EPSILON)
