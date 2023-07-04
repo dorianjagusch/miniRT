@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 11:38:17 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:26:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int32_t	vec4_toint32(t_vec4 colour)
 	int32_t	g;
 	int32_t	b;
 
+	int32_t t = 1; // transperancy was setting to negative number?
 	r = 255 * colour.x;
 	g = 255 * colour.y;
 	b = 255 * colour.z;
-	return ((255 << 24) | (r << 16) | (g << 8) | b);
+	return ((t << 24) | (r << 16) | (g << 8) | b);
 }
 
 t_vec4	ft_int32tov4(int32_t colour)
