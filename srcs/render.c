@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/01 00:22:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:40:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@ t_vec4	miss(t_img *img)
 	return ((t_vec4){1, 0, 0, 0});
 }
 
+void	reflect_ray(t_ray *ray, t_vec3 hitpoint, t_vec3 hitnorm)
+{
+	ray->direction = vec3_multf(ray->direction, -1);
+	ray->direction = vec3_reflect(ray->direction, hitnorm);
+	ray->origin = hitpoint;
+}
+
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
-	//TODO: the payload stuff should be split, hit_test and pixel struct so we can use const, debugging etc is easier when modular
-	//TODO: deep dive into pure functions, potentially add that in starting here
 	t_ray		ray;
-	t_payload	payload;// should split into a hit test and pixel so that debugging is easier
+	t_payload	payload;
 	t_vec4		colour;
 	int			i;
-	
+
 	i = 0;
-	payload.light_dist = 0;
-	colour = img->scene.amb.colour;
+	colour = (t_vec4){1, 1, 1, 1};
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	while (i < BOUNCES)
 	{
@@ -40,13 +44,11 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 		}
 		if (payload.distance == DBL_MAX)
 		{
-			colour = vec4_propadd(miss(img), colour, img->scene.amb.ratio);
+			colour = miss(img); //vec4_propadd(miss(img), colour, img->scene.amb.ratio);
 			break ;
 		}
 		colour = vec4_compmult(colour, hit_shader(&(img->scene), &payload));
-		ray.direction = vec3_multf(ray.direction, -1),
-		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
-		ray.origin = payload.hitpoint;
+		reflect_ray(&ray, payload.hitpoint, payload.hitnorm);
 		i++;
 	}
 	vec4_clamp(&colour, 0, 1);

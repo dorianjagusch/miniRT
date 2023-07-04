@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/30 22:52:49 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/03 18:06:39 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ FILES = get_colour \
 	vec_isnan \
 	vec_mag \
 	vec_dist \
+	vec3_neg \
 	hit_shader \
 	input \
 	clean_up \

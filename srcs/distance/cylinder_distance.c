@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/01 00:28:25 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:06:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ double	check_height(t_ray *ray, t_obj *obj, double *dist, int sign)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
+	double	cap_dist;
 
 	top_cap = vec3_add(obj->pos, vec3_multf(obj->normal, obj->height));
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
 	if (vec3_dot(obj->normal, vec3_sub(hitpoint, obj->pos)) <= 0)
 	{
-		DEBUG_ONLY(printf("exit top\n"));
-		*dist = DBL_MAX;
+		DEBUG_ONLY(printf("exit bottom\n"));
+		*dist = dist_disk(ray, obj);
 	}
 	if (vec3_dot(obj->normal, vec3_sub(hitpoint, top_cap)) >= 0)
 	{
-		DEBUG_ONLY(printf("exit bottom\n"));
-		*dist = DBL_MAX;
+		*dist = dist_disk(ray, &((t_obj){.pos = top_cap, .radius = obj->radius,
+			.normal = obj->normal}));
 	}
 }
 
@@ -67,19 +68,14 @@ double	dist_cylinder(t_ray *ray, t_obj *obj)
 	params.y = 2 * vec3_dot(temp[0], temp[1]);
 	params.z = vec3_dot(temp[1], temp[1]) - (obj->radius2);
 	discriminant = params.y * params.y - 4 * params.x * params.z;
-	DEBUG_ONLY(printf("discirminant: %f\n", discriminant));
 	if (discriminant < EPSILON)
 		return (DBL_MAX);
 	res[0] = (-params.y - sqrt(discriminant)) / (2 * params.x);
-	DEBUG_ONLY(printf("Distance 1: %f\n", res[0]));
 	res[1] = (-params.y + sqrt(discriminant)) / (2 * params.x);
-	DEBUG_ONLY(printf("Distance 2:  %f\n", res[1]));
 	if (res[0] > EPSILON)
 		check_height(ray, obj, &(res[0]), '+');
-	DEBUG_ONLY(printf("Distance 1: %f\n", res[0]));
 	if (res[1] > EPSILON)
 		check_height(ray, obj, &(res[1]), '-');
-	DEBUG_ONLY(printf("Distance 2: %f\n", res[1]));
 	if (res[0] < res[1] && res[0] > EPSILON)
 		return (res[0]);
 	else if (res[1] != DBL_MAX && res[1] > EPSILON)

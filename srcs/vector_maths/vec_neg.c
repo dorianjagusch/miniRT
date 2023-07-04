@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_isnan.c                                        :+:      :+:    :+:   */
+/*   vec_neg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 13:02:10 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 15:20:58 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/03 17:54:03 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/03 18:12:02 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-int	vec3_isnan(t_vec3 v)
+t_vec3	vec3_neg(t_vec3 v)
 {
-    return isnan(v.x) || isnan(v.y) || isnan(v.z);
-}
+	t_vec3	w;
 
-int	vec4_isnan(t_vec4 v)
-{
-    return isnan(v.x) || isnan(v.y) || isnan(v.z) || isnan(v.v);
+	w.x = -v.x;
+	w.y = -v.y;
+	w.z = -v.z;
+	return (w);
 }
