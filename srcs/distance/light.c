@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 11:20:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/05 09:00:08 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	light_distance(t_scene *scene, t_payload *payload)
 	assert(!vec3_isnan(payload->hitpoint));
 	hitray.origin = payload->hitpoint;
 	assert(!vec3_isnan(payload->hitpoint));
-	hitray.direction = payload->hitnorm;
+	DEBUG_ONLY(printf("\n----------------------\n"));
 	DEBUG_ONLY(print_vec3(scene->light.pos, "light :"));
 	DEBUG_ONLY(print_vec3(payload->hitpoint, "hitpoint :"));
 	assert(!vec3_isnan(scene->light.pos));
@@ -34,6 +34,7 @@ void	light_distance(t_scene *scene, t_payload *payload)
 	payload->light_dir = vec3_sub(scene->light.pos, payload->hitpoint);
 	payload->light_dist = vec3_mag(payload->light_dir);
 	vec3_normalize(&(payload->light_dir));
+	hitray.direction = payload->light_dir;
 	assert(!vec3_isnan(payload->light_dir));
 	while (i < scene->n_objs)
 	{
