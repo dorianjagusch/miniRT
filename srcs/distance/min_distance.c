@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:00:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:24:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	hit->position = vec3_add(ray->origin,
 	vec3_multf(ray->direction, hit->distance));
 	DEBUG_ONLY(printf("setting of hit point"));
-	DEBUG_ONLY(print_vec3(hit->position, "set hitpoint"));
+	DEBUG_ONLY(print_vec3(hit->position, "set hit point"));
 	assert(!vec3_isnan(hit->position));
 
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
@@ -65,27 +65,6 @@ void	get_closest(const t_scene *scene, const t_ray *ray, t_hitresult *hit)
 		}
 		i++;
 	}
-}
-
-void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload)
-{
-	assert(!vec3_isnan(ray->origin));
-	assert(!vec3_isnan(ray->direction));
-	assert(!isnan(payload->distance));
-
-	payload->hitpoint = vec3_add(ray->origin,
-	vec3_multf(ray->direction, payload->distance));
-	DEBUG_ONLY(printf("setting of hit point"));
-	DEBUG_ONLY(print_vec3(payload->hitpoint, "set hitpoint"));
-	assert(!vec3_isnan(payload->hitpoint));
-
-	payload->point2cam = vec3_sub(payload->hitpoint, ray->origin);
-	vec3_normalize(&payload->point2cam);
-	assert(!vec3_isnan(payload->hitpoint));
-	payload->hitnorm = get_normal(&(scene->objs[payload->obj_id]),
-		payload->hitpoint);
-	assert(!vec3_isnan(payload->hitnorm));
-	payload->material = scene->objs[payload->obj_id].material;
 }
 
 

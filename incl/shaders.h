@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:05:31 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:12:08 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ double			dist_sphere(const t_ray *ray, const t_obj *obj);
 double			dist_plane(const t_ray *ray, const t_obj *obj);
 double			dist_cylinder(const t_ray *ray, const t_obj *obj);
 double			dist_disk(const t_ray *ray, const t_obj *obj);
+double			dist_triangle(const t_ray *ray, const t_obj *obj);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
 t_vec3			get_normal(t_obj *obj, t_vec3 hitpoint);
 t_vec4			hit_shader(const t_ray *ray, const t_scene *scene,

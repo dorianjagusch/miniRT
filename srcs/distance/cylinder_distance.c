@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:07:32 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:21:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ double	dist_cylinder(const t_ray *ray, const t_obj *obj)
 		check_height(ray, obj, &(res[0]));
 	if (res[1] > EPSILON)
 		check_height(ray, obj, &(res[1]));
-	dist_cap(ray, obj, &dist_caps);
+	dist_cap(ray, obj, dist_caps);
 	if (res[0] < res[1] && res[0] > EPSILON)
 		return (res[0]);
 	else if (res[1] != DBL_MAX && res[1] > EPSILON)

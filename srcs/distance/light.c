@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:01:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:30:22 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	{
 		if (get_dist(&shadowray, &(scene->objs[i])) < light_info.distance)
 		{
-			print_light_info(light_info);
+			DEBUG_ONLY(print_light_info(light_info));
 			light_info.distance = 0;
 			light_info.intensity = 0;
 			return (light_info);
