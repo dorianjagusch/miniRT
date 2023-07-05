@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/04 11:16:31 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/05 18:50:06 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ FILES = get_colour \
 	render \
 	cylinder_distance \
 	plane_distance \
+	triangle_distance \
 	light \
 	sphere_distance \
 	min_distance \

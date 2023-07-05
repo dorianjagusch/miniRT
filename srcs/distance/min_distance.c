@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 14:51:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:49:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ double	get_dist(t_ray *ray, t_obj *obj)
 	{plane, &dist_plane},
 	{cylinder, &dist_cylinder},
 	{disk, &dist_disk},
+	{triangle, &dist_triangle}
 	};
-	
+
 	return (func[obj->type].dist_funct(ray, obj));
 }
 

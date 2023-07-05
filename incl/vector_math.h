@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 18:06:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:48:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_vec3	vec3_subf(t_vec3 v, double val);
 double	vec3_mag(t_vec3 v);
 t_vec3	vec3_multf(t_vec3 v, double val);
 void	vec3_normalize(t_vec3 *v);
+void	vec2_normalize(t_vec2 *v);
 double	vec3_dot(t_vec3 v, t_vec3 u);
 t_vec3	vec3_cross(t_vec3 v, t_vec3 u);
 double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused

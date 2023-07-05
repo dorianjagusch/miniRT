@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:56:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:16:40 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void set_object(t_scene *scene, char *line, int id)
+static void set_object(t_scene *scene, char *line, int id) //TODO: change the 3rd letter to be anywhite space
 {
 	if (!ft_strncmp("sp ", line, 3))
 	{
@@ -70,6 +70,11 @@ static void set_object(t_scene *scene, char *line, int id)
 	{
 		scene->objs[id].type = disk;
 		create_disk(&scene->objs[id], line);
+	}
+	else if (!ft_strncmp("tr ", line, 3))
+	{
+		scene->objs[id].type = triangle;
+		create_triangle(&scene->objs[id], line);
 	}
 	else
 		ft_error(ident_err);

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 14:53:02 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:51:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	light_distance(t_scene *scene, t_payload *payload)
 	assert(!vec3_isnan(scene->light.pos));
 	assert(!vec3_isnan(payload->hitpoint));
 	vec3_normalize(&(payload->light_dir));
+	hitray.direction = payload->light_dir;
 	assert(!vec3_isnan(payload->light_dir));
 	while (i < scene->n_objs)
 	{
@@ -45,5 +46,4 @@ void	light_distance(t_scene *scene, t_payload *payload)
 		}
 		i++;
 	}
-	DEBUG_ONLY(printf("\n----------------------\n"));
 }

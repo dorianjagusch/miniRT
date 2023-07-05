@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/03 16:06:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:50:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /* The distance to the caps of the hitpoint is calculated here. Both are checked
 against the hitpoint positions.
 */
-double	check_height(t_ray *ray, t_obj *obj, double *dist, int sign)
+static void	check_height(t_ray *ray, t_obj *obj, double *dist, int sign)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 20:57:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:58:31 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ double	dist_sphere(t_ray *ray, t_obj *obj);
 double	dist_plane(t_ray *ray, t_obj *obj);
 double	dist_cylinder(t_ray *ray, t_obj *obj);
 double	dist_disk(t_ray *ray, t_obj *obj);
+double	dist_triangle(t_ray *ray, t_obj *obj);
 void	light_distance(t_scene *scene, t_payload *payload);
 t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint);
 t_vec4	hit_shader(const t_scene *scene, const t_payload *payload);
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl);
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_payload *payload);
-void	create_sphere(t_obj *obj, char *line);
-void	create_cylinder(t_obj *obj, char *line);
-void	create_plane(t_obj *obj, char *line);
-void	create_disk(t_obj *obj, char *line);
+
 #endif

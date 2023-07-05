@@ -1,7 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   triangle_distance.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/05 17:18:43 by smorphet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "minirt.h"
+
 /*The Möller-Trumbore algorithm is an efficient method for ray-triangle intersection testing. It is widely used in computer graphics and ray tracing to determine whether a given ray intersects a triangle and, if so, compute the intersection point.
 
-The algorithm is based on the concept of barycentric coordinates, which represent a point within a triangle as a linear combination of the triangle's vertices. Here's a step-by-step explanation of the Möller-Trumbore algorithm:
+The algorithm is based on the concept of barycentric coordinates,
+which represent a point within a triangle as a linear combination of the triangle's vertices.
+
+Here's a step-by-step explanation of the Möller-Trumbore algorithm:
 Input: The algorithm takes as input a ray (defined by an origin point and a direction vector)
         and a triangle (defined by its three vertices).
 Compute the triangle's normal: Calculate the triangle's normal vector by taking the cross product of two of its edges.
@@ -34,10 +51,7 @@ Output: If all the checks pass, the algorithm can return true, indicating that t
     the triangle.
     Additionally, it can compute the intersection point by interpolating the values of the triangle's 
     vertices using the barycentric coordinates.
-
-The Möller-Trumbore algorithm provides an efficient way to determine ray-triangle intersections,
-making it suitable for real-time rendering applications. By following these steps, you can test for
-ray-triangle intersection and obtain the intersection point if it exists. */
+*/
 
 
 /* basic C++ structure for triangles
@@ -77,9 +91,63 @@ bool rayTriangleIntersect(
 #endif
 }*/
 
-double dist_triangle(const t_ray *ray, const t_obj *obj)
+/* A 0.5 200,200,200
+C 0.0,0.0,0.0 0,0.0,1 90
+L -10.0,5.0,-4.0 0.9 255,255,255
+tr 0,2,0 0,2,0 255,255,0*/
+
+double dist_triangle(t_ray *ray, t_obj *obj)
 {
-    
-    
-    return (DBL_MAX);
+    // Define the vertices of the triangle
+	t_vec3 p0 = {1.0, 0.0, 0.5};
+	t_vec3 p1 = {0.0, -4.5, 0.0};
+	t_vec3 p2 = {0.5, 0.0, 0.0};
+
+    // Calculate the vectors v0v1 and v0v2
+    t_vec3 v0v1 = {p1.x - p0.x, p1.y - p0.y, p1.z - p0.z};
+    t_vec3 v0v2 = {p2.x - p0.x, p2.y - p0.y, p2.z - p0.z};
+
+    // Calculate the cross product of ray direction and v0v2
+    t_vec3 pvec = vec3_cross(ray->direction, v0v2);
+
+    // Calculate the determinant
+    double det = vec3_dot(v0v1, pvec);
+
+    // Check if the ray and triangle are parallel (determinant close to 0)
+    if (fabs(det) < EPSILON)
+        return (DBL_MAX);
+
+    // Calculate the inverse determinant
+    double invDet = -1.0 / det;
+
+    // Calculate the vector tvec
+    t_vec3 tvec = {ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
+
+    // Calculate the parameter u
+    double w1 = vec3_dot(tvec, pvec) * invDet;
+
+    // Check if u is within the valid range
+    if (w1 < 0.0 || w1 > 1.0)
+		return (DBL_MAX);
+
+    // Calculate the vector qvec -qvec is a common choice in the Möller-Trumbore algorithm to represent the calculated vector
+    t_vec3 qvec = vec3_cross(tvec, v0v1);
+
+	// In the Möller-Trumbore algorithm, after calculating the parameter u, which represents the intersection point's 
+	// barycentric coordinate relative to the triangle's first edge, the parameter v is calculated to determine the intersection point's
+	// barycentric coordinate relative to the triangle's second edge.
+	// If v is less than 0 or u + v is greater than 1, it indicates that the intersection point is outside the triangle,
+	// and the function returns 0.0, indicating no intersection. Otherwise,
+	// if the conditions are satisfied, v represents the intersection point's barycentric coordinate relative to the triangle's second edge.
+	// In summary, v is a parameter used in the algorithm to determine if the intersection point lies within the triangle or not.
+
+    // Calculate the parameter v
+    double w2 = vec3_dot(ray->direction, qvec) * invDet;
+
+    // Check if v is within the valid range
+    if (w2 < 0.0 || w1 + w2 < 1.0)
+        return (DBL_MAX);
+
+    // Calculate the intersection distance along the ray
+    return (vec3_dot(v0v2, qvec) * invDet);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_objs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 18:05:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:59:13 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	print_triangle(t_obj obj)
 	printf("Triangle\n");
 	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
 		obj.pos.x, obj.pos.y, obj.pos.z);
-	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
-	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
-	printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
-	printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
+	// printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+	// 	obj.pos.x, obj.pos.y, obj.pos.z);
+	// printf(" 3:\nx:%f\ty:%f\tz:%f\n",
+	// 	obj.pos.x, obj.pos.y, obj.pos.z);
+	// printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
+	// 	obj.pos.x, obj.pos.y, obj.pos.z);
+	// printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
+	// 	obj.pos.x, obj.pos.y, obj.pos.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		obj.pos.x, obj.pos.y, obj.pos.z);
 }
