@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 13:49:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:02:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	reflect_ray(ray, &hit);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);
+}
+
+void	reflect_ray(t_ray *ray, t_vec3 hitpoint, t_vec3 hitnorm)
+{
+	ray->direction = vec3_multf(ray->direction, -1);
+	ray->direction = vec3_reflect(ray->direction, hitnorm);
+	ray->origin = hitpoint;
 }
 
 int32_t	perpixel(t_img *img, t_vec2 pxl)

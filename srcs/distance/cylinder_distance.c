@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 14:13:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:07:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	check_height(const t_ray *ray, const t_obj *obj, double *dist)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
+	double	cap_dist;
 
 	top_cap = vec3_add(obj->pos, vec3_multf(obj->normal, obj->height));
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));

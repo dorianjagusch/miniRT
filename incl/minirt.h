@@ -38,17 +38,16 @@
 
 // DEFAULTS
 
-
-
 # if 1
-#  define WIDTH 1000
-#  define HEIGHT 520
+#  define WIDTH 1280
+#  define HEIGHT 720
 #  define DEBUG_ONLY(...) ((void)0)
 # else
 #  define WIDTH 200
 #  define HEIGHT 200
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
+
 # define BOUNCES 2
 # define EXT_LEN 3
 # define EXTENSION ".rt"
