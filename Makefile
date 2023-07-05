@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/04 12:10:17 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/05 13:45:02 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ FILES = get_colour \
 	print_scene \
 	print_objs \
 	print_misc \
+	print_misc2 \
 	create_objs
 
 HEADER = vector_math \
@@ -90,6 +91,7 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
+	materials \
 	mlx \
 	print_helpers
 

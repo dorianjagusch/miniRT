@@ -6,49 +6,48 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 17:02:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:49:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec4	miss(t_img *img)
+void	reflect_ray(t_ray *ray, const t_hitresult *hit)
 {
-	return ((t_vec4){1, 0, 0, 0});
+		ray->direction = vec3_neg(ray->direction);
+		ray->direction = vec3_reflect(ray->direction, hit->normal);
+		ray->origin = hit->position;
+}
+
+t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
+{
+	t_hitresult		hit;
+	t_light_info	light_info;
+	t_vec4			colour;
+
+	if (depth >= BOUNCES)
+		return ((t_vec4){1, 0, 0, 0});
+	get_closest(scene, ray, &hit);
+	if (hit.distance == DBL_MAX)
+		return ((t_vec4){1, 0, 0, 0});
+	set_hitpoint(scene, ray, &hit);
+	light_info = light_distance(scene, &hit);
+	colour = hit_shader(ray, scene, &hit, &light_info);
+	reflect_ray(ray, &hit);
+	vec4_clamp(&colour, 0.0, 1.0);
+	return (colour);
 }
 
 int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
-	//TODO: the payload stuff should be split, hit_test and pixel struct so we can use const, debugging etc is easier when modular
-	//TODO: deep dive into pure functions, potentially add that in starting here
-	t_ray		ray;
-	t_payload	payload;// should split into a hit test and pixel so that debugging is easier
-	t_vec4		colour;
-	int			i;
-	
+	t_ray			ray;
+	t_vec4			colour;
+	int				i;
+
 	i = 0;
-	payload.light_dist = 0;
 	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
-	while (i < BOUNCES)
-	{
-		get_closest(&(img->scene), &ray, &payload);
-		if (payload.distance < DBL_MAX)
-		{
-			set_hitpoint(&(img->scene), &ray, &payload);
-			light_distance(&(img->scene), &payload);
-		}
-		if (payload.distance == DBL_MAX)
-		{
-			colour = miss(img);
-			break ;
-		}
-		colour = vec4_add(colour, hit_shader(&(img->scene), &payload));
-		ray.direction = vec3_multf(ray.direction, -1),
-		ray.direction = vec3_reflect(ray.direction, payload.hitnorm);
-		ray.origin = payload.hitpoint;
-		i++;
-	}
+	colour = trace_ray(&ray, &img->scene, 0);
 	vec4_clamp(&colour, 0, 1);
 	return (vec4_toint32(colour));
 }

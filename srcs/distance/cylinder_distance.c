@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 12:54:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:13:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // The cylinder is a little tricky. For now I leave this annotated because I am
 // not sure, I'll understand this on Monday still.
 
-void	dist_cap(t_ray *ray, t_obj *obj, double dist_caps[2])
+void	dist_cap(const t_ray *ray, const t_obj *obj, double dist_caps[2])
 {
 	t_obj	top_cap;
 
@@ -32,7 +32,7 @@ void	dist_cap(t_ray *ray, t_obj *obj, double dist_caps[2])
 /* The distance to the caps of the hitpoint is calculated here. Both are checked
 against the hitpoint positions.
 */
-static void	check_height(t_ray *ray, t_obj *obj, double *dist)
+static void	check_height(const t_ray *ray, const t_obj *obj, double *dist)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
@@ -53,7 +53,7 @@ static void	check_height(t_ray *ray, t_obj *obj, double *dist)
  (for now that is the position that the cylinder rest on if it was standing)
 Axis is similarly the component of the ray origin along the axis.*/
 
-static void	calc_temps(t_ray *ray, t_obj *obj, t_vec3 *temp)
+static void	calc_temps(const t_ray *ray, const t_obj *obj, t_vec3 *temp)
 {
 	temp[ORTHO] = vec3_sub(ray->direction, vec3_multf(obj->normal,
 				vec3_dot(ray->direction, obj->normal)));
@@ -63,7 +63,7 @@ static void	calc_temps(t_ray *ray, t_obj *obj, t_vec3 *temp)
 					obj->normal)));
 }
 
-double	dist_cylinder(t_ray *ray, t_obj *obj)
+double	dist_cylinder(const t_ray *ray, const t_obj *obj)
 {
 	t_vec3	temp[2];
 	t_vec3	params;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:54:40 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:13:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <math.h>
 #include <stdio.h>
 
-double	dist_sphere(t_ray *ray, t_obj *obj)
+double	dist_sphere(const t_ray *ray, const t_obj *obj)
 {
 	t_vec3	c_dist;
 	t_vec3	parameter;

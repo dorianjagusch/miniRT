@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:14:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/21 23:13:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:09:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ enum e_material
 	translucent,
 	fabric,
 	concrete,
-	gem,
-	skin,
 	ice,
 	translucent_glass,
 	brushed_metal,
@@ -49,11 +47,7 @@ enum e_material
 	marble,
 	velvet,
 	ceramic,
-	foliage,
-	gold,
-	leather,
 	paper,
-	plastic_film,
 };
 
 static const t_material	g_matte_material = {
@@ -62,14 +56,14 @@ static const t_material	g_matte_material = {
 	.transparency = 0.0,
 	.refraction = 1.0,	//refractive index going from one material to another
 	.absorption = 0.0, //kinda like brightness
-	.emission = 0.0, //shining material
+	.emission = 0.0, //shining (not shiny) material
 	.roughness = 1.0, // describes how rough material is
 	.anisotropy = 0. //directional influences (like metal ball with lines from machine production)
 };
 
 static const t_material	g_shiny_material = {
-	.diffuse = 0.6,
-	.specular = 0.4,
+	.diffuse = 1,
+	.specular = 0.99,
 	.transparency = 0.0,
 	.refraction = 1.0,
 	.absorption = 0.0,
@@ -232,7 +226,7 @@ static const t_material	g_ice_material = {
 	.anisotropy = 0.0
 };
 
-static const t_material	g_translucentGlass_material = {
+static const t_material	g_translucent_glass_material = {
 	.diffuse = 0.0,
 	.specular = 0.2,
 	.transparency = 0.8,

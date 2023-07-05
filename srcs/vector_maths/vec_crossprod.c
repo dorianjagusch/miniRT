@@ -6,13 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 13:09:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 13:10:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:02:25 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec3	vec3_cross(t_vec3 vec1, t_vec3 vec2)
+t_vec3	vec3_cross(const t_vec3 vec1, const t_vec3 vec2)
 {
 	t_vec3	result;
 

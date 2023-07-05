@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:49:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:45:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ enum e_obj
 	plane,
 	cylinder,
 	disk,
-	camera,
-	light,
-	ambient,
 };
 
 typedef struct s_light
@@ -38,8 +35,8 @@ typedef struct s_camera
 {
 	t_vec3	pos;
 	t_vec3	dir;
-    t_vec3	right;
-    t_vec3	up;
+	t_vec3	right;
+	t_vec3	up;
 	double	aspect_ratio;
 	double	fov;
 	int		valid;

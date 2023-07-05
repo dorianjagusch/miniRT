@@ -5,6 +5,7 @@
         "print_helpers.h": "c",
         "temp": "c",
         "random": "c",
-        "minirt.h": "c"
+        "minirt.h": "c",
+        "iterator": "c"
     }
 }

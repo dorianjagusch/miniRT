@@ -6,14 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:11:19 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:09:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 #include "libft.h"
 
-void	vec3_scale(t_vec3 *v, t_range old, t_range new)
+void	vec3_scale(t_vec3 *v, const t_range old, const t_range new)
 {
 	(*v).x = ft_scale((*v).x, old, new);
 	(*v).y = ft_scale((*v).y, old, new);
@@ -21,7 +21,7 @@ void	vec3_scale(t_vec3 *v, t_range old, t_range new)
 }
 
 
-void	vec4_scale(t_vec4 *v, t_range old, t_range new)
+void	vec4_scale(t_vec4 *v, const t_range old, const t_range new)
 {
 	(*v).v = 1;
 	(*v).x = ft_scale((*v).x, old, new);

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_neg.c                                          :+:      :+:    :+:   */
+/*   print_misc2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 11:59:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 11:11:01 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/27 14:07:27 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/05 13:44:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
+#include "scene.h"
+#include "print_helpers.h"
+#include "shaders.h"
 
-t_vec3	vec3_neg(const t_vec3 v)
+void	print_light_info(t_light_info light_info)
 {
-	t_vec3	w;
-
-	w.x = -v.x;
-	w.y = -v.y;
-	w.z = -v.z;
-	return (w);
+	printf("Light Info:\n----------------------------\n");
+	print_vec3(light_info.direction, "Direction");
+	printf("Distance: %f\n", light_info.distance);
+	printf("Intensity: %f\n", light_info.intensity);
+	printf("----------------------------\n");
 }

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disk_dist.c                                        :+:      :+:    :+:   */
+/*   disk_distance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:04:15 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 12:05:25 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:13:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "minirt.h"
 
-double	dist_disk(t_ray *ray, t_obj *obj)
+double	dist_disk(const t_ray *ray, const t_obj *obj)
 {
 	double	p_dist;
 	t_vec3	intersection_point;

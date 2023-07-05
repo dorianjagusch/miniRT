@@ -6,33 +6,36 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 16:38:33 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:16:09 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "print_helpers.h"
 
-void	light_distance(t_scene *scene, t_payload *payload)
+t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 {
-	//TODO: this currenty only handles one light was that something we needed changing??
-	int		i;
-	t_ray	hitray;
+	int				i;
+	t_ray			shadowray;
+	t_light_info	light_info;
 
 	i = 0;
-	payload->hitpoint = vec3_add(payload->hitpoint,
-			vec3_multf(payload->hitnorm, 1.0E-04));
-	hitray.origin = payload->hitpoint;
-	payload->light_dir = vec3_sub(scene->light.pos, payload->hitpoint);
-	payload->light_dist = vec3_mag(payload->light_dir);
-	vec3_normalize(&(payload->light_dir));
-	hitray.direction = payload->light_dir;
+	shadowray.origin = hit->position;
+	light_info.direction = vec3_sub(scene->light.pos, hit->position);
+	light_info.distance = vec3_mag(light_info.direction);
+	vec3_normalize(&light_info.direction);
+	shadowray.direction = light_info.direction;
 	while (i < scene->n_objs)
 	{
-		if (get_dist(&hitray, &(scene->objs[i])) < payload->light_dist)
+		if (get_dist(&shadowray, &(scene->objs[i])) < light_info.distance)
 		{
-			payload->light_dist = 0;
-			return ;
+			print_light_info(light_info);
+			light_info.distance = 0;
+			light_info.intensity = 0;
+			return (light_info);
 		}
 		i++;
 	}
+	light_info.intensity = fmax(vec3_dot(hit->normal, light_info.direction), 0);
+	return (light_info);
 }

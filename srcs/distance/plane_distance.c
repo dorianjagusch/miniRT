@@ -6,14 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 12:28:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:13:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shaders.h"
 
-double	dist_plane(t_ray *ray, t_obj *obj)
+double	dist_plane(const t_ray *ray, const t_obj *obj)
 {
 	double	denominator;
 	double	signed_dist;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 14:12:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:41:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	print_scene(t_scene scene);
 void	print_vec3(t_vec3 vec, char *label);
 void	print_vec4(t_vec4 vec, char *label);
 void	print_col(t_vec4 vec, char *label);
+void	print_material(const t_material material);
+void	print_light_info(t_light_info light_info);
 
 #endif

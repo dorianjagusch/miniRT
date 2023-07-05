@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:14:27 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:09:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,36 @@ typedef struct s_vec4
 }			t_vec4;
 
 // VECTOR MATHS
-t_vec3	vec3_add(t_vec3 v, t_vec3 u);
-t_vec3	vec3_addf(t_vec3 v, double val);
-t_vec3	vec3_sub(t_vec3 v, t_vec3 u);
-t_vec3	vec3_subf(t_vec3 v, double val);
-double	vec3_mag(t_vec3 v);
-t_vec3	vec3_multf(t_vec3 v, double val);
+t_vec3	vec3_add(const t_vec3 v, const t_vec3 u);
+t_vec3	vec3_addf(const t_vec3 v, const double val);
+t_vec3	vec3_sub(const t_vec3 v, const t_vec3 u);
+t_vec3	vec3_subf(const t_vec3 v, const double val);
+double	vec3_mag(const t_vec3 v);
+t_vec3	vec3_multf(const t_vec3 v, const double val);
+double	vec3_dot(const t_vec3 v, const t_vec3 u);
+t_vec3	vec3_cross(const t_vec3 v, const t_vec3 u);
+t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 normal);
+t_vec3	vec3_rotate(const t_vec3 vec, const t_vec3 normal);
+t_vec3	vec3_compmult(const t_vec3 v, const t_vec3 u);
+double	vec3_dist(const t_vec3 v1, const t_vec3 v2);
+int		vec3_isnan(const t_vec3 v);
+t_vec3	vec3_neg(const t_vec3 v);
 void	vec3_normalize(t_vec3 *v);
-double	vec3_dot(t_vec3 v, t_vec3 u);
-t_vec3	vec3_cross(t_vec3 v, t_vec3 u);
-double	ft_cos_angle(t_vec3 v, t_vec3 u); //currently unused
-t_vec3	vec3_reflect(t_vec3 v, t_vec3 normal);
-void	vec3_scale(t_vec3 *v, t_range old, t_range new);
-void	vec3_clamp(t_vec4 *v, double min, double max);
-t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal);
-t_vec3	vec3_compmult(t_vec3 v, t_vec3 u);
-double	vec3_dist(t_vec3 v1, t_vec3 v2);
-int		vec3_isnan(t_vec3 v);
+void	vec3_scale(t_vec3 *v, const t_range old, const t_range new);
+void	vec3_clamp(t_vec4 *v, const double min, const double max);
 
-t_vec4	vec4_add(t_vec4 v, t_vec4 u);
-t_vec4	vec4_addf(t_vec4 v, double val);
-t_vec4	vec4_sub(t_vec4 v, t_vec4 u);
-t_vec4	vec4_subf(t_vec4 v, double val);
-double	vec4_mag(t_vec4 v);
-t_vec4	vec4_multf(t_vec4 v, double val);
-void	vec4_normalize(t_vec4 *v);
-double	vec4_dot(t_vec4 v, t_vec4 u);
-t_vec4	vec4_cross(t_vec4 v, t_vec4 u);
-t_vec4	vec4_reflect(t_vec4 v, t_vec4 normal);
-void	vec4_scale(t_vec4 *v, t_range old, t_range new);
-void	vec4_clamp(t_vec4 *v, double min, double max);
-t_vec4	vec4_rotate(t_vec4 vec, t_vec4 normal);
-void	vec4_scale(t_vec4 *v, t_range old, t_range new);
-t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop);
-t_vec4	vec4_compmult(t_vec4 v, t_vec4 u);
-int		vec4_isnan(t_vec4 v);
+t_vec4	vec4_add(const t_vec4 v, const t_vec4 u);
+t_vec4	vec4_addf(const t_vec4 v, const double val);
+t_vec4	vec4_sub(const t_vec4 v, const t_vec4 u);
+t_vec4	vec4_subf(const t_vec4 v, const double val);
+double	vec4_mag(const t_vec4 v);
+t_vec4	vec4_multf(const t_vec4 v, const double val);
+double	vec4_dot(const t_vec4 v, const t_vec4 u);
+t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const double prop);
+t_vec4	vec4_compmult(const t_vec4 v, const t_vec4 u);
+int		vec4_isnan(const t_vec4 v);
+void	vec4_clamp(t_vec4 *v, const double min, const double max);
+void	vec4_scale(t_vec4 *v, const t_range old, const t_range new);
 
 void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);

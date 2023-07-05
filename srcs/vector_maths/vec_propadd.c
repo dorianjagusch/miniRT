@@ -6,13 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:44:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/29 12:11:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:08:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec4	vec4_propadd(t_vec4 v1, t_vec4 v2, double prop)
+t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const double prop)
 {
 	t_vec4	new_vec;
 	double	prop2;

@@ -6,13 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:06:37 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 21:46:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:02:25 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec3	vec3_rotate(t_vec3 vec, t_vec3 normal)
+t_vec3	vec3_rotate(const t_vec3 vec, const t_vec3 normal)
 {
 	t_vec3	rot_vec;
 
