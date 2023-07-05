@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/05 19:30:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:34:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 	t_vec3	pvec;
 	t_vec3	tvec;
 	t_vec3	qvec;
-	double	bar_weights[2];
+	double	bary_weights[2];
 
 
 	// Define the vertices of the triangle
@@ -135,10 +135,10 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 	tvec = vec3_sub(ray->origin, p0); //{ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
 
 	// Calculate the parameter u
-	bar_weights[U] = vec3_dot(tvec, pvec) * inv_det;
+	bary_weights[U] = vec3_dot(tvec, pvec) * inv_det;
 
 	// Check if u is within the valid range
-	if (bar_weights[U] < 0.0 || bar_weights[U] > 1.0)
+	if (bary_weights[U] < 0.0 || bary_weights[U] > 1.0)
 		return (DBL_MAX);
 
 	// Calculate the vector qvec -qvec is a common choice in the Möller-Trumbore algorithm to represent the calculated vector
@@ -153,10 +153,10 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 	// In summary, v is a parameter used in the algorithm to determine if the intersection point lies within the triangle or not.
 
 	// Calculate the parameter v
-	bar_weights[V] = vec3_dot(ray->direction, qvec) * inv_det;
+	bary_weights[V] = vec3_dot(ray->direction, qvec) * inv_det;
 
 	// Check if v is within the valid range
-	if (bar_weights[V] < 0.0 || bar_weights[U] + bar_weights[V] < 1.0)
+	if (bary_weights[V] < 0.0 || bary_weights[U] + bary_weights[V] < 1.0)
 		return (DBL_MAX);
 
 	// Calculate the intersection distance along the ray
