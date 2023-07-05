@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/04 15:59:21 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:32:03 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,116 @@ bool rayTriangleIntersect(
 #endif
 }*/
 
-double dist_triangle(t_ray *ray, t_obj *obj) // these should all be const
+// w1 = Ax(Cy - Ay) + (Py - Ay) *?(Cx-Ax)- Px(Cy -Ay)
+//		/ (By - Ay)(cX - Ax) - (Bx - Ax)(Cy - Ay)
+
+// w2 = Py - Ay -W1(By - Ay)
+//		/ Cy - Ay 
+
+double dist_triangle(t_ray *ray, t_obj *obj) // TODO: dont have capitals in variables, and these should all be const
 {
-	double p_dist;
-	 
-	DEBUG_ONLY(printf("inside the dist triangle function\n"));
-	p_dist = dist_plane(ray, obj);
-	print_triangle(*obj);
+		double p_dist;
+		t_vec2 A;
+		t_vec2 B;
+		t_vec2 C;
+		t_vec3 p_hit;
+		double w1;
+		double w2 = 0;
+
+		A.x = 0.1;
+		A.y = -9.0;
+		B.x = 2.0;
+		B.y = -7.0;
+		C.x = 4.0;
+		C.y = -9.0;
+
+
+		p_dist = dist_plane(ray, obj);
+
+		if (p_dist == DBL_MAX)
+			return (DBL_MAX);
+			
+		assert(!vec3_isnan(ray->origin));
+		assert(!vec3_isnan(ray->direction));
+		assert(!isnan(p_dist));
+		
+		p_hit.z = 1;
+		p_hit = vec3_add(ray->origin, vec3_multf(ray->direction, p_dist));
+		
+		DEBUG_ONLY(printf("inside the dist triangle function\n"));
+
+		assert(!vec3_isnan(p_hit));
+		
+		w1 = (A.x * (C.y - A.y) + (p_hit.y - A.y) * (C.x - A.x) - p_hit.x * (C.y - A.y)) / ((B.y - A.y) * (C.x - A.x) - (B.x - A.x) * (C.y - A.y));
+		printf(" w1  = %f\n", w1);
+
+		if (fabs(C.y - A.y) < EPSILON)
+	    	w2 = -4.0; // Set a default value or handle it appropriately
+		else
+	    	w2 = (p_hit.y - A.y - w1 * (B.y - A.y)) / (C.y - A.y);
+
+		printf("w1 = %f	w2 = %f\n", w1, w2);
+		double result = w1 + w2;
+
+		if (result >= 0 && result <= 1 )
+			return(p_dist);
+	    return (DBL_MAX);
+	}
+
+
+/*
+bool rayTriangleIntersect(
+    const Vec3f &orig, const Vec3f &dir,
+    const Vec3f &v0, const Vec3f &v1, const Vec3f &v2,
+    float &t)
+{
+    // compute the plane's normal
+    Vec3f v0v1 = subtract(v1, v0);
+    Vec3f v0v2 = subtract(v2, v0);
+    // no need to normalize
+    Vec3f N = crossProduct(v0v1, v0v2); // N
+    float area2 = length(N);
+ 
+    // Step 1: finding P
     
-    return (DBL_MAX);
+    // check if the ray and plane are parallel.
+    float NdotRayDirection = dotProduct(N, dir);
+    if (fabs(NdotRayDirection) < kEpsilon) // almost 0
+        return false; // they are parallel, so they don't intersect! 
+
+    // compute d parameter using equation 2
+    float d = -dotProduct(N, v0);
+    
+    // compute t (equation 3)
+    t = -(dotProduct(N, orig) + d) / NdotRayDirection;
+    
+    // check if the triangle is behind the ray
+    if (t < 0) return false; // the triangle is behind
+ 
+    // compute the intersection point using equation 1
+    Vec3f P = { orig.x + t * dir.x, orig.y + t * dir.y, orig.z + t * dir.z };
+ 
+    // Step 2: inside-outside test
+    Vec3f C; // vector perpendicular to triangle's plane
+ 
+    // edge 0
+    Vec3f edge0 = subtract(v1, v0);
+    Vec3f vp0 = subtract(P, v0);
+    C = crossProduct(edge0, vp0);
+    if (dotProduct(N, C) < 0) return false; // P is on the right side
+ 
+    // edge 1
+    Vec3f edge1 = subtract(v2, v1);
+    Vec3f vp1 = subtract(P, v1);
+    C = crossProduct(edge1, vp1);
+    if (dotProduct(N, C) < 0)  return false; // P is on the right side
+ 
+    // edge 2
+    Vec3f edge2 = subtract(v0, v2);
+    Vec3f vp2 = subtract(P, v2);
+    C = crossProduct(edge2, vp2);
+    if (dotProduct(N, C) < 0) return false; // P is on the right side;
+
+    return true; // this ray hits the triangle
 }
+*/

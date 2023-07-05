@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 11:18:13 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:10:57 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_obj
 	int			type;
 	t_vec3		pos;
 	t_vec3		normal;
+	t_vec3		intersect_point;
 	double		radius;
 	double		radius2;
 	double		height;

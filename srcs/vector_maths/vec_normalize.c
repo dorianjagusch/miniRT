@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_normalize.c                                   :+:      :+:    :+:   */
+/*   vec_normalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:14:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/25 22:15:33 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:33:02 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ void	vec3_normalize(t_vec3 *v) //measure performance and compare to finvsqrt
 	v->x /= mag;
 	v->y /= mag;
 	v->z /= mag;
+}
+
+void	vec2_normalize(t_vec2 *v) //measure performance and compare to finvsqrt
+{
+	double	mag;
+
+	mag = sqrtf((v->x * v->x) + (v->y * v->y));
+	v->x /= mag;
+	v->y /= mag;
 }
