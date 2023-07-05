@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/05 14:32:03 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:18:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,116 +91,63 @@ bool rayTriangleIntersect(
 #endif
 }*/
 
-// w1 = Ax(Cy - Ay) + (Py - Ay) *?(Cx-Ax)- Px(Cy -Ay)
-//		/ (By - Ay)(cX - Ax) - (Bx - Ax)(Cy - Ay)
+/* A 0.5 200,200,200
+C 0.0,0.0,0.0 0,0.0,1 90
+L -10.0,5.0,-4.0 0.9 255,255,255
+tr 0,2,0 0,2,0 255,255,0*/
 
-// w2 = Py - Ay -W1(By - Ay)
-//		/ Cy - Ay 
-
-double dist_triangle(t_ray *ray, t_obj *obj) // TODO: dont have capitals in variables, and these should all be const
+double dist_triangle(t_ray *ray, t_obj *obj)
 {
-		double p_dist;
-		t_vec2 A;
-		t_vec2 B;
-		t_vec2 C;
-		t_vec3 p_hit;
-		double w1;
-		double w2 = 0;
+    // Define the vertices of the triangle
+	t_vec3 p0 = {1.0, 0.0, 0.5};
+	t_vec3 p1 = {0.0, -4.5, 0.0};
+	t_vec3 p2 = {0.5, 0.0, 0.0};
 
-		A.x = 0.1;
-		A.y = -9.0;
-		B.x = 2.0;
-		B.y = -7.0;
-		C.x = 4.0;
-		C.y = -9.0;
+    // Calculate the vectors v0v1 and v0v2
+    t_vec3 v0v1 = {p1.x - p0.x, p1.y - p0.y, p1.z - p0.z};
+    t_vec3 v0v2 = {p2.x - p0.x, p2.y - p0.y, p2.z - p0.z};
 
+    // Calculate the cross product of ray direction and v0v2
+    t_vec3 pvec = vec3_cross(ray->direction, v0v2);
 
-		p_dist = dist_plane(ray, obj);
+    // Calculate the determinant
+    double det = vec3_dot(v0v1, pvec);
 
-		if (p_dist == DBL_MAX)
-			return (DBL_MAX);
-			
-		assert(!vec3_isnan(ray->origin));
-		assert(!vec3_isnan(ray->direction));
-		assert(!isnan(p_dist));
-		
-		p_hit.z = 1;
-		p_hit = vec3_add(ray->origin, vec3_multf(ray->direction, p_dist));
-		
-		DEBUG_ONLY(printf("inside the dist triangle function\n"));
+    // Check if the ray and triangle are parallel (determinant close to 0)
+    if (fabs(det) < EPSILON)
+        return (DBL_MAX);
 
-		assert(!vec3_isnan(p_hit));
-		
-		w1 = (A.x * (C.y - A.y) + (p_hit.y - A.y) * (C.x - A.x) - p_hit.x * (C.y - A.y)) / ((B.y - A.y) * (C.x - A.x) - (B.x - A.x) * (C.y - A.y));
-		printf(" w1  = %f\n", w1);
+    // Calculate the inverse determinant
+    double invDet = -1.0 / det;
 
-		if (fabs(C.y - A.y) < EPSILON)
-	    	w2 = -4.0; // Set a default value or handle it appropriately
-		else
-	    	w2 = (p_hit.y - A.y - w1 * (B.y - A.y)) / (C.y - A.y);
+    // Calculate the vector tvec
+    t_vec3 tvec = {ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
 
-		printf("w1 = %f	w2 = %f\n", w1, w2);
-		double result = w1 + w2;
+    // Calculate the parameter u
+    double w1 = vec3_dot(tvec, pvec) * invDet;
 
-		if (result >= 0 && result <= 1 )
-			return(p_dist);
-	    return (DBL_MAX);
-	}
+    // Check if u is within the valid range
+    if (w1 < 0.0 || w1 > 1.0)
+		return (DBL_MAX);
 
+    // Calculate the vector qvec -qvec is a common choice in the Möller-Trumbore algorithm to represent the calculated vector
+    t_vec3 qvec = vec3_cross(tvec, v0v1);
 
-/*
-bool rayTriangleIntersect(
-    const Vec3f &orig, const Vec3f &dir,
-    const Vec3f &v0, const Vec3f &v1, const Vec3f &v2,
-    float &t)
-{
-    // compute the plane's normal
-    Vec3f v0v1 = subtract(v1, v0);
-    Vec3f v0v2 = subtract(v2, v0);
-    // no need to normalize
-    Vec3f N = crossProduct(v0v1, v0v2); // N
-    float area2 = length(N);
- 
-    // Step 1: finding P
-    
-    // check if the ray and plane are parallel.
-    float NdotRayDirection = dotProduct(N, dir);
-    if (fabs(NdotRayDirection) < kEpsilon) // almost 0
-        return false; // they are parallel, so they don't intersect! 
+	// In the Möller-Trumbore algorithm, after calculating the parameter u, which represents the intersection point's 
+	// barycentric coordinate relative to the triangle's first edge, the parameter v is calculated to determine the intersection point's
+	// barycentric coordinate relative to the triangle's second edge.
+	// If v is less than 0 or u + v is greater than 1, it indicates that the intersection point is outside the triangle,
+	// and the function returns 0.0, indicating no intersection. Otherwise,
+	// if the conditions are satisfied, v represents the intersection point's barycentric coordinate relative to the triangle's second edge.
+	// In summary, v is a parameter used in the algorithm to determine if the intersection point lies within the triangle or not.
 
-    // compute d parameter using equation 2
-    float d = -dotProduct(N, v0);
-    
-    // compute t (equation 3)
-    t = -(dotProduct(N, orig) + d) / NdotRayDirection;
-    
-    // check if the triangle is behind the ray
-    if (t < 0) return false; // the triangle is behind
- 
-    // compute the intersection point using equation 1
-    Vec3f P = { orig.x + t * dir.x, orig.y + t * dir.y, orig.z + t * dir.z };
- 
-    // Step 2: inside-outside test
-    Vec3f C; // vector perpendicular to triangle's plane
- 
-    // edge 0
-    Vec3f edge0 = subtract(v1, v0);
-    Vec3f vp0 = subtract(P, v0);
-    C = crossProduct(edge0, vp0);
-    if (dotProduct(N, C) < 0) return false; // P is on the right side
- 
-    // edge 1
-    Vec3f edge1 = subtract(v2, v1);
-    Vec3f vp1 = subtract(P, v1);
-    C = crossProduct(edge1, vp1);
-    if (dotProduct(N, C) < 0)  return false; // P is on the right side
- 
-    // edge 2
-    Vec3f edge2 = subtract(v0, v2);
-    Vec3f vp2 = subtract(P, v2);
-    C = crossProduct(edge2, vp2);
-    if (dotProduct(N, C) < 0) return false; // P is on the right side;
+    // Calculate the parameter v
+    double w2 = vec3_dot(ray->direction, qvec) * invDet;
 
-    return true; // this ray hits the triangle
+    // Check if v is within the valid range
+    if (w2 < 0.0 || w1 + w2 < 1.0)
+        return (DBL_MAX);
+
+    // Calculate the intersection distance along the ray
+    return (vec3_dot(v0v2, qvec) * invDet);
 }
-*/
