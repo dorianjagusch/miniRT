@@ -1,7 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   triangle_distance.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/04 15:59:21 by smorphet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "minirt.h"
+
 /*The Möller-Trumbore algorithm is an efficient method for ray-triangle intersection testing. It is widely used in computer graphics and ray tracing to determine whether a given ray intersects a triangle and, if so, compute the intersection point.
 
-The algorithm is based on the concept of barycentric coordinates, which represent a point within a triangle as a linear combination of the triangle's vertices. Here's a step-by-step explanation of the Möller-Trumbore algorithm:
+The algorithm is based on the concept of barycentric coordinates,
+which represent a point within a triangle as a linear combination of the triangle's vertices.
+
+Here's a step-by-step explanation of the Möller-Trumbore algorithm:
 Input: The algorithm takes as input a ray (defined by an origin point and a direction vector)
         and a triangle (defined by its three vertices).
 Compute the triangle's normal: Calculate the triangle's normal vector by taking the cross product of two of its edges.
@@ -34,10 +51,7 @@ Output: If all the checks pass, the algorithm can return true, indicating that t
     the triangle.
     Additionally, it can compute the intersection point by interpolating the values of the triangle's 
     vertices using the barycentric coordinates.
-
-The Möller-Trumbore algorithm provides an efficient way to determine ray-triangle intersections,
-making it suitable for real-time rendering applications. By following these steps, you can test for
-ray-triangle intersection and obtain the intersection point if it exists. */
+*/
 
 
 /* basic C++ structure for triangles
@@ -77,9 +91,13 @@ bool rayTriangleIntersect(
 #endif
 }*/
 
-double dist_triangle(const t_ray *ray, const t_obj *obj)
+double dist_triangle(t_ray *ray, t_obj *obj) // these should all be const
 {
-    
+	double p_dist;
+	 
+	DEBUG_ONLY(printf("inside the dist triangle function\n"));
+	p_dist = dist_plane(ray, obj);
+	print_triangle(*obj);
     
     return (DBL_MAX);
 }

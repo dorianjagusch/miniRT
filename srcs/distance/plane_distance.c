@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_distance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:24:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:34:40 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double dist_plane(t_ray *ray, t_obj *obj)
     if (denominator < EPSILON && signed_dist <= EPSILON)
         return (DBL_MAX);
     p_dist = (-obj->d - vec3_dot(ray->origin, obj->normal)) / denominator;
-    if (p_dist >= 0.0)
+    if (fabs(p_dist) >= 0.0)
         return (p_dist);
     return (DBL_MAX);
 }

@@ -51,3 +51,17 @@ void create_disk(t_obj *obj, char *line)
 	obj->colour = get_colour(&line);
 	obj->d = -vec3_dot(obj->pos, obj->normal);
 }
+
+void create_triangle(t_obj *obj, char *line)
+{
+	DEBUG_ONLY(printf("in the create triangle function\n"));
+	line += 3;
+	obj->pos = get_vec3(&line);
+	DEBUG_ONLY(print_vec3(obj->pos, "triangle :"));
+	ft_skip_ws(&line);
+	obj->normal = get_vec3(&line);
+	vec3_normalize(&obj->normal);
+	ft_skip_ws(&line);
+	obj->colour = get_colour(&line);
+	DEBUG_ONLY(print_vec4(obj->colour, "triangle :"));
+}

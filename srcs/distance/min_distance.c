@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/28 20:58:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:40:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ double	get_dist(t_ray *ray, t_obj *obj)
 	{plane, &dist_plane},
 	{cylinder, &dist_cylinder},
 	{disk, &dist_disk},
+	{triangle, &dist_triangle}
 	};
 	return (func[obj->type].dist_funct(ray, obj));
 }

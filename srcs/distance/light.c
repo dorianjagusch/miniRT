@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 17:45:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:20:54 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	light_distance(t_scene *scene, t_payload *payload)
 	hitray.origin = payload->hitpoint;
 	assert(!vec3_isnan(payload->hitpoint));
 	hitray.direction = payload->hitnorm;
-	DEBUG_ONLY(printf("\n----------------------\n"));
 	DEBUG_ONLY(print_vec3(scene->light.pos, "light :"));
 	DEBUG_ONLY(print_vec3(payload->hitpoint, "hitpoint :"));
 	assert(!vec3_isnan(scene->light.pos));
@@ -45,5 +44,4 @@ void	light_distance(t_scene *scene, t_payload *payload)
 		}
 		i++;
 	}
-	DEBUG_ONLY(printf("\n----------------------\n"));
 }

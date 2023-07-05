@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:49:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:18:13 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ enum e_obj
 	plane,
 	cylinder,
 	disk,
+	triangle,
 	camera,
 	light,
 	ambient,
@@ -82,5 +83,9 @@ t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	validate_scene(t_scene *scene);
-
+void	create_sphere(t_obj *obj, char *line);
+void	create_cylinder(t_obj *obj, char *line);
+void	create_plane(t_obj *obj, char *line);
+void	create_disk(t_obj *obj, char *line);
+void	create_triangle(t_obj *obj, char *line);
 #endif

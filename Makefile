@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/04 10:26:28 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/04 11:41:04 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ FILES = get_colour \
 	render \
 	cylinder_distance \
 	plane_distance \
+	triangle_distance \
 	light \
 	sphere_distance \
 	min_distance \

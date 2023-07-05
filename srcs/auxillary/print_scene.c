@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:48:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:24:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	print_objs(t_obj obj)
 	{sphere, &print_sphere},
 	{plane, &print_plane},
 	{cylinder, &print_cylinder},
-	{disk, &print_disk} //needs to be disc
+	{disk, &print_disk},
+	{triangle, &print_triangle}
 	};
 	printf("type: %d\n", obj.type);
 	printfunc[obj.type].print_funct(obj);
