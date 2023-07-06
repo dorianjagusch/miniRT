@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -O3 #-fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -82,7 +82,8 @@ FILES = get_colour \
 	print_objs \
 	print_misc \
 	print_misc2 \
-	create_objs
+	create_objs  \
+	binary_setup
 
 HEADER = vector_math \
 	minirt \
@@ -112,13 +113,13 @@ minilib: $(MINILIBX)
 libft: $(LIBFT)
 
 print:
-	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3 -g
+	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS)
 
 # Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) -fsanitize=address
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -133,7 +134,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g  -fsanitize=address
+	@$(CC) -I$I -c $< -o $@ -g
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

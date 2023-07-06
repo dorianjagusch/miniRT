@@ -50,6 +50,12 @@ typedef struct s_amb
 	int		valid;
 }			t_amb;
 
+typedef struct s_mesh
+{
+	int		n_triangle;
+	t_vec3	*triangle_data;
+}			t_mesh;
+
 typedef struct s_obj
 {
 	int			type;
@@ -63,6 +69,7 @@ typedef struct s_obj
 	double		d;
 	t_vec4		colour;
 	int			material;
+	t_mesh		mesh; //will be considered an object in the union (t_mesh struct)
 }				t_obj;
 
 typedef struct s_scene
@@ -87,4 +94,5 @@ void	create_cylinder(t_obj *obj, char *line);
 void	create_plane(t_obj *obj, char *line);
 void	create_disk(t_obj *obj, char *line);
 void	create_triangle(t_obj *obj, char *line);
+void	binary_set_scene(t_scene *scene, char *av);//
 #endif

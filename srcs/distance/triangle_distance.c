@@ -101,7 +101,6 @@ tr 0,2,0 0,2,0 255,255,0*/
 double  dist_triangle(const t_ray *ray, const t_obj *obj)
 {
 	double	det;
-	double	inv_det;
 	t_vec3	pvec;
 	t_vec3	tvec;
 	t_vec3	qvec;
@@ -128,13 +127,13 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 		return (DBL_MAX);
 
 	// Calculate the inverse determinant
-	inv_det = -1.0 / det;
+	det = -1.0 / det;
 
 	// Calculate the vector tvec
 	tvec = vec3_sub(ray->origin, p0); //{ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
 
 	// Calculate the parameter u
-	bar_weights[U] = vec3_dot(tvec, pvec) * inv_det;
+	bar_weights[U] = vec3_dot(tvec, pvec) * det;
 
 	// Check if u is within the valid range
 	if (bar_weights[U] < 0.0 || bar_weights[U] > 1.0)
@@ -152,12 +151,12 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 	// In summary, v is a parameter used in the algorithm to determine if the intersection point lies within the triangle or not.
 
 	// Calculate the parameter v
-	bar_weights[V] = vec3_dot(ray->direction, qvec) * inv_det;
+	bar_weights[V] = vec3_dot(ray->direction, qvec) * det;
 
 	// Check if v is within the valid range
 	if (bar_weights[V] < 0.0 || bar_weights[U] + bar_weights[V] < 1.0)
 		return (DBL_MAX);
 
 	// Calculate the intersection distance along the ray
-	return (vec3_dot(v0v2, qvec) * inv_det);
+	return (vec3_dot(v0v2, qvec) * det);
 }
