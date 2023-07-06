@@ -56,6 +56,7 @@ typedef struct s_obj
 	t_vec3		pos;
 	t_vec3		normal;
 	t_vec3		intersect_point;
+	t_vec3		tri_point[3];
 	double		radius;
 	double		radius2;
 	double		height;

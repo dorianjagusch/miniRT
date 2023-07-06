@@ -65,15 +65,11 @@ void	print_triangle(t_obj obj)
 {
 	printf("Triangle\n");
 	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
-	// printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
-	// 	obj.pos.x, obj.pos.y, obj.pos.z);
-	// printf(" 3:\nx:%f\ty:%f\tz:%f\n",
-	// 	obj.pos.x, obj.pos.y, obj.pos.z);
-	// printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
-	// 	obj.pos.x, obj.pos.y, obj.pos.z);
-	// printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
-	// 	obj.pos.x, obj.pos.y, obj.pos.z);
+		obj.tri_point[0].x, obj.tri_point[0].y, obj.tri_point[0].z);
+	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+		obj.tri_point[0].x, obj.tri_point[0].y, obj.tri_point[0].z);
+	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
+		obj.tri_point[0].x, obj.tri_point[0].y, obj.tri_point[0].z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
-		obj.pos.x, obj.pos.y, obj.pos.z);
+		obj.normal.x, obj.normal.y, obj.normal.z);
 }

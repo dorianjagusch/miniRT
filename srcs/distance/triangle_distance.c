@@ -109,14 +109,13 @@ double  dist_triangle(const t_ray *ray, const t_obj *obj)
 
 
 	// Define the vertices of the triangle
-	t_vec3 p0 = {1.0, 0.0, 0.5};
-	t_vec3 p1 = {0.0, -4.5, 0.0};
-	t_vec3 p2 = {0.5, 0.0, 0.0};
-
+	t_vec3 p0 = {1.0, 0.0, -0.5};
+	t_vec3 p1 = {0.0, -4.5, -0.5};
+	t_vec3 p2 = {0.5, 0.0, -0.5};
 
 	// Calculate the vectors v0v1 and v0v2
-	t_vec3 v0v1 = vec3_sub(p1, p0); //{p1.x - p0.x, p1.y - p0.y, p1.z - p0.z};
-	t_vec3 v0v2 = vec3_sub(p2, p0); //{p2.x - p0.x, p2.y - p0.y, p2.z - p0.z};
+	t_vec3 v0v1 = vec3_sub(obj->tri_point[1], obj->tri_point[0]); //{p1.x - p0.x, p1.y - p0.y, p1.z - p0.z};
+	t_vec3 v0v2 = vec3_sub(obj->tri_point[2], obj->tri_point[0]); //{p2.x - p0.x, p2.y - p0.y, p2.z - p0.z};
 
 	// Calculate the cross product of ray direction and v0v2
 	pvec = vec3_cross(ray->direction, v0v2);
