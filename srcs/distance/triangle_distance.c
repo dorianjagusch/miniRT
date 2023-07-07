@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/07 10:54:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:05:56 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ bool rayTriangleIntersect(
 	float &t, float &u, float &v)
 {
 #ifdef MOLLER_TRUMBORE
-	Vec3f v0v1 = v1 - v0;
-	Vec3f v0v2 = v2 - v0;
-	Vec3f pvec = dir.crossProduct(v0v2);
-	float det = v0v1.dotProduct(pvec);
+	Vec3f obj->triangle.edges[0] = v1 - v0;
+	Vec3f obj->triangle.edges[1] = v2 - v0;
+	Vec3f pvec = dir.crossProduct(obj->triangle.edges[1]);
+	float det = obj->triangle.edges[0].dotProduct(pvec);
 #ifdef CULLING
 	// if the determinant is negative, the triangle is 'back facing'
 	// if the determinant is close to 0, the ray misses the triangle
@@ -82,11 +82,11 @@ bool rayTriangleIntersect(
 	u = tvec.dotProduct(pvec) * invDet;
 	if (u < 0 || u > 1) return false;
 
-	Vec3f qvec = tvec.crossProduct(v0v1);
+	Vec3f qvec = tvec.crossProduct(obj->triangle.edges[0]);
 	v = dir.dotProduct(qvec) * invDet;
 	if (v < 0 || u + v > 1) return false;
 
-	t = v0v2.dotProduct(qvec) * invDet;
+	t = obj->triangle.edges[1].dotProduct(qvec) * invDet;
 
 	return true;
 #else
@@ -110,20 +110,15 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 
 
 	// Define the vertices of the triangle
-	t_vec3 p0 = {1.0, 0.0, 0.5};
-	t_vec3 p1 = {0.0, -4.5, 0.0};
-	t_vec3 p2 = {0.5, 0.0, 0.0};
+	t_vec3 p0 = {1.0, 0.0, -0.5};
+	t_vec3 p1 = {0.0, -4.5, -0.5};
+	t_vec3 p2 = {0.5, 0.0, -0.5};
 
-
-	// Calculate the vectors v0v1 and v0v2
-	t_vec3 v0v1 = vec3_sub(p1, p0); //{p1.x - p0.x, p1.y - p0.y, p1.z - p0.z};
-	t_vec3 v0v2 = vec3_sub(p2, p0); //{p2.x - p0.x, p2.y - p0.y, p2.z - p0.z};
-
-	// Calculate the cross product of ray direction and v0v2
-	pvec = vec3_cross(ray->direction, v0v2);
+	// Calculate the cross product of ray direction and obj->triangle.edges[1]
+	pvec = vec3_cross(ray->direction, obj->triangle.edges[1]);
 
 	// Calculate the determinant
-	det = vec3_dot(v0v1, pvec);
+	det = vec3_dot(obj->triangle.edges[0], pvec);
 
 	// Check if the ray and triangle are parallel (determinant close to 0)
 	if (fabs(det) < EPSILON)
@@ -143,7 +138,7 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 		return (DBL_MAX);
 
 	// Calculate the vector qvec -qvec is a common choice in the Möller-Trumbore algorithm to represent the calculated vector
-	qvec = vec3_cross(tvec, v0v1);
+	qvec = vec3_cross(tvec, obj->triangle.edges[0]);
 
 	// In the Möller-Trumbore algorithm, after calculating the parameter u, which represents the intersection point's
 	// barycentric coordinate relative to the triangle's first edge, the parameter v is calculated to determine the intersection point's
@@ -161,5 +156,5 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 		return (DBL_MAX);
 
 	// Calculate the intersection distance along the ray
-	return (vec3_dot(v0v2, qvec) * inv_det);
+	return (vec3_dot(obj->triangle.edges[1], qvec) * inv_det);
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 09:56:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:03:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_disk
 typedef struct s_triangle
 {
 	t_obj_e			type;
-	t_vec3			verts[3];
+	t_vec3			tri_point[3];
 	t_vec3			edges[2];
 	t_vec4			colour;
 	t_material_e	material;

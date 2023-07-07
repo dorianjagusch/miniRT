@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:15:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:07:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,14 @@ void	print_triangle(t_object *obj)
 
 	triangle = &obj->triangle;
 	printf("Triangle\n");
-	printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
-		triangle->verts[0].x, triangle->verts[0].y, triangle->verts[0].z);
-	printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
-		triangle->verts[1].x, triangle->verts[1].y, triangle->verts[1].z);
-	printf("Vertex 3:\nx:%f\ty:%f\tz:%f\n",
-		triangle->verts[2].x, triangle->verts[2].y, triangle->verts[2].z);
+	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
+	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
+	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
 	// printf("Normal:\nx:%f\ty:%f\tz:%f\n",
-	// 	triangle->verts.x, triangle->verts.y, triangle->verts.z);
-	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
-		triangle->colour.x, triangle->colour.y, triangle->colour.z);
+	// 	triangle->normal.x, triangle->normal.y, triangle->normal.z);
 }
 
 void	print_box(t_object *obj)

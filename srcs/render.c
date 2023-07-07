@@ -54,12 +54,9 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 {
 	char		*dst;
 
-	DEBUG_ONLY(printf("1st debug print color: %d\n", colour));
-
 	dst = img->addr + ((int)pxl.y * img->line_length
 			+ (int)pxl.x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = colour;
-	DEBUG_ONLY(printf("debug print color: %d\n", colour));
 }
 
 void	render(t_img *img)

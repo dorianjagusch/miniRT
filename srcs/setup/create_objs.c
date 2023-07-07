@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_objs.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/07 11:06:30 by djagusch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	create_sphere(t_sphere *sphere, char *line)
@@ -72,18 +84,17 @@ void	create_triangle(t_triangle *triangle, char *line)
 	triangle->type = triangle_obj;
 	DEBUG_ONLY(printf("in the create triangle function\n"));
 	line += 3;
-	triangle->verts[0] = get_vec3(&line);
-	DEBUG_ONLY(print_vec3(triangle->pos, "triangle :"));
+	triangle->tri_point[0] = get_vec3(&line);
 	ft_skip_ws(&line);
-	triangle->verts[1] = get_vec3(&line);
+	triangle->tri_point[1] = get_vec3(&line);
 	ft_skip_ws(&line);
-	triangle->verts[2] = get_vec3(&line);
-	ft_skip_ws(&line);
-	// triangle->normal = get_vec3(&line);
-	// vec3_normalize(&triangle->normal);
+	triangle->tri_point[2] = get_vec3(&line);
 	ft_skip_ws(&line);
 	triangle->colour = get_colour(&line);
-	DEBUG_ONLY(print_vec4(triangle->colour, "triangle :"));
-	triangle->edges[0] = vec3_sub(triangle->verts[0], triangle->verts[1]);
-	triangle->edges[0] = vec3_sub(triangle->verts[0], triangle->verts[2]);
+	triangle->edges[0] = vec3_sub(triangle->tri_point[0], triangle->tri_point[1]);
+	triangle->edges[1] = vec3_sub(triangle->tri_point[0], triangle->tri_point[2]);
+	DEBUG_ONLY(print_vec3(triangle->tri_point[0], "triangle point 0"));
+	DEBUG_ONLY(print_vec3(triangle->tri_point[1], "triangle point 1"));
+	DEBUG_ONLY(print_vec3(triangle->tri_point[2], "triangle point 2"));
+	DEBUG_ONLY(print_vec4(triangle->colour, "triangle col:"));
 }
