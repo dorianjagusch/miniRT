@@ -39,7 +39,7 @@
 
 // DEFAULTS
 
-# if 1
+# if 0
 #  define WIDTH 1280
 #  define HEIGHT 720
 #  define DEBUG_ONLY(...) ((void)0)

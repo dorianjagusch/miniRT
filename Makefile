@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/07 10:28:56 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/07 13:37:01 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,8 @@ FILES = get_colour \
 	print_objs \
 	print_misc \
 	print_misc2 \
-	create_objs
+	create_objs \
+	binary_parser
 
 HEADER = vector_math \
 	minirt \
@@ -121,7 +122,7 @@ print:
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) -fsanitize=address
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) #-fsanitize=address
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -136,7 +137,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g  -fsanitize=address
+	@$(CC) -I$I -c $< -o $@ -g  #-fsanitize=address
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

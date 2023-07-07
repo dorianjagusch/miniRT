@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:06:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:44:54 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
 		create_sphere(&scene->objs[id].sphere, line);
+	else if (!ft_strncmp("tm", line, 2))
+		binary_parser(&scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/21 22:27:34 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/07 14:59:01 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ FILES = ft_atoi ft_bzero ft_calloc ft_isalnum \
 	ft_lenbase get_next_line ft_free_array ft_print_array \
 	ft_count_elements ft_abs ft_bits ft_which_extr \
 	ft_free_int_array ft_print_matrix int ft_empty_str \
-	ft_atoll ft_scale
+	ft_atoll ft_scale 
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name $(FILE).c))
 
