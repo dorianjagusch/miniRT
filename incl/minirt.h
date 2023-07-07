@@ -34,6 +34,7 @@
 # include "shaders.h"
 # include <float.h>
 # include "materials.h"
+# include "objects.h"
 # include "print_helpers.h"
 
 // DEFAULTS

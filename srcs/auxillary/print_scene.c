@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 11:24:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:32:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_objs(t_obj obj)
+typedef void	(*t_printfunc)(t_object *);
+
+void	print_objs(t_object *obj)
 {
-	static const t_print_func	printfunc[] = {
-	{sphere, &print_sphere},
-	{plane, &print_plane},
-	{cylinder, &print_cylinder},
-	{disk, &print_disk},
-	{triangle, &print_triangle}
+	static const t_printfunc	printfunc[] = {
+		&print_sphere,
+		&print_plane,
+		&print_cylinder,
+		&print_disk,
+		&print_triangle
 	};
-	printf("type: %d\n", obj.type);
-	printfunc[obj.type].print_funct(obj);
-	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
-		obj.colour.x, obj.colour.y, obj.colour.z);
+
+	printf("type: %d\n", obj->type);
+	printfunc[obj->type]((void*)obj);
 }
 
 void	print_light(t_light light)
@@ -66,7 +67,7 @@ void	print_scene(t_scene scene)
 	while (i < scene.n_objs)
 	{
 		printf("Object #%d of %d\n", i, scene.n_objs);
-		print_objs(scene.objs[i++]);
+		print_objs(scene.objs + i++);
 		printf("--------------------------\n");
 	}
 	printf("==========================\n");

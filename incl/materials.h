@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:14:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 15:09:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 09:54:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_material
 	double	anisotropy;
 }			t_material;
 
-enum e_material
+typedef enum e_material
 {
 	matte,
 	shiny,
@@ -48,7 +48,7 @@ enum e_material
 	velvet,
 	ceramic,
 	paper,
-};
+}	t_material_e;
 
 static const t_material	g_matte_material = {
 	.diffuse = 1.0, //matteness

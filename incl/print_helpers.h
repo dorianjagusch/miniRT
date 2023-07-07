@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 13:41:32 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:15:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "minirt.h"
 # include "stdio.h"
 
-void	print_sphere(t_obj obj);
-void	print_plane(t_obj obj);
-void	print_cylinder(t_obj obj);
-void	print_triangle(t_obj obj);
-void	print_disk(t_obj obj);
-void	print_objs(t_obj obj);
+void	print_sphere(t_object *obj);
+void	print_plane(t_object *obj);
+void	print_cylinder(t_object *obj);
+void	print_triangle(t_object *obj);
+void	print_disk(t_object *obj);
+void	print_box(t_object *obj);
+void	print_objs(t_object *obj);
 void	print_ray(t_ray ray);
 void	print_light(t_light light);
 void	print_camera(t_camera cam);

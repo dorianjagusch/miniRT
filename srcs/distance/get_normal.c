@@ -3,30 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 12:37:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:04:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "vector_math.h"
 
-t_vec3	get_normal(t_obj *obj, t_vec3 hitpoint)
+t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
 	t_vec3	normal;
 	t_vec3	co;
 
-	if (obj->type == sphere)
-		normal = vec3_sub(hitpoint, obj->pos);
-	else if (obj->type == plane || obj->type == disk || obj->type == triangle)
-		return (obj->normal);
-	else if (obj->type == cylinder)
+	if (obj->type == sphere_obj)
+		normal = vec3_sub(hitpoint, obj->sphere.pos);
+	else if (obj->type == plane_obj)
+		return (obj->plane.normal);
+	else if (obj->type == disk_obj)
+		return (obj->disk.normal);
+	else if (obj->type == cylinder_obj)
 	{
-		co = vec3_sub(hitpoint, obj->pos);
-		normal = vec3_sub(co, vec3_multf(obj->normal,
-					vec3_dot(obj->normal, co)));
+		co = vec3_sub(hitpoint, obj->cylinder.pos);
+		normal = vec3_sub(co, vec3_multf(obj->cylinder.normal,
+					vec3_dot(obj->cylinder.normal, co)));
 	}
 	vec3_normalize(&normal);
 	return (normal);

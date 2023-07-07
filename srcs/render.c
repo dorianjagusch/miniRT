@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:11:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:28:34 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 		return ((t_vec4){1, 0, 0, 0});
 	set_hitpoint(scene, ray, &hit);
 	light_info = light_distance(scene, &hit);
-	colour = hit_shader(ray, scene, &hit, &light_info);
+	colour = hit_shader(scene, &hit, &light_info);
 	reflect_ray(ray, &hit);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);
@@ -42,9 +42,7 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray			ray;
 	t_vec4			colour;
-	int				i;
 
-	i = 0;
 	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	colour = trace_ray(&ray, &img->scene, 0);
@@ -67,10 +65,10 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 void	render(t_img *img)
 {
 	t_vec2		pxl;
-	int			tot_res;
+	//int			tot_res;
 	int			colour;
 
-	tot_res = HEIGHT * WIDTH;
+	//tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
 	while (pxl.y < HEIGHT)
 	{

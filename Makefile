@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/05 18:56:50 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/07 10:28:56 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ FILES = get_colour \
 	triangle_distance \
 	light \
 	sphere_distance \
+	box_distance \
 	min_distance \
 	get_normal \
 	main \
@@ -68,6 +69,7 @@ FILES = get_colour \
 	vec_mag \
 	vec_dist \
 	vec_neg \
+	vec_inv \
 	hit_shader \
 	input \
 	clean_up \
@@ -86,6 +88,7 @@ FILES = get_colour \
 
 HEADER = vector_math \
 	minirt \
+	objects \
 	linux_keys \
 	libft \
 	shaders \

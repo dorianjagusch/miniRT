@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/05 19:34:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/06 00:46:08 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ C 0.0,0.0,0.0 0,0.0,1 90
 L -10.0,5.0,-4.0 0.9 255,255,255
 tr 0,2,0 0,2,0 255,255,0*/
 
-double  dist_triangle(const t_ray *ray, const t_obj *obj)
+double  dist_triangle(const t_ray *ray, const t_object *obj)
 {
 	double	det;
 	double	inv_det;

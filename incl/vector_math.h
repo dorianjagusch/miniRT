@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 18:58:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 23:57:16 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_vec3	vec3_neg(const t_vec3 v);
 void	vec3_normalize(t_vec3 *v);
 void	vec3_scale(t_vec3 *v, const t_range old, const t_range new);
 void	vec3_clamp(t_vec4 *v, const double min, const double max);
+t_vec3	vec3_inv(const t_vec3 v);
 
 t_vec4	vec4_add(const t_vec4 v, const t_vec4 u);
 t_vec4	vec4_addf(const t_vec4 v, const double val);

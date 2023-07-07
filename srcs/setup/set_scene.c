@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 11:16:40 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:06:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,40 +49,29 @@ static void set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void set_object(t_scene *scene, char *line, int id) //TODO: change the 3rd letter to be anywhite space
+static void	set_object(t_scene *scene, char *line, int id)
 {
-	if (!ft_strncmp("sp ", line, 3))
-	{
-		scene->objs[id].type = sphere;
-		create_sphere(&scene->objs[id], line);
-	}
-	else if (!ft_strncmp("pl ", line, 3))
-	{
-		scene->objs[id].type = plane;
-		create_plane(&scene->objs[id], line);
-	}
-	else if (!ft_strncmp("cy ", line, 3))
-	{
-		scene->objs[id].type = cylinder;
-		create_cylinder(&scene->objs[id], line);
-	}
-	else if (!ft_strncmp("di ", line, 3))
-	{
-		scene->objs[id].type = disk;
-		create_disk(&scene->objs[id], line);
-	}
-	else if (!ft_strncmp("tr ", line, 3))
-	{
-		scene->objs[id].type = triangle;
-		create_triangle(&scene->objs[id], line);
-	}
+	if (!ft_isspace(line[2]))
+		ft_error(ident_err);
+	if (!ft_strncmp("sp", line, 2))
+		create_sphere(&scene->objs[id].sphere, line);
+	else if (!ft_strncmp("pl", line, 2))
+		create_plane(&scene->objs[id].plane, line);
+	else if (!ft_strncmp("cy", line, 2))
+		create_cylinder(&scene->objs[id].cylinder, line);
+	else if (!ft_strncmp("di", line, 2))
+		create_disk(&scene->objs[id].disk, line);
+	else if (!ft_strncmp("tr", line, 2))
+		create_triangle(&scene->objs[id].triangle, line);
+	else if (!ft_strncmp("bo", line, 2))
+		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
 }
 
-static void process_line(t_scene *scene, char *line)
+static void	process_line(t_scene *scene, char *line)
 {
-	static int id;
+	static int	id;
 
 	if (line && line[0] != '\n')
 	{
@@ -97,10 +86,10 @@ static void process_line(t_scene *scene, char *line)
 	}
 }
 
-static int count_objects(int fd, char *av)
+static int	count_objects(int fd, char *av)
 {
-	char *line;
-	int count;
+	char	*line;
+	int		count;
 
 	line = get_next_line(fd);
 	count = 0;
@@ -119,10 +108,10 @@ static int count_objects(int fd, char *av)
 	return (count - 3);
 }
 
-void set_scene(t_scene *scene, char *av)
+void	set_scene(t_scene *scene, char *av)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
 		ft_error(file_err);
@@ -132,7 +121,7 @@ void set_scene(t_scene *scene, char *av)
 	scene->n_objs = count_objects(fd, av);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
-	scene->objs = ft_calloc(scene->n_objs, sizeof(t_obj));
+	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
 	if (!scene->objs)
 		ft_error(ENOMEM);
 	line = get_next_line(fd);

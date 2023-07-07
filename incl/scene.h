@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:04:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/05 23:44:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 # define SCENE_H
 
 # include "vector_math.h"
-
-enum e_obj
-{
-	sphere,
-	plane,
-	cylinder,
-	disk,
-	triangle
-};
+# include "objects.h"
 
 typedef struct s_light
 {
@@ -50,27 +42,13 @@ typedef struct s_amb
 	int		valid;
 }			t_amb;
 
-typedef struct s_obj
-{
-	int			type;
-	t_vec3		pos;
-	t_vec3		normal;
-	t_vec3		intersect_point;
-	double		radius;
-	double		radius2;
-	double		height;
-	double		d;
-	t_vec4		colour;
-	int			material;
-}				t_obj;
-
 typedef struct s_scene
 {
 	t_amb		amb;
 	t_light		light;
 	t_camera	cam;
 	int32_t		bounces;
-	t_obj		*objs;
+	t_object	*objs;
 	int			n_objs;
 
 }				t_scene;
@@ -81,9 +59,11 @@ t_vec4	get_colour(char **line);
 double	get_double(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	validate_scene(t_scene *scene);
-void	create_sphere(t_obj *obj, char *line);
-void	create_cylinder(t_obj *obj, char *line);
-void	create_plane(t_obj *obj, char *line);
-void	create_disk(t_obj *obj, char *line);
-void	create_triangle(t_obj *obj, char *line);
+void	create_sphere(t_sphere *sphere, char *line);
+void	create_cylinder(t_cylinder *cylinder, char *line);
+void	create_plane(t_plane *plane, char *line);
+void	create_disk(t_disk *disk, char *line);
+void	create_triangle(t_triangle *triangle, char *line);
+void	create_box(t_box *box, char *line);
+
 #endif

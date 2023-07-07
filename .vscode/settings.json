@@ -6,6 +6,7 @@
         "temp": "c",
         "random": "c",
         "minirt.h": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "cstdlib": "c"
     }
 }
