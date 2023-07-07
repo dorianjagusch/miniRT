@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/07 11:05:56 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:22:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,6 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 	t_vec3	qvec;
 	double	bary_weights[2];
 
-
-	// Define the vertices of the triangle
-	t_vec3 p0 = {1.0, 0.0, -0.5};
-	t_vec3 p1 = {0.0, -4.5, -0.5};
-	t_vec3 p2 = {0.5, 0.0, -0.5};
-
 	// Calculate the cross product of ray direction and obj->triangle.edges[1]
 	pvec = vec3_cross(ray->direction, obj->triangle.edges[1]);
 
@@ -128,7 +122,7 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 	inv_det = -1.0 / det;
 
 	// Calculate the vector tvec
-	tvec = vec3_sub(ray->origin, p0); //{ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
+	tvec = vec3_sub(ray->origin, obj->triangle.tri_point[0]); //{ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};
 
 	// Calculate the parameter u
 	bary_weights[U] = vec3_dot(tvec, pvec) * inv_det;
