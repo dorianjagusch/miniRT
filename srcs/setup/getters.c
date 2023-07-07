@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/23 14:50:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:00:56 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ t_vec4	get_colour(char **line)
 	return (res);
 }
 
-double	get_double(char **line, int mode)
+float	get_float(char **line, int mode)
 {
-	double	res;
+	float	res;
 
 	res = 0;
 	res = ft_atof(*line);
@@ -82,7 +82,7 @@ double	get_double(char **line, int mode)
 		return (res);
 	else
 		ft_error(num_err);
-	return (DBL_MAX);
+	return (FLT_MAX);
 }
 
 t_vec3	get_vec3(char **line)

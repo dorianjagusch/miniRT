@@ -46,6 +46,44 @@ little-endian, although this is not stated in documentation.*/
 //     unsigned short  att;       //2 bytes (disposable data)
 // } 		t_triangle_data;
 
+//TODO: change get_double to get floats
+
+// typedef struct s_triangle
+// {
+// 	t_obj_e			type;
+// 	t_vec3			tri_point[3];
+// 	t_vec3			edges[2];
+// 	t_vec4			colour;
+// 	t_material_e	material;
+// }					t_triangle;
+
+void set_triangle_data(t_object *triangle, t_triangle_data	data)
+{
+	triangle->triangle.type = triangle_obj;
+
+	triangle->triangle.normal.x = data.normal_vector[0];
+	triangle->triangle.normal.y = data.normal_vector[1];
+	triangle->triangle.normal.z = data.normal_vector[2];
+
+	triangle->triangle.tri_point[0].x = data.vertex_a[0];
+	triangle->triangle.tri_point[0].y = data.vertex_a[1];
+	triangle->triangle.tri_point[0].z = data.vertex_a[2];
+
+	triangle->triangle.tri_point[1].x = data.vertex_b[0];
+	triangle->triangle.tri_point[1].y = data.vertex_b[1];
+	triangle->triangle.tri_point[1].z = data.vertex_b[2];
+	
+	triangle->triangle.tri_point[2].x = data.vertex_c[0];
+	triangle->triangle.tri_point[2].y = data.vertex_c[1];
+	triangle->triangle.tri_point[2].z = data.vertex_c[2];
+	
+	triangle->triangle.edges[0] = vec3_sub(triangle->triangle.tri_point[1], triangle->triangle.tri_point[0]);
+	triangle->triangle.edges[1] = vec3_sub(triangle->triangle.tri_point[2], triangle->triangle.tri_point[0]);
+	triangle->triangle.colour = (t_vec4) {1, 1, 0, 1};
+// 	t_material_e	material;
+
+}
+
 void binary_parser(t_mesh *mesh, char *line)
 {
     printf("found binary_set_scene\n");
@@ -57,6 +95,7 @@ void binary_parser(t_mesh *mesh, char *line)
 	int				index;
 
 	line += 3;
+	mesh->type = mesh_obj;
 	file_name = *ft_split2(line);
     fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -66,20 +105,17 @@ void binary_parser(t_mesh *mesh, char *line)
 		ft_error(content_err);
 	mesh->n_triangles = header.n_triangles;
     DEBUG_ONLY(printf("number of triangles = %d\n", header.n_triangles));
-    mesh->vertices = malloc(mesh->n_triangles * sizeof(t_triangle_data));
+
+    mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
 	index = 0;
 	while (index < mesh->n_triangles)
 	{
-		read(fd, &data,sizeof(t_triangle_data));
-		mesh->vertices[index] = data;
-		DEBUG_ONLY(print_vec3(mesh->vertices->normal_vector, "Normal"));
-		DEBUG_ONLY(print_vec3(mesh->vertices->vertex_a, "Vertex a"));
-		DEBUG_ONLY(print_vec3(mesh->vertices->vertex_b, "Vertex b"));
-		DEBUG_ONLY(print_vec3(mesh->vertices->vertex_c, "Vertex c"));
+		size_t bytes = read(fd, &data, sizeof(t_triangle_data));
+		if (bytes <= 0)
+			break ;
+		set_triangle_data(&mesh->triangle_data[index], data);
 		index++;
 	}
-	
 	free(file_name);
     close(fd);
-    exit (0);//
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:27:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:00:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ t_vec4	hit_shader(const t_scene *scene,
 {
 	static t_vec4		col[5] = {{1, 0, 0, 0}, {1, 0, 0, 0}, {1, 0, 0, 0}, {1, 0, 0, 0}, {1, 0, 0, 0}};
 	//const t_material	*mat = get_material(hit->material);
-	//double				spec_exp;
+	//float				spec_exp;
 	//t_vec3				reflected_ray;
 
 	col[ambient] = vec4_multf(scene->amb.colour, scene->amb.ratio);
 	col[ambient] = vec4_compmult(hit->colour, col[ambient]);
-	if (light_info->distance > EPSILON && light_info->distance != DBL_MAX)
+	if (light_info->distance > EPSILON && light_info->distance != FLT_MAX)
 	{
 		col[diffuse] = vec4_multf(scene->light.colour, scene->light.ratio * 100);
 		col[diffuse] = vec4_multf(col[diffuse], light_info->intensity);
@@ -81,7 +81,7 @@ t_vec4	hit_shader(const t_scene *scene,
 
 // t_vec4	hit_shader(const t_scene *scene, const t_payload *payload)
 // {
-// 	double	intensity;
+// 	float	intensity;
 // 	t_vec4	light_col;
 // 	t_vec4	colour;
 // 	t_vec4	col;

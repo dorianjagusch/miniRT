@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:28:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:00:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 
 	if (depth >= BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
-	get_closest(scene, ray, &hit);
-	if (hit.distance == DBL_MAX)
+	get_closest(scene, ray, &hit); //
+	if (hit.distance == FLT_MAX)
 		return ((t_vec4){1, 0, 0, 0});
+	assert(!isinf(hit.distance));
 	set_hitpoint(scene, ray, &hit);
 	light_info = light_distance(scene, &hit);
 	colour = hit_shader(scene, &hit, &light_info);

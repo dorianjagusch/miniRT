@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:26:59 by djagusch          #+#    #+#             */
-/*   Updated: 2023/01/26 13:45:04 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:52:44 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static double	get_digits(const char *str, size_t i)
+static float	get_digits(const char *str, size_t i)
 {
 	int		j;
-	double	result;
+	float	result;
 
 	j = -1;
 	result = 0;
@@ -29,11 +29,11 @@ static double	get_digits(const char *str, size_t i)
 	return (result);
 }
 
-double	ft_atof(const char *str)
+float	ft_atof(const char *str)
 {
 	int		i;
 	int		sign;
-	double	result;
+	float	result;
 
 	sign = 1;
 	i = 0;

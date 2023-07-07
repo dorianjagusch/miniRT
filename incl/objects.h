@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:50:06 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:30:36 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_sphere
 {
 	t_obj_e			type;
 	t_vec3			pos;
-	double			radius;
-	double			radius2;
+	float			radius;
+	float			radius2;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_sphere;
@@ -43,7 +43,7 @@ typedef struct s_plane
 	t_obj_e			type;
 	t_vec3			pos;
 	t_vec3			normal;
-	double			d;
+	float			d;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_plane;
@@ -52,10 +52,10 @@ typedef struct s_cylinder
 {
 	t_obj_e			type;
 	t_vec3			pos;
-	double			radius;
-	double			radius2;
+	float			radius;
+	float			radius2;
 	t_vec3			normal;
-	double			height;
+	float			height;
 	t_vec4			colour;
 	t_material_e	material;
 }			t_cylinder;
@@ -65,8 +65,8 @@ typedef struct s_disk
 	t_obj_e			type;
 	t_vec3			pos;
 	t_vec3			normal;
-	double			d;
-	double			radius;
+	float			d;
+	float			radius;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_disk;
@@ -75,6 +75,7 @@ typedef struct s_triangle
 {
 	t_obj_e			type;
 	t_vec3			tri_point[3];
+	t_vec3			normal;
 	t_vec3			edges[2];
 	t_vec4			colour;
 	t_material_e	material;
@@ -89,11 +90,16 @@ typedef struct s_triangle_data //TODO: can this stay here, norm compliance?
     unsigned short  att;	//2 bytes (disposable data)
 } 		t_triangle_data;
 
+typedef union u_object	t_object;
+
 typedef struct s_mesh
 {
 	t_obj_e			type;
-	double			n_triangles;
-	t_triangle_data	*vertices; //need to malloc this
+	float			n_triangles;
+	t_vec4			colour;
+	int				obj_id;
+	t_material_e	material;
+	t_object		*triangle_data; //need to malloc this
 }					t_mesh;
 
 typedef struct s_stl_header //TODO: can this stay here, norm compliance?

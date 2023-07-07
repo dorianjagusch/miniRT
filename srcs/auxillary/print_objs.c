@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 11:56:24 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:31:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	print_triangle(t_object *obj)
 		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
 	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
 		triangle->tri_point[1].x, triangle->tri_point[1].y, triangle->tri_point[1].z);
-	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
+	printf("postition 3:\nx:%f\ty:%f\tz:%f\n",
 		triangle->tri_point[2].x, triangle->tri_point[2].y, triangle->tri_point[2].z);
 	// printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 	// 	triangle->normal.x, triangle->normal.y, triangle->normal.z);
@@ -112,4 +112,14 @@ void	print_box(t_object *obj)
 	// 	box->verts.x, box->verts.y, box->verts.z);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		box->colour.x, box->colour.y, box->colour.z);
+}
+
+void	print_mesh(t_object *obj)
+{
+	t_mesh	mesh;
+
+	printf("mesh\n");
+	printf("number of triangles: %f\n", mesh.n_triangles);
+	printf("INSERT TRIANGLE PRINTING HERE\n");
+
 }

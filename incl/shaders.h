@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:26:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:13:56 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	direction;
-	double	transparency;
+	float	transparency;
 }			t_ray;
 
 typedef struct s_hitresult
 {
 	int				obj_id;
-	double			distance;
+	float			distance;
 	t_vec3			position;
 	t_vec3			normal;
 	t_vec3			point2cam;
@@ -48,21 +48,21 @@ typedef struct s_hitresult
 typedef struct s_light_info
 {
 	t_vec3	direction;
-	double	distance;
-	double	intensity;
+	float	distance;
+	float	intensity;
 }			t_light_info;
 
-typedef double	(*t_dist_function)(const t_ray *, const t_object *);
+typedef float	(*t_dist_function)(const t_ray *, t_object *);
 
 void			get_closest(const t_scene *scene, const t_ray *ray,
 					t_hitresult *hit);
-double			get_dist(const t_ray *ray, const t_object *obj);
-double			dist_sphere(const t_ray *ray, const t_object *sphere);
-double			dist_plane(const t_ray *ray, const t_object *plane);
-double			dist_cylinder(const t_ray *ray, const t_object *cylinder);
-double			dist_disk(const t_ray *ray, const t_object *disk);
-double			dist_triangle(const t_ray *ray, const t_object *triangle);
-double			dist_box(const t_ray *ray, const t_object *box);
+float			get_dist(const t_ray *ray, t_object *obj);
+float			dist_sphere(const t_ray *ray, t_object *sphere);
+float			dist_plane(const t_ray *ray, t_object *plane);
+float			dist_cylinder(const t_ray *ray, t_object *cylinder);
+float			dist_disk(const t_ray *ray, t_object *disk);
+float			dist_triangle(const t_ray *ray, t_object *triangle);
+float			dist_box(const t_ray *ray, t_object *box);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
 t_vec4			hit_shader(const t_scene *scene,

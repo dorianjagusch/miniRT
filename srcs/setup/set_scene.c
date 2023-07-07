@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 14:44:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:05 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void set_unique(t_scene *scene, char **line)
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
 		*line += 2;									// needs to be 2 to skip the A and white space
-		scene->amb.ratio = get_double(line, RATIO); // this needs to be changed to intensity
+		scene->amb.ratio = get_float(line, RATIO); // this needs to be changed to intensity
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
 		scene->amb.valid = 1;
@@ -29,7 +29,7 @@ static void set_unique(t_scene *scene, char **line)
 		*line += 2;
 		scene->light.pos = get_vec3(line);
 		ft_skip_ws(line);
-		scene->light.ratio = get_double(line, RATIO);
+		scene->light.ratio = get_float(line, RATIO);
 		scene->light.colour = get_colour(line);
 		flag[1] = 1;
 		scene->light.valid = 1;
@@ -39,8 +39,8 @@ static void set_unique(t_scene *scene, char **line)
 		*line += 2;
 		scene->cam.pos = get_vec3(line);
 		scene->cam.dir = get_vec3(line);
-		scene->cam.fov = get_double(line, ANGLE);
-		scene->cam.aspect_ratio = (double)WIDTH / (double)HEIGHT;
+		scene->cam.fov = get_float(line, ANGLE);
+		scene->cam.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 		vec3_normalize(&scene->cam.dir);
 		flag[2] = 1;
 		scene->cam.valid = 1;

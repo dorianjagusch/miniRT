@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_normalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:14:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 19:06:27 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Normalizes the direction vector of a ray, ensuring its length is equal to 1.0.
 void	vec3_normalize(t_vec3 *v) //measure performance and compare to finvsqrt
 {
-	double	mag;
+	float	mag;
 
 	mag = sqrtf((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
 	v->x /= mag;
@@ -27,7 +27,7 @@ void	vec3_normalize(t_vec3 *v) //measure performance and compare to finvsqrt
 
 void	vec2_normalize(t_vec2 *v) //measure performance and compare to finvsqrt
 {
-	double	mag;
+	float	mag;
 
 	mag = sqrtf((v->x * v->x) + (v->y * v->y));
 	v->x /= mag;

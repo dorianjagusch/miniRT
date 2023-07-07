@@ -39,7 +39,7 @@ typedef struct s_range
 }			t_range;
 
 int		ft_atoi(const char *str);
-double	ft_atof(const char *str);
+float	ft_atof(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);
