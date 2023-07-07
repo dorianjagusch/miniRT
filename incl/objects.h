@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 14:52:52 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:50:06 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,20 @@ typedef struct s_triangle
 	t_material_e	material;
 }					t_triangle;
 
+typedef struct s_triangle_data //TODO: can this stay here, norm compliance?
+{   
+    float  normal_vector[3];	//12 bytes
+    float  vertex_a[3];			//12 bytes
+    float  vertex_b[3];			//12 bytes
+    float  vertex_c[3];			//12 bytes
+    unsigned short  att;	//2 bytes (disposable data)
+} 		t_triangle_data;
+
 typedef struct s_mesh
 {
 	t_obj_e			type;
 	double			n_triangles;
-	t_vec3			*vertices; //need to malloc this
+	t_triangle_data	*vertices; //need to malloc this
 }					t_mesh;
 
 typedef struct s_stl_header //TODO: can this stay here, norm compliance?
@@ -93,14 +102,6 @@ typedef struct s_stl_header //TODO: can this stay here, norm compliance?
     unsigned int n_triangles;   //4bytes
 }   t_stl_header;
 
-typedef struct s_stl_data //TODO: can this stay here, norm compliance?
-{   
-    float  normal_vector[3];	//12 bytes
-    float  vertex_a[3];			//12 bytes
-    float  vertex_b[3];			//12 bytes
-    float  vertex_c[3];			//12 bytes
-    unsigned short  att;	//2 bytes (disposable data)
-} 		t_triangle_data;
 
 typedef struct s_box
 {

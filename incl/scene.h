@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 14:38:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:13:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
 void	create_triangle(t_triangle *triangle, char *line);
 void	create_box(t_box *box, char *line);
-void binary_parser(t_scene *scene, char *line);
+void	binary_parser(t_mesh *mesh, char *line);
+
 #endif
