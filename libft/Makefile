@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/07 15:11:04 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/07 15:11:48 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ ft_strrchr \
 ft_strtrim \
 ft_substr \
 ft_tolower \
-ft_toupper \
+ft_toupper
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name $(FILE).c))
 
