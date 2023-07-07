@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/07 11:22:58 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:16:34 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ double  dist_triangle(const t_ray *ray, const t_object *obj)
 		return (DBL_MAX);
 
 	// Calculate the inverse determinant
-	inv_det = -1.0 / det;
+	inv_det = 1.0 / det;
 
 	// Calculate the vector tvec
 	tvec = vec3_sub(ray->origin, obj->triangle.tri_point[0]); //{ray->origin.x - p0.x, ray->origin.y - p0.y, ray->origin.z - p0.z};

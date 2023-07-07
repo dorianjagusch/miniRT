@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_objs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 11:07:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:56:24 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	print_triangle(t_object *obj)
 	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
 		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
 	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
-		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
+		triangle->tri_point[1].x, triangle->tri_point[1].y, triangle->tri_point[1].z);
 	printf(" 3:\nx:%f\ty:%f\tz:%f\n",
-		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
+		triangle->tri_point[2].x, triangle->tri_point[2].y, triangle->tri_point[2].z);
 	// printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 	// 	triangle->normal.x, triangle->normal.y, triangle->normal.z);
 }

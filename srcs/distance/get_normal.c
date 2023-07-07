@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/06 00:04:40 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:07:40 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		return (obj->plane.normal);
 	else if (obj->type == disk_obj)
 		return (obj->disk.normal);
+	else if (obj->type == triangle_obj)
+	{
+		normal = vec3_cross(obj->triangle.edges[1], obj->triangle.edges[0]);
+	}
 	else if (obj->type == cylinder_obj)
 	{
 		co = vec3_sub(hitpoint, obj->cylinder.pos);
