@@ -52,18 +52,18 @@ static void	ft_word_len(char const *s, size_t *i, size_t *size)
 
 static void	ft_get_word(char **str, char const *s, size_t *i)
 {
-	int		len;
+	size_t	len;
 	size_t	size;
 
-	len = -1;
+	len = 0;
 	size = 0;
 	ft_word_len(s, i, &size);
 	*str = (char *)malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return ;
-	while (++len < size && s[*i])
+	while (len < size && s[*i])
 	{
-		(*str)[len] = (char) s[*i];
+		(*str)[len++] = (char) s[*i];
 		(*i)++;
 	}
 	(*str)[size] = '\0';
@@ -87,9 +87,9 @@ char	**ft_split2(char const *s)
 	char	**result;
 	size_t	i;
 	size_t	n_words;
-	int		word;
+	size_t	word;
 
-	word = -1;
+	word = 0;
 	i = 0;
 	if (!s)
 		return (NULL);
@@ -97,8 +97,8 @@ char	**ft_split2(char const *s)
 	result = (char **)malloc(sizeof(char *) * (n_words + 1));
 	if (!result)
 		return (NULL);
-	while (++word < n_words)
-		ft_do_splitting(result, s, word, &i);
+	while (word < n_words)
+		ft_do_splitting(result, s, word++, &i);
 	result[word] = NULL;
 	return (result);
 }

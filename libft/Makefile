@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/06/21 22:27:34 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/07 15:02:03 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,28 +26,94 @@ I := ../incl
 
 HEADER = $I/libft.h
 
-FILES = ft_atoi ft_bzero ft_calloc ft_isalnum \
-	ft_isalpha ft_isascii ft_isdigit ft_isprint \
-	ft_isspace ft_itoa ft_memchr ft_memcmp ft_memcpy \
-	ft_memmove ft_memset ft_putchar_fd \
-	ft_putendl_fd ft_putnbr_fd ft_putstr_fd \
-	ft_split ft_strchr ft_strdup ft_striteri \
-	ft_strjoin ft_strlcat ft_strlcpy ft_strlen \
-	ft_strmapi ft_strncmp ft_strnstr ft_strrchr \
-	ft_strtrim ft_substr ft_strcmp ft_tolower ft_toupper \
-	ft_lstadd_back ft_lstadd_front ft_lstclear \
-	ft_lstdelone ft_lstiter ft_lstlast ft_lstmap \
-	ft_lstnew ft_lstsize ft_min ft_max ft_putchar \
-	ft_putendl ft_putnbr ft_putstr ft_printf \
-	ft_printf_char ft_printf_hex ft_printf_int ft_printf_pointer \
-	ft_printf_string ft_printf_udec ft_printf_util \
-	ft_printf_fd ft_printf_char_fd ft_printf_hex_fd ft_printf_int_fd \
-	ft_printf_pointer_fd ft_printf_string_fd ft_printf_udec_fd \
-	ft_printf_util_fd get_next_line ft_free ft_atof ft_atol ft_pow \
-	ft_lenbase get_next_line ft_free_array ft_print_array \
-	ft_count_elements ft_abs ft_bits ft_which_extr \
-	ft_free_int_array ft_print_matrix int ft_empty_str \
-	ft_atoll ft_scale
+FILES = ft_count_elements \
+ft_free_array \
+ft_free_int_array \
+ft_print_matrix \
+ft_free \
+ft_printf \
+ft_printf_char \
+ft_printf_hex \
+ft_printf_int \
+ft_printf_pointer \
+ft_printf_string \
+ft_printf_udec \
+ft_printf_util \
+ft_printf_char_fd \
+ft_printf_fd \
+ft_printf_hex_fd \
+ft_printf_int_fd \
+ft_printf_pointer_fd \
+ft_printf_string_fd \
+ft_printf_udec_fd \
+ft_printf_util_fd \
+ft_abs \
+ft_atof \
+ft_atoi \
+ft_atol \
+ft_atoll \
+ft_bits \
+ft_lenbase \
+ft_max \
+ft_min \
+ft_pow \
+ft_scale \
+ft_which_extr \
+ft_lstadd_back \
+ft_lstadd_front \
+ft_lstclear \
+ft_lstdelone \
+ft_lstiter \
+ft_lstlast \
+ft_lstmap \
+ft_lstnew \
+ft_lstprint \
+ft_lstsize \
+ft_bzero \
+ft_calloc \
+ft_memchr \
+ft_memcmp \
+ft_memcpy \
+ft_memmove \
+ft_memset \
+ft_print_array \
+ft_putchar \
+ft_putchar_fd \
+ft_putendl \
+ft_putendl_fd \
+ft_putnbr \
+ft_putnbr_fd \
+ft_putstr \
+ft_putstr_fd \
+get_next_line \
+ft_count_words \
+ft_dectobase_str \
+ft_empty_str \
+ft_isalnum \
+ft_isalpha \
+ft_isascii \
+ft_isdigit \
+ft_isprint \
+ft_isspace \
+ft_itoa \
+ft_split \
+ft_split2 \
+ft_strchr \
+ft_strcmp \
+ft_strdup \
+ft_striteri \
+ft_strjoin \
+ft_strlcat \
+ft_strlcpy \
+ft_strlen \
+ft_strmapi \
+ft_strncmp \
+ft_strnstr \
+ft_strrchr \
+ft_strtrim \
+ft_substr \
+ft_tolower \
+ft_toupper \
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name $(FILE).c))
 
