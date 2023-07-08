@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 09:11:25 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:55:16 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_vec4	hit_shader(const t_scene *scene,
 
 // t_vec4	hit_shader(const t_scene *scene, const t_payload *payload)
 // {
-// 	double	intensity;
+// 	float	intensity;
 // 	t_vec4	light_col;
 // 	t_vec4	colour;
 // 	t_vec4	col;

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/04 10:26:26 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:52:56 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_vec4	ft_trgbtov4(int colour[4])
 	t_vec4	result;
 
 	result.v = 1;
-	result.x = (double) colour[1];
-	result.y = (double) colour[2];
-	result.z = (double) colour[3];
+	result.x = (float) colour[1];
+	result.y = (float) colour[2];
+	result.z = (float) colour[3];
 	return (result);
 }
 

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vec_mult.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:43:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 11:08:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:15 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 #include <math.h>
 
-t_vec3	vec3_multf(const t_vec3 v, const double val)
+t_vec3	vec3_multf(const t_vec3 v, const float val)
 {
 	t_vec3	res;
 
@@ -23,7 +23,7 @@ t_vec3	vec3_multf(const t_vec3 v, const double val)
 	return (res);
 }
 
-t_vec4	vec4_multf(const t_vec4 v, const double val)
+t_vec4	vec4_multf(const t_vec4 v, const float val)
 {
 	t_vec4	res;
 

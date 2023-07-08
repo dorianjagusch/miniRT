@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/07 13:37:01 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/07 15:56:58 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,7 @@ print:
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) #-fsanitize=address
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) -fsanitize=address
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -137,7 +137,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g  #-fsanitize=address
+	@$(CC) -I$I -c $< -o $@ -g  -fsanitize=address
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

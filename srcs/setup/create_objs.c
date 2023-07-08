@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 12:02:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:03 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	create_sphere(t_sphere *sphere, char *line)
 	line += 3;
 	sphere->pos = get_vec3(&line);
 	ft_skip_ws(&line);
-	sphere->radius = get_double(&line, REAL) / 2;
+	sphere->radius = get_float(&line, REAL) / 2;
 	sphere->radius2 = pow(sphere->radius, 2.0);
 	ft_skip_ws(&line);
 	sphere->colour = get_colour(&line);
@@ -32,10 +32,10 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->normal = get_vec3(&line);
 	vec3_normalize(&cylinder->normal);
 	ft_skip_ws(&line);
-	cylinder->radius = get_double(&line, REAL) / 2;
+	cylinder->radius = get_float(&line, REAL) / 2;
 	cylinder->radius2 = pow(cylinder->radius, 2.0);
 	ft_skip_ws(&line);
-	cylinder->height = get_double(&line, REAL);
+	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
 }
@@ -73,7 +73,7 @@ void	create_disk(t_disk *disk, char *line)
 	disk->normal = get_vec3(&line);
 	vec3_normalize(&disk->normal);
 	ft_skip_ws(&line);
-	disk->radius = get_double(&line, REAL) / 2;
+	disk->radius = get_float(&line, REAL) / 2;
 	ft_skip_ws(&line);
 	disk->colour = get_colour(&line);
 	disk->d = -vec3_dot(disk->pos, disk->normal);

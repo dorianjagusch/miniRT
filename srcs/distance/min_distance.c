@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 09:57:11 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:13:53 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,27 @@
 #include "shaders.h"
 #include "float.h"
 
-double	get_dist(const t_ray *ray, const t_object *obj)
+float dist_mesh(const t_ray *ray, t_object *obj)
+{
+	int		 j;
+	float	new_dist;
+	float	hit_dist;
+
+	j = 0;
+	while (j < obj->mesh.n_triangles)
+	{
+		new_dist = dist_triangle(ray, &obj->mesh.triangle_data[j]);
+		if (new_dist < hit_dist)
+		{
+			obj->mesh.obj_id = j;
+			hit_dist = new_dist;
+		}
+		j++;
+	}
+	return (hit_dist);
+}
+
+float	get_dist(const t_ray *ray, t_object *obj)
 {
 	static const t_dist_function	func[] = {
 		dist_sphere,
@@ -23,11 +43,10 @@ double	get_dist(const t_ray *ray, const t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_box,
+		dist_mesh
 	};
-
 	return (func[obj->type](ray, obj));
 }
-
 
 t_vec4	get_hitcolour(const t_object *obj)
 {
@@ -43,6 +62,8 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
+	else if (obj->type == mesh_obj)
+		return (obj->mesh.colour);
 }
 
 t_material_e	get_hitmaterial(const t_object *obj)
@@ -59,6 +80,8 @@ t_material_e	get_hitmaterial(const t_object *obj)
 		return (obj->triangle.material);
 	else if (obj->type == box_obj)
 		return (obj->box.material);
+	else if (obj->type == mesh_obj)
+		return (obj->mesh.material);
 }
 
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
@@ -66,12 +89,16 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	assert(!vec3_isnan(ray->origin));
 	assert(!vec3_isnan(ray->direction));
 	assert(!isnan(hit->distance));
+	assert(!isinf(hit->distance));
 
 	hit->position = vec3_add(ray->origin,
 	vec3_multf(ray->direction, hit->distance));
-	DEBUG_ONLY(printf("setting of hit point"));
+	assert(!vec3_isinf(ray->origin));
+	assert(!vec3_isinf(ray->direction));
+	DEBUG_ONLY(printf("setting of hit point\n"));
 	DEBUG_ONLY(print_vec3(hit->position, "set hit point"));
 	assert(!vec3_isnan(hit->position));
+	assert(!vec3_isinf(hit->position));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
 	assert(!vec3_isnan(hit->position));
@@ -86,10 +113,11 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 void	get_closest(const t_scene *scene, const t_ray *ray, t_hitresult *hit)
 {
 	int			i;
-	double		new_dist;
+	float		new_dist;
 
 	i = 0;
-	hit->distance = DBL_MAX;
+	new_dist = 0;
+	hit->distance = FLT_MAX;
 	while (scene->objs && i < scene->n_objs)
 	{
 		new_dist = get_dist(ray, &(scene->objs[i]));

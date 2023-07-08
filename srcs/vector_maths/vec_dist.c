@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vec_dist.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:11:26 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 11:02:25 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-double	vec3_dist(const t_vec3 v1, const t_vec3 v2)
+float	vec3_dist(const t_vec3 v1, const t_vec3 v2)
 {
 	return (vec3_mag(vec3_sub(v1, v2)));
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:14:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 09:09:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:54:28 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 typedef struct s_material
 {
-	double	diffuse;
-	double	specular;
-	double	transparency;
-	double	refraction;
-	double	absorption;
-	double	emission;
-	double	roughness;
-	double	anisotropy;
+	float	diffuse;
+	float	specular;
+	float	transparency;
+	float	refraction;
+	float	absorption;
+	float	emission;
+	float	roughness;
+	float	anisotropy;
 }			t_material;
 
 typedef enum e_material

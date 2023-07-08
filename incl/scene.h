@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 14:38:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:52:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_light
 {
 	t_vec3	pos;
-	double	ratio;
+	float	ratio;
 	t_vec4	colour;
 	int		valid;
 }			t_light;
@@ -30,14 +30,14 @@ typedef struct s_camera
 	t_vec3	dir;
 	t_vec3	right;
 	t_vec3	up;
-	double	aspect_ratio;
-	double	fov;
+	float	aspect_ratio;
+	float	fov;
 	int		valid;
 }			t_camera;
 
 typedef struct s_amb
 {
-	double	ratio;
+	float	ratio;
 	t_vec4	colour;
 	int		valid;
 }			t_amb;
@@ -56,7 +56,7 @@ typedef struct s_scene
 void	ft_skip_ws(char **line);
 void	ft_skip_num(char **line, int mode);
 t_vec4	get_colour(char **line);
-double	get_double(char **line, int mode);
+float	get_float(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	validate_scene(t_scene *scene);
 void	create_sphere(t_sphere *sphere, char *line);
@@ -65,5 +65,6 @@ void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
 void	create_triangle(t_triangle *triangle, char *line);
 void	create_box(t_box *box, char *line);
-void binary_parser(t_scene *scene, char *line);
+void	binary_parser(t_mesh *mesh, char *line);
+
 #endif

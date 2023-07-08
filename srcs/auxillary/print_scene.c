@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:32:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:28:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	print_objs(t_object *obj)
 		&print_plane,
 		&print_cylinder,
 		&print_disk,
-		&print_triangle
+		&print_triangle,
+		&print_mesh
 	};
-
 	printf("type: %d\n", obj->type);
 	printfunc[obj->type]((void*)obj);
 }
@@ -64,11 +64,11 @@ void	print_scene(t_scene scene)
 	printf("--------------------------\n");
 	print_camera(scene.cam);
 	printf("--------------------------\n");
-	while (i < scene.n_objs)
-	{
-		printf("Object #%d of %d\n", i, scene.n_objs);
-		print_objs(scene.objs + i++);
-		printf("--------------------------\n");
-	}
+	// while (i < scene.n_objs)
+	// {
+	// 	printf("Object #%d of %d\n", i, scene.n_objs);
+	// 	print_objs(scene.objs + i++);
+	// 	printf("--------------------------\n");
+	// }
 	printf("==========================\n");
 }

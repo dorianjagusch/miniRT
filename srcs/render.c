@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 08:59:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:54:39 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 
 	if (depth >= BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
-	get_closest(scene, ray, &hit);
-	if (hit.distance == DBL_MAX)
+	get_closest(scene, ray, &hit); //
+	if (hit.distance == FLT_MAX)
 		return ((t_vec4){1, 0, 0, 0});
+	assert(!isinf(hit.distance));
 	set_hitpoint(scene, ray, &hit);
 	light_info = light_distance(scene, &hit);
 	DEBUG_ONLY(print_light_info(light_info));

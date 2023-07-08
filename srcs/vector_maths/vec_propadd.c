@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   vec_propadd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:44:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/05 11:08:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:53:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 
-t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const double prop)
+t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const float prop)
 {
 	t_vec4	new_vec;
-	double	prop2;
+	float	prop2;
 
 	prop2 = 1 - prop;
 	new_vec.v = 1;

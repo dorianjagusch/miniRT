@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/06 00:44:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:00:36 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // The cylinder is a little tricky. For now I leave this annotated because I am
 // not sure, I'll understand this on Monday still.
 
-void	dist_cap(const t_ray *ray, const t_object *obj, double dist_caps[2])
+void	dist_cap(const t_ray *ray, const t_object *obj, float dist_caps[2])
 {
 	t_disk	top_cap;
 
@@ -34,22 +34,22 @@ void	dist_cap(const t_ray *ray, const t_object *obj, double dist_caps[2])
 against the hitpoint positions.
 */
 static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
-			double *dist)
+			float *dist)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
-	double	cap_dist;
+	float	cap_dist;
 
 	top_cap = vec3_add(cylinder->pos, vec3_multf(cylinder->normal,
 				cylinder->height));
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, cylinder->pos)) <= 0)
 	{
-		*dist = DBL_MAX;
+		*dist = FLT_MAX;
 	}
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, top_cap)) >= 0)
 	{
-		*dist = DBL_MAX;
+		*dist = FLT_MAX;
 	}
 }
 
@@ -68,13 +68,13 @@ static void	calc_temps(const t_ray *ray, const t_cylinder *cylinder,
 					cylinder->normal)));
 }
 
-double	dist_cylinder(const t_ray *ray, const t_object *obj)
+float	dist_cylinder(const t_ray *ray, t_object *obj)
 {
 	t_vec3	temp[2];
 	t_vec3	params;
-	double	discriminant;
-	double	res[2];
-	double	dist_caps[2];
+	float	discriminant;
+	float	res[2];
+	float	dist_caps[2];
 
 	calc_temps(ray, &(obj->cylinder), temp);
 	params.x = vec3_dot(temp[0], temp[0]);
@@ -82,7 +82,7 @@ double	dist_cylinder(const t_ray *ray, const t_object *obj)
 	params.z = vec3_dot(temp[1], temp[1]) - (obj->cylinder.radius2);
 	discriminant = params.y * params.y - 4 * params.x * params.z;
 	if (discriminant < EPSILON)
-		return (DBL_MAX);
+		return (FLT_MAX);
 	res[0] = (-params.y - sqrt(discriminant)) / (2 * params.x);
 	res[1] = (-params.y + sqrt(discriminant)) / (2 * params.x);
 	if (res[0] > EPSILON)
@@ -92,7 +92,7 @@ double	dist_cylinder(const t_ray *ray, const t_object *obj)
 	dist_cap(ray, obj, dist_caps);
 	if (res[0] < res[1] && res[0] > EPSILON)
 		return (res[0]);
-	else if (res[1] != DBL_MAX && res[1] > EPSILON)
+	else if (res[1] != FLT_MAX && res[1] > EPSILON)
 		return (res[1]);
-	return (DBL_MAX);
+	return (FLT_MAX);
 }
