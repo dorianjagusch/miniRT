@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 11:54:39 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:17:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	t_light_info	light_info;
 	t_vec4			colour;
 	t_ray			reflected_ray;
+	t_vec4			reflection;
 
-	if (depth >= BOUNCES)
+	if (depth == BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
-	get_closest(scene, ray, &hit); //
+	get_closest(scene, ray, &hit);
 	if (hit.distance == FLT_MAX)
 		return ((t_vec4){1, 0, 0, 0});
 	assert(!isinf(hit.distance));
@@ -39,8 +40,9 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	light_info = light_distance(scene, &hit);
 	DEBUG_ONLY(print_light_info(light_info));
 	colour = hit_shader(scene, &hit, &light_info);
-	reflect_ray(ray, &hit);
-	colour = vec4_add(colour, trace_ray(&reflected_ray, scene, depth + 1));
+	reflected_ray = reflect_ray(ray, &hit);
+	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.30);
+	colour = vec4_add(colour, reflection);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);
 }

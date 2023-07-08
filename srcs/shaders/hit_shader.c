@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 11:55:16 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:09:55 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,28 @@ static const t_material	*get_material(t_material_e material_id)
 	return (materials[material_id]);
 }
 
+t_vec4	specular_colour(const t_scene *scene, const t_hitresult *hit,
+	const t_light_info *light_info, const t_material *mat)
+{
+	t_vec4	colour;
+	float	spec_exp;
+	t_vec3	reflected_ray;
+
+	reflected_ray = vec3_reflect(vec3_neg(light_info->direction), hit->normal);
+	spec_exp = powf(vec3_dot(light_info->direction, reflected_ray),
+			mat->specular);
+	spec_exp = fmax(spec_exp, 0.0);
+	colour = vec4_multf(vec4_compmult((t_vec4){1, 0.1, 0.1, 0.1},
+				scene->light.colour), spec_exp);
+	return (colour);
+}
+
 t_vec4	hit_shader(const t_scene *scene,
 		const t_hitresult *hit, const t_light_info *light_info)
 {
 	t_vec4				col[5];
 	const t_material	*mat = get_material(hit->material);
-	float				spec_exp;
-	t_vec3			reflected_ray;
+
 
 	ft_bzero(col, 5 * sizeof(t_vec4));
 	col[ambient] = vec4_multf(scene->amb.colour, scene->amb.ratio);
@@ -60,19 +75,13 @@ t_vec4	hit_shader(const t_scene *scene,
 		col[diffuse] = vec4_compmult(hit->colour,
 				col[diffuse]);
 		col[diffuse] = vec4_multf(col[diffuse],
-				 1 / (light_info->distance * light_info->distance));
+				1 / (light_info->distance * light_info->distance));
 	}
 	else
 		DEBUG_ONLY(printf("in shadow\n"));
 	DEBUG_ONLY(print_col(col[diffuse], "diffuse"));
-	reflected_ray = vec3_reflect(vec3_neg(light_info->direction), hit->normal);
-	spec_exp = powf(vec3_dot(light_info->direction, reflected_ray),
-			mat->specular);
-	spec_exp = fmax(spec_exp, 0.0);
-	col[specular] = vec4_multf(vec4_compmult((t_vec4){0.6, 0.6, 0.6, 0.6},
-				scene->light.colour), spec_exp);
-	if (light_info->intensity < EPSILON)
-		print_col(hit->colour, "Surface colour");
+	if (mat->specular > 0)
+		col[specular] = specular_colour(scene, hit, light_info, mat);
 	col[final] = vec4_add(vec4_add(col[ambient], col[diffuse]), col[specular]);
 	// if (ray->transparency < 1.0)
 	// {
