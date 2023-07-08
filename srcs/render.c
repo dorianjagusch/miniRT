@@ -6,17 +6,20 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 10:28:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 08:59:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	reflect_ray(t_ray *ray, const t_hitresult *hit)
+t_ray	reflect_ray(t_ray *ray, const t_hitresult *hit)
 {
-		ray->direction = vec3_neg(ray->direction);
-		ray->direction = vec3_reflect(ray->direction, hit->normal);
-		ray->origin = hit->position;
+	t_ray	reflected_ray;
+
+	reflected_ray.direction = vec3_neg(ray->direction);
+	reflected_ray.direction = vec3_reflect(ray->direction, hit->normal);
+	reflected_ray.origin = hit->position;
+	return (reflected_ray);
 }
 
 t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
@@ -24,6 +27,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	t_hitresult		hit;
 	t_light_info	light_info;
 	t_vec4			colour;
+	t_ray			reflected_ray;
 
 	if (depth >= BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
@@ -32,8 +36,10 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 		return ((t_vec4){1, 0, 0, 0});
 	set_hitpoint(scene, ray, &hit);
 	light_info = light_distance(scene, &hit);
+	DEBUG_ONLY(print_light_info(light_info));
 	colour = hit_shader(scene, &hit, &light_info);
 	reflect_ray(ray, &hit);
+	colour = vec4_add(colour, trace_ray(&reflected_ray, scene, depth + 1));
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);
 }
@@ -43,7 +49,6 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 	t_ray			ray;
 	t_vec4			colour;
 
-	colour = (t_vec4){1, 0, 0, 0};
 	ray = create_primary_ray(&img->scene.cam, pxl);
 	colour = trace_ray(&ray, &img->scene, 0);
 	vec4_clamp(&colour, 0, 1);
@@ -62,7 +67,7 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 void	render(t_img *img)
 {
 	t_vec2		pxl;
-	//int			tot_res;
+	//int		tot_res;
 	int			colour;
 
 	//tot_res = HEIGHT * WIDTH;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:14:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 09:54:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/08 09:09:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ static const t_material	g_matte_material = {
 
 static const t_material	g_shiny_material = {
 	.diffuse = 1,
-	.specular = 0.99,
+	.specular = 0.9,
 	.transparency = 0.0,
 	.refraction = 1.0,
 	.absorption = 0.0,
 	.emission = 0.0,
-	.roughness = 0.2,
+	.roughness = 0.0,
 	.anisotropy = 0.0
 };
 
