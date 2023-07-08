@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:30:36 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:11:45 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "scene.h"
 # include "materials.h"
+
+typedef union u_object	t_object;
 
 typedef enum e_obj
 {
@@ -52,6 +54,8 @@ typedef struct s_cylinder
 {
 	t_obj_e			type;
 	t_vec3			pos;
+	t_object		*top;
+	t_object		*bottom;
 	float			radius;
 	float			radius2;
 	t_vec3			normal;
@@ -82,15 +86,14 @@ typedef struct s_triangle
 }					t_triangle;
 
 typedef struct s_triangle_data //TODO: can this stay here, norm compliance?
-{   
-    float  normal_vector[3];	//12 bytes
-    float  vertex_a[3];			//12 bytes
-    float  vertex_b[3];			//12 bytes
-    float  vertex_c[3];			//12 bytes
-    unsigned short  att;	//2 bytes (disposable data)
-} 		t_triangle_data;
+{
+	float	normal_vector[3];	//12 bytes
+	float	vertex_a[3];			//12 bytes
+	float	vertex_b[3];			//12 bytes
+	float	vertex_c[3];			//12 bytes
+	unsigned short  att;	//2 bytes (disposable data)
+}		t_triangle_data;
 
-typedef union u_object	t_object;
 
 typedef struct s_mesh
 {
@@ -104,8 +107,8 @@ typedef struct s_mesh
 
 typedef struct s_stl_header //TODO: can this stay here, norm compliance?
 {
-    unsigned char metadata[80]; //80bytes - this is the header file all binarys have (diposable data)
-    unsigned int n_triangles;   //4bytes
+	unsigned char metadata[80]; //80bytes - this is the header file all binarys have (diposable data)
+	unsigned int n_triangles;   //4bytes
 }   t_stl_header;
 
 
@@ -113,6 +116,7 @@ typedef struct s_box
 {
 	t_obj_e			type;
 	t_vec3			verts[2];
+	t_vec3			normal;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_box;

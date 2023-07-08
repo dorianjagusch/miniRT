@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:53:03 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:18:58 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,29 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->colour = get_colour(&line);
 }
 
+void	cyl_disk(t_cylinder *cylinder, int side)
+{
+	t_object	*disk;
+
+	disk = malloc(sizeof(t_object));
+	if (!disk)
+		ft_error(ENOMEM);
+	disk->disk.type = disk_obj;
+	disk->disk.pos = cylinder->pos;
+	disk->disk.radius = cylinder->radius;
+	disk->disk.colour = cylinder->colour;
+	if (side == 't')
+	{
+		cylinder->top = disk;
+		disk->disk.normal = cylinder->normal;
+	}
+	else
+	{
+		disk->disk.normal = vec3_neg(cylinder->normal);
+		cylinder->bottom = disk;
+	}
+}
+
 void	create_cylinder(t_cylinder *cylinder, char *line)
 {
 	cylinder->type = cylinder_obj;
@@ -38,6 +61,8 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
+	cyl_disk(cylinder, 't');
+	cyl_disk(cylinder, 'b');
 }
 
 void	create_plane(t_plane *plane, char *line)

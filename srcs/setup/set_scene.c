@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:53:05 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:39:28 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_disk(&scene->objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
 		create_triangle(&scene->objs[id].triangle, line);
-	else if (!ft_strncmp("bo", line, 2))
+	else if (!ft_strncmp("bx", line, 2))
 		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
@@ -129,7 +129,7 @@ void	set_scene(t_scene *scene, char *av)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (!ft_empty_str(line))
+		if (!ft_empty_str(line) && ft_strncmp(line, "#", 1))
 			process_line(scene, line);
 		if (line)
 			free(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:13:53 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:14:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_box,
 		dist_mesh
 	};
+
 	return (func[obj->type](ray, obj));
 }
 
@@ -62,7 +63,7 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
-	else if (obj->type == mesh_obj)
+	else //(obj->type == mesh_obj)
 		return (obj->mesh.colour);
 }
 
@@ -80,7 +81,7 @@ t_material_e	get_hitmaterial(const t_object *obj)
 		return (obj->triangle.material);
 	else if (obj->type == box_obj)
 		return (obj->box.material);
-	else if (obj->type == mesh_obj)
+	else // (obj->type == mesh_obj)
 		return (obj->mesh.material);
 }
 
@@ -92,7 +93,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	assert(!isinf(hit->distance));
 
 	hit->position = vec3_add(ray->origin,
-	vec3_multf(ray->direction, hit->distance));
+			vec3_multf(ray->direction, hit->distance));
 	assert(!vec3_isinf(ray->origin));
 	assert(!vec3_isinf(ray->direction));
 	DEBUG_ONLY(printf("setting of hit point\n"));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:00:36 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:22:20 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@
 // The cylinder is a little tricky. For now I leave this annotated because I am
 // not sure, I'll understand this on Monday still.
 
-void	dist_cap(const t_ray *ray, const t_object *obj, float dist_caps[2])
+float	dist_caps(const t_ray *ray, const t_object *obj)
 {
-	t_disk	top_cap;
+	float	dist;
 
-	top_cap.pos = vec3_add(obj->cylinder.pos, vec3_multf(obj->cylinder.normal,
-				obj->cylinder.height));
-	top_cap.normal = obj->cylinder.normal;
-	top_cap.radius = obj->cylinder.radius;
-	// dist_caps[0] = dist_disk(ray, obj);
-	// dist_caps[1] = dist_disk(ray, &top_cap);
+	dist = dist_disk(ray, obj->cylinder.bottom);
+	dist = fminf(dist_disk(ray, obj->cylinder.top), dist);
+	return (dist);
 }
 
 /* The distance to the caps of the hitpoint is calculated here. Both are checked
@@ -74,7 +71,7 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 	t_vec3	params;
 	float	discriminant;
 	float	res[2];
-	float	dist_caps[2];
+	float	dist_cap;
 
 	calc_temps(ray, &(obj->cylinder), temp);
 	params.x = vec3_dot(temp[0], temp[0]);
@@ -89,7 +86,7 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 		check_height(ray, &(obj->cylinder), &(res[0]));
 	if (res[1] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[1]));
-	dist_cap(ray, obj, dist_caps);
+	dist_cap = dist_caps(ray, obj);
 	if (res[0] < res[1] && res[0] > EPSILON)
 		return (res[0]);
 	else if (res[1] != FLT_MAX && res[1] > EPSILON)

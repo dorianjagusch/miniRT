@@ -34,8 +34,8 @@ typedef struct s_list
 
 typedef struct s_range
 {
-	double	min;
-	double	max;
+	float	min;
+	float	max;
 }			t_range;
 
 int		ft_atoi(const char *str);
