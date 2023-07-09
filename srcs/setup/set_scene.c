@@ -57,6 +57,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_sphere(&scene->objs[id].sphere, line);
 	else if (!ft_strncmp("tm", line, 2))
 		binary_parser(&scene->objs[id].mesh, line);
+	else if (!ft_strncmp("ma", line, 2))
+		ascii_parser(&scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))

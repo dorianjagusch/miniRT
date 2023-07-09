@@ -85,7 +85,8 @@ FILES = get_colour \
 	print_misc \
 	print_misc2 \
 	create_objs \
-	binary_parser
+	binary_parser \
+	ascii_parser
 
 HEADER = vector_math \
 	minirt \

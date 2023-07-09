@@ -22,32 +22,6 @@ little-endian, although this is not stated in documentation.*/
 
 //https://en.wikipedia.org/wiki/STL_(file_format)
 
-// foreach triangle                      - 50 bytes:
-//     REAL32[3] – Normal vector             - 12 bytes
-//     REAL32[3] – Vertex 1                  - 12 bytes
-//     REAL32[3] – Vertex 2                  - 12 bytes
-//     REAL32[3] – Vertex 3                  - 12 bytes
-//     UINT16    – Attribute byte count      -  2 bytes
-// end
-
-
-// typedef struct s_stl_header //TODO: can this stay here, norm compliance?
-// {
-//     unsigned char metadata[80]; //80bytes - this is the header file all binarys have (diposable data)
-//     unsigned int n_triangles;   //4bytes
-// }   t_stl_header;
-
-// typedef struct s_triangle_data //TODO: can this stay here, norm compliance?
-// {   
-//     float  normal_vector[3];   //12 bytes
-//     float  vertex_a[3];   //12 bytes
-//     float  vertex_b[3];   //12 bytes
-//     float  vertex_c[3];   //12 bytes
-//     unsigned short  att;       //2 bytes (disposable data)
-// } 		t_triangle_data;
-
-//TODO: change get_double to get floats
-
 // typedef struct s_triangle
 // {
 // 	t_obj_e			type;
@@ -75,22 +49,28 @@ void set_triangle_data(t_object *triangle, t_triangle_data	data)
 	// new.min = -10.0;
 
 	triangle->triangle.type = triangle_obj;
-
+	printf("\n----Printing data input----\n");
+	printf("data.normal vector: x: %f	y: %f	z: %f\n", data.normal_vector[0], data.normal_vector[1], data.normal_vector[2]);
 	triangle->triangle.normal.x = data.normal_vector[0];
 	triangle->triangle.normal.y = data.normal_vector[1];
 	triangle->triangle.normal.z = data.normal_vector[2];
+	print_vec3(triangle->triangle.tri_point[0], "Normal: ");
 
 	triangle->triangle.tri_point[0].x = data.vertex_a[0];
 	triangle->triangle.tri_point[0].y = data.vertex_a[1];
 	triangle->triangle.tri_point[0].z = data.vertex_a[2];
-
+	printf("Data point A vector: x: %f	y: %f	z: %f\n", data.vertex_a[0], data.vertex_a[1], data.vertex_a[2]);
+	print_vec3(triangle->triangle.tri_point[0], "point A");
 	triangle->triangle.tri_point[1].x = data.vertex_b[0];
 	triangle->triangle.tri_point[1].y = data.vertex_b[1];
 	triangle->triangle.tri_point[1].z = data.vertex_b[2];
-	
+	printf("Data point B vector: x: %f	y: %f	z: %f\n", data.vertex_b[0], data.vertex_b[1], data.vertex_b[2]);
+	print_vec3(triangle->triangle.tri_point[1], "point B");
 	triangle->triangle.tri_point[2].x = data.vertex_c[0];
 	triangle->triangle.tri_point[2].y = data.vertex_c[1];
 	triangle->triangle.tri_point[2].z = data.vertex_c[2];
+	printf("Data point C vector: x: %f	y: %f	z: %f\n", data.vertex_c[0], data.vertex_c[1], data.vertex_c[2]);
+	print_vec3(triangle->triangle.tri_point[2], "point C");
 	// vec3_scale(&triangle->triangle.normal, old, new);
 	// vec3_scale(&triangle->triangle.tri_point[0], old, new);
 	// vec3_scale(&triangle->triangle.tri_point[1], old, new);
@@ -101,6 +81,7 @@ void set_triangle_data(t_object *triangle, t_triangle_data	data)
 	triangle->triangle.colour = (t_vec4) {1, 1, 0, 0};
 // 	t_material_e	material;
 }
+
 
 void binary_parser(t_mesh *mesh, char *line)
 {
@@ -122,7 +103,6 @@ void binary_parser(t_mesh *mesh, char *line)
 		ft_error(content_err);
 	mesh->n_triangles = header.n_triangles;
     DEBUG_ONLY(printf("number of triangles = %d\n", header.n_triangles));
-
     mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
 	index = 0;
 	while (index < mesh->n_triangles)
@@ -130,6 +110,7 @@ void binary_parser(t_mesh *mesh, char *line)
 		size_t bytes = read(fd, &data, sizeof(t_triangle_data));
 		if (bytes <= 0)
 			break ;
+		printf("\n----Triangle # %i----\n", index);
 		set_triangle_data(&mesh->triangle_data[index], data);
 		index++;
 	}

@@ -65,6 +65,7 @@ void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
 void	create_triangle(t_triangle *triangle, char *line);
 void	create_box(t_box *box, char *line);
-void	binary_parser(t_mesh *mesh, char *line);
+void	binary_parser(t_mesh *mesh, char *line); //
+void	ascii_parser(t_mesh *mesh, char *line);
 
 #endif
