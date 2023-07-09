@@ -118,8 +118,5 @@ void	create_triangle(t_triangle *triangle, char *line)
 	triangle->colour = get_colour(&line);
 	triangle->edges[0] = vec3_sub(triangle->tri_point[1], triangle->tri_point[0]);
 	triangle->edges[1] = vec3_sub(triangle->tri_point[2], triangle->tri_point[0]);
-	print_vec3(triangle->tri_point[0], "triangle point 0");
-	print_vec3(triangle->tri_point[1], "triangle point 1");
-	print_vec3(triangle->tri_point[2], "triangle point 2");
 	DEBUG_ONLY(print_vec4(triangle->colour, "triangle col:"));
 }

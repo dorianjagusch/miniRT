@@ -114,12 +114,37 @@ void	print_box(t_object *obj)
 		box->colour.x, box->colour.y, box->colour.z);
 }
 
+// typedef struct s_mesh
+// {
+// 	t_obj_e			type;
+// 	float			n_triangles;
+// 	t_vec4			colour;
+// 	int				obj_id;
+// 	t_material_e	material;
+// 	t_object		*triangle_data; //need to malloc this
+// }					t_mesh;
+
 void	print_mesh(t_object *obj)
 {
-	t_mesh	mesh;
+	t_mesh	*mesh;
+	int count;
 
-	printf("mesh\n");
-	printf("number of triangles: %f\n", mesh.n_triangles);
-	printf("INSERT TRIANGLE PRINTING HERE\n");
+	count = 0;
+	mesh = &obj->mesh;
+	
+	printf("Mesh\n");
+	printf("number of triangles: %f\n", mesh->n_triangles);
+	while (count < mesh->n_triangles)
+	{
+
+		printf("Triangle %d\n", count);
+		printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[0].x, mesh->triangle_data[count].triangle.tri_point[0].y, mesh->triangle_data[count].triangle.tri_point[0].z);
+		printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[1].x, mesh->triangle_data[count].triangle.tri_point[1].y, mesh->triangle_data[count].triangle.tri_point[1].z);
+		printf("postition 3:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[2].x, mesh->triangle_data[count].triangle.tri_point[2].y, mesh->triangle_data[count].triangle.tri_point[2].z);
+		count++;
+	}
 
 }

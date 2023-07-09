@@ -57,8 +57,23 @@ little-endian, although this is not stated in documentation.*/
 // 	t_material_e	material;
 // }					t_triangle;
 
+// typedef struct s_range
+// {
+// 	float	min;
+// 	float	max;
+// }			t_range;
+
 void set_triangle_data(t_object *triangle, t_triangle_data	data)
 {
+	// t_range	old;
+	// t_range	new;
+
+	// old.max = 50.0;
+	// old.min = -60.0;
+
+	// new.max = 10.0;
+	// new.min = -10.0;
+
 	triangle->triangle.type = triangle_obj;
 
 	triangle->triangle.normal.x = data.normal_vector[0];
@@ -76,17 +91,19 @@ void set_triangle_data(t_object *triangle, t_triangle_data	data)
 	triangle->triangle.tri_point[2].x = data.vertex_c[0];
 	triangle->triangle.tri_point[2].y = data.vertex_c[1];
 	triangle->triangle.tri_point[2].z = data.vertex_c[2];
-	
+	// vec3_scale(&triangle->triangle.normal, old, new);
+	// vec3_scale(&triangle->triangle.tri_point[0], old, new);
+	// vec3_scale(&triangle->triangle.tri_point[1], old, new);
+	// vec3_scale(&triangle->triangle.tri_point[2], old, new);
+	vec3_normalize(&triangle->triangle.normal);
 	triangle->triangle.edges[0] = vec3_sub(triangle->triangle.tri_point[1], triangle->triangle.tri_point[0]);
 	triangle->triangle.edges[1] = vec3_sub(triangle->triangle.tri_point[2], triangle->triangle.tri_point[0]);
-	triangle->triangle.colour = (t_vec4) {1, 1, 0, 1};
+	triangle->triangle.colour = (t_vec4) {1, 1, 0, 0};
 // 	t_material_e	material;
-
 }
 
 void binary_parser(t_mesh *mesh, char *line)
 {
-    printf("found binary_set_scene\n");
     int             fd;
     t_stl_header    header;
     unsigned int    number_triangles;
