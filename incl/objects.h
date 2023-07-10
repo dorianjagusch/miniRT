@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 15:11:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:08:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,18 @@ typedef struct s_mesh
 {
 	t_obj_e			type;
 	float			n_triangles;
+	float			count_v;
+	float			count_vn;
+	float			count_vt;
+	float			count_f;
+	t_vec3			*vertex;
+	t_vec3			*normals;
+	t_vec2			*textures;
+	t_vec3			*faces;
 	t_vec4			colour;
-	int				obj_id;
-	t_material_e	material;
-	t_object		*triangle_data; //need to malloc this
+	int				obj_id;//
+	t_material_e	material;//
+	t_object		*triangle_data; //
 }					t_mesh;
 
 typedef struct s_stl_header //TODO: can this stay here, norm compliance?
