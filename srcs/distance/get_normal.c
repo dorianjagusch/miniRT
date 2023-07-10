@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 16:24:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:38:57 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		normal = vec3_sub(co, vec3_multf(obj->cylinder.normal,
 					vec3_dot(obj->cylinder.normal, co)));
 	}
+	else if (obj->type == disk_obj)
+		return (obj->box.normal);
+	else if (obj->type == disk_obj)
+		return (obj->arbbox.normal);
 	DEBUG_ONLY(printf("Normalize\n"));
 	vec3_normalize(&normal);
 	DEBUG_ONLY(printf("exit get normal\n"));
