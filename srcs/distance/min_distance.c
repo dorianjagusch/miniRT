@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/10 16:37:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:59:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(hit->normal, 1.0E-04));
 	hit->material = get_hitmaterial(&(scene->objs[hit->obj_id]));
 	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
+	hit->type = scene->objs->type;
 }
 
 void	get_closest(const t_scene *scene, const t_ray *ray, t_hitresult *hit)

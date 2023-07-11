@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/10 16:47:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:03:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	create_arb_box(t_arbbox *arbbox, char *line)
 	i = -1;
 	arbbox->type = arbbox_obj;
 	line += 3;
-	while (i < 8)
+	while (++i < 8)
 	{
 		arbbox->verts[i] = get_vec3(&line);
 		ft_skip_ws(&line);
@@ -108,7 +108,7 @@ void	create_arb_box(t_arbbox *arbbox, char *line)
 	{
 		j = (i + 1) % 3;
 		edges[i] = vec3_sub(arbbox->verts[i + 1], arbbox->verts[i]);
-		planes[0].normal = vec3_cross(edges[i], edges[(i + 1) % 3]);
+		planes[i].normal = vec3_cross(edges[i], edges[(i + 1) % 3]);
 		planes[i].distance = vec3_dot(planes[i].normal,
 				arbbox->verts[j + 4]);
 		planes[i + 3].normal = planes[i].normal;

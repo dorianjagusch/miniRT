@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:58:43 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/10 16:49:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:30:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,14 @@ float	dist_box(const t_ray *ray, t_object *obj)
 	return (dist[MIN]);
 }
 
-t_vec3	get_pos_min(const t_ray *ray, const t_plane2 planes[6], float dist[3])
+int	get_pos_min(const t_ray *ray, const t_plane2 planes[6], float dist[3])
 {
 	int		i;
 	float	params[2];
 	int		index;
 
 	i = -1;
+	index = 6;
 	while (++i < 6)
 	{
 		params[0] = planes[i].distance - vec3_dot(planes[i].normal,
@@ -137,13 +138,13 @@ t_vec3	get_pos_min(const t_ray *ray, const t_plane2 planes[6], float dist[3])
 		params[1] = vec3_dot(planes[i].normal, ray->direction);
 		if (fabsf(params[1]) < EPSILON)
 		{
-			if (params[0] < 0.0)
+			if (params[0] < EPSILON)
 				dist[MIN] = FLT_MAX;
 		}
 		else
 		{
 			dist[TOTAL] = params[0] / params[1];
-			if (params[1] < 0.0)
+			if (params[1] < EPSILON)
 				if (dist[TOTAL] > dist[MIN])
 				{
 					dist[MIN] = dist[TOTAL];
@@ -156,21 +157,23 @@ t_vec3	get_pos_min(const t_ray *ray, const t_plane2 planes[6], float dist[3])
 		if (dist[MIN] > dist[MAX])
 			dist[MIN] = FLT_MAX;
 	}
-	return (planes[index].normal);
+	return (index);
 }
 
 float	dist_arbbox(const t_ray *ray, t_object *obj)
 {
 	t_vec3		denom;
 	float		dist[3];
-	int			i;
+	int			index;
 
 	denom = vec3_inv(ray->direction);
-	i = -1;
 	dist[MIN] = FLT_MIN;
 	dist[MAX] = FLT_MAX;
-	obj->arbbox.normal = get_pos_min(ray, obj->arbbox.planes, dist);
-	if (dist[MIN] > dist[MAX] || dist[MAX] < 0.0 || dist[MIN] == FLT_MAX)
+	index = get_pos_min(ray, obj->arbbox.planes, dist);
+	if (index < 6)
+		obj->arbbox.normal = obj->arbbox.planes[index].normal;
+	if (dist[MIN] > dist[MAX] || dist[MAX] < EPSILON
+		|| dist[MIN] == FLT_MAX)
 		return (FLT_MAX);
 	dist[MIN] = fmaxf(dist[MIN], 0.0);
 	return (dist[MIN]);
