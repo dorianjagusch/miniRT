@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ascii_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/11 17:16:29 by smorphet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 # include "objects.h"
 # include "libft.h"
@@ -7,27 +19,39 @@ t_vec3	get_vec3_mesh(char **line)
 {
 	t_vec3	vec;
 
-	DEBUG_ONLY(printf("line at start of vec3 = |%s|\n", *line));
 	ft_skip_ws(line);
-	DEBUG_ONLY(printf("line befor vec3.x = |%s|\n", *line));
 	vec.x = ft_atof(*line);
 	ft_skip_num(line, REAL);
-	DEBUG_ONLY(printf("line vec.x = |%s|\n", *line));
 	ft_skip_ws(line);
 	vec.y = ft_atof(*line);
-	DEBUG_ONLY(printf("line vec.y = |%s|\n", *line));
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
 	vec.z = ft_atof(*line);
-	DEBUG_ONLY(printf("line vec.z = |%s|\n", *line));
 	if (**line == '-')
 		*line += 1;
 	ft_skip_num(line, REAL);
 	return (vec);
 }
 
-static void	count_file_objects(int fd, char *file_name, t_mesh *mesh) //TODO: this is not great....
-{ //v, vn, vt, f 
+void get_faces(char **line, t_vec3_face	*key)
+{
+	char **split = ft_split3(*line, '/', ' ');
+	int i;
+	
+	i = 0;
+	
+	while (i < 3)
+	{
+		key[i].v = ft_atoi(split[i * 3]);
+		key[i].t = ft_atoi(split[i * 3 + 1]);
+		key[i].n = ft_atoi(split[i * 3 + 2]);
+		i++;
+	}
+	free(split);
+}
+
+static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
+{
 	char	*line;
 
 	mesh->count_v = 0;
@@ -37,13 +61,13 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh) //TODO: th
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ') //TODO: no this should handle WS in a not shit way
+		if (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ')
 			mesh->count_v++;
-		else if (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ') //TODO: no this should handle WS in a not shit way
+		else if (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ')
 			mesh->count_vn++;
-		else if (!ft_empty_str(line) && !ft_strncmp("vt", line, 1) && line[2] == ' ') //TODO: no this should handle WS in a not shit way
+		else if (!ft_empty_str(line) && !ft_strncmp("vt", line, 1) && line[2] == ' ')
 			mesh->count_vt++;
-		else if (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ') //TODO: no this should handle WS in a not shit way
+		else if (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ')
 			mesh->count_f++;
 		if (line)
 			free(line);
@@ -52,6 +76,23 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh) //TODO: th
 	DEBUG_ONLY(printf("V: %f	VN: %f	VT: %f	F: %f\n\n", mesh->count_v ,mesh->count_vn, mesh->count_vt, mesh->count_f));
 	if (close(fd) < 0)
 		ft_error(errno);
+}
+
+t_vec2 get_textures(char **line)
+{
+	t_vec2	vec;
+
+	ft_skip_ws(line);
+	vec.x = ft_atof(*line);
+	ft_skip_num(line, REAL);
+	ft_skip_ws(line);
+	vec.y = ft_atof(*line);
+	ft_skip_num(line, REAL);
+	ft_skip_ws(line);
+	if (**line == '-')
+		*line += 1;
+	ft_skip_num(line, REAL);
+	return (vec);
 }
 
 static void init_arrays(t_mesh *mesh, int fd)
@@ -63,84 +104,139 @@ static void init_arrays(t_mesh *mesh, int fd)
 	count = 0;
 	while (line)
 	{
-		while (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ' && line) //TODO: no this should handle WS in a not shit way
+		while (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ' && line)
 		{
 			line += 1;
 			mesh->vertex[count] = get_vec3_mesh(&line);
-			count++;
 			DEBUG_ONLY(print_vec3(mesh->vertex[count], "vertex"));
+			count++;
 			line = get_next_line(fd);
 		}
-		// count = 0;
-		// while (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ' && line) //TODO: no this should handle WS in a not shit way
-		// {
-		// 	line += 2;
-		// 	mesh->normals[count] = get_vec3_mesh(&line);
-		// 	count++;
-		// 	DEBUG_ONLY(print_vec3(mesh->normals[count], "normals"));
-		// 	line = get_next_line(fd);
-		// }
-		// count = 0;
-		// while (!ft_empty_str(line) && !ft_strncmp("vt", line, 2) && line[2] == ' ' && line) //TODO: no this should handle WS in a not shit way
-		// {
-		// 	// line += 2;
-		// 	// // mesh->textures[count] = get_vec2_mesh(&line);// need to write this
-		// 	// count++;
-		// 	// //DEBUG_ONLY(print_vec2(mesh->normals[count], "textures"));
-		// 	line = get_next_line(fd);
-		// }
-		// count = 0;
-		// while (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ' && line) //TODO: no this should handle WS in a not shit way
-		// {
-		// 	line += 1;
-		// 	mesh->faces[count] = get_vec3_mesh(&line);
-		// 	count++;
-		// 	DEBUG_ONLY(print_vec3(mesh->normals[count], "faces"));
-		// 	line = get_next_line(fd);
-		// }
-		free(line);
+		count = 0;
+		while (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ' && line)
+		{
+			line += 2;
+			mesh->normals[count] = get_vec3_mesh(&line);
+			DEBUG_ONLY(print_vec3(mesh->normals[count], "normals"));
+			count++;
+			line = get_next_line(fd);
+		}
+		count = 0;
+		while (!ft_empty_str(line) && !ft_strncmp("vt", line, 2) && line[2] == ' ' && line)
+		{
+			line += 2;
+			mesh->textures[count] = get_textures(&line);
+			DEBUG_ONLY(printf("vec.x: %f	vec.y: %f\n", mesh->textures[count].x, mesh->textures[count].y));
+			count++;
+			line = get_next_line(fd);
+		}
+		count = 0;
+		while (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ' && line)
+		{
+			line += 1;
+			get_faces(&line, mesh->faces[count]);
+			DEBUG_ONLY(printf("vertex: %d	texture: %d		normal: %d\n", mesh->faces[count][0].v, mesh->faces[count][0].t, mesh->faces[count][0].n));
+			DEBUG_ONLY(printf("vertex: %d	texture: %d		normal: %d\n", mesh->faces[count][1].v, mesh->faces[count][1].t, mesh->faces[count][1].n));
+			DEBUG_ONLY(printf("vertex: %d	texture: %d		normal: %d\n", mesh->faces[count][2].v, mesh->faces[count][2].t, mesh->faces[count][2].n));
+			count++;
+			line = get_next_line(fd);
+		}
+		if (line)
+			free(line);
 		line = get_next_line(fd);
 	}
-	
 	if (close(fd) < 0)
 		ft_error(errno);
 
 }
 
-// void	create_mesh(t_mesh *mesh, int fd)
+// typedef struct s_triangle
 // {
-// }
+// 	t_obj_e			type;
+// 	t_vec3			tri_point[3];
+// 	t_vec3			normal;
+// 	t_vec3			edges[2];
+// 	t_vec4			colour;
+// 	t_material_e	material;
+// }					t_triangle;
+
+// typedef struct s_mesh
+// {
+// 	t_obj_e			type;
+// 	float			n_triangles;
+// 	float			count_v;
+// 	float			count_vn;
+// 	float			count_vt;
+// 	float			count_f;
+// 	t_vec3			*vertex;
+// 	t_vec3			*normals;
+// 	t_vec2			*textures;
+// 	t_vec3_face		**faces;
+// 	t_vec4			colour;
+// 	int				obj_id;//
+// 	t_material_e	material;//
+// 	t_object		*triangle_data; //
+// }					t_mesh;
+
+void	create_mesh(t_mesh *mesh)
+{
+	int index;
+
+	index = 0;
+	mesh->n_triangles = mesh->count_f;
+	mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
+		printf("mesh->faces[index]->v = %d\n", mesh->faces[index]->v);
+	while (index < mesh->n_triangles)
+	{
+		mesh->triangle_data[index].type = triangle_obj;
+		mesh->triangle_data[index].triangle.normal = mesh->normals[mesh->faces[index]->n];
+		mesh->triangle_data[index].triangle.tri_point[0] = mesh->vertex[(mesh->faces[index][0].v) - 1];
+		print_vec3(mesh->triangle_data[index].triangle.tri_point[0], "tripoint 0");
+		mesh->triangle_data[index].triangle.tri_point[1] = mesh->vertex[(mesh->faces[index][1].v) - 1];
+		print_vec3(mesh->triangle_data[index].triangle.tri_point[1], "tripoint 1");
+		mesh->triangle_data[index].triangle.tri_point[2] = mesh->vertex[(mesh->faces[index][2].v) - 1];
+		print_vec3(mesh->triangle_data[index].triangle.tri_point[2], "tripoint 2");
+		mesh->triangle_data[index].triangle.colour = (t_vec4) {1, 1, 0, 1};
+		
+		index++;
+	}
+}
+
 
 void ascii_parser(t_mesh *mesh, char *line)
 {
-    int             fd;
-    unsigned int    number_triangles;
+	int             fd;
 	char			*file_name;
+	int				count;
 
 	line += 3;
 	mesh->type = mesh_obj;
+	mesh->obj_id = -1;
 	file_name = *ft_split2(line);
-    fd = open(file_name, O_RDONLY);
-	if (fd < 0)
-		ft_error(errno);
-	count_file_objects(fd, file_name, mesh);
-	//TODO: create an array of vec3 or objects, parse the information in including normals, colour and material
-	//render the frigging object, WHY IS THIS SO FRIGGING HARD
-    mesh->vertex = malloc(mesh->count_v * sizeof(t_vec3)); 
-	mesh->normals = malloc(mesh->count_vn * sizeof(t_vec3));
-    mesh->textures = malloc(mesh->count_vt * sizeof(t_vec2));
-    mesh->faces = malloc(mesh->count_f * sizeof(t_vec3));
+	DEBUG_ONLY(printf("%s", file_name));
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	//PARSE THEM HERE
+	count_file_objects(fd, file_name, mesh);
+	mesh->vertex = malloc(mesh->count_v * sizeof(t_vec3)); 
+	mesh->normals = malloc(mesh->count_vn * sizeof(t_vec3));
+	mesh->textures = malloc(mesh->count_vt * sizeof(t_vec2));
+	mesh->faces = malloc(mesh->count_f * sizeof(t_vec3_face*));
+	count = 0;
+	while (count < mesh->count_f)
+	{
+		mesh->faces[count] = malloc(3 * sizeof(t_vec3_face));
+		count++;
+	}
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		ft_error(errno);
 	init_arrays(mesh, fd);
-	exit (0);//
-	//create_mesh(mesh, fd);
-	free(file_name);
-	free(line);
-    close(fd);
-	exit(0); //
+	close(fd);
+	create_mesh(mesh);
+	// free(file_name);
+	// free(line);
+
 }
 
 //TODO: vertex array,array of the normals, array of the textures THEN each triangle is intialized with the matchin pooints for point A, B and C plus matching texture etc

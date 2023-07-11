@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 14:14:32 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:18:07 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "shaders.h"
 #include "float.h"
 
-float dist_mesh(const t_ray *ray, t_object *obj)
+float	dist_mesh(const t_ray *ray, t_object *obj)
 {
-	int		 j;
+	int		j;
 	float	new_dist;
 	float	hit_dist;
 
 	j = 0;
+	new_dist = 0;
+	hit_dist = FLT_MAX;
 	while (j < obj->mesh.n_triangles)
 	{
 		new_dist = dist_triangle(ray, &obj->mesh.triangle_data[j]);
@@ -31,6 +33,7 @@ float dist_mesh(const t_ray *ray, t_object *obj)
 		}
 		j++;
 	}
+	DEBUG_ONLY(printf("hit distance from mesh = %f\n", hit_dist));
 	return (hit_dist);
 }
 
@@ -103,10 +106,18 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
 	assert(!vec3_isnan(hit->position));
-	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	assert(!vec3_isnan(hit->normal));
 	hit->position = vec3_add(hit->position,
 			vec3_multf(hit->normal, 1.0E-04));
+	if (scene->objs[hit->obj_id].type == mesh_obj)
+	{
+		int triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
+		hit->normal = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.normal;
+		//hit->material = get_hitmaterial(&(scene->objs[hit->obj_id].mesh.obj_id));
+		hit->colour = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.colour;
+		return ;
+	}
+	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->material = get_hitmaterial(&(scene->objs[hit->obj_id]));
 	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
 }

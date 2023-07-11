@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:52:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:12:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_ray    create_primary_ray(t_camera *cam, t_vec2 pxl)
 
 	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * cam->aspect_ratio * tan(cam->fov * DEG2RAD);
 	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(cam->fov * DEG2RAD);
-    primary_ray.origin = cam->pos;
+    primary_ray.origin = vec3_neg(cam->pos);
     primary_ray.direction = vec3_sub((t_vec3){cam->dir.x + norm_coord_x,
             cam->dir.y + norm_coord_y,
             cam->dir.z},

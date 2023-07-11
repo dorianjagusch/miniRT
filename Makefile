@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/07 15:56:58 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/11 13:16:42 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra  -fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -86,7 +86,8 @@ FILES = get_colour \
 	print_misc2 \
 	create_objs \
 	binary_parser \
-	ascii_parser
+	ascii_parser \
+	ft_split3
 
 HEADER = vector_math \
 	minirt \

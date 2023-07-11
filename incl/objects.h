@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/10 16:08:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:39:00 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_triangle
 	t_material_e	material;
 }					t_triangle;
 
-typedef struct s_triangle_data //TODO: can this stay here, norm compliance?
+typedef struct s_triangle_data
 {
 	float	normal_vector[3];	//12 bytes
 	float	vertex_a[3];			//12 bytes
@@ -106,14 +106,14 @@ typedef struct s_mesh
 	t_vec3			*vertex;
 	t_vec3			*normals;
 	t_vec2			*textures;
-	t_vec3			*faces;
+	t_vec3_face		**faces;
 	t_vec4			colour;
 	int				obj_id;//
 	t_material_e	material;//
 	t_object		*triangle_data; //
 }					t_mesh;
 
-typedef struct s_stl_header //TODO: can this stay here, norm compliance?
+typedef struct s_stl_header
 {
 	unsigned char metadata[80]; //80bytes - this is the header file all binarys have (diposable data)
 	unsigned int n_triangles;   //4bytes

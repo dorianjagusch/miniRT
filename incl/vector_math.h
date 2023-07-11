@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 16:30:51 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:31:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef struct s_vec3
 	float	y;
 	float	z;
 }			t_vec3;
+
+typedef struct s_vec3_face
+{
+	int	v;
+	int	t;
+	int	n;
+}			t_vec3_face;
 
 typedef struct s_vec4
 {

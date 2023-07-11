@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:52:19 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:15:02 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	create_triangle(t_triangle *triangle, char *line);
 void	create_box(t_box *box, char *line);
 void	binary_parser(t_mesh *mesh, char *line); //
 void	ascii_parser(t_mesh *mesh, char *line);
+char	**ft_split3(char const *s, char c, char d);
 
 #endif
