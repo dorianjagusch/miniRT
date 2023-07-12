@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/12 14:28:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:52:51 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 			key[i].v = ft_atoi(split[i * 3]);
 			key[i].t = ft_atoi(split[i * 3 + 1]);
 			key[i].n = ft_atoi(split[i * 3 + 2]);
-
 		}
 		else
 		{
@@ -57,7 +56,7 @@ void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 		}
 		i++;
 	}
-	free(split);
+	//ft_free_anyarray((void *) &split, 9);
 }
 
 static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
@@ -79,7 +78,7 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
 			mesh->count_vt++;
 		else if (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ')
 			mesh->count_f++;
-		if (line) //
+		if (line)
 			free(line);
 		line = get_next_line(fd);
 	}
@@ -117,7 +116,6 @@ static void	init_arrays(t_mesh *mesh, int fd)
 	{
 		while (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ' && line)
 		{
-			// line += 1;
 			mesh->vertex[count] = get_vec3_mesh(line + 1);
 			count++;
 			if (line)
@@ -155,22 +153,30 @@ static void	init_arrays(t_mesh *mesh, int fd)
 			free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	if (close(fd) < 0)
 		ft_error(errno);
 }
-
-void	free_arrays(t_mesh *mesh)
+void free_arrays(t_mesh *mesh)
 {
-	int index;
-	
-	if (mesh->normals)
-		free(mesh->normals);
-	if (mesh->vertex)
-		free(mesh->vertex);
-	if (mesh->textures)
-		free(mesh->textures);
-	if (mesh->faces)
-		free(mesh->faces);
+    int count;
+
+    if (mesh->normals)
+        free(mesh->normals);
+    if (mesh->vertex)
+        free(mesh->vertex);
+    if (mesh->textures)
+        free(mesh->textures);
+    if (mesh->faces)
+    {
+		count = 0;
+		while (count < mesh->count_f)
+		{
+			free(mesh->faces[count]);
+			count++;
+    	}
+	}
 }
 
 void	create_mesh(t_mesh *mesh)
@@ -196,7 +202,6 @@ void	create_mesh(t_mesh *mesh)
 	}
 }
 
-
 void ascii_parser(t_mesh *mesh, char *line)
 {
 	int		fd;
@@ -208,8 +213,6 @@ void ascii_parser(t_mesh *mesh, char *line)
 	mesh->type = mesh_obj;
 	mesh->obj_id = -1;
 	file_name = *ft_split2(line);
-	// if (line)
-	// 	free(line);
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
