@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 15:18:58 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:52:59 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	create_disk(t_disk *disk, char *line)
 void	create_triangle(t_triangle *triangle, char *line)
 {
 	triangle->type = triangle_obj;
-	DEBUG_ONLY(printf("in the create triangle function\n"));
 	line += 3;
 	triangle->tri_point[0] = get_vec3(&line);
 	ft_skip_ws(&line);
@@ -118,5 +117,4 @@ void	create_triangle(t_triangle *triangle, char *line)
 	triangle->colour = get_colour(&line);
 	triangle->edges[0] = vec3_sub(triangle->tri_point[1], triangle->tri_point[0]);
 	triangle->edges[1] = vec3_sub(triangle->tri_point[2], triangle->tri_point[0]);
-	DEBUG_ONLY(print_vec4(triangle->colour, "triangle col:"));
 }

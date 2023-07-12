@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 16:52:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:52:46 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_close(t_img *img)
 
 int	key_handler(int key, t_img *img)
 {
-	//printf("%d\n", key);
 	if (key == MAIN_PAD_ESC)
 		ft_close(img);
 	else if (key == MAIN_PAD_SPACE)

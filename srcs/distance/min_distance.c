@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 17:18:07 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:53:34 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ float	dist_mesh(const t_ray *ray, t_object *obj)
 		}
 		j++;
 	}
-	DEBUG_ONLY(printf("hit distance from mesh = %f\n", hit_dist));
 	return (hit_dist);
 }
 
@@ -90,6 +89,8 @@ t_material_e	get_hitmaterial(const t_object *obj)
 
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 {
+	int triangle_id;
+	
 	assert(!vec3_isnan(ray->origin));
 	assert(!vec3_isnan(ray->direction));
 	assert(!isnan(hit->distance));
@@ -99,8 +100,6 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(ray->direction, hit->distance));
 	assert(!vec3_isinf(ray->origin));
 	assert(!vec3_isinf(ray->direction));
-	DEBUG_ONLY(printf("setting of hit point\n"));
-	DEBUG_ONLY(print_vec3(hit->position, "set hit point"));
 	assert(!vec3_isnan(hit->position));
 	assert(!vec3_isinf(hit->position));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
@@ -111,7 +110,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(hit->normal, 1.0E-04));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
-		int triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
+		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
 		hit->normal = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.normal;
 		//hit->material = get_hitmaterial(&(scene->objs[hit->obj_id].mesh.obj_id));
 		hit->colour = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.colour;

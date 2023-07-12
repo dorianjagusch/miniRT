@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 17:00:56 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:35:40 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_skip_ws(char **line)
 {
-	while (**line == ' ')
+	while (**line == ' ' || **line == '\t')
 		*line += 1;
 }
 

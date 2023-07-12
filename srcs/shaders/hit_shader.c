@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 12:09:55 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:52:42 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ t_vec4	hit_shader(const t_scene *scene,
 				1 / (light_info->distance * light_info->distance));
 	}
 	else
-		DEBUG_ONLY(printf("in shadow\n"));
-	DEBUG_ONLY(print_col(col[diffuse], "diffuse"));
 	if (mat->specular > 0)
 		col[specular] = specular_colour(scene, hit, light_info, mat);
 	col[final] = vec4_add(vec4_add(col[ambient], col[diffuse]), col[specular]);

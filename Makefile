@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/11 13:16:42 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/12 13:15:13 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra  -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g # -fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)

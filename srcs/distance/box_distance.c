@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   box_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:40:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 15:23:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:54:07 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@
 // 		|| (dist[Z][MIN] > dist[TOTAL][MAX]))
 // 		return (FLT_MAX);
 // 	sort_extremes(dist[TOTAL], dist[Z]);
-// 	DEBUG_ONLY(printf("Box distance %f\n", dist[TOTAL][MIN]));
+// 	DEBUG_ONLY(f("Box distance %f\n", dist[TOTAL][MIN]));
 // 	if (dist[TOTAL][MIN] > EPSILON)
 // 		return (dist[TOTAL][MIN]);
 // 	return (FLT_MAX);
