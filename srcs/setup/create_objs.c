@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 14:05:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:15:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
-	cyl_disk(cylinder, 't');
+	cyl_disk(cylinder, 't'); // free dose bitches
 	cyl_disk(cylinder, 'b');
 }
 

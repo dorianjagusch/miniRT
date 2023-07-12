@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/12 13:45:27 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:28:37 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ t_vec3	get_vec3_mesh(char *line)
 	return (vec);
 }
 
-void get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
+void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 {
-	char **split = ft_split3(line, '/', ' ');
-	int i;
-	
+	char	**split ;
+	int		i;
+
 	i = 0;
+	split = ft_split3(line, '/', ' ');
 	while (i < 3)
 	{
 		if (mesh->count_vt != 0)
@@ -88,7 +89,7 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
 		ft_error(errno);
 }
 
-t_vec2 get_textures(char *line)
+t_vec2	get_textures(char *line)
 {
 	t_vec2	vec;
 
@@ -105,7 +106,7 @@ t_vec2 get_textures(char *line)
 	return (vec);
 }
 
-static void init_arrays(t_mesh *mesh, int fd)
+static void	init_arrays(t_mesh *mesh, int fd)
 {
 	char *line;
 	int count;
@@ -158,7 +159,7 @@ static void init_arrays(t_mesh *mesh, int fd)
 		ft_error(errno);
 }
 
-void free_arrays(t_mesh *mesh)
+void	free_arrays(t_mesh *mesh)
 {
 	int index;
 	
@@ -174,7 +175,7 @@ void free_arrays(t_mesh *mesh)
 
 void	create_mesh(t_mesh *mesh)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	mesh->n_triangles = mesh->count_f;
@@ -198,9 +199,10 @@ void	create_mesh(t_mesh *mesh)
 
 void ascii_parser(t_mesh *mesh, char *line)
 {
-	int             fd;
-	char			*file_name;
-	int				count;
+	int		fd;
+	char	*file_name;
+	int		count;
+	int		index;
 
 	line += 3;
 	mesh->type = mesh_obj;
@@ -212,11 +214,11 @@ void ascii_parser(t_mesh *mesh, char *line)
 	if (fd < 0)
 		ft_error(errno);
 	count_file_objects(fd, file_name, mesh);
-	mesh->vertex = malloc(mesh->count_v * sizeof(t_vec3)); 
+	mesh->vertex = malloc(mesh->count_v * sizeof(t_vec3));
 	mesh->normals = malloc(mesh->count_vn * sizeof(t_vec3));
 	if (mesh->count_vt != 0)
 		mesh->textures = malloc(mesh->count_vt * sizeof(t_vec2));
-	mesh->faces = malloc(mesh->count_f * sizeof(t_vec3_face*));
+	mesh->faces = malloc(mesh->count_f * sizeof(t_vec3_face *));
 	count = 0;
 	while (count < mesh->count_f)
 	{
@@ -227,7 +229,7 @@ void ascii_parser(t_mesh *mesh, char *line)
 	if (fd < 0)
 		ft_error(errno);
 	init_arrays(mesh, fd);
-	int index = 0;
+	index = 0;
 	while (index < mesh->count_vn)
 		index++;
 	close(fd);
