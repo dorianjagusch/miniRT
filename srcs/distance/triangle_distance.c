@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/12 14:21:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:54:09 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ intersection point lies within the triangle or not.
 
 float	dist_triangle(const t_ray *ray, t_object *obj)
 {
+	float	dist;
 	float	det;
 	float	inv_det;
 	t_vec3	bary_vec[3];
@@ -50,11 +51,14 @@ float	dist_triangle(const t_ray *ray, t_object *obj)
 	inv_det = 1.0 / det;
 	bary_vec[TVEC] = vec3_sub(ray->origin, obj->triangle.tri_point[0]);
 	bary_weights[U] = vec3_dot(bary_vec[TVEC], bary_vec[PVEC]) * inv_det;
-	if (bary_weights[U] < EPSILON || bary_weights[U] > 1.0)
+	if (bary_weights[U] < 0.0 || bary_weights[U] > 1.0)
 		return (FLT_MAX);
 	bary_vec[QVEC] = vec3_cross(bary_vec[TVEC], obj->triangle.edges[0]);
 	bary_weights[V] = vec3_dot(ray->direction, bary_vec[QVEC]) * inv_det;
-	if (bary_weights[V] < EPSILON || (bary_weights[U] + bary_weights[V]) > 1.0)
+	if (bary_weights[V] < 0.0 || (bary_weights[U] + bary_weights[V]) > 1.0)
 		return (FLT_MAX);
-	return (vec3_dot(obj->triangle.edges[1], bary_vec[QVEC]) * inv_det);
+	dist = vec3_dot(obj->triangle.edges[1], bary_vec[QVEC]) * inv_det;
+	if (dist < EPSILON)
+		return (FLT_MAX);
+	return (dist);
 }
