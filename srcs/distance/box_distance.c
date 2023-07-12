@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:58:43 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 12:56:36 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:06:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 
 static void	get_box_normal(t_vec3 *normal, float dist, t_vec3 face_dist[2])
 {
-	if (fabs(dist - face_dist[MIN].x) < EPSILON)
+	if (fabsf(dist - fabsf(face_dist[MIN].x)) < EPSILON)
 		*normal = (t_vec3){-1, 0, 0};
-	else if (fabs(dist - face_dist[MIN].y) < EPSILON)
+	else if (fabsf(dist - fabsf(face_dist[MIN].y)) < EPSILON)
 		*normal = (t_vec3){0, -1, 0};
-	else if (fabs(dist - face_dist[MIN].z) < EPSILON)
+	else if (fabsf(dist - fabsf(face_dist[MIN].z)) < EPSILON)
 		*normal = (t_vec3){0, 0, -1};
-	else if (fabs(dist - face_dist[MAX].x) < EPSILON)
+	else if (fabsf(dist - fabsf(face_dist[MAX].x)) < EPSILON)
 		*normal = (t_vec3){1, 0, 0};
-	else if (fabs(dist - face_dist[MAX].y) < EPSILON)
+	else if (fabsf(dist - fabsf(face_dist[MAX].y)) < EPSILON)
 		*normal = (t_vec3){0, 1, 0};
-	else if (fabs(dist - face_dist[MAX].z) < EPSILON)
+	else if (fabsf(dist - fabsf(face_dist[MAX].z)) < EPSILON)
 		*normal = (t_vec3){0, 0, 1};
 }
 
@@ -53,9 +53,11 @@ float	dist_box(const t_ray *ray, t_object *obj)
 				fmaxf(face_dist[MIN].y, face_dist[MAX].y)),
 			fmaxf(face_dist[MIN].z, face_dist[MAX].z));
 	get_box_normal(&obj->box.normal, dist[MIN], face_dist);
-	if (dist[MIN] > dist[MAX] || dist[MIN] < EPSILON)
-		return (FLT_MAX);
-	return (dist[MIN]);
+	if (dist[MIN] < dist[MAX] && dist[MIN] > EPSILON)
+		return (dist[MIN]);
+	if (dist[MIN] < dist[MAX] && dist[MAX] > EPSILON)
+		return (dist[MAX]);
+	return (FLT_MAX);
 }
 
 int	get_pos_min(const t_ray *ray, const t_plane2 planes[6], float dist[3])

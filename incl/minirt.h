@@ -49,7 +49,7 @@
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 
-# define BOUNCES 2
+# define BOUNCES 5
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF
@@ -59,7 +59,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
-# define EPSILON 1e-08
+# define EPSILON 1e-6
 
 # define ORTHO 0
 # define AXIS 1
