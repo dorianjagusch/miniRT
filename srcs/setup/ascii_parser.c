@@ -76,7 +76,7 @@ void ascii_parser(t_mesh *mesh, char *line)
 	file_name = *ft_split2(line);
     fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		ft_error(errno);
+		ft_error(object_open_err);
 	mesh->n_triangles = ascii_count_objects(fd, file_name);
 	if (mesh->n_triangles == 0)
 		ft_error(content_err);
