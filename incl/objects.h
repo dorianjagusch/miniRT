@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 10:39:00 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:11:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef enum e_obj
 	disk_obj,
 	triangle_obj,
 	box_obj,
+	arbbox_obj,
 	mesh_obj,
 }	t_obj_e;
 
@@ -62,7 +63,7 @@ typedef struct s_cylinder
 	float			height;
 	t_vec4			colour;
 	t_material_e	material;
-}			t_cylinder;
+}					t_cylinder;
 
 typedef struct s_disk
 {
@@ -94,7 +95,6 @@ typedef struct s_triangle_data
 	unsigned short  att;	//2 bytes (disposable data)
 }		t_triangle_data;
 
-
 typedef struct s_mesh
 {
 	t_obj_e			type;
@@ -113,13 +113,6 @@ typedef struct s_mesh
 	t_object		*triangle_data; //
 }					t_mesh;
 
-typedef struct s_stl_header
-{
-	unsigned char metadata[80]; //80bytes - this is the header file all binarys have (diposable data)
-	unsigned int n_triangles;   //4bytes
-}   t_stl_header;
-
-
 typedef struct s_box
 {
 	t_obj_e			type;
@@ -128,6 +121,22 @@ typedef struct s_box
 	t_vec4			colour;
 	t_material_e	material;
 }					t_box;
+
+typedef struct s_plane2
+{
+	t_vec3	normal;
+	float	distance;
+}			t_plane2;
+
+typedef struct s_arbbox
+{
+	t_obj_e			type;
+	t_vec3			verts[8];
+	t_plane2		planes[6];
+	t_vec3			normal;
+	t_vec4			colour;
+	t_material_e	material;
+}					t_arbbox;
 
 typedef union u_object
 {
@@ -138,6 +147,7 @@ typedef union u_object
 	t_disk		disk;
 	t_triangle	triangle;
 	t_box		box;
+	t_arbbox	arbbox;
 	t_mesh		mesh;
 }				t_object;
 

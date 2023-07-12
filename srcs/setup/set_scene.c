@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 09:25:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:05:39 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void set_unique(t_scene *scene, char **line)
+static void	set_unique(t_scene *scene, char **line)
 {
 	static int flag[3];
 
@@ -67,6 +67,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_triangle(&scene->objs[id].triangle, line);
 	else if (!ft_strncmp("bx", line, 2))
 		create_box(&scene->objs[id].box, line);
+	else if (!ft_strncmp("ab", line, 2))
+		create_arb_box(&scene->objs[id].arbbox, line);
 	else
 		ft_error(ident_err);
 }

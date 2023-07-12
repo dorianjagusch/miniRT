@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 11:52:46 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:12:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int	key_handler(int key, t_img *img)
 		ft_change_bounces(img, key);
 	else if (key == MAIN_PAD_H)
 		ft_toggle_help(img);
-	else if (key == MAIN_PAD_UP || key == MAIN_PAD_DOWN || key == MAIN_PAD_LEFT
-		|| key == MAIN_PAD_RIGHT)
+	else if (key == MAIN_PAD_UP || key == MAIN_PAD_DOWN
+		|| key == MAIN_PAD_LEFT || key == MAIN_PAD_RIGHT
+		|| key == MAIN_PAD_S || key == MAIN_PAD_W)
 		camera_move(key, img);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 12:35:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:15:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	print_objs(t_object *obj)
 		&print_disk,
 		&print_triangle,
 		&print_box,
+		&print_arbbox,
 		&print_mesh
 	};
 	printf("type: %d\n", obj->type);

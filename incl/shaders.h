@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:13:56 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:57:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_ray
 typedef struct s_hitresult
 {
 	int				obj_id;
+	t_obj_e			type;
 	float			distance;
 	t_vec3			position;
 	t_vec3			normal;
@@ -63,6 +64,7 @@ float			dist_cylinder(const t_ray *ray, t_object *cylinder);
 float			dist_disk(const t_ray *ray, t_object *disk);
 float			dist_triangle(const t_ray *ray, t_object *triangle);
 float			dist_box(const t_ray *ray, t_object *box);
+float			dist_arbbox(const t_ray *ray, t_object *obj);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
 t_vec4			hit_shader(const t_scene *scene,

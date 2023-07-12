@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 11:53:34 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:03:58 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_box,
+		dist_arbbox,
 		dist_mesh
 	};
 
@@ -65,6 +66,8 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
+	else if (obj->type == arbbox_obj)
+		return (obj->arbbox.colour);
 	else //(obj->type == mesh_obj)
 		return (obj->mesh.colour);
 }
@@ -83,6 +86,8 @@ t_material_e	get_hitmaterial(const t_object *obj)
 		return (obj->triangle.material);
 	else if (obj->type == box_obj)
 		return (obj->box.material);
+	else if (obj->type == arbbox_obj)
+		return (obj->arbbox.material);
 	else // (obj->type == mesh_obj)
 		return (obj->mesh.material);
 }
@@ -119,6 +124,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->material = get_hitmaterial(&(scene->objs[hit->obj_id]));
 	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
+	hit->type = scene->objs->type;
 }
 
 void	get_closest(const t_scene *scene, const t_ray *ray, t_hitresult *hit)

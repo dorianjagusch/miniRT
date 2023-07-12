@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_helpers.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:27:21 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:51:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_cylinder(t_object *obj);
 void	print_triangle(t_object *obj);
 void	print_disk(t_object *obj);
 void	print_box(t_object *obj);
+void	print_arbbox(t_object *obj);
 void	print_objs(t_object *obj);
 void	print_ray(t_ray ray);
 void	print_light(t_light light);

@@ -49,7 +49,7 @@
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 
-# define BOUNCES 1
+# define BOUNCES 2
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF
