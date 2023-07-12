@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/11 17:16:29 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:08:49 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,9 @@ void	create_mesh(t_mesh *mesh)
 		mesh->triangle_data[index].triangle.tri_point[2] = mesh->vertex[(mesh->faces[index][2].v) - 1];
 		print_vec3(mesh->triangle_data[index].triangle.tri_point[2], "tripoint 2");
 		mesh->triangle_data[index].triangle.colour = (t_vec4) {1, 1, 0, 1};
-		
+		mesh->triangle_data[index].triangle.edges[0] = vec3_sub(mesh->triangle_data[index].triangle.tri_point[1], mesh->triangle_data[index].triangle.tri_point[0]);
+		mesh->triangle_data[index].triangle.edges[1] = vec3_sub(mesh->triangle_data[index].triangle.tri_point[2], mesh->triangle_data[index].triangle.tri_point[0]);
+
 		index++;
 	}
 }
