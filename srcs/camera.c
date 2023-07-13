@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/13 12:10:32 by djagusch         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/12 14:38:56 by smorphet         ###   ########.fr       */
+>>>>>>> 72eda9ce91bfcd76fc9abbc5ad1e738cf123e893
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +58,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * cam->aspect_ratio * tan(cam->fov * DEG2RAD);
 	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(cam->fov * DEG2RAD);
 	primary_ray.origin = cam->pos;
+	primary_ray.origin.z = primary_ray.origin.z * tan(cam->fov * DEG2RAD);
 	primary_ray.direction = (t_vec3){cam->dir.x + norm_coord_x,
 			cam->dir.y + norm_coord_y,
 			cam->dir.z};
