@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/12 14:02:58 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/13 12:10:05 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,14 +117,11 @@ minilib: $(MINILIBX)
 
 libft: $(LIBFT)
 
-print:
-	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3 -g
-
 # Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) -O3
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) # -O3
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -139,7 +136,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g -O3
+	@$(CC) -I$I -c $< -o $@ -g # -O3
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

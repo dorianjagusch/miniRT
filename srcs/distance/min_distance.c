@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 14:03:58 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:08:58 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_box,
-		dist_arbbox,
 		dist_mesh
 	};
 
@@ -66,8 +65,6 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
-	else if (obj->type == arbbox_obj)
-		return (obj->arbbox.colour);
 	else //(obj->type == mesh_obj)
 		return (obj->mesh.colour);
 }
@@ -86,8 +83,6 @@ t_material_e	get_hitmaterial(const t_object *obj)
 		return (obj->triangle.material);
 	else if (obj->type == box_obj)
 		return (obj->box.material);
-	else if (obj->type == arbbox_obj)
-		return (obj->arbbox.material);
 	else // (obj->type == mesh_obj)
 		return (obj->mesh.material);
 }
@@ -112,7 +107,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	assert(!vec3_isnan(hit->position));
 	assert(!vec3_isnan(hit->normal));
 	hit->position = vec3_add(hit->position,
-			vec3_multf(hit->normal, 1.0E-04));
+	vec3_multf(hit->normal, EPSILON));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;

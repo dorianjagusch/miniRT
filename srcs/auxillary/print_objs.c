@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 12:52:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:31:34 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,36 +113,6 @@ void	print_box(t_object *obj)
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		box->colour.x, box->colour.y, box->colour.z);
 }
-
-void	print_plane2(t_plane2 *plane)
-{
-	printf("Plane\n");
-	printf("Face normal:\nx:%f\ty:%f\tz:%f\n",
-		plane->normal.x, plane->normal.y, plane->normal.z);
-}
-
-void	print_arbbox(t_object *obj)
-{
-	t_arbbox	*arbbox;
-	int			i;
-
-	i = -1;
-	arbbox = &obj->arbbox;
-	printf("Arb box\n");
-	while (++i < 8)
-	{
-		printf("Vertex %d:\nx:%f\ty:%f\tz:%f\n", i,
-			arbbox->verts[i].x, arbbox->verts[i].y, arbbox->verts[i].z);
-	}
-	i = -1;
-	while (++i < 6)
-	{
-		print_plane2(arbbox->planes + i);
-	}
-	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
-		arbbox->colour.x, arbbox->colour.y, arbbox->colour.z);
-}
-
 
 // typedef struct s_mesh
 // {

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 13:57:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:56:48 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ float			dist_cylinder(const t_ray *ray, t_object *cylinder);
 float			dist_disk(const t_ray *ray, t_object *disk);
 float			dist_triangle(const t_ray *ray, t_object *triangle);
 float			dist_box(const t_ray *ray, t_object *box);
-float			dist_arbbox(const t_ray *ray, t_object *obj);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
+int				is_light_visible(const t_vec3 *cam_pos, const t_vec3 *light_pos,
+					const t_vec3 *plane_pos, t_vec3 *normal);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
 t_vec4			hit_shader(const t_scene *scene,
 					const t_hitresult *hit, const t_light_info *light_info);

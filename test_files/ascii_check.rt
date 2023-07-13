@@ -1,4 +1,4 @@
 A 0.7 200,200,200
 C -1.5,0.5,-1.2 0,0,1 170
 L -3.0,6.0,-2.0 0.9 255,255,255
-tm "/Users/smorphet/Desktop/miniRT/test_files/cube_test.obj"
+tm "/projects/miniRT/test_files/hat.obj"
