@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ascii_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 10:47:30 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/13 10:47:33 by djagusch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
-# include "objects.h"
-# include "libft.h"
-# include "scene.h"
+#include "objects.h"
+#include "libft.h"
+#include "scene.h"
 
 static int	ascii_count_objects(int fd, char *file_name)
 {
@@ -67,23 +79,23 @@ void	create_mesh(t_mesh *mesh, int fd)
 
 void ascii_parser(t_mesh *mesh, char *line)
 {
-    int             fd;
-    unsigned int    number_triangles;
+	int				fd;
+	unsigned int	number_triangles;
 	char			*file_name;
 
 	line += 3;
 	mesh->type = mesh_obj;
 	file_name = *ft_split2(line);
-    fd = open(file_name, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error(object_open_err);
 	mesh->n_triangles = ascii_count_objects(fd, file_name);
 	if (mesh->n_triangles == 0)
 		ft_error(content_err);
-    printf("number of triangles = %f\n", mesh->n_triangles);
+	printf("number of triangles = %f\n", mesh->n_triangles);
 	//TODO: create an array of vec3 or objects, parse the information in including normals, colour and material
 	//render the frigging object, WHY IS THIS SO FRIGGING HARD
-    mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
+	mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
@@ -91,6 +103,6 @@ void ascii_parser(t_mesh *mesh, char *line)
 	
 	free(file_name);
 	free(line);
-    close(fd);
+	close(fd);
 	exit(0); //
 }

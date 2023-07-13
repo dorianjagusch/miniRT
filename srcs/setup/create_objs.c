@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 13:03:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:30:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,34 +87,6 @@ void	create_box(t_box *box, char *line)
 	box->verts[1] = get_vec3(&line);
 	ft_skip_ws(&line);
 	box->colour = get_colour(&line);
-}
-
-void	create_arb_box(t_arbbox *arbbox, char *line)
-{
-	int			i;
-	int			j;
-	t_vec3		edges[3];
-	t_plane2	planes[6];
-
-	i = -1;
-	arbbox->type = arbbox_obj;
-	line += 3;
-	while (++i < 8)
-	{
-		arbbox->verts[i] = get_vec3(&line);
-		ft_skip_ws(&line);
-	}
-	while (++i < 3)
-	{
-		j = (i + 1) % 3;
-		edges[i] = vec3_sub(arbbox->verts[i + 1], arbbox->verts[i]);
-		planes[i].normal = vec3_cross(edges[i], edges[(i + 1) % 3]);
-		planes[i].distance = vec3_dot(planes[i].normal,
-				arbbox->verts[j + 4]);
-		planes[i + 3].normal = planes[i].normal;
-		planes[i + 3].distance = vec3_dot(planes[i + 3].normal,
-				arbbox->verts[i + 3]);
-	}
 }
 
 void	create_disk(t_disk *disk, char *line)
