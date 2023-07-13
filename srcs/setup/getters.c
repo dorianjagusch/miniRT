@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 13:35:40 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:39:15 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_skip_num(char **line, int mode)
 	int	flag;
 
 	flag = 0;
-	
 	if(**line == '-' || **line == '+')
 		*line += 1;
 	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
@@ -53,8 +52,8 @@ t_vec4	get_colour(char **line)
 			ft_error(range_err);
 		if (i == 3)
 			break;
-        while (**line != ',' || **line == '\n' || **line == '\0')
-            (*line)++;
+		while (**line != ',' || **line == '\n' || **line == '\0')
+			(*line)++;
 		if ((**line != ',') && i < 3)
 			ft_error(num_err);
 		i++;
@@ -93,7 +92,7 @@ t_vec3	get_vec3(char **line)
 	vec.x = ft_atof(*line);
 	ft_skip_num(line, REAL);
 	ft_skip_ws(line);
-	if (**line == ',') 
+	if (**line == ',')
 		*line += 1;
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL);

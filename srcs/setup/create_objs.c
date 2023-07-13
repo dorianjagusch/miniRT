@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:13:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:35:37 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	cyl_disk(t_cylinder *cylinder, int side)
 	disk->disk.colour = cylinder->colour;
 	if (side == 't')
 	{
-		cylinder->top = disk;
 		disk->disk.normal = cylinder->normal;
+		cylinder->top = disk;
 	}
 	else
 	{
-		disk->disk.normal = vec3_neg(cylinder->normal);
+		disk->disk.normal = cylinder->normal;
 		cylinder->bottom = disk;
 	}
 }

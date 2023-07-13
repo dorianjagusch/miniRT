@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:05:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:58:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_cylinder
 	t_object		*bottom;
 	float			radius;
 	float			radius2;
+	int				disk_hit;
 	t_vec3			normal;
 	float			height;
 	t_vec4			colour;

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 11:31:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:12:28 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	print_cylinder(t_object *obj)
 		cylinder->normal.x, cylinder->normal.y, cylinder->normal.z);
 	printf("Radius:\n%f\n", cylinder->radius);
 	printf("Height:\n%f\n", cylinder->height);
+	print_disk(obj->cylinder.bottom);
+	print_disk(obj->cylinder.top);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		cylinder->colour.x, cylinder->colour.y, cylinder->colour.z);
 }

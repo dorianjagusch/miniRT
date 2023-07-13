@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:20:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:22:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,15 @@ t_material_e	get_hitmaterial(const t_object *obj)
 
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 {
-	int triangle_id;
-	
-	assert(!vec3_isnan(ray->origin));
-	assert(!vec3_isnan(ray->direction));
-	assert(!isnan(hit->distance));
-	assert(!isinf(hit->distance));
+	int	triangle_id;
 
 	hit->position = vec3_add(ray->origin,
 			vec3_multf(ray->direction, hit->distance));
-	assert(!vec3_isinf(ray->origin));
-	assert(!vec3_isinf(ray->direction));
-	assert(!vec3_isnan(hit->position));
-	assert(!vec3_isinf(hit->position));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
-	assert(!vec3_isnan(hit->position));
-	assert(!vec3_isnan(hit->normal));
+	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->position = vec3_add(hit->position,
-	vec3_multf(hit->normal, EPSILON));
+	vec3_multf(hit->normal, 10e-2));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
@@ -116,7 +106,6 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 		hit->colour = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.colour;
 		return ;
 	}
-	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->material = get_hitmaterial(&(scene->objs[hit->obj_id]));
 	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
 	hit->type = scene->objs->type;
@@ -141,5 +130,3 @@ void	get_closest(const t_scene *scene, const t_ray *ray, t_hitresult *hit)
 		i++;
 	}
 }
-
-

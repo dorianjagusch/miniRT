@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:04:31 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:58:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,16 @@ void	check_visibility(t_scene *scene, int id)
 	if (scene->objs[id].type == plane_obj)
 	{
 		scene->objs[id].plane.isvisible = is_light_visible(&scene->cam.pos,
-			&scene->light.pos, &scene->objs[id].plane.pos,
-			&scene->objs[id].plane.normal);
+				&scene->light.pos, &scene->objs[id].plane.pos,
+				&scene->objs[id].plane.normal);
+		scene->objs[id].plane.d *= powf(-1, scene->objs[id].plane.isvisible);
 	}
 	if (scene->objs[id].type == disk_obj)
 	{
 		scene->objs[id].disk.isvisible = is_light_visible(&scene->cam.pos,
-			&scene->light.pos, &scene->objs[id].disk.pos,
-			&scene->objs[id].disk.normal);
+				&scene->light.pos, &scene->objs[id].disk.pos,
+				&scene->objs[id].disk.normal);
+		scene->objs[id].disk.d *= powf(-1, scene->objs[id].disk.isvisible);
 	}
 }
 

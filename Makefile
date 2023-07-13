@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/07/13 12:10:05 by djagusch         ###   ########.fr        #
-=======
-#    Updated: 2023/07/12 17:44:49 by smorphet         ###   ########.fr        #
->>>>>>> 72eda9ce91bfcd76fc9abbc5ad1e738cf123e893
+#    Updated: 2023/07/13 12:58:16 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,21 +117,14 @@ minilib: $(MINILIBX)
 
 libft: $(LIBFT)
 
-<<<<<<< HEAD
-=======
 print:
 	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3
 
->>>>>>> 72eda9ce91bfcd76fc9abbc5ad1e738cf123e893
 # Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
 # need to figure out why it precompiles them
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-<<<<<<< HEAD
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -g -o $(NAME) # -O3
-=======
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME) -O3
->>>>>>> 72eda9ce91bfcd76fc9abbc5ad1e738cf123e893
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
