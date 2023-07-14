@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 16:40:22 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:48:12 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	assert(!vec3_isnan(hit->position));
 	assert(!vec3_isnan(hit->normal));
 	hit->position = vec3_add(hit->position,
-			vec3_multf(hit->normal, 1.0E-04));
+			vec3_multf(hit->normal, 1.0E-08));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;

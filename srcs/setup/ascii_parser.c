@@ -6,14 +6,14 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/12 16:52:51 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:32:40 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-# include "objects.h"
-# include "libft.h"
-# include "scene.h"
+#include	"minirt.h"
+#include	"objects.h"
+#include	"libft.h"
+#include	"scene.h"
 
 t_vec3	get_vec3_mesh(char *line)
 {
@@ -56,27 +56,26 @@ void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 		}
 		i++;
 	}
-	//ft_free_anyarray((void *) &split, 9);
+	ft_free_anyarray((void *) &split, 6);
 }
 
 static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
 {
 	char	*line;
 
-	mesh->count_v = 0;
-	mesh->count_vn = 0;
-	mesh->count_vt = 0;
-	mesh->count_f = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ')
 			mesh->count_v++;
-		else if (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ')
+		else if (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) \
+		&& line[2] == ' ')
 			mesh->count_vn++;
-		else if (!ft_empty_str(line) && !ft_strncmp("vt", line, 1) && line[2] == ' ')
+		else if (!ft_empty_str(line) && !ft_strncmp("vt", line, 1) \
+		&& line[2] == ' ')
 			mesh->count_vt++;
-		else if (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ')
+		else if (!ft_empty_str(line) && !ft_strncmp("f", line, 1) \
+		&& line[1] == ' ')
 			mesh->count_f++;
 		if (line)
 			free(line);
@@ -107,14 +106,14 @@ t_vec2	get_textures(char *line)
 
 static void	init_arrays(t_mesh *mesh, int fd)
 {
-	char *line;
-	int count;
+	char	*line;
+	int		count;
 
 	line = get_next_line(fd);
 	count = 0;
 	while (line)
 	{
-		while (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ' && line)
+		while (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ')
 		{
 			mesh->vertex[count] = get_vec3_mesh(line + 1);
 			count++;
@@ -158,24 +157,25 @@ static void	init_arrays(t_mesh *mesh, int fd)
 	if (close(fd) < 0)
 		ft_error(errno);
 }
+
 void free_arrays(t_mesh *mesh)
 {
-    int count;
+	int	count;
 
-    if (mesh->normals)
-        free(mesh->normals);
-    if (mesh->vertex)
-        free(mesh->vertex);
-    if (mesh->textures)
-        free(mesh->textures);
-    if (mesh->faces)
-    {
+	if (mesh->normals)
+		free(mesh->normals);
+	if (mesh->vertex)
+		free(mesh->vertex);
+	if (mesh->textures)
+		free(mesh->textures);
+	if (mesh->faces)
+	{
 		count = 0;
 		while (count < mesh->count_f)
 		{
 			free(mesh->faces[count]);
 			count++;
-    	}
+		}
 	}
 }
 
@@ -189,15 +189,21 @@ void	create_mesh(t_mesh *mesh)
 	while (index < mesh->n_triangles)
 	{
 		mesh->triangle_data[index].type = triangle_obj;
-		mesh->triangle_data[index].triangle.normal = mesh->normals[(mesh->faces[index]->n) - 1];
-		mesh->triangle_data[index].triangle.tri_point[0] = mesh->vertex[(mesh->faces[index][0].v) - 1];
-		mesh->triangle_data[index].triangle.tri_point[1] = mesh->vertex[(mesh->faces[index][1].v) - 1];
-		mesh->triangle_data[index].triangle.tri_point[2] = mesh->vertex[(mesh->faces[index][2].v) - 1];
+		mesh->triangle_data[index].triangle.normal = \
+		mesh->normals[(mesh->faces[index]->n) - 1];
+		mesh->triangle_data[index].triangle.tri_point[0] = \
+		mesh->vertex[(mesh->faces[index][0].v) - 1];
+		mesh->triangle_data[index].triangle.tri_point[1] = \
+		mesh->vertex[(mesh->faces[index][1].v) - 1];
+		mesh->triangle_data[index].triangle.tri_point[2] = \
+		mesh->vertex[(mesh->faces[index][2].v) - 1];
 		mesh->triangle_data[index].triangle.colour = (t_vec4) {1, 1, 0, 1};
-		mesh->triangle_data[index].triangle.edges[0] = vec3_sub(mesh->triangle_data[index]\
-		.triangle.tri_point[1], mesh->triangle_data[index].triangle.tri_point[0]);
-		mesh->triangle_data[index].triangle.edges[1] = vec3_sub(mesh->triangle_data[index]\
-		.triangle.tri_point[2], mesh->triangle_data[index].triangle.tri_point[0]);
+		mesh->triangle_data[index].triangle.edges[0] = 
+		vec3_sub(mesh->triangle_data[index].triangle.tri_point[1],
+			mesh->triangle_data[index].triangle.tri_point[0]);
+		mesh->triangle_data[index].triangle.edges[1] = 
+		vec3_sub(mesh->triangle_data[index].triangle.tri_point[2],\
+			mesh->triangle_data[index].triangle.tri_point[0]);
 		index++;
 	}
 }

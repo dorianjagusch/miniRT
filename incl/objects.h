@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 14:11:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:36:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,6 @@ typedef struct s_triangle
 	t_material_e	material;
 }					t_triangle;
 
-typedef struct s_triangle_data
-{
-	float	normal_vector[3];	//12 bytes
-	float	vertex_a[3];			//12 bytes
-	float	vertex_b[3];			//12 bytes
-	float	vertex_c[3];			//12 bytes
-	unsigned short  att;	//2 bytes (disposable data)
-}		t_triangle_data;
-
 typedef struct s_mesh
 {
 	t_obj_e			type;
@@ -108,9 +99,9 @@ typedef struct s_mesh
 	t_vec2			*textures;
 	t_vec3_face		**faces;
 	t_vec4			colour;
-	int				obj_id;//
-	t_material_e	material;//
-	t_object		*triangle_data; //
+	int				obj_id;
+	t_material_e	material;
+	t_object		*triangle_data;
 }					t_mesh;
 
 typedef struct s_box
@@ -150,5 +141,6 @@ typedef union u_object
 	t_arbbox	arbbox;
 	t_mesh		mesh;
 }				t_object;
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:00:34 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:49:59 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ float	dist_sphere(const t_ray *ray, t_object *obj)
 	inv_divisor = 1 / (2.0 * parameter.x);
 	res.x = (-parameter.y - sqrt(discriminant)) * inv_divisor;
 	res.y = (-parameter.y + sqrt(discriminant)) * inv_divisor;
-	if (res.x > 0)
+	if (res.x > EPSILON)
 		return (res.x);
-	if (res.y > 0)
+	if (res.y > EPSILON)
 		return (res.y);
 	return (FLT_MAX);
 }

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 14:38:56 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/14 07:52:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	camera_move(int key, t_img *img)
 	render(img);
 }
 
-
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
 	t_ray	primary_ray;
@@ -50,9 +49,12 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(cam->fov * DEG2RAD);
 	primary_ray.origin = cam->pos;
 	primary_ray.origin.z = primary_ray.origin.z * tan(cam->fov * DEG2RAD);
+	DEBUG_ONLY(print_vec3(primary_ray.origin, "ray origin in primary"));
 	primary_ray.direction = (t_vec3){cam->dir.x + norm_coord_x,
 			cam->dir.y + norm_coord_y,
 			cam->dir.z};
+	DEBUG_ONLY(print_vec3(primary_ray.direction, "ray direction in primary"));
 	vec3_normalize(&primary_ray.direction);
+	DEBUG_ONLY(print_vec3(primary_ray.direction, "normalised ray direction in primary"));
 	return (primary_ray);
 }
