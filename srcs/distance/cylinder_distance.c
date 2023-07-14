@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/08 15:22:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:21:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 #include "minirt.h"
 #include <float.h>
 
-// The cylinder is a little tricky. For now I leave this annotated because I am
-// not sure, I'll understand this on Monday still.
+float	which_pos_min(float a, float b, float c)
+{
+	float	min;
+
+	min = a;
+	if (b > EPSILON && b < min)
+		min = b;
+	if (c > EPSILON && c < min)
+		min = c;
+	if (min > EPSILON)
+		return (min);
+	return (FLT_MAX);
+}
 
 float	dist_caps(const t_ray *ray, const t_object *obj)
 {
@@ -27,32 +38,24 @@ float	dist_caps(const t_ray *ray, const t_object *obj)
 	return (dist);
 }
 
-/* The distance to the caps of the hitpoint is calculated here. Both are checked
-against the hitpoint positions.
-*/
 static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
 			float *dist)
 {
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
+	t_vec3	bottom_cap;
 	float	cap_dist;
 
 	top_cap = vec3_add(cylinder->pos, vec3_multf(cylinder->normal,
-				cylinder->height));
+				cylinder->height / 2));
+	bottom_cap = vec3_sub(cylinder->pos, vec3_multf(cylinder->normal,
+				cylinder->height / 2));
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
-	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, cylinder->pos)) <= 0)
-	{
+	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, bottom_cap)) <= 0)
 		*dist = FLT_MAX;
-	}
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, top_cap)) >= 0)
-	{
 		*dist = FLT_MAX;
-	}
 }
-
-/* ORTHO calculates the component of the ray direction vector that is orthogonal to the base position
- (for now that is the position that the cylinder rest on if it was standing)
-Axis is similarly the component of the ray origin along the axis.*/
 
 static void	calc_temps(const t_ray *ray, const t_cylinder *cylinder,
 		t_vec3 *temp)
@@ -87,9 +90,8 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 	if (res[1] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[1]));
 	dist_cap = dist_caps(ray, obj);
-	if (res[0] < res[1] && res[0] > EPSILON)
-		return (res[0]);
-	else if (res[1] != FLT_MAX && res[1] > EPSILON)
-		return (res[1]);
-	return (FLT_MAX);
+	res[0] = which_pos_min(res[0], res[1], dist_cap);
+	if (res[0] == dist_cap)
+		obj->cylinder.disk_hit = 1;
+	return (res[0]);
 }

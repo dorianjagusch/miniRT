@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disk_distance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 12:04:15 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 18:00:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:41:35 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 float	dist_disk(const t_ray *ray, t_object *obj)
 {
 	float	p_dist;
-	t_vec3	intersection_point;
-	float	distance_to_center;
+	t_vec3	hit_point;
+	float	co;
 
-	distance_to_center = 0;
+	co = 0;
 	p_dist = dist_plane(ray, obj);
-	if (p_dist == FLT_MAX)
-		return (p_dist);
-	intersection_point = vec3_add(ray->origin,
+	if (p_dist == FLT_MAX || p_dist < EPSILON)
+		return (FLT_MAX);
+	hit_point = vec3_add(ray->origin,
 			vec3_multf(ray->direction, p_dist));
-	distance_to_center = vec3_dist(intersection_point, obj->disk.pos);
-	if (distance_to_center <= obj->disk.radius)
+	co = vec3_dist(hit_point, obj->disk.pos);
+	if (co > EPSILON && co <= obj->disk.radius)
 		return (p_dist);
 	return (FLT_MAX);
 }

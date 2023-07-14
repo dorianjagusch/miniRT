@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 15:36:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/14 07:58:59 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef enum e_obj
 	disk_obj,
 	triangle_obj,
 	box_obj,
-	arbbox_obj,
 	mesh_obj,
 }	t_obj_e;
 
@@ -47,6 +46,7 @@ typedef struct s_plane
 	t_vec3			pos;
 	t_vec3			normal;
 	float			d;
+	int				isvisible;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_plane;
@@ -59,6 +59,7 @@ typedef struct s_cylinder
 	t_object		*bottom;
 	float			radius;
 	float			radius2;
+	int				disk_hit;
 	t_vec3			normal;
 	float			height;
 	t_vec4			colour;
@@ -72,6 +73,7 @@ typedef struct s_disk
 	t_vec3			normal;
 	float			d;
 	float			radius;
+	int				isvisible;
 	t_vec4			colour;
 	t_material_e	material;
 }					t_disk;
@@ -113,22 +115,6 @@ typedef struct s_box
 	t_material_e	material;
 }					t_box;
 
-typedef struct s_plane2
-{
-	t_vec3	normal;
-	float	distance;
-}			t_plane2;
-
-typedef struct s_arbbox
-{
-	t_obj_e			type;
-	t_vec3			verts[8];
-	t_plane2		planes[6];
-	t_vec3			normal;
-	t_vec4			colour;
-	t_material_e	material;
-}					t_arbbox;
-
 typedef union u_object
 {
 	t_obj_e		type;
@@ -138,7 +124,6 @@ typedef union u_object
 	t_disk		disk;
 	t_triangle	triangle;
 	t_box		box;
-	t_arbbox	arbbox;
 	t_mesh		mesh;
 }				t_object;
 

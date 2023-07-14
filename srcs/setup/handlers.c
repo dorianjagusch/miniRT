@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 14:12:36 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:13:08 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	key_handler(int key, t_img *img)
 		ft_toggle_help(img);
 	else if (key == MAIN_PAD_UP || key == MAIN_PAD_DOWN
 		|| key == MAIN_PAD_LEFT || key == MAIN_PAD_RIGHT
-		|| key == MAIN_PAD_S || key == MAIN_PAD_W)
+		|| key == MAIN_PAD_S || key == MAIN_PAD_W
+		|| key == MAIN_PAD_A || key == MAIN_PAD_D)
 		camera_move(key, img);
 	return (0);
 }

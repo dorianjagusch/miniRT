@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/13 13:50:08 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/14 07:57:47 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g -O3
+	@$(CC) -I$I -c $< -o $@ -g # -O3
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:
