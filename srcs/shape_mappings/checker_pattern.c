@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 19:38:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 09:01:43 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_checker_board	set_board(int width, int height, t_vec4 light, t_vec4 dark)
 	board.dark = dark;
 	return (board);
 }
-
 
 t_vec4	get_checker(t_checker_board *checkers, t_vec2 uv)
 {

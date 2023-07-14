@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 18:44:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:18:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec4	specular_colour(const t_ray *ray, const t_scene *scene,
 	t_vec4	colour;
 	float	specular;
 
-	half_vec = vec3_add(light_info->direction, vec3_neg(ray->direction));
+	half_vec = vec3_add(light_info->direction, vec3_neg(scene->cam.dir));
 	vec3_normalize(&half_vec);
 	spec_angle = fmaxf(vec3_dot(hit->normal, half_vec), 0.0f);
 	specular = powf(spec_angle, 100);
@@ -69,7 +69,7 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 	ft_bzero(col, 5 * sizeof(t_vec4));
 	col[ambient] = vec4_multf(scene->amb.colour, scene->amb.ratio);
 	col[ambient] = vec4_compmult(hit->colour, col[ambient]);
-	if (light_info->distance > EPSILON)
+	if (light_info->distance >= EPSILON)
 	{
 		col[diffuse] = vec4_multf(scene->light.colour, light_info->intensity);
 		col[diffuse] = vec4_compmult(hit->colour,

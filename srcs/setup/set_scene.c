@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 17:38:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 09:51:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_float(line, ANGLE);
 		scene->cam.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 		vec3_normalize(&scene->cam.dir);
+		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3){0, 1.0f, -1e-2f});
+			vec3_normalize(&scene->cam.right);
+		scene->cam.up = vec3_cross(scene->cam.right, scene->cam.dir);
+			vec3_normalize(&scene->cam.up);
 		flag[2] = 1;
 		scene->cam.valid = 1;
 	}

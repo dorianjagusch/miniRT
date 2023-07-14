@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 14:43:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:13:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		normal = get_cylinder_normal(&(obj->cylinder), hitpoint);
 	else if (obj->type == box_obj)
 		return (obj->box.normal);
-	DEBUG_ONLY(printf("Normalize\n"));
 	vec3_normalize(&normal);
 	return (normal);
 }

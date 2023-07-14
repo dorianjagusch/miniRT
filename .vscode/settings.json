@@ -8,6 +8,7 @@
         "minirt.h": "c",
         "iterator": "c",
         "cstdlib": "c",
-        "bla": "cpp"
+        "bla": "cpp",
+        "ios": "c"
     }
 }
