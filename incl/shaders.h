@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 11:56:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:22:39 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_light_info
 	t_vec3	direction;
 	float	distance;
 	float	intensity;
+	t_vec4	colour;
 }			t_light_info;
 
 typedef float	(*t_dist_function)(const t_ray *, t_object *);
@@ -68,7 +69,7 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
 int				is_light_visible(const t_vec3 *cam_pos, const t_vec3 *light_pos,
 					const t_vec3 *plane_pos, t_vec3 *normal);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
-t_vec4			hit_shader(const t_scene *scene,
+t_vec4			hit_shader(const t_ray *ray, const t_scene *scene,
 					const t_hitresult *hit, const t_light_info *light_info);
 t_ray			create_primary_ray(t_camera *cam, t_vec2 pxl);
 void			set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit);

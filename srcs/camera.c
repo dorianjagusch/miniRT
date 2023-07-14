@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 07:58:04 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:03:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 #endif
 #ifndef DEG2RAD
 # define DEG2RAD 0.008726646259971647737
+#endif
+
+#ifndef X
+ # define X 0
+#endif
+#ifndef Y
+# define Y 1
+#endif
+#ifndef R
+# define R 2
 #endif
 
 //responsible for constructing the camera-to-world matrix,
@@ -44,22 +54,45 @@ void	camera_move(int key, t_img *img)
 	render(img);
 }
 
+// t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
+// {
+// 	t_ray	primary_ray;
+// 	float	norm_coord_x;
+// 	float	norm_coord_y;
+
+// 	norm_coord_x = (1.0f - (2.0f * (pxl.x + 0.5f) / WIDTH)) * cam->aspect_ratio * tan(cam->fov * DEG2RAD);
+// 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * tan(cam->fov * DEG2RAD);
+// 	primary_ray.origin = cam->pos;
+// 	primary_ray.direction = vec3_add(cam->dir,
+// 		vec3_add(vec3_multf(cam->right, norm_coord_x),
+// 			vec3_multf(cam->up, norm_coord_y)));
+// 	vec3_normalize(&primary_ray.direction);
+// 	return (primary_ray);
+// }
+
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
-	t_ray	primary_ray;
 	float	norm_coord_x;
 	float	norm_coord_y;
+	t_ray	primary_ray;
+	float	fisheye[3];
+	float	phi;
 
-	norm_coord_x = ((2.0 * (pxl.x + 0.5) / WIDTH) - 1.0) * cam->aspect_ratio * tan(cam->fov * DEG2RAD);
-	norm_coord_y = (1.0 - (2.0 * (pxl.y + 0.5) / HEIGHT)) * tan(cam->fov * DEG2RAD);
+	norm_coord_x = (1.0f - (2.0f * (pxl.x + 0.5f) / WIDTH)) * \
+		cam->aspect_ratio * tan(cam->fov * DEG2RAD);
+	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * \
+		tan(cam->fov * DEG2RAD);
+
+	fisheye[R]= sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
+	phi = atan2(norm_coord_y, norm_coord_x);
+
+	fisheye[R]= fisheye[R]* 0.5f;
+	fisheye[X] = fisheye[R]* cos(phi);
+	fisheye[Y] = fisheye[R]* sin(phi);
 	primary_ray.origin = cam->pos;
-	primary_ray.origin.z = primary_ray.origin.z * tan(cam->fov * DEG2RAD);
-	DEBUG_ONLY(print_vec3(primary_ray.origin, "ray origin in primary"));
-	primary_ray.direction = (t_vec3){cam->dir.x + norm_coord_x,
-			cam->dir.y + norm_coord_y,
-			cam->dir.z};
-	DEBUG_ONLY(print_vec3(primary_ray.direction, "ray direction in primary"));
+	primary_ray.direction = vec3_add(cam->dir,
+	vec3_add(vec3_multf(cam->right, fisheye[X]),
+	vec3_multf(cam->up, fisheye[Y])));
 	vec3_normalize(&primary_ray.direction);
-	DEBUG_ONLY(print_vec3(primary_ray.direction, "normalised ray direction in primary"));
 	return (primary_ray);
 }

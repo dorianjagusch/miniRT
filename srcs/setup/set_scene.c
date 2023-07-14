@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 14:58:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 09:51:32 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_float(line, ANGLE);
 		scene->cam.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 		vec3_normalize(&scene->cam.dir);
+		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3){0, 1.0f, -1e-2f});
+			vec3_normalize(&scene->cam.right);
+		scene->cam.up = vec3_cross(scene->cam.right, scene->cam.dir);
+			vec3_normalize(&scene->cam.up);
 		flag[2] = 1;
 		scene->cam.valid = 1;
 	}
@@ -49,23 +53,23 @@ static void	set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-void	check_visibility(t_scene *scene, int id)
-{
-	if (scene->objs[id].type == plane_obj)
-	{
-		scene->objs[id].plane.isvisible = is_light_visible(&scene->cam.pos,
-				&scene->light.pos, &scene->objs[id].plane.pos,
-				&scene->objs[id].plane.normal);
-		scene->objs[id].plane.d *= powf(-1, scene->objs[id].plane.isvisible);
-	}
-	if (scene->objs[id].type == disk_obj)
-	{
-		scene->objs[id].disk.isvisible = is_light_visible(&scene->cam.pos,
-				&scene->light.pos, &scene->objs[id].disk.pos,
-				&scene->objs[id].disk.normal);
-		scene->objs[id].disk.d *= powf(-1, scene->objs[id].disk.isvisible);
-	}
-}
+// void	check_visibility(t_scene *scene, int id)
+// {
+// 	if (scene->objs[id].type == plane_obj)
+// 	{
+// 		scene->objs[id].plane.isvisible = is_light_visible(&scene->cam.pos,
+// 				&scene->light.pos, &scene->objs[id].plane.pos,
+// 				&scene->objs[id].plane.normal);
+// 		scene->objs[id].plane.d *= powf(-1, scene->objs[id].plane.isvisible);
+// 	}
+// 	if (scene->objs[id].type == disk_obj)
+// 	{
+// 		scene->objs[id].disk.isvisible = is_light_visible(&scene->cam.pos,
+// 				&scene->light.pos, &scene->objs[id].disk.pos,
+// 				&scene->objs[id].disk.normal);
+// 		scene->objs[id].disk.d *= powf(-1, scene->objs[id].disk.isvisible);
+// 	}
+// }
 
 
 static void	set_object(t_scene *scene, char *line, int id)
@@ -88,7 +92,7 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
-	check_visibility(scene, id);
+	//check_visibility(scene, id);
 }
 
 static void	process_line(t_scene *scene, char *line)
