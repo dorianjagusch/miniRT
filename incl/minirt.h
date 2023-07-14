@@ -44,8 +44,8 @@
 #  define HEIGHT 780
 #  define DEBUG_ONLY(...) ((void)0)
 # else
-#  define WIDTH 200
-#  define HEIGHT 200
+#  define WIDTH 500
+#  define HEIGHT 500
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 07:59:19 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:00:15 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ void	cyl_disk(t_cylinder *cylinder, int side)
 	}
 }
 
+
 void	create_cylinder(t_cylinder *cylinder, char *line)
 {
 	cylinder->type = cylinder_obj;
 	line += 3;
 	cylinder->pos = get_vec3(&line);
 	cylinder->normal = get_vec3(&line);
+	cylinder->disk_hit = 0;
 	vec3_normalize(&cylinder->normal);
 	ft_skip_ws(&line);
 	cylinder->radius = get_float(&line, REAL) / 2;

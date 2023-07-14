@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 10:13:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 12:05:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 #include "vector_math.h"
 #include "minirt.h" //
 
-t_vec3	get_cylinder_normal(const t_cylinder *cylinder, const t_vec3 hitpoint)
+
+t_vec3	get_cylinder_normal( t_cylinder *cylinder, const t_vec3 hitpoint)
 {
 	t_vec3	co;
 	t_vec3	normal;
 
 	if (cylinder->disk_hit)
+	{
 		normal = cylinder->normal;
+		cylinder->disk_hit = 0;
+	}
 	else
 	{
 		co = vec3_sub(hitpoint, cylinder->pos);

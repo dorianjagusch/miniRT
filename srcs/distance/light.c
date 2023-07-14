@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 18:43:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:54:09 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	t_light_info	light_info;
 
 	i = 0;
+	//assert(!vec3_isnan(hit->position));
+	
+	DEBUG_ONLY(print_vec3(hit->position, "hit position"));
 	shadowray.origin = hit->position;
+	DEBUG_ONLY(print_vec3(shadowray.origin, "shadow ray"));
 	light_info.direction = vec3_sub(scene->light.pos, hit->position);
+	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	light_info.distance = vec3_mag(light_info.direction);
+	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	vec3_normalize(&light_info.direction);
+	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	shadowray.direction = light_info.direction;
 	while (i < scene->n_objs)
 	{
