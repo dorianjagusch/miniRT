@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 10:12:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:18:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 		check_height(ray, &(obj->cylinder), &(res[1]));
 	dist_cap = dist_caps(ray, obj);
 	res[0] = which_pos_min(res[0], res[1], dist_cap);
-	if (res[0] == dist_cap)
+	if (res[0] == dist_cap && res[0] == FLT_MAX)
 		obj->cylinder.disk_hit = 1;
 	return (res[0]);
 }
