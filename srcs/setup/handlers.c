@@ -6,16 +6,24 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:13:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:43:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	mouse_(int x, int y, t_img *img)
-{
-	return (0);
-}
+// int	mouse_position(int x, int y, t_img *img)
+// {
+// 	static int	x_end;
+// 	static int	y_end;
+// 	int			delta_x;
+// 	int			delta_y;
+
+// 	delta_x = x_end - x;
+// 	delta_y = y_end - y;
+// 	calculate_rotation_angles(img, delta_x, delta_y);
+// 	return (0);
+// }
 
 int	ft_close(t_img *img)
 {
@@ -63,5 +71,7 @@ int	mouse_handler(int mouse_action, int x, int y, t_img *img)
 {
 	if (mouse_action == MOUSE_SCROLL_DOWN || mouse_action == MOUSE_SCROLL_UP)
 		ft_focal(mouse_action, x, y, img);
+	// if (mouse_action == MOUSE_LEFT)
+	// 	mlx_hook(img->win.win, ON_MOUSEMOVE, (1L << 6), mouse_position, img);
 	return (0);
 }
