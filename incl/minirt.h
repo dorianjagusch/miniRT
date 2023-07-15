@@ -35,6 +35,7 @@
 # include <float.h>
 # include "materials.h"
 # include "objects.h"
+# include "mat4_math.h"
 # include "print_helpers.h"
 
 // DEFAULTS
@@ -118,5 +119,6 @@ int		get_g(int trgb);
 int		get_b(int trgb);
 
 void	camera_move(int key, t_img *img);
+void	calculate_rotation_angles(t_img *img, int delta_x, int delta_y);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/15 13:38:34 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/15 14:43:54 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,53 +41,62 @@ S = srcs
 O = objs
 I = incl
 
-FILES = get_colour \
+FILES = print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene \
+	camera \
 	colour_vec \
-	render \
-	cylinder_distance \
-	plane_distance \
-	disk_distance \
-	triangle_distance \
-	light \
-	sphere_distance \
+	get_colour \
 	box_distance \
-	min_distance \
+	cylinder_distance \
+	disk_distance \
 	get_normal \
+	light \
+	min_distance \
+	plane_distance \
+	sphere_distance \
+	triangle_distance \
 	main \
-	vec_mult \
-	vec_sub \
-	vec_normalize \
-	vec_rotate \
-	vec_scale \
-	vec_propadd \
-	vec_add \
-	vec_dotprod \
-	vec_clamp \
-	vec_crossprod \
-	vec_reflect \
-	vec_isnan \
-	vec_mag \
-	vec_dist \
-	vec_neg \
-	vec_inv \
-	hit_shader \
-	input \
+	render \
+	ascii_parser \
 	clean_up \
-	set_scene \
+	create_objs \
+	error_handling \
 	ft_help \
-	set_image \
+	ft_split3 \
 	getters \
 	handlers \
-	error_handling \
-	camera \
-	print_scene \
-	print_objs \
-	print_misc \
-	print_misc2 \
-	create_objs \
-	binary_parser \
-	ascii_parser \
-	ft_split3
+	input \
+	set_image \
+	set_scene \
+	hit_shader \
+	vec_add \
+	vec_clamp \
+	vec_crossprod \
+	vec_dist \
+	vec_dotprod \
+	vec_inv \
+	vec_isnan \
+	vec_mag \
+	vec_mult \
+	vec_neg \
+	vec_normalize \
+	vec_propadd \
+	vec_reflect \
+	vec_rotate \
+	vec_scale \
+	vec_sub 
+#	checker_pattern 
+#	cylinder_map 
+#	planar_map 
+#	sphere_map 
+# #	texture_colour
+# 	mat4_add \
+# 	mat4_identity \
+# 	mat4_mult \
+# 	mat4_rotate \
+# 	mat4_sub \
 
 HEADER = vector_math \
 	minirt \
@@ -98,6 +107,7 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
+	mat4_math \
 	materials \
 	mlx \
 	print_helpers
