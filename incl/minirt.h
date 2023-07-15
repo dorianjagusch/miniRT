@@ -79,6 +79,7 @@ typedef struct s_img
 	int			line_length;
 	int			endian;
 	int			move;
+	float		aspect_ratio;
 	t_scene		scene;
 	int			is_help;
 	int			error;
