@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 10:18:51 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:39:16 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,3 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 	return (col[final]);
 }
 
-
-// t_vec4	hit_shader(const t_scene *scene, const t_payload *payload)
-// {
-// 	float	intensity;
-// 	t_vec4	light_col;
-// 	t_vec4	colour;
-// 	t_vec4	col;
-
-// 	if (payload->light_dist > 0)
-// 	{
-// 		assert(!vec3_isnan(payload->hitnorm));
-
-// 		intensity = fmax(vec3_dot(payload->light_dir, payload->hitnorm), 0);
-
-// 		col = vec4_multf(scene->light.colour, intensity * scene->light.ratio);
-
-// 		col = vec4_compmult(scene->objs[payload->obj_id].colour, col);
-// 		// light_col = vec4_multf(scene->light.colour, intensity);
-//         // col = vec4_compmult((scene->objs[payload->obj_id]).colour, light_col);
-//         //printf("Object col:\nr:%f g:%f, b%f\n", scene->objs[payload->obj_id].col.x, scene->objs[payload->obj_id].col.y, scene->objs[payload->obj_id].col.z);
-// 	}
-// 	return (col);
-// }

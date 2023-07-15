@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dotprod.c                                      :+:      :+:    :+:   */
+/*   mat4_math.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 13:02:10 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 13:39:53 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/27 12:07:29 by djagusch          #+#    #+#             */
+/*   Updated: 2023/06/27 12:13:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector_math.h"
+#ifndef MAT4_MATH_H
+# define MAT4_MATH_H
 
-float	vec3_dot(const t_vec3 v1, const t_vec3 v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
-}
+typedef struct s_mat4 {
+	float	data[4][4];
+}			t_mat4;
 
-float	vec4_dot(const t_vec4 v1, const t_vec4 v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
-}
+
+t_mat4	mat4_mult(t_mat4 lmatrix, t_mat4 rmatrix);
+t_mat4	mat4_add(t_mat4 matrix1, t_mat4 matrix2);
+t_mat4	mat4_sub(t_mat4 matrix1, t_mat4 matrix2);
+t_mat4	mat4_det(t_mat4 matrix);
+
+#endif

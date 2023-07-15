@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 12:49:04 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:41:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	calculate_rotation_angles(t_img *img, int delta[X], int delta_y)
 	norm_delta[Y] = 1.0 - (2.0 * delta[Y]) / HEIGHT;
 	angle[X] = norm_delta[X] * fov_rad[X];
 	angle[Y] = norm_delta[Y] * fov_rad[Y];
-	t_mat4 rotation[X] = mat4_rotate[X](angle[Y]);
+	t_mat4 rotation[X] = mat4_rotate(angle[Y]);
 	img->scene.cam.dir = mat4_mul_vec3(rotation[X], img->scene.cam.dir);
 	img->scene.cam.up = mat4_mul_vec3(rotation[X], img->scene.cam.up);
-	t_mat4 rotation[Y] = mat4_rotate[Y](angle[X]);
+	t_mat4 rotation[Y] = mat4_rotate(angle[X]);
 	img->scene.cam.dir = mat4_mul_vec3(rotation[Y], img->scene.cam.dir);
 	img->scene.cam.up = mat4_mul_vec3(rotation[Y], img->scene.cam.up);
 
