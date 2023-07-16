@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 09:51:32 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:52:50 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_triangle(&scene->objs[id].triangle, line);
 	else if (!ft_strncmp("bx", line, 2))
 		create_box(&scene->objs[id].box, line);
+	else if (!ft_strncmp("co", line, 2))
+		create_cone(&scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
 	//check_visibility(scene, id);

@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/14 07:57:47 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/15 12:19:56 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,9 @@ FILES = get_colour \
 	create_objs \
 	binary_parser \
 	ascii_parser \
-	ft_split3
+	ft_split3 \
+	create_bonus_objs \
+	dist_cone
 
 HEADER = vector_math \
 	minirt \

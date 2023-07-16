@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 07:58:59 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:10:57 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum e_obj
 	triangle_obj,
 	box_obj,
 	mesh_obj,
+	cone_obj,
 }	t_obj_e;
 
 typedef struct s_sphere
@@ -115,6 +116,21 @@ typedef struct s_box
 	t_material_e	material;
 }					t_box;
 
+typedef struct s_cone
+{
+	t_obj_e			type;
+	t_vec3			pos;
+	t_vec3			center;
+	t_object		*bottom;
+	float			radius;
+	int				disk_hit;
+	t_vec3			normal;
+	float			height;
+	t_vec4			colour;
+	t_material_e	material;
+}					t_cone;
+
+
 typedef union u_object
 {
 	t_obj_e		type;
@@ -125,6 +141,7 @@ typedef union u_object
 	t_triangle	triangle;
 	t_box		box;
 	t_mesh		mesh;
+	t_cone		cone;
 }				t_object;
 
 

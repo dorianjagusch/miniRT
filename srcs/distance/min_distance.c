@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 10:53:31 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/16 12:33:20 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_box,
-		dist_mesh
+		dist_mesh,
+		dist_cone
 	};
 
 	return (func[obj->type](ray, obj));
@@ -65,6 +66,8 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
+	else if (obj->type == cone_obj)
+		return (obj->cone.colour);
 	else //(obj->type == mesh_obj)
 		return (obj->mesh.colour);
 }
@@ -83,6 +86,8 @@ t_material_e	get_hitmaterial(const t_object *obj)
 		return (obj->triangle.material);
 	else if (obj->type == box_obj)
 		return (obj->box.material);
+	else if (obj->type == cone_obj)
+		return (obj->cone.material);
 	else // (obj->type == mesh_obj)
 		return (obj->mesh.material);
 }

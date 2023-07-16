@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 11:31:43 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:21:54 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	print_objs(t_object *obj)
 		&print_disk,
 		&print_triangle,
 		&print_box,
-		&print_mesh
+		&print_mesh,
+		&print_cone
 	};
 	printf("type: %d\n", obj->type);
 	printfunc[obj->type]((void*)obj);

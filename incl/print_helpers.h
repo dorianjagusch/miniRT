@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_helpers.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 11:31:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:23:34 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	print_col(t_vec4 vec, char *label);
 void	print_material(const t_material material);
 void	print_light_info(t_light_info light_info);
 void	print_mesh(t_object *obj);
+void	print_cone(t_object *obj);
 
 #endif

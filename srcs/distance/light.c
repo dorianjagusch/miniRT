@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 11:54:09 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/16 15:47:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	t_light_info	light_info;
 
 	i = 0;
-	//assert(!vec3_isnan(hit->position));
 	
 	DEBUG_ONLY(print_vec3(hit->position, "hit position"));
 	shadowray.origin = hit->position;

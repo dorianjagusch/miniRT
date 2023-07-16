@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_objs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 17:32:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:23:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,6 @@ void	print_box(t_object *obj)
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		box->colour.x, box->colour.y, box->colour.z);
 }
-
-// typedef struct s_mesh
-// {
-// 	t_obj_e			type;
-// 	float			n_triangles;
-// 	t_vec4			colour;
-// 	int				obj_id;
-// 	t_material_e	material;
-// 	t_object		*triangle_data; //need to malloc this
-// }					t_mesh;
-
 void	print_mesh(t_object *obj)
 {
 	t_mesh	*mesh;
@@ -148,6 +137,21 @@ void	print_mesh(t_object *obj)
 			mesh->triangle_data[count].triangle.tri_point[2].x, mesh->triangle_data[count].triangle.tri_point[2].y, mesh->triangle_data[count].triangle.tri_point[2].z);
 		count++;
 	}
+}
 
+void	print_cone(t_object *obj)
+{
+	t_cone	*cone;
+
+	cone = &obj->cone;
+	printf("cone\n");
+	printf("Position:\nx:%f\ty:%f\tz:%f\n",
+		cone->pos.x, cone->pos.y, cone->pos.z);
+	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
+		cone->normal.x, cone->normal.y, cone->normal.z);
+	printf("Radius:\n%f\n", cone->radius);
+	printf("Height:\n%f\n", cone->height);
+	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
+		cone->colour.x, cone->colour.y, cone->colour.z);
 }
 

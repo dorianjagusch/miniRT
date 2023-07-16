@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 11:58:44 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:21:07 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 
 	if (depth == BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
-	DEBUG_ONLY(printf("~%d~\n", scene->objs->cylinder.disk_hit));
 	get_closest(scene, ray, &hit);
 	if (hit.distance == FLT_MAX)
 		return ((t_vec4){1, 0, 0, 0});
