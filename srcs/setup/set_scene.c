@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 15:23:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:00:28 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
 		create_sphere(&scene->objs[id].sphere, line);
-	else if (!ft_strncmp("tm", line, 2))
-		ascii_parser(&scene->objs[id].mesh, line);
+	// else if (!ft_strncmp("tm", line, 2))
+	// 	ascii_parser(&scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
@@ -91,6 +91,7 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
+	set_meta(&scene->objs[id]);
 	check_visibility(scene, id);
 }
 

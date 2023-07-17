@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 10:13:57 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:23:43 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
+	hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
+			&(hit->position));
 	hit->position = vec3_add(hit->position,
 	vec3_multf(hit->normal, 10e-2));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
@@ -107,7 +109,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 		return ;
 	}
 	hit->material = get_hitmaterial(&(scene->objs[hit->obj_id]));
-	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
+	//get_hitcolour(&(scene->objs[hit->obj_id]));
 	hit->type = scene->objs->type;
 }
 

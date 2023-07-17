@@ -35,7 +35,8 @@
 # include <float.h>
 # include "materials.h"
 # include "objects.h"
-# include "mat4_math.h"
+# include "patterns.h"
+//# include "mat4_math.h"
 # include "print_helpers.h"
 
 // DEFAULTS
@@ -92,7 +93,6 @@ void	set_scene(t_scene *scene, char *av);
 void	render(t_img *img);
 void	free_img(t_img *img);
 void	ft_options(void);
-void	ft_error(int error);
 
 // VIEW HANDLERS
 int		ft_toggle_help(t_img *img);

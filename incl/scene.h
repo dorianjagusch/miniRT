@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:10:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:04:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 # include "vector_math.h"
 # include "objects.h"
+
+typedef union u_object		t_object;
+typedef struct s_sphere		t_sphere;
+typedef struct s_plane		t_plane;
+typedef struct s_cylinder	t_cylinder;
+typedef struct s_disk		t_disk;
+typedef struct s_triangle	t_triangle;
+typedef struct s_box		t_box;
+typedef struct s_mesh		t_mesh;
 
 typedef struct s_light
 {

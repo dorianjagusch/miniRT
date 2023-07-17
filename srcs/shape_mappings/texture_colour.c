@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 19:46:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:43:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 #include "minirt.h"
 #include "patterns.h"
 
-t_vec4	get_texture_colour(t_vec4 (*pattern)(t_checker_board *, t_vec2),
-	t_vec2 (*map)(t_object *, t_vec3 *), t_object *object, t_vec3 *point,
-	t_checker_board *checkers)
+t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 {
-	t_vec4	colour;
+	static const t_col_func	colour_func[] = {
+		get_checkers
+	};
+	static const t_map_func	map_func[] = {
+		spherical_map,
+		plane_map,
+		cylinder_map,
+		plane_map,
+		plane_map
+	};
+	t_vec4					colour;
+	t_vec2					uv;
+	t_texture				*texture;
 
-	colour = pattern(checkers, map(object, point));
+	uv = map_func[object->type](point, object);
+	texture = object->sphere.texture;
+	colour = colour_func[0](texture, uv);
 	return (colour);
 }

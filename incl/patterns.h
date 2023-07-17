@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 16:07:01 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:03:21 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "vector_math.h"
 # include "objects.h"
-# include "minirt.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -33,32 +32,44 @@
 #  define V 1
 # endif
 
+typedef union u_object	t_object;
+typedef union u_texture	t_texture;
 
-typedef t_vec2	(*t_map_func)(t_vec3 *, t_object *);
+typedef t_vec2			(*t_map_func)(t_vec3 *, t_object *);
+typedef t_vec4			(*t_col_func)(t_texture *, t_vec2);
 
 typedef struct s_checkers
 {
-	t_vec4	light;
-	t_vec4	dark;
+	char	*file;
 	int		width;
 	int		height;
+	t_vec4	light;
+	t_vec4	dark;
 }			t_checkers;
 
 typedef struct s_picture
 {
-	int		*picture;
+	char	*file;
 	int		width;
 	int		height;
+	int		*picture;
 }			t_picture;
 
 typedef union u_texture
 {
+	char		*file;
 	t_checkers	checkers;
 	t_picture	picture;
 }				t_texture;
 
-t_vec2	spherical_map(t_vec3 *point, t_object *obj);
-t_vec2	capped_cylinder_map(t_vec3 point, t_object *obj);
-t_vec2	plane_map(t_vec3 point, t_object *obj);
+t_vec2		spherical_map(t_vec3 *point, t_object *obj);
+t_vec2		cylinder_map(t_vec3 *point, t_object *obj);
+t_vec2		plane_map(t_vec3 *point, t_object *obj);
+
+t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
+t_checkers	set_board(int width, int height, t_vec4 light, t_vec4 dark);
+
+void		set_meta(t_object *object);
+t_vec4		get_texture_colour(t_object *object, t_vec3 *point);
 
 #endif

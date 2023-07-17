@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   planar_map.c                                       :+:      :+:    :+:   */
+/*   texture_Setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 14:48:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 15:34:52 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/17 16:27:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns.h"
+#include "errors.h"
 
-#ifndef EPSILON
-# define EPSILON 1e-8
-#endif
-
-t_vec2	plane_map(t_vec3 *point, t_object *obj)
+void	set_meta(t_object *object)
 {
-	t_vec2	uv;
-	t_vec3	axis[2];
-
-	axis[U] = vec3_cross(obj->plane.normal, (t_vec3){EPSILON, 1, EPSILON});
-	vec3_normalize(&axis[U]);
-	axis[V] = vec3_cross(axis[U], obj->plane.normal);
-	uv.x = fabsf(vec3_dot(vec3_sub(*point, obj->plane.pos), axis[U]));
-	uv.y = fabsf(vec3_dot(vec3_sub(*point, obj->plane.pos), axis[V]));
-	return (uv);
+	object->meta.texture = ft_calloc(1, sizeof(t_texture));
+	if (!object->meta.texture)
+		ft_error(ENOMEM);
+	object->meta.texture->checkers = set_board(10, 10, object->meta.colour,
+			vec4_multf(object->meta.colour, 0.5));
 }

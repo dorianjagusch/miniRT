@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/15 14:43:54 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/17 16:40:00 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ FILES = print_misc \
 	triangle_distance \
 	main \
 	render \
-	ascii_parser \
 	clean_up \
 	create_objs \
 	error_handling \
@@ -86,17 +85,19 @@ FILES = print_misc \
 	vec_reflect \
 	vec_rotate \
 	vec_scale \
-	vec_sub 
-#	checker_pattern 
-#	cylinder_map 
-#	planar_map 
-#	sphere_map 
-# #	texture_colour
+	vec_sub \
+	checker_pattern \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	texture_colour \
+	texture_setup
 # 	mat4_add \
 # 	mat4_identity \
 # 	mat4_mult \
 # 	mat4_rotate \
 # 	mat4_sub \
+#	ascii_parser \
 
 HEADER = vector_math \
 	minirt \
@@ -110,6 +111,7 @@ HEADER = vector_math \
 	mat4_math \
 	materials \
 	mlx \
+	patterns \
 	print_helpers
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
@@ -149,7 +151,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g # -O3
+	@$(CC) -I$I -c $< -o $@ -g -O3
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

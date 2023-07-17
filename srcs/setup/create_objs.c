@@ -6,11 +6,12 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 14:35:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:59:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "patterns.h"
 
 void	create_sphere(t_sphere *sphere, char *line)
 {

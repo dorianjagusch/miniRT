@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 18:22:39 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:47:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void			create_sphere(t_sphere *sphere, char *line);
 void			create_cylinder(t_cylinder *cylinder, char *line);
 void			create_plane(t_plane *plane, char *line);
 void			create_disk(t_disk *disk, char *line);
+
 #endif

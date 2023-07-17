@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
-            "args": ["${workspaceFolder}/test_files/triangle.rt"],
+            "args": ["${workspaceFolder}/test_files/sphere.rt"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],

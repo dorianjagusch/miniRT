@@ -11,6 +11,8 @@
         "bla": "cpp",
         "ios": "c",
         "mat4_math.h": "c",
-        "__node_handle": "c"
+        "__node_handle": "c",
+        "scene.h": "c",
+        "patterns.h": "c"
     }
 }
