@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:45:42 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/16 13:44:00 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:00:33 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ void	create_cone(t_cone *cone, char *line)
 	vec3_normalize(&cone->normal);
 	ft_skip_ws(&line);
 	cone->radius = get_float(&line, REAL) / 2;
-	cone->center = vec3_add(cone->pos, vec3_multf(cone->normal, cone->height / 2));
+	cone->center = vec3_add(cone->pos, vec3_multf(cone->normal, cone->height));
 	ft_skip_ws(&line);
 	cone->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
 	cone_disk(cone); // TODO: free this
+	cone->angle = (cone->radius / cone->height) * (cone->radius / cone->height);
 }

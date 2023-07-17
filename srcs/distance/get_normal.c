@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/16 16:06:06 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:26:59 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,19 @@ t_vec3	get_cylinder_normal( t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-// t_vec3 get_cone_normal(t_object *cone, t_vec3 hitpoint)
-// {
-// 	// Calculate the radial distance from the cone's center
-// 	float rad_dist = sqrt((hitpoint.x - cone->cone.center.x) * (hitpoint.x - cone->cone.center.x) + (hitpoint.z - cone->cone.center.z) * (hitpoint.z - cone->cone.center.z));
-// 	// Calculate the normal t_vec3 with adjusted y-component
-// 	t_vec3 normal = {hitpoint.x - cone->cone.center.x, rad_dist * (cone->cone.radius / cone->cone.height), hitpoint.z - cone->cone.center.z};
-// 	// Normalize the normal t_vec3
-	
-// 	return (normal); // Return the normalized normal t_vec3
-// }
-t_vec3	get_cone_normal(t_cone *cone, t_vec3 hitpoint)
+t_vec3 get_cone_normal(t_cone *cone, t_vec3 hitpoint)
 {
-	t_vec3	co;
-	t_vec3	normal;
-
-	if (cone->disk_hit)
-	{
-		normal = cone->normal;
-		cone->disk_hit = 0;
-	}
-	else
-	{
-		co = vec3_sub(hitpoint, cone->pos);
-		normal = vec3_sub(co, vec3_multf(cone->normal,
-					vec3_dot(cone->normal, co)));
-	}
+	float rad_dist;
+	t_vec3 normal;
+	// Calculate the radial distance from the cone's center
+	rad_dist = sqrt((hitpoint.x - cone->center.x) * (hitpoint.x - cone->center.x) \
+	 + (hitpoint.z - cone->center.z) * (hitpoint.z - cone->center.z));
+    normal.x = hitpoint.x - cone->center.x;
+    normal.y = rad_dist * (cone->radius / cone->height);
+    normal.z = hitpoint.z - cone->center.z;
+	vec3_normalize(&normal);
 	return (normal);
 }
-
 
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {

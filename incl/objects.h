@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 12:10:57 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:59:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_cone
 	t_vec3			center;
 	t_object		*bottom;
 	float			radius;
+	float			angle;
 	int				disk_hit;
 	t_vec3			normal;
 	float			height;
