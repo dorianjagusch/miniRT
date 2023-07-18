@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/16 15:47:43 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/17 22:20:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,10 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 
 	i = 0;
 	
-	DEBUG_ONLY(print_vec3(hit->position, "hit position"));
 	shadowray.origin = hit->position;
-	DEBUG_ONLY(print_vec3(shadowray.origin, "shadow ray"));
 	light_info.direction = vec3_sub(scene->light.pos, hit->position);
-	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	light_info.distance = vec3_mag(light_info.direction);
-	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	vec3_normalize(&light_info.direction);
-	DEBUG_ONLY(print_vec3(light_info.direction, "light info dir"));
 	shadowray.direction = light_info.direction;
 	while (i < scene->n_objs)
 	{
