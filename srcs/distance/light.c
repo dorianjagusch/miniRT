@@ -37,6 +37,25 @@
 // 	return (0);
 // }
 
+//     protected Color Shading(Vector3 position, List<Lightsource> lightSources, Color 
+    // color, Vector3 normal, float albedo)
+    // {
+    //     var finalColor = Color.Black;
+        
+    //     foreach (var lightSource in lightSources)
+    //     {
+    //         var posToLightVector = lightSource.Position - position;
+    //         var lightDir = Vector3.Normalize(posToLightVector);
+    //         var lightDot = Math.Max(Vector3.Dot(lightDir,normal), 0);
+    //         var lightReflected = albedo / Math.PI;
+    //         var lightPower = lightDot * lightSource.Intensity;
+    //         var newColor = calculateColorValue(color, lightPower, lightReflected);
+    //         finalColor = AddColors(finalColor, newColor);
+    //     }
+
+    //     return finalColor;
+    // }
+
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 {
 	int				i;
@@ -44,7 +63,6 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	t_light_info	light_info;
 
 	i = 0;
-	
 	shadowray.origin = hit->position;
 	light_info.direction = vec3_sub(scene->light.pos, hit->position);
 	light_info.distance = vec3_mag(light_info.direction);

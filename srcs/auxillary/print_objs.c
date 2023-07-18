@@ -149,6 +149,8 @@ void	print_cone(t_object *obj)
 		cone->pos.x, cone->pos.y, cone->pos.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		cone->normal.x, cone->normal.y, cone->normal.z);
+	printf("Center:\nx:%f\ty:%f\tz:%f\n",
+		cone->center.x, cone->center.y, cone->center.z);
 	printf("Radius:\n%f\n", cone->radius);
 	printf("Height:\n%f\n", cone->height);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",

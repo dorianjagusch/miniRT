@@ -65,7 +65,6 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 	t_vec4				col[5];
 	//	const t_material	*mat = get_material(hit->material);
 
-
 	ft_bzero(col, 5 * sizeof(t_vec4));
 	col[ambient] = vec4_multf(scene->amb.colour, scene->amb.ratio);
 	col[ambient] = vec4_compmult(hit->colour, col[ambient]);
