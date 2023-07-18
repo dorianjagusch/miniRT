@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 16:43:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:09:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 		plane_map,
 		cylinder_map,
 		plane_map,
-		plane_map
+		triangle_map
 	};
 	t_vec4					colour;
 	t_vec2					uv;
 	t_texture				*texture;
 
 	uv = map_func[object->type](point, object);
-	texture = object->sphere.texture;
+	texture = object->meta.texture;
 	colour = colour_func[0](texture, uv);
 	return (colour);
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/12 14:54:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:16:48 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ float	dist_triangle(const t_ray *ray, t_object *obj)
 	dist = vec3_dot(obj->triangle.edges[1], bary_vec[QVEC]) * inv_det;
 	if (dist < EPSILON)
 		return (FLT_MAX);
+	obj->triangle.uv.x = bary_weights[U];
+	obj->triangle.uv.y = bary_weights[V];
 	return (dist);
 }

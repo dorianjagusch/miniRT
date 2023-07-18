@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 12:47:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:14:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_hitresult
 	t_obj_e			type;
 	float			distance;
 	t_vec3			position;
+	t_vec2			uv;
 	t_vec3			normal;
 	t_vec3			point2cam;
 	t_material_e	material;

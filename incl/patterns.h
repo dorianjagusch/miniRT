@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 16:03:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:15:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef union u_texture
 t_vec2		spherical_map(t_vec3 *point, t_object *obj);
 t_vec2		cylinder_map(t_vec3 *point, t_object *obj);
 t_vec2		plane_map(t_vec3 *point, t_object *obj);
+t_vec2		triangle_map(t_vec3 *point, t_object *obj);
 
 t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
 t_checkers	set_board(int width, int height, t_vec4 light, t_vec4 dark);

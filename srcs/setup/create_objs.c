@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 15:59:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:05:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,6 @@ void	create_triangle(t_triangle *triangle, char *line)
 			triangle->tri_point[0]);
 	triangle->edges[1] = vec3_sub(triangle->tri_point[2],
 			triangle->tri_point[0]);
+	triangle->normal = vec3_cross(triangle->edges[0], triangle->edges[1]);
+	vec3_normalize(&triangle->normal);
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 16:03:43 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/18 09:16:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_triangle
 {
 	t_obj_e			type;
 	t_texture		*texture;
+	t_vec2			uv;
 	t_vec4			colour;
 	t_material_e	material;
 	t_vec3			tri_point[3];
