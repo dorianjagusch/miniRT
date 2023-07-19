@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 10:59:11 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:49:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,11 @@ typedef struct s_cone
 {
 	t_obj_e			type;
 	t_vec3			pos;
-	t_vec3			center;
+	t_vec3			vertex;
 	t_object		*bottom;
 	float			radius;
 	float			angle;
+	float			intersect_y;
 	int				disk_hit;
 	t_vec3			normal;
 	float			height;

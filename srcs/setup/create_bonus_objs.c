@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 11:45:42 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/18 10:05:52 by smorphet         ###   ########.fr       */
+/*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/19 16:49:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,8 @@ void	create_cone(t_cone *cone, char *line)
 	cone->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
-	cone_disk(cone); // TODO: free this
+	//cone_disk(cone); // TODO: free this
 	vec3_normalize(&cone->normal);
-	t_vec3 tip_to_base = vec3_multf(cone->normal, cone->height);
-	cone->center = vec3_sub(cone->pos, tip_to_base);
-	print_vec3(cone->center, "cone center");
+	cone->angle = atan(cone->radius / cone->height);
 	cone->disk_hit = 0;
-	cone->angle = (cone->radius / cone->height) * (cone->radius / cone->height);
 }

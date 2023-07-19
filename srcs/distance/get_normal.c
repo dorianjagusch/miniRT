@@ -34,22 +34,7 @@ t_vec3	get_cylinder_normal( t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-// t_vec3 get_cone_normal(t_cone *cone, t_vec3 hitpoint)
-// {
-//     t_vec3 normal;
-//     t_vec3 cone_center_to_hitpoint = vec3_sub(hitpoint, cone->center);
-
-// 	float rad_dist = sqrt((hitpoint.x - cone->center.x) * (hitpoint.x - cone->center.x) + (hitpoint.z - cone->center.z) * (hitpoint.z - cone->center.z));
-//     float cos_theta = cone_center_to_hitpoint.y / rad_dist;
-//     normal.x = cone_center_to_hitpoint.x;
-//     normal.y = cone->radius * cos_theta;
-//     normal.z = cone_center_to_hitpoint.z;
-// 	DEBUG_ONLY(print_vec3(normal, "normal"));
-//     vec3_normalize(&normal);
-//     return normal;
-// }
-
-t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
+t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) //TODO: 70% sure this is okay but could be an issue
 {
 	t_vec3	co;
 	t_vec3	normal;
@@ -67,20 +52,6 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	}
 	return (normal);
 }
-
-// t_vec3 get_cone_normal(t_cone *cone, t_vec3 hitpoint)
-// {
-// 	float rad_dist;
-// 	t_vec3 normal;
-// 	rad_dist = sqrt((hitpoint.x - cone->center.x) * (hitpoint.x - cone->center.x) \
-// 	 + (hitpoint.z - cone->center.z) * (hitpoint.z - cone->center.z));
-//     normal.x = hitpoint.x - cone->center.x;
-//     normal.y = rad_dist * (cone->radius / cone->height);
-//     normal.z = hitpoint.z - cone->center.z;
-// 	DEBUG_ONLY(print_vec3(normal, "normal"));
-// 	vec3_normalize(&normal);
-// 	return (normal);
-// }
 
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
