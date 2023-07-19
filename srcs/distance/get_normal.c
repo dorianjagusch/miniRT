@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 20:36:23 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 22:23:20 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,47 @@ t_vec3	get_cylinder_normal( t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-
-
-t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) //TODO: 70% sure this is okay but could be an issue
+t_vec3 get_cone_normal(const t_cone *cone, const t_vec3 hitpoint)
 {
-	t_vec3	co;
-	t_vec3	normal;
+    t_vec3 co = vec3_sub(hitpoint, cone->pos);
+    float distance = vec3_mag(co);
+    t_vec3 axis = vec3_multf(cone->normal, cone->height);
+    float proj = vec3_dot(co, axis) / vec3_dot(axis, axis);
+    t_vec3 projection = vec3_multf(axis, proj);
+    t_vec3 normal = vec3_sub(co, projection);
 
-	if (cone->disk_hit)
-	{
-		normal = cone->normal;
-		cone->disk_hit = 0;
-	}
-	else
-	{
-		co = vec3_sub(hitpoint, cone->pos);
-		normal = vec3_sub(co, vec3_multf(cone->normal,
-					vec3_dot(cone->normal, co)));
-	}
-	return (normal);
+    // Check if the hit point is on the top or bottom cap
+    if (proj < 0.0f || proj > 1.0f)
+    {
+        // Determine the cap normal
+        float height = distance * cosf(cone->angle);
+        if (proj < 0.0f)
+            normal = vec3_multf(cone->normal, -1.0f);
+        else
+            normal = cone->normal;
+    }
+
+    return normal;
 }
+
+// t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) //TODO: 70% sure this is okay but could be an issue
+// {
+// 	t_vec3	co;
+// 	t_vec3	normal;
+
+// 	if (cone->disk_hit)
+// 	{
+// 		normal = cone->normal;
+// 		cone->disk_hit = 0;
+// 	}
+// 	else
+// 	{
+// 		co = vec3_sub(hitpoint, cone->pos);
+// 		normal = vec3_sub(co, vec3_multf(cone->normal,
+// 					vec3_dot(cone->normal, co)));
+// 	}
+// 	return (normal);
+// }
 
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
