@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_Setup.c                                    :+:      :+:    :+:   */
+/*   texture_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 16:27:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:38:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	set_meta(t_object *object)
 		ft_error(ENOMEM);
 	object->meta.texture->checkers = set_board(10, 10, object->meta.colour,
 			vec4_multf(object->meta.colour, 0.5));
+	object->meta.texture->pattern = brick_pat;
 }

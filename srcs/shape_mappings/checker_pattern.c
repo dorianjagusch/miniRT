@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_pattern.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/18 15:18:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:31:57 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ t_vec4	get_checkers(t_texture *texture, t_vec2 uv)
 	int	int_u;
 	int	int_v;
 
-	int_u = (int)floor(uv.x * texture->checkers.width);
-	int_v = (int)floor(uv.y * texture->checkers.height);
-
-	if ((int_u + int_v) & 1)
+	int_u = (int)floor(uv.y * texture->checkers.height);
+	int_v = (int)floor(uv.x * texture->checkers.width);
+	if ((int_u + int_v) & 0x01)
 		return (texture->checkers.light);
 	else
 		return (texture->checkers.dark);

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/18 14:09:40 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:25:21 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 {
 	static const t_col_func	colour_func[] = {
-		get_checkers
+		get_checkers,
+		get_brick
 	};
 	static const t_map_func	map_func[] = {
 		spherical_map,
 		plane_map,
 		cylinder_map,
-		plane_map,
+		disk_map,
 		triangle_map
 	};
 	t_vec4					colour;
@@ -32,6 +33,6 @@ t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 
 	uv = map_func[object->type](point, object);
 	texture = object->meta.texture;
-	colour = colour_func[0](texture, uv);
+	colour = colour_func[texture->pattern](texture, uv);
 	return (colour);
 }

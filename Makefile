@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/18 14:00:07 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/19 13:27:50 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ FILES = print_misc \
 	vec_scale \
 	vec_sub \
 	checker_pattern \
+	brick_pattern \
 	cylinder_map \
 	planar_map \
 	triangle_map \
