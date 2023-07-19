@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 10:26:59 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:36:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_vec3	get_cylinder_normal( t_cylinder *cylinder, const t_vec3 hitpoint)
 	}
 	return (normal);
 }
+
+
 
 t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) //TODO: 70% sure this is okay but could be an issue
 {

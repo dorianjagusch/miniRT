@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dist_cone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/19 17:01:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:39:20 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,34 @@ float cone_intersection(float delta, float a, float b)
 		return (intersect_1);
 	return (FLT_MAX);
 }
+// static float get_intersect(const t_ray *ray, t_object *obj)
+// {
+//     t_vec3 oc = vec3_sub(ray->origin, obj->cone.vertex);
+//     float cos_squared = cosf(obj->cone.angle) * cosf(obj->cone.angle);
+//     float a = vec3_dot(ray->direction, ray->direction) - (1.0f + cos_squared) *
+//               vec3_dot(ray->direction, obj->cone.normal) * vec3_dot(ray->direction, obj->cone.normal);
+//     float b = 2.0f * (vec3_dot(ray->direction, oc) - (1.0f + cos_squared) *
+//                       vec3_dot(ray->direction, obj->cone.normal) * vec3_dot(oc, obj->cone.normal));
+//     float c = vec3_dot(oc, oc) - (1.0f + cos_squared) * vec3_dot(oc, obj->cone.normal) *
+//               vec3_dot(oc, obj->cone.normal);
+//     float discriminant = b * b - 4.0f * a * c;
+//     float intersection = FLT_MAX;
+
+//     if (discriminant > EPSILON)
+//     {
+//         float t1 = (-b - sqrtf(discriminant)) / (2.0f * a);
+//         float t2 = (-b + sqrtf(discriminant)) / (2.0f * a);
+//         float y1 = ray->origin.y + t1 * ray->direction.y;
+//         float y2 = ray->origin.y + t2 * ray->direction.y;
+
+//         if (y1 > obj->cone.vertex.y && y1 < (obj->cone.vertex.y + obj->cone.height))
+//             intersection = t1;
+//         else if (y2 > obj->cone.vertex.y && y2 < (obj->cone.vertex.y + obj->cone.height))
+//             intersection = t2;
+//     }
+
+//     return intersection;
+// }
 
 static float get_intersect(const t_ray *ray, t_object *obj)
 {
