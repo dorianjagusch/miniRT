@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 17:07:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:48:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) 
+t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 {
 	t_vec3	co;
 	t_vec3	normal;
@@ -52,6 +52,10 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	return (normal);
 }
 
+// calulcate the normal depending on whether we hit the surface from the inside or outside.
+// Something along the lines of
+// 			// vec3_multf(vec3_multf(hit->normal, 10e-3),
+			// 	-ft_sign(vec3_dot(hit->normal, scene->cam.dir)));
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
 	t_vec3	normal;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/20 16:33:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:24:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,22 @@ static void	cone_disk(t_cone *cone, int side)
 {
 	t_object	*disk;
 
-	disk = malloc(sizeof(t_object));
+	disk = ft_calloc(1, sizeof(t_object));
 	if (!disk)
 		ft_error(ENOMEM);
 	disk->disk.type = disk_obj;
 	disk->disk.normal = cone->normal;
 	disk->disk.radius = cone->radius;
 	disk->disk.colour = cone->colour;
-	if (side == 't')
-	{
-		disk->disk.pos = vec3_add(cone->vertex, vec3_multf(cone->normal, cone->height));
-		cone->top = disk;
-	}
-	else
-	{
-		disk->disk.pos = vec3_sub(cone->vertex, vec3_multf(cone->normal, cone->height));
-		disk->disk.normal = cone->normal;
-		cone->bottom = disk;
-	}
+	disk->disk.pos = vec3_sub(cone->vertex, vec3_multf(cone->normal, cone->height));
+	disk->disk.normal = cone->normal;
+	cone->bottom = disk;
 }
 void	create_cone(t_cone *cone, char *line)
 {
 	cone->type = cone_obj;
 	line += 3;
-	cone->pos = get_vec3(&line);
+	cone->vertex = get_vec3(&line);
 	cone->normal = get_vec3(&line);
 	cone->disk_hit = 0;
 	ft_skip_ws(&line);
@@ -91,7 +83,7 @@ void	create_cone(t_cone *cone, char *line)
 	cone->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
-	cone->vertex = vec3_sub(cone->pos, vec3_multf(cone->normal, cone->height));
+	cone->vertex = vec3_add(cone->pos, vec3_multf(cone->normal, cone->height / 2));
 	cone_disk(cone, 'b');
 	vec3_normalize(&cone->normal);
 	cone->angle = atan(cone->radius / cone->height);

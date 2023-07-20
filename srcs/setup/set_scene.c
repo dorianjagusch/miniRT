@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:54:39 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:57:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
-	printf("nobj: %d\n", scene->n_objs);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:28:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:26:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define OBJECTS_H
 
 # include "scene.h"
-# include "materials.h"
 # include "patterns.h"
 
 typedef union u_object	t_object;
@@ -37,7 +36,6 @@ typedef struct s_meta
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 }					t_meta;
 
 typedef struct s_sphere
@@ -45,7 +43,6 @@ typedef struct s_sphere
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			pos;
 	float			radius;
 	float			radius2;
@@ -57,7 +54,6 @@ typedef struct s_plane
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			pos;
 	t_vec3			normal;
 	float			d;
@@ -69,7 +65,6 @@ typedef struct s_cylinder
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			pos;
 	t_object		*top;
 	t_object		*bottom;
@@ -85,7 +80,6 @@ typedef struct s_disk
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			pos;
 	t_vec3			normal;
 	float			d;
@@ -99,7 +93,6 @@ typedef struct s_triangle
 	t_texture		*texture;
 	t_vec2			uv;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			tri_point[3];
 	t_vec3			normal;
 	t_vec3			edges[2];
@@ -110,7 +103,6 @@ typedef struct s_mesh
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	float			n_triangles;
 	float			count_v;
 	float			count_vn;
@@ -129,7 +121,6 @@ typedef struct s_box
 	t_obj_e			type;
 	t_texture		*texture;
 	t_vec4			colour;
-	t_material_e	material;
 	t_vec3			verts[2];
 	t_vec3			normal;
 }					t_box;
@@ -148,7 +139,6 @@ typedef struct s_cone
 	t_vec3			normal;
 	float			height;
 	t_vec4			colour;
-	t_material_e	material;
 }					t_cone;
 
 

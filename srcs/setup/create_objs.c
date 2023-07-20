@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:32:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:54:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->colour = get_colour(&line);
 }
 
+//TODO weird stuff with the mapping of which cap we hit
 static void	cyl_disk(t_cylinder *cylinder, int side)
 {
 	t_object	*disk;
@@ -44,8 +45,8 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 	}
 	else
 	{
-		disk->disk.pos = vec3_add(cylinder->pos,
-				vec3_multf(cylinder->normal, -cylinder->height / 2));
+		disk->disk.pos = vec3_sub(cylinder->pos,
+				vec3_multf(cylinder->normal, cylinder->height / 2));
 		cylinder->bottom = disk;
 	}
 }

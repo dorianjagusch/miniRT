@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:29:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:27:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "scene.h"
 # include "vector_math.h"
-# include "materials.h"
 # include <float.h>
 
 enum e_colour
@@ -43,7 +42,6 @@ typedef struct s_hitresult
 	t_vec2			uv;
 	t_vec3			normal;
 	t_vec3			point2cam;
-	t_material_e	material;
 	t_vec4			colour;
 }					t_hitresult;
 

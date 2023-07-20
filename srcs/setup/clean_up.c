@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:44:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:21:01 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	free_scene(t_scene *scene)
 			free(scene->objs[i].cylinder.top);
 			free(scene->objs[i].cylinder.bottom);
 		}
-		// if (scene->objs[i].type == cone_obj)
-		// 	free(scene->objs[i].cone.bottom);
+		if (scene->objs[i].type == cone_obj)
+			free(scene->objs[i].cone.bottom);
 		free(scene->objs[i].meta.texture);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:30:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:09:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray			ray;
 	t_vec4			colour;
+	int				n_ray;
 
+	colour = (t_vec4){1, 0, 0, 0};
+	n_ray = 0;
 	ray = create_primary_ray(&img->scene.cam, pxl);
-	colour = trace_ray(&ray, &img->scene, 0);
+	colour = vec4_add(colour, trace_ray(&ray, &img->scene, 0));
 	vec4_clamp(&colour, 0, 1);
 	return (vec4_toint32(colour));
 }
@@ -87,4 +90,5 @@ void	render(t_img *img)
 	mlx_put_image_to_window(img->win.mlx, img->win.win, img->img, 0, 0);
 	mlx_string_put(img->win.mlx, img->win.win, WIDTH - 80,
 		20, WHITE, "[H] - Help");
+	print_scene(img->scene);
 }

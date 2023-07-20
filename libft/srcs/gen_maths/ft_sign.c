@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sign.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:03:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 07:04:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:36:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+#ifndef EPSILON
+# define EPSILON 10e-8
+#endif
+
 int	ft_sign(float a)
 {
-	if (a >= 0)
+	if (a > 0)
 		return (1);
 	return (-1);
 }

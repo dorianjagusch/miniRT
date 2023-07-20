@@ -33,7 +33,6 @@
 # include "scene.h"
 # include "shaders.h"
 # include <float.h>
-# include "materials.h"
 # include "objects.h"
 # include "patterns.h"
 //# include "mat4_math.h"
@@ -42,8 +41,8 @@
 // DEFAULTS
 
 # if 1
-#  define WIDTH 1000
-#  define HEIGHT 500
+#  define WIDTH 1080
+#  define HEIGHT 960
 #  define DEBUG_ONLY(...) ((void)0)
 # else
 #  define WIDTH 500
@@ -51,7 +50,7 @@
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 
-# define BOUNCES 2
+# define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF

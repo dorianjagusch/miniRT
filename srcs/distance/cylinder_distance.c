@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:31:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:18:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ float	which_pos_min(float a, float b, float c)
 	return (min);
 }
 
-float	dist_caps(const t_ray *ray, const t_object *obj)
+static float	dist_caps(const t_ray *ray, const t_object *obj)
 {
 	float	dist;
 

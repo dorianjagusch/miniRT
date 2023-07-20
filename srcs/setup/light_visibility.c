@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_visibility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 15:03:51 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:59:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,25 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	return (0);
 }
 
+
+// cap visibility is weird here as well. One becomes visible and the other invisible
 static void	cap_visibility(t_cylinder *cylinder, t_camera *cam, t_light *light)
 {
-	cylinder->top->disk.isvisible = is_light_visible(
-			cam->pos,
-			light->pos,
-			cylinder->top->disk.pos,
-			&(cylinder->top->disk.normal));
+	// cylinder->top->disk.isvisible = is_light_visible(
+	// 		cam->pos,
+	// 		light->pos,
+	// 		cylinder->top->disk.pos,
+	// 		&(cylinder->top->disk.normal));
+	// printf("plane visisible: %d\n", cylinder->top->disk.isvisible);
+	// printf("!!!!!!!!!!!!!!!!!!!!!!\n");
 	cylinder->bottom->disk.isvisible = is_light_visible(
 			cam->pos,
 			light->pos,
 			cylinder->bottom->disk.pos,
 			&(cylinder->bottom->disk.normal));
+	cylinder->top->disk.isvisible = cylinder->bottom->disk.isvisible;
+	printf("plane visisible: %d\n", cylinder->bottom->disk.isvisible);
+	printf("!!!!!!!!!!!!!!!!!!!!!!\n");
 }
 
 void	check_visibility(t_scene *scene, int id)
@@ -59,8 +66,6 @@ void	check_visibility(t_scene *scene, int id)
 		scene->objs[id].plane.isvisible = is_light_visible(scene->cam.pos,
 				scene->light.pos, scene->objs[id].plane.pos,
 				&scene->objs[id].plane.normal);
-		printf("plane visisible: %d\n", scene->objs[id].plane.isvisible);
-		printf("!!!!!!!!!!!!!!!!!!!!!!\n");
 	}
 	if (scene->objs[id].type == disk_obj)
 		scene->objs[id].disk.isvisible = is_light_visible(scene->cam.pos,

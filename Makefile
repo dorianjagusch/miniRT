@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/20 16:42:19 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/20 18:26:44 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FILES = camera \
 	plane_distance \
 	sphere_distance \
 	triangle_distance \
+	cone_distance \
 	main \
 	render \
 	clean_up \
@@ -116,7 +117,6 @@ HEADER = vector_math \
 	errors \
 	scene \
 	mat4_math \
-	materials \
 	mlx \
 	patterns \
 	print_helpers

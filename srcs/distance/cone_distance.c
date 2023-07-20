@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dist_cone.c                                        :+:      :+:    :+:   */
+/*   cone_distance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/20 16:57:57 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:15:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static float	dist_caps(const t_ray *ray, const t_object *obj)
 	float	dist;
 
 	dist = dist_disk(ray, obj->cone.bottom);
-
 	return (dist);
 }
 
@@ -29,7 +28,7 @@ static void	check_height(const t_ray *ray, const t_cone *cone,
 	float	cap_dist;
 
 	bottom_cap = vec3_sub(cone->vertex, vec3_multf(cone->normal,
- 			cone->height));
+				cone->height));
 	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
 	if (vec3_dot(cone->normal, vec3_sub(hitpoint, bottom_cap)) <= EPSILON
 		|| vec3_dot(cone->normal, vec3_sub(cone->vertex, hitpoint)) <= EPSILON)
@@ -63,7 +62,7 @@ float	dist_cone(const t_ray *ray, t_object *obj)
 		check_height(ray, &(obj->cone), &(res[1]));
 	dist_cap = dist_caps(ray, obj);
 	res[0] = which_pos_min(res[0], res[1], dist_cap);
-	if (res[0] == dist_cap && res[0] != FLT_MAX)
+	if (isnan(res[0]) == 0 && res[0] == dist_cap && res[0] != FLT_MAX)
 		obj->cone.disk_hit = 1;
 	return (res[0]);
 }
