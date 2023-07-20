@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 16:49:52 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:03:45 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_cone
 	t_vec3			pos;
 	t_vec3			vertex;
 	t_object		*bottom;
+	t_object		*top;
 	float			radius;
 	float			angle;
 	float			intersect_y;

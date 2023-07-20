@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 13:23:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:52:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 #include "minirt.h"
 #include <float.h>
 
-float	which_pos_min(float a, float b, float c)
+ float	which_pos_min(float a, float b, float c)
 {
 	float	min;
 
-	min = a;
+	min = FLT_MAX;
+	if (a > EPSILON)
+		min = a;
 	if (b > EPSILON && b < min)
 		min = b;
 	if (c > EPSILON && c < min)
 		min = c;
-	if (min > EPSILON)
-		return (min);
-	return (FLT_MAX);
+	return (min);
 }
 
 float	dist_caps(const t_ray *ray, const t_object *obj)
@@ -50,7 +50,7 @@ static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
 				cylinder->height / 2));
 	bottom_cap = vec3_sub(cylinder->pos, vec3_multf(cylinder->normal,
 				cylinder->height / 2));
-	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist)); //TODO: could alter for cone
+	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist)); //TODO: could alter for cone, use angle to exclude the height
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, bottom_cap)) <= EPSILON)
 		*dist = FLT_MAX;
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, top_cap)) >= EPSILON)

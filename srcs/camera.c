@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 11:51:20 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:34:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # define R 2
 #endif
 
-//responsible for constructing the camera-to-world matrix,
-//which transforms points and vectors from camera space to world space
 void	camera_move(int key, t_img *img)
 {
 	if (key == MAIN_PAD_UP)
