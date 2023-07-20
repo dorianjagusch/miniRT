@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 13:04:51 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:10:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_scene
 
 void	ft_skip_ws(char **line);
 void	ft_skip_num(char **line, int mode);
+int		is_obj(char *line);
 t_vec4	get_colour(char **line);
 float	get_float(char **line, int mode);
 t_vec3	get_vec3(char **line);

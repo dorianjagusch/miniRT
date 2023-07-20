@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/20 07:34:49 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/20 10:20:09 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -69,6 +69,7 @@ FILES = print_misc \
 	input \
 	set_image \
 	set_scene \
+	is_obj \
 	hit_shader \
 	hit_info \
 	vec_add \

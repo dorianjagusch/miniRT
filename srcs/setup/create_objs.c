@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 07:28:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:03:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	cyl_disk(t_cylinder *cylinder, int side)
 	}
 	else
 	{
+		disk->disk.normal = vec3_neg(cylinder->normal);
 		disk->disk.pos = vec3_add(cylinder->pos,
 				vec3_multf(cylinder->normal, -cylinder->height / 2));
 		cylinder->bottom = disk;
@@ -64,7 +65,7 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
-	cyl_disk(cylinder, 't'); // free dose bitches
+	cyl_disk(cylinder, 't');
 	cyl_disk(cylinder, 'b');
 }
 

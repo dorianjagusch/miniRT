@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 16:00:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:14:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static int	count_objects(int fd, char *av)
 	count = 0;
 	while (line)
 	{
-		if (!ft_empty_str(line))
+		if (!ft_empty_str(line) && is_obj(line))
 			count++;
 		free(line);
 		line = get_next_line(fd);
@@ -131,7 +131,7 @@ static int	count_objects(int fd, char *av)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	return (count - 3);
+	return (count);
 }
 
 void	set_scene(t_scene *scene, char *av)
@@ -145,6 +145,7 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
+	printf("nobj: %d\n", scene->n_objs);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
