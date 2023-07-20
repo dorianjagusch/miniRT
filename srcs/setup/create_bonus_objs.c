@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/19 16:49:26 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:31:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	create_disk(t_disk *disk, char *line)
 	disk->colour = get_colour(&line);
 	disk->d = -vec3_dot(disk->pos, disk->normal);
 }
-void	cone_disk(t_cone *cone)
+
+static void	cone_disk(t_cone *cone, int side)
 {
 	t_object	*disk;
 
@@ -62,13 +63,21 @@ void	cone_disk(t_cone *cone)
 	if (!disk)
 		ft_error(ENOMEM);
 	disk->disk.type = disk_obj;
-	disk->disk.pos = cone->pos;
+	disk->disk.normal = cone->normal;
 	disk->disk.radius = cone->radius;
 	disk->disk.colour = cone->colour;
-	disk->disk.normal = cone->normal;
-	cone->bottom = disk;
+	if (side == 't')
+	{
+		disk->disk.pos = vec3_add(cone->vertex, vec3_multf(cone->normal, cone->height));
+		cone->top = disk;
+	}
+	else
+	{
+		disk->disk.pos = vec3_sub(cone->vertex, vec3_multf(cone->normal, cone->height));
+		disk->disk.normal = cone->normal;
+		cone->bottom = disk;
+	}
 }
-
 void	create_cone(t_cone *cone, char *line)
 {
 	cone->type = cone_obj;
@@ -82,7 +91,9 @@ void	create_cone(t_cone *cone, char *line)
 	cone->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
-	//cone_disk(cone); // TODO: free this
+	cone->vertex = vec3_sub(cone->pos, vec3_multf(cone->normal, cone->height));
+	cone_disk(cone, 't');
+	cone_disk(cone, 'b'); // TODO: free this
 	vec3_normalize(&cone->normal);
 	cone->angle = atan(cone->radius / cone->height);
 	cone->disk_hit = 0;

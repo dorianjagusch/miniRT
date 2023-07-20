@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 12:00:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:08:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->colour = get_colour(&line);
 }
 
-void	cyl_disk(t_cylinder *cylinder, int side)
+static void	cyl_disk(t_cylinder *cylinder, int side)
 {
 	t_object	*disk;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 11:03:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:34:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # define R 2
 #endif
 
-//responsible for constructing the camera-to-world matrix,
-//which transforms points and vectors from camera space to world space
 void	camera_move(int key, t_img *img)
 {
 	if (key == MAIN_PAD_UP)
@@ -86,7 +84,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	fisheye[R]= sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
 
-	fisheye[R]= fisheye[R]* 0.5f;
+	fisheye[R]= fisheye[R]* 0.1f;
 	fisheye[X] = fisheye[R]* cos(phi);
 	fisheye[Y] = fisheye[R]* sin(phi);
 	primary_ray.origin = cam->pos;
