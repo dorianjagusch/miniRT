@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:24:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:28:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_box,
-		dist_mesh
+		dist_mesh,
+		dist_cone
 	};
 
 	return (func[obj->type](ray, obj));

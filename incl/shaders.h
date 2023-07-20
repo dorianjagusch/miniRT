@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 10:40:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:20 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ float			dist_cylinder(const t_ray *ray, t_object *cylinder);
 float			dist_disk(const t_ray *ray, t_object *disk);
 float			dist_triangle(const t_ray *ray, t_object *triangle);
 float			dist_box(const t_ray *ray, t_object *box);
+float			dist_cone(const t_ray *ray, t_object *cone);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
 void			check_visibility(t_scene *scene, int id);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
@@ -77,5 +78,5 @@ void			create_sphere(t_sphere *sphere, char *line);
 void			create_cylinder(t_cylinder *cylinder, char *line);
 void			create_plane(t_plane *plane, char *line);
 void			create_disk(t_disk *disk, char *line);
-
+void			create_cone(t_cone *cone, char *line);
 #endif

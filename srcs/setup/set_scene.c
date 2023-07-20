@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 13:04:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:54:39 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	set_unique(t_scene *scene, char **line)
 
 	if (ft_strncmp("A ", *line, 2) == 0 && !flag[0])
 	{
-		*line += 2;									// needs to be 2 to skip the A and white space
-		scene->amb.ratio = get_float(line, RATIO); // this needs to be changed to intensity
+		*line += 2;
+		scene->amb.ratio = get_float(line, RATIO);
 		scene->amb.colour = get_colour(line);
 		flag[0] = 1;
 		scene->amb.valid = 1;
@@ -69,6 +69,8 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_disk(&scene->objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
 		create_triangle(&scene->objs[id].triangle, line);
+	else if (!ft_strncmp("co", line, 2))
+		create_cone(&scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
 	set_meta(&scene->objs[id]);

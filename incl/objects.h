@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:22:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:28:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum e_obj
 	triangle_obj,
 	box_obj,
 	mesh_obj,
+	cone_obj,
 }	t_obj_e;
 
 typedef struct s_meta
@@ -133,6 +134,24 @@ typedef struct s_box
 	t_vec3			normal;
 }					t_box;
 
+typedef struct s_cone
+{
+	t_obj_e			type;
+	t_vec3			pos;
+	t_vec3			vertex;
+	t_object		*bottom;
+	t_object		*top;
+	float			radius;
+	float			angle;
+	float			intersect_y;
+	int				disk_hit;
+	t_vec3			normal;
+	float			height;
+	t_vec4			colour;
+	t_material_e	material;
+}					t_cone;
+
+
 typedef union u_object
 {
 	t_obj_e		type;
@@ -144,6 +163,7 @@ typedef union u_object
 	t_triangle	triangle;
 	t_box		box;
 	t_mesh		mesh;
+	t_cone		cone;
 }				t_object;
 
 

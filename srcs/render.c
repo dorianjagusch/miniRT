@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:22:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:30:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,13 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 
 	if (depth == BOUNCES)
 		return ((t_vec4){1, 0, 0, 0});
-	DEBUG_ONLY(printf("~%d~\n", scene->objs->cylinder.disk_hit));
 	get_closest(scene, ray, &hit);
 	if (hit.distance == FLT_MAX)
 		return ((t_vec4){1, 0, 0, 0});
 	assert(!isinf(hit.distance));
 	set_hitpoint(scene, ray, &hit);
 	assert(!vec3_isnan(hit.position));
-	DEBUG_ONLY(print_vec3(hit.position, "trace ray hp"));
 	light_info = light_distance(scene, &hit);
-	DEBUG_ONLY(print_light_info(light_info));
 	colour = hit_shader(ray, scene, &hit, &light_info);
 	reflected_ray = reflect_ray(ray, &hit);
 	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.9);

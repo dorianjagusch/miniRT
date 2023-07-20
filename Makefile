@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/20 16:22:49 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/20 16:42:19 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -O3 #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -41,19 +41,15 @@ S = srcs
 O = objs
 I = incl
 
-FILES = print_misc \
-	print_misc2 \
-	print_objs \
-	print_scene \
-	camera \
+FILES = camera \
 	colour_vec \
 	get_colour \
 	box_distance \
 	cylinder_distance \
 	disk_distance \
+	dist_cone \
 	get_normal \
 	light \
-	light_visibility \
 	min_distance \
 	plane_distance \
 	sphere_distance \
@@ -61,6 +57,7 @@ FILES = print_misc \
 	main \
 	render \
 	clean_up \
+	create_bonus_objs \
 	create_objs \
 	error_handling \
 	ft_help \
@@ -68,11 +65,20 @@ FILES = print_misc \
 	getters \
 	handlers \
 	input \
+	is_obj \
+	light_visibility \
 	set_image \
 	set_scene \
-	is_obj \
-	hit_shader \
+	texture_setup \
+	brick_pattern \
+	checker_pattern \
 	hit_info \
+	hit_shader \
+	texture_colour \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	triangle_map \
 	vec_add \
 	vec_clamp \
 	vec_crossprod \
@@ -89,20 +95,16 @@ FILES = print_misc \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
-	checker_pattern \
-	brick_pattern \
-	cylinder_map \
-	planar_map \
-	triangle_map \
-	sphere_map \
-	texture_colour \
-	texture_setup
-# 	mat4_add \
-# 	mat4_identity \
-# 	mat4_mult \
-# 	mat4_rotate \
-# 	mat4_sub \
-#	ascii_parser \
+	print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene
+# ascii_parser
+# mat4_add
+# mat4_identity
+# mat4_mult
+# mat4_rotate
+# mat4_sub
 
 HEADER = vector_math \
 	minirt \

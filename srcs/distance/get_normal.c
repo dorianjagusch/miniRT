@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:23:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:27:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
+t_vec3	get_cone_normal(const t_cone *cone, const t_vec3 hitpoint)
+{
+	t_vec3 co = vec3_sub(hitpoint, cone->pos);
+	float distance = vec3_mag(co);
+	t_vec3 axis = vec3_multf(cone->normal, cone->height);
+	float proj = vec3_dot(co, axis) / vec3_dot(axis, axis);
+	t_vec3 projection = vec3_multf(axis, proj);
+	t_vec3 normal = vec3_sub(co, projection);
+
+	if (proj < 0.0f || proj > 1.0f)
+	{
+		float height = distance * cosf(cone->angle);
+		if (proj < 0.0f)
+			normal = vec3_multf(cone->normal, -1.0f);
+		else
+			normal = cone->normal;
+	}
+	return (normal);
+}
+
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
 	t_vec3	normal;
@@ -49,6 +69,8 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		normal = vec3_cross(obj->triangle.edges[1], obj->triangle.edges[0]);
 	else if (obj->type == cylinder_obj)
 		normal = get_cylinder_normal(&(obj->cylinder), hitpoint);
+	else if (obj->type == cone_obj)
+		normal = get_cone_normal(&(obj->cone), hitpoint);
 	else if (obj->type == box_obj)
 		return (obj->box.normal);
 	vec3_normalize(&normal);

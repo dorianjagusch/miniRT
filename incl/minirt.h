@@ -42,8 +42,8 @@
 // DEFAULTS
 
 # if 0
-#  define WIDTH 1080
-#  define HEIGHT 780
+#  define WIDTH 1000
+#  define HEIGHT 500
 #  define DEBUG_ONLY(...) ((void)0)
 # else
 #  define WIDTH 500

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:19:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:30:11 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,16 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * \
 		tan(cam->fov * DEG2RAD);
 
-	fisheye[R]= sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
+	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
 
-	fisheye[R]= fisheye[R]* 0.5f;
-	fisheye[X] = fisheye[R]* cos(phi);
-	fisheye[Y] = fisheye[R]* sin(phi);
+	fisheye[R] = fisheye[R] * 0.1f;
+	fisheye[X] = fisheye[R] * cos(phi);
+	fisheye[Y] = fisheye[R] * sin(phi);
 	primary_ray.origin = cam->pos;
 	primary_ray.direction = vec3_add(cam->dir,
-	vec3_add(vec3_multf(cam->right, fisheye[X]),
-	vec3_multf(cam->up, fisheye[Y])));
+			vec3_add(vec3_multf(cam->right, fisheye[X]),
+				vec3_multf(cam->up, fisheye[Y])));
 	vec3_normalize(&primary_ray.direction);
 	return (primary_ray);
 }

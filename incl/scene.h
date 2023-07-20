@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 10:10:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	create_box(t_box *box, char *line);
 void	binary_parser(t_mesh *mesh, char *line); //
 void	ascii_parser(t_mesh *mesh, char *line);
 char	**ft_split3(char const *s, char c, char d);
+float	which_pos_min(float a, float b, float c);
 
 #endif

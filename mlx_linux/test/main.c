@@ -54,7 +54,7 @@ int	expose_win2(void *p)
 
 int	key_win1(int key,void *p)
 {
-  f("Key in Win1 : %d\n",key);
+  printf("Key in Win1 : %d\n",key);
   if (key==0xFF1B)
     exit(0);
 }
