@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/17 22:20:29 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:23:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
 				cylinder->height / 2));
 	bottom_cap = vec3_sub(cylinder->pos, vec3_multf(cylinder->normal,
 				cylinder->height / 2));
-	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
+	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist)); //TODO: could alter for cone
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, bottom_cap)) <= EPSILON)
 		*dist = FLT_MAX;
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, top_cap)) >= EPSILON)
