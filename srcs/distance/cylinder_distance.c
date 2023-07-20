@@ -19,14 +19,14 @@ float	which_pos_min(float a, float b, float c)
 {
 	float	min;
 
-	min = a;
+	min = FLT_MAX;
+	if (a > EPSILON)
+		min = a;
 	if (b > EPSILON && b < min)
 		min = b;
 	if (c > EPSILON && c < min)
 		min = c;
-	if (min > EPSILON)
-		return (min);
-	return (FLT_MAX);
+	return (min);
 }
 
 float	dist_caps(const t_ray *ray, const t_object *obj)

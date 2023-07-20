@@ -33,17 +33,19 @@ void	cyl_disk(t_cylinder *cylinder, int side)
 	if (!disk)
 		ft_error(ENOMEM);
 	disk->disk.type = disk_obj;
-	disk->disk.pos = cylinder->pos;
 	disk->disk.radius = cylinder->radius;
 	disk->disk.colour = cylinder->colour;
+	disk->disk.normal = cylinder->normal;
 	if (side == 't')
 	{
-		disk->disk.normal = cylinder->normal;
+		disk->disk.pos = vec3_add(cylinder->pos,
+				vec3_multf(cylinder->normal, cylinder->height / 2));
 		cylinder->top = disk;
 	}
 	else
 	{
-		disk->disk.normal = cylinder->normal;
+		disk->disk.pos = vec3_add(cylinder->pos,
+				vec3_multf(cylinder->normal, -cylinder->height / 2));
 		cylinder->bottom = disk;
 	}
 }
