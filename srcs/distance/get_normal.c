@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:27:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:07:41 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,21 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-t_vec3	get_cone_normal(const t_cone *cone, const t_vec3 hitpoint)
+t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint) 
 {
-	t_vec3 co = vec3_sub(hitpoint, cone->pos);
-	float distance = vec3_mag(co);
-	t_vec3 axis = vec3_multf(cone->normal, cone->height);
-	float proj = vec3_dot(co, axis) / vec3_dot(axis, axis);
-	t_vec3 projection = vec3_multf(axis, proj);
-	t_vec3 normal = vec3_sub(co, projection);
+	t_vec3	co;
+	t_vec3	normal;
 
-	if (proj < 0.0f || proj > 1.0f)
+	if (cone->disk_hit)
 	{
-		float height = distance * cosf(cone->angle);
-		if (proj < 0.0f)
-			normal = vec3_multf(cone->normal, -1.0f);
-		else
-			normal = cone->normal;
+		normal = cone->normal;
+		cone->disk_hit = 0;
+	}
+	else
+	{
+		co = vec3_sub(hitpoint, cone->pos);
+		normal = vec3_sub(co, vec3_multf(cone->normal,
+					vec3_dot(cone->normal, co)));
 	}
 	return (normal);
 }
