@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 10:14:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:04:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,6 @@ static void	set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-void	check_visibility(t_scene *scene, int id)
-{
-	if (scene->objs[id].type == plane_obj)
-	{
-		scene->objs[id].plane.isvisible = is_light_visible(&scene->cam.pos,
-				&scene->light.pos, &scene->objs[id].plane.pos,
-				&scene->objs[id].plane.normal);
-		scene->objs[id].plane.d *= powf(-1, scene->objs[id].plane.isvisible);
-	}
-	if (scene->objs[id].type == disk_obj)
-	{
-		scene->objs[id].disk.isvisible = is_light_visible(&scene->cam.pos,
-				&scene->light.pos, &scene->objs[id].disk.pos,
-				&scene->objs[id].disk.normal);
-		scene->objs[id].disk.d *= powf(-1, scene->objs[id].disk.isvisible);
-	}
-}
-
 static void	set_object(t_scene *scene, char *line, int id)
 {
 	if (!ft_isspace(line[2]))
@@ -87,8 +69,6 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_disk(&scene->objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
 		create_triangle(&scene->objs[id].triangle, line);
-	else if (!ft_strncmp("bx", line, 2))
-		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
 	set_meta(&scene->objs[id]);

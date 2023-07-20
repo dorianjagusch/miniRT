@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 08:14:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:49:55 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ float	which_pos_min(float a, float b, float c)
 	float	min;
 
 	min = FLT_MAX;
-	if (!isnan(a) && a > EPSILON)
+	if (isnan(a) == 0 && a > EPSILON)
 		min = a;
-	if (!isnan(b) && b > EPSILON && b < min)
+	if (isnan(b) == 0 && b > EPSILON && b < min)
 		min = b;
-	if (!isnan(c) && c > EPSILON && c < min)
+	if (isnan(c) == 0 && c > EPSILON && c < min)
 		min = c;
 	return (min);
 }
@@ -85,13 +85,13 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 		return (FLT_MAX);
 	res[0] = (-params.y - sqrt(discriminant)) / (2 * params.x);
 	res[1] = (-params.y + sqrt(discriminant)) / (2 * params.x);
-	if (!isnan(res[0]) && res[0] > EPSILON)
+	if (isnan(res[0]) == 0 && res[0] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[0]));
-	if (!isnan(res[1]) && res[1] > EPSILON)
+	if (isnan(res[1]) == 0 && res[1] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[1]));
 	dist_cap = dist_caps(ray, obj);
 	res[0] = which_pos_min(res[0], res[1], dist_cap);
-	if (res[0] == dist_cap && res[0] != FLT_MAX)
+	if (isnan(res[0]) == 0 && res[0] == dist_cap && res[0] != FLT_MAX)
 		obj->cylinder.disk_hit = 1;
 	return (res[0]);
 }

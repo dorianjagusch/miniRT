@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:09:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 07:38:43 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:56:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ t_vec2	cylinder_map(t_vec3 *point, t_object *obj)
 	t_vec3	axis[2];
 	float	angle;
 
+	if (obj->cylinder.disk_hit)
+		return (disk_map(point, obj->cylinder.bottom));
 	offset = vec3_sub(*point, obj->cylinder.pos);
-	axis[U] = vec3_cross((t_vec3){0, 1, 0}, obj->cylinder.normal);
+	axis[U] = vec3_cross((t_vec3){EPSILON, 1, EPSILON}, obj->cylinder.normal);
 	vec3_normalize(&(axis[U]));
 	axis[V] = vec3_cross(obj->cylinder.normal, axis[U]);
 	projection.x = vec3_dot(offset, axis[U]);

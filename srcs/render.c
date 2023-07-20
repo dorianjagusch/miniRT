@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 07:17:27 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:16:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	DEBUG_ONLY(print_light_info(light_info));
 	colour = hit_shader(ray, scene, &hit, &light_info);
 	reflected_ray = reflect_ray(ray, &hit);
-	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.3);
+	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.9);
 	colour = vec4_add(colour, reflection);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);

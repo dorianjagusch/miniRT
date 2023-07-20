@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 07:20:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:22:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	set_meta(t_object *object)
 		ft_error(ENOMEM);
 	object->meta.texture->checkers = set_board(10, 10, object->meta.colour,
 			vec4_multf(object->meta.colour, 0.5));
-	object->meta.texture->pattern = checkers_pat;
+	object->meta.texture->pattern = brick_pat;
 }

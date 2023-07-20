@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:04:51 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 10:09:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:00:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	is_obj(char *line)
 		|| ft_strncmp(line, "pl", 2) == 0
 		|| ft_strncmp(line, "cy", 2) == 0
 		|| ft_strncmp(line, "di", 2) == 0
-		|| ft_strncmp(line, "tr", 2) == 0
-		|| ft_strncmp(line, "bx", 2) == 0)
+		|| ft_strncmp(line, "tr", 2) == 0)
 		return (1);
 	return (0);
 }
