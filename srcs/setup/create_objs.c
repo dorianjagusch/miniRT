@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 12:00:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:20:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "patterns.h"
 
 void	create_sphere(t_sphere *sphere, char *line)
 {
@@ -32,17 +33,19 @@ void	cyl_disk(t_cylinder *cylinder, int side)
 	if (!disk)
 		ft_error(ENOMEM);
 	disk->disk.type = disk_obj;
-	disk->disk.pos = cylinder->pos;
 	disk->disk.radius = cylinder->radius;
 	disk->disk.colour = cylinder->colour;
+	disk->disk.normal = cylinder->normal;
 	if (side == 't')
 	{
-		disk->disk.normal = cylinder->normal;
+		disk->disk.pos = vec3_add(cylinder->pos,
+				vec3_multf(cylinder->normal, cylinder->height / 2));
 		cylinder->top = disk;
 	}
 	else
 	{
-		disk->disk.normal = cylinder->normal;
+		disk->disk.pos = vec3_add(cylinder->pos,
+				vec3_multf(cylinder->normal, -cylinder->height / 2));
 		cylinder->bottom = disk;
 	}
 }
@@ -63,7 +66,7 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
-	cyl_disk(cylinder, 't'); // free dose bitches
+	cyl_disk(cylinder, 't');
 	cyl_disk(cylinder, 'b');
 }
 
@@ -121,4 +124,6 @@ void	create_triangle(t_triangle *triangle, char *line)
 			triangle->tri_point[0]);
 	triangle->edges[1] = vec3_sub(triangle->tri_point[2],
 			triangle->tri_point[0]);
+	triangle->normal = vec3_cross(triangle->edges[0], triangle->edges[1]);
+	vec3_normalize(&triangle->normal);
 }

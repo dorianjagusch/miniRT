@@ -9,6 +9,14 @@
         "iterator": "c",
         "cstdlib": "c",
         "bla": "cpp",
-        "ios": "c"
+        "ios": "c",
+        "mat4_math.h": "c",
+        "__node_handle": "c",
+        "scene.h": "c",
+        "patterns.h": "c",
+        "__functional_03": "c",
+        "functional": "c",
+        "__locale": "c",
+        "locale": "c"
     }
 }

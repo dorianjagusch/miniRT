@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/07 15:11:48 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/20 07:05:33 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,9 @@ ft_strrchr \
 ft_strtrim \
 ft_substr \
 ft_tolower \
-ft_toupper
+ft_toupper \
+ft_frac \
+ft_sign
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name $(FILE).c))
 

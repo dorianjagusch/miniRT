@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:53:10 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 08:19:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
+
+t_vec2	vec2_add(const t_vec2 v, const t_vec2 u)
+{
+	t_vec2	res;
+
+	res.x = v.x + u.x;
+	res.y = v.y + u.y;
+	return (res);
+}
+
+t_vec2	vec2_addf(const t_vec2 v, const float val)
+{
+	t_vec2	res;
+
+	res.x = v.x + val;
+	res.y = v.y + val;
+	return (res);
+}
 
 t_vec3	vec3_add(const t_vec3 v, const t_vec3 u)
 {

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 15:02:56 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:48:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ enum e_errors
 # define WIN_2 0x04
 # define WIN_1 0x02
 # define WIN_0 0x01
+
+void	ft_error(int error);
 
 #endif

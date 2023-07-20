@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 11:03:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:19:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # define R 2
 #endif
 
-//responsible for constructing the camera-to-world matrix,
-//which transforms points and vectors from camera space to world space
 void	camera_move(int key, t_img *img)
 {
 	if (key == MAIN_PAD_UP)
@@ -53,22 +51,6 @@ void	camera_move(int key, t_img *img)
 		img->scene.cam.dir.x -= 1;
 	render(img);
 }
-
-// t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
-// {
-// 	t_ray	primary_ray;
-// 	float	norm_coord_x;
-// 	float	norm_coord_y;
-
-// 	norm_coord_x = (1.0f - (2.0f * (pxl.x + 0.5f) / WIDTH)) * cam->aspect_ratio * tan(cam->fov * DEG2RAD);
-// 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * tan(cam->fov * DEG2RAD);
-// 	primary_ray.origin = cam->pos;
-// 	primary_ray.direction = vec3_add(cam->dir,
-// 		vec3_add(vec3_multf(cam->right, norm_coord_x),
-// 			vec3_multf(cam->up, norm_coord_y)));
-// 	vec3_normalize(&primary_ray.direction);
-// 	return (primary_ray);
-// }
 
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 {

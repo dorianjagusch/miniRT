@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_colour.c                                   :+:      :+:    :+:   */
+/*   mat4_identity.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 19:46:12 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/15 13:01:44 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/15 14:05:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector_math.h"
-#include "minirt.h"
-#include "patterns.h"
+#include "mat4_math.h"
 
-t_vec4	get_texture_colour(t_vec4 (*pattern)(t_checker_board *, t_vec2),
-	t_vec2 (*map)(t_object *, t_vec3 *), t_object *object, t_vec3 *point,
-	t_checker_board *checkers)
+t_mat4	mat4_identity(void)
 {
-	t_vec4	colour;
+	t_mat4	result;
+	int		i;
+	int		j;
 
-	colour = pattern(checkers, map(object, point));
-	return (colour);
+	i = -1;
+	ft_bzero(&result, sizeof(t_mat4));
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < 4)
+		{
+			if (i == j)
+				result.data[i][j] = 1.0f;
+		}
+	}
+	return (result);
 }

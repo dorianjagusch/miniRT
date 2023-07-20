@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/14 07:57:47 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/20 16:22:49 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g -O3 #-fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -41,53 +41,68 @@ S = srcs
 O = objs
 I = incl
 
-FILES = get_colour \
+FILES = print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene \
+	camera \
 	colour_vec \
-	render \
-	cylinder_distance \
-	plane_distance \
-	disk_distance \
-	triangle_distance \
-	light \
-	sphere_distance \
+	get_colour \
 	box_distance \
-	min_distance \
+	cylinder_distance \
+	disk_distance \
 	get_normal \
+	light \
+	light_visibility \
+	min_distance \
+	plane_distance \
+	sphere_distance \
+	triangle_distance \
 	main \
-	vec_mult \
-	vec_sub \
-	vec_normalize \
-	vec_rotate \
-	vec_scale \
-	vec_propadd \
-	vec_add \
-	vec_dotprod \
-	vec_clamp \
-	vec_crossprod \
-	vec_reflect \
-	vec_isnan \
-	vec_mag \
-	vec_dist \
-	vec_neg \
-	vec_inv \
-	hit_shader \
-	input \
+	render \
 	clean_up \
-	set_scene \
+	create_objs \
+	error_handling \
 	ft_help \
-	set_image \
+	ft_split3 \
 	getters \
 	handlers \
-	error_handling \
-	camera \
-	print_scene \
-	print_objs \
-	print_misc \
-	print_misc2 \
-	create_objs \
-	binary_parser \
-	ascii_parser \
-	ft_split3
+	input \
+	set_image \
+	set_scene \
+	is_obj \
+	hit_shader \
+	hit_info \
+	vec_add \
+	vec_clamp \
+	vec_crossprod \
+	vec_dist \
+	vec_dotprod \
+	vec_inv \
+	vec_isnan \
+	vec_mag \
+	vec_mult \
+	vec_neg \
+	vec_normalize \
+	vec_propadd \
+	vec_reflect \
+	vec_rotate \
+	vec_scale \
+	vec_sub \
+	checker_pattern \
+	brick_pattern \
+	cylinder_map \
+	planar_map \
+	triangle_map \
+	sphere_map \
+	texture_colour \
+	texture_setup
+# 	mat4_add \
+# 	mat4_identity \
+# 	mat4_mult \
+# 	mat4_rotate \
+# 	mat4_sub \
+#	ascii_parser \
 
 HEADER = vector_math \
 	minirt \
@@ -98,8 +113,10 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
+	mat4_math \
 	materials \
 	mlx \
+	patterns \
 	print_helpers
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
@@ -120,11 +137,8 @@ libft: $(LIBFT)
 print:
 	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3
 
-# Make produes the .h.gch files sees them as additional output thus does not allow the naming of the output
-# need to figure out why it precompiles them
-
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME) -O3
+	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
@@ -139,7 +153,7 @@ $O:
 	@mkdir -p $@ $(O_DIRS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g # -O3
+	@$(CC) -I$I -c $< -o $@ -g
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:

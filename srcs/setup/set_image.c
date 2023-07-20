@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/30 13:19:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:55:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	user_input(t_img *img)
 	mlx_key_hook(img->win.win, key_handler, img);
 	mlx_mouse_hook(img->win.win, mouse_handler, img);
 	mlx_hook(img->win.win, ON_DESTROY, 1L << 0, ft_close, img);
-	//mlx_hook(img->win->win, ON_MOUSEMOVE, (1L << 6), mouse_position, img);
 	return (0);
 }
 

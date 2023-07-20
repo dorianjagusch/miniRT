@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_dotprod.c                                      :+:      :+:    :+:   */
+/*   ft_sign.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 13:02:10 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 13:39:53 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/20 07:03:03 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/20 07:04:53 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector_math.h"
+#include "libft.h"
 
-float	vec3_dot(const t_vec3 v1, const t_vec3 v2)
+int	ft_sign(float a)
 {
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
-}
-
-float	vec4_dot(const t_vec4 v1, const t_vec4 v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+	if (a >= 0)
+		return (1);
+	return (-1);
 }

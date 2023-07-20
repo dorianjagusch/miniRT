@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/11 10:31:14 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/19 12:05:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ typedef struct s_vec4
 }			t_vec4;
 
 // VECTOR MATHS
+
+t_vec2	vec2_multf(const t_vec2 v, const float val);
+t_vec2	vec2_addf(const t_vec2 v, const float val);
+t_vec2	vec2_add(const t_vec2 v, const t_vec2 u);
+
 t_vec3	vec3_add(const t_vec3 v, const t_vec3 u);
 t_vec3	vec3_addf(const t_vec3 v, const float val);
 t_vec3	vec3_sub(const t_vec3 v, const t_vec3 u);

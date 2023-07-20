@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 12:52:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:23:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ float	which_pos_min(float a, float b, float c)
 {
 	float	min;
 
-	min = a;
-	if (b > EPSILON && b < min)
+	min = FLT_MAX;
+	if (isnan(a) == 0 && a > EPSILON)
+		min = a;
+	if (isnan(b) == 0 && b > EPSILON && b < min)
 		min = b;
-	if (c > EPSILON && c < min)
+	if (isnan(c) == 0 && c > EPSILON && c < min)
 		min = c;
-	if (min > EPSILON)
-		return (min);
-	return (FLT_MAX);
+	return (min);
 }
 
 float	dist_caps(const t_ray *ray, const t_object *obj)
@@ -85,14 +85,13 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 		return (FLT_MAX);
 	res[0] = (-params.y - sqrt(discriminant)) / (2 * params.x);
 	res[1] = (-params.y + sqrt(discriminant)) / (2 * params.x);
-	if (res[0] > EPSILON)
+	if (isnan(res[0]) == 0 && res[0] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[0]));
-	if (res[1] > EPSILON)
+	if (isnan(res[1]) == 0 && res[1] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[1]));
 	dist_cap = dist_caps(ray, obj);
-	DEBUG_ONLY(printf("dist cap: %f\n", dist_cap));
 	res[0] = which_pos_min(res[0], res[1], dist_cap);
-	if (res[0] == dist_cap && res[0] != FLT_MAX)
+	if (isnan(res[0]) == 0 && res[0] == dist_cap && res[0] != FLT_MAX)
 		obj->cylinder.disk_hit = 1;
 	return (res[0]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 11:58:44 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:22:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	DEBUG_ONLY(print_light_info(light_info));
 	colour = hit_shader(ray, scene, &hit, &light_info);
 	reflected_ray = reflect_ray(ray, &hit);
-	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.3);
+	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.9);
 	colour = vec4_add(colour, reflection);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);
@@ -73,10 +73,8 @@ static void	my_mlx_pixel_put(t_img *img, t_vec2 pxl, int colour)
 void	render(t_img *img)
 {
 	t_vec2		pxl;
-	//int		tot_res;
 	int			colour;
 
-	//tot_res = HEIGHT * WIDTH;
 	pxl.y = 0;
 	while (pxl.y < HEIGHT)
 	{

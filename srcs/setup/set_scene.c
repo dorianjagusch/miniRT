@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/14 09:51:32 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:04:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,14 @@ static void	set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-// void	check_visibility(t_scene *scene, int id)
-// {
-// 	if (scene->objs[id].type == plane_obj)
-// 	{
-// 		scene->objs[id].plane.isvisible = is_light_visible(&scene->cam.pos,
-// 				&scene->light.pos, &scene->objs[id].plane.pos,
-// 				&scene->objs[id].plane.normal);
-// 		scene->objs[id].plane.d *= powf(-1, scene->objs[id].plane.isvisible);
-// 	}
-// 	if (scene->objs[id].type == disk_obj)
-// 	{
-// 		scene->objs[id].disk.isvisible = is_light_visible(&scene->cam.pos,
-// 				&scene->light.pos, &scene->objs[id].disk.pos,
-// 				&scene->objs[id].disk.normal);
-// 		scene->objs[id].disk.d *= powf(-1, scene->objs[id].disk.isvisible);
-// 	}
-// }
-
-
 static void	set_object(t_scene *scene, char *line, int id)
 {
 	if (!ft_isspace(line[2]))
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
 		create_sphere(&scene->objs[id].sphere, line);
-	else if (!ft_strncmp("tm", line, 2))
-		ascii_parser(&scene->objs[id].mesh, line);
+	// else if (!ft_strncmp("tm", line, 2))
+	// 	ascii_parser(&scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
@@ -88,11 +69,10 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_disk(&scene->objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
 		create_triangle(&scene->objs[id].triangle, line);
-	else if (!ft_strncmp("bx", line, 2))
-		create_box(&scene->objs[id].box, line);
 	else
 		ft_error(ident_err);
-	//check_visibility(scene, id);
+	set_meta(&scene->objs[id]);
+	check_visibility(scene, id);
 }
 
 static void	process_line(t_scene *scene, char *line)
@@ -121,7 +101,7 @@ static int	count_objects(int fd, char *av)
 	count = 0;
 	while (line)
 	{
-		if (!ft_empty_str(line))
+		if (!ft_empty_str(line) && is_obj(line))
 			count++;
 		free(line);
 		line = get_next_line(fd);
@@ -131,7 +111,7 @@ static int	count_objects(int fd, char *av)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	return (count - 3);
+	return (count);
 }
 
 void	set_scene(t_scene *scene, char *av)
@@ -145,6 +125,7 @@ void	set_scene(t_scene *scene, char *av)
 	if (fd < 0)
 		ft_error(errno);
 	scene->n_objs = count_objects(fd, av);
+	printf("nobj: %d\n", scene->n_objs);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
