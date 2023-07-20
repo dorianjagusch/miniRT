@@ -61,7 +61,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
-# define EPSILON 1e-8
+# define EPSILON 10e-8
 
 # define ORTHO 0
 # define AXIS 1

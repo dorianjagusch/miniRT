@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/19 13:27:50 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/20 07:34:49 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ FILES = print_misc \
 	set_image \
 	set_scene \
 	hit_shader \
+	hit_info \
 	vec_add \
 	vec_clamp \
 	vec_crossprod \

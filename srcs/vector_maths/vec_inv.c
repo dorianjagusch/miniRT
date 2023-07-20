@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_inv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 23:17:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:04:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 07:38:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <float.h>
 
 #ifndef EPSILON
-# define EPSILON 1e-3
+# define EPSILON 10e-3
 #endif
 
 t_vec3	vec3_inv(const t_vec3 v)

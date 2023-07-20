@@ -127,6 +127,7 @@ char	*get_next_line(int fd);
 long	ft_max(long a, long b);
 long	ft_min(long a, long b);
 float	ft_frac(float a);
+int		ft_sign(float a);
 double	ft_powerf(double x, int exp);
 float	ft_scale(float value, t_range range_old, t_range range_new);
 void	ft_free(void *ptr);

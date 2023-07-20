@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:48:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 17:34:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/20 07:38:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <float.h>
 
 #ifndef EPSILON
-# define EPSILON 1e-8
+# define EPSILON 10e-8
 #endif
 
 t_vec2	plane_map(t_vec3 *point, t_object *obj)
