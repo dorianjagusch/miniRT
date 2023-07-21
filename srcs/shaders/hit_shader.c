@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 20:00:04 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:13:41 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 	ft_bzero(col, 5 * sizeof(t_vec4));
 	col[ambient] = vec4_multf(scene->amb.colour, scene->amb.ratio);
 	col[ambient] = vec4_compmult(hit->colour, col[ambient]);
-	DEBUG_ONLY(print_light_info(*light_info));
 	if (light_info->distance >= EPSILON)
 	{
 		col[diffuse] = vec4_multf(scene->light.colour, light_info->intensity);
@@ -45,7 +44,6 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 				col[diffuse]);
 		col[diffuse] = vec4_multf(col[diffuse],
 				1 / (light_info->distance * light_info->distance));
-		DEBUG_ONLY(print_vec4(col[diffuse], "col diffuse"));
 		col[specular] = specular_colour(ray, scene, hit, light_info);
 	}
 	col[final] = vec4_add(vec4_add(col[ambient], col[diffuse]), col[specular]);

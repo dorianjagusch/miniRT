@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 19:23:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:13:29 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	t_light_info	light_info;
 
 	i = 0;
-	DEBUG_ONLY(print_vec3(hit->position, "hit position"));
 	shadowray.origin = hit->position;
 	light_info.direction = vec3_sub(scene->light.pos, hit->position);
 	light_info.distance = vec3_mag(light_info.direction);
@@ -39,6 +38,5 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	light_info.intensity = fmax(vec3_dot(hit->normal, light_info.direction) \
 		* scene->light.ratio * 100, 0);
 	light_info.colour = scene->light.colour;
-	DEBUG_ONLY(print_light_info(light_info));
 	return (light_info);
 }
