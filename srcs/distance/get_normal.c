@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 19:48:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:12:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,38 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
+// t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
+// {
+// 	t_vec3	co;
+// 	t_vec3	normal;
+
+// 	if (cone->disk_hit)
+// 	{
+// 		normal = cone->normal;
+// 		cone->disk_hit = 0;
+// 	}
+// 	else
+// 	{
+// 		co = vec3_sub(hitpoint, cone->pos);
+// 		normal = vec3_sub(co, vec3_multf(cone->normal,
+// 					vec3_dot(cone->normal, co)));
+// 	}
+// 	return (normal);
+// }
 t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 {
-	t_vec3	co;
-	t_vec3	normal;
+	t_vec3	norm;
+	const float mult = -1;
+	norm = vec3_sub(hitpoint, vec3_add(cone->vertex, vec3_compmult(cone->normal, vec3_multf(vec3_sub(hitpoint, cone->vertex), mult))));
 
-	if (cone->disk_hit)
-	{
-		normal = cone->normal;
-		cone->disk_hit = 0;
-	}
-	else
-	{
-		co = vec3_sub(hitpoint, cone->pos);
-		normal = vec3_sub(co, vec3_multf(cone->normal,
-					vec3_dot(cone->normal, co)));
-	}
-	return (normal);
+	return (norm);
 }
 
 // calulcate the normal depending on whether we hit the surface from the inside or outside.
 // Something along the lines of
 // 			// vec3_multf(vec3_multf(hit->normal, 10e-3),
 			// 	-ft_sign(vec3_dot(hit->normal, scene->cam.dir)));
+
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
 	t_vec3	normal;

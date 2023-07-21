@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/21 12:49:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:52:05 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	check_height(const t_ray *ray, const t_cone *cone,
 	if (vec3_dot(cone->normal, vec3_sub(hitpoint, bottom_cap)) >= EPSILON
 		|| vec3_dot(cone->normal, vec3_sub(hitpoint, cone->vertex)) <= EPSILON)
 		*dist = FLT_MAX;
+	
 }
 
 float	dist_cone(const t_ray *ray, t_object *obj)
