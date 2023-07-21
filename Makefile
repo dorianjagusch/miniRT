@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/21 13:45:02 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/21 20:22:39 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -96,6 +96,7 @@ FILES = camera \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
+	vec_add_array \
 	print_misc \
 	print_misc2 \
 	print_objs \

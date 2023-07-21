@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 14:01:42 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:07:09 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	print_scene(t_scene scene)
 	num = 0;
 	printf("========= SCENE ==========\n");
 	printf("Ambient light\n");
-	printf("Ratio: %f\n", scene.amb.ratio);
+	//printf("Ratio: %f\n", scene.amb.ratio);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		scene.amb.colour.x, scene.amb.colour.y, scene.amb.colour.z);
 	while (num < scene.n_lights)
 	{
 		printf("--------------------------\n");
-		print_light(scene.light[num]);
+		print_light(scene.lights[num]);
 		num++;
 		printf("--------------------------\n");
 	}

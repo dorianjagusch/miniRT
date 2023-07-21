@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_misc2.c                                      :+:      :+:    :+:   */
+/*   vec_add_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 14:07:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 20:20:29 by smorphet         ###   ########.fr       */
+/*   Created: 2023/07/21 18:43:37 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/21 20:10:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
-#include "scene.h"
-#include "print_helpers.h"
-#include "shaders.h"
 
-void	print_light_info(t_light_info light_info)
+t_vec4	vec4_add_array(t_vec4 v, const t_vec4 *array, size_t arr_len)
 {
-	printf("Light Info:\n----------------------------\n");
-	
-	printf("Intensity: %f\n", light_info.intensity);
-	print_col(light_info.colour, "Diffuse light");
-	printf("----------------------------\n");
+	int 	i;
+	t_vec4	res;
+
+	i = 0;
+	res = v;
+	while (i < arr_len)
+	{
+		res = vec4_add(res, array[i]);
+		i++;
+	}
+	return (res);
+
 }

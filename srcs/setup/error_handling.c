@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 14:06:05 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:23:17 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	validate_scene(t_scene *scene)
 	int num;
 
 	num = 0;
-	while (scene->light[num].valid < scene->n_lights)
+	while (num < scene->n_lights && scene->lights[num].valid)
 	{
-		if (scene->light[0].valid != 1)
+		if (scene->lights[num].valid != 1)
 			ft_error(content_err);
 		num++;
 	}

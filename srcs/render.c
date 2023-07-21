@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 14:16:26 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:04:12 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void	render(t_img *img)
 	mlx_put_image_to_window(img->win.mlx, img->win.win, img->img, 0, 0);
 	mlx_string_put(img->win.mlx, img->win.win, WIDTH - 80,
 		20, WHITE, "[H] - Help");
-	print_scene(img->scene);
 }

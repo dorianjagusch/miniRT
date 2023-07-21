@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 18:27:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:48:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_hitresult
 
 typedef struct s_light_info
 {
-	t_vec3	direction;
-	float	distance;
 	float	intensity;
 	t_vec4	colour;
 }			t_light_info;

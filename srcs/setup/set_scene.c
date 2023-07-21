@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 14:04:58 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:06:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void	set_unique(t_scene *scene, char **line)
 	else if (ft_strncmp("L ", *line, 2) == 0 && flag[1] <= 6)
 	{		
 		*line += 2;
-		scene->light[flag[1]].pos = get_vec3(line);
+		scene->lights[flag[1]].pos = get_vec3(line);
 		ft_skip_ws(line);
-		scene->light[flag[1]].ratio = get_float(line, RATIO);
-		scene->light[flag[1]].colour = get_colour(line);
-		scene->light[flag[1]].valid = 1;
+		scene->lights[flag[1]].ratio = get_float(line, RATIO);
+		scene->lights[flag[1]].colour = get_colour(line);
+		scene->lights[flag[1]].valid = 1;
 		scene->n_lights += 1;
 		printf("%d\n", flag[1]);
 		flag[1] += 1;
@@ -133,7 +133,7 @@ void	set_scene(t_scene *scene, char *av)
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
-	scene->light = ft_calloc(sizeof(t_light) * 7, 1);
+	scene->lights = ft_calloc(sizeof(t_light) * 7, 1);
 	scene->n_lights = 0;
 	if (!scene->objs)
 		ft_error(ENOMEM);
