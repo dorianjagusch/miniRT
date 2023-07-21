@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 11:13:29 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:39:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 	int				i;
 	t_ray			shadowray;
 	t_light_info	light_info;
+	int				num;
 
 	i = 0;
+	num = 0;
 	shadowray.origin = hit->position;
-	light_info.direction = vec3_sub(scene->light.pos, hit->position);
+	light_info.direction = vec3_sub(scene->light[num].pos, hit->position); //TODO: something has broken
 	light_info.distance = vec3_mag(light_info.direction);
 	vec3_normalize(&light_info.direction);
 	shadowray.direction = light_info.direction;
@@ -35,8 +37,8 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 		}
 		i++;
 	}
-	light_info.intensity = fmax(vec3_dot(hit->normal, light_info.direction) \
-		* scene->light.ratio * 100, 0);
-	light_info.colour = scene->light.colour;
+	// light_info.intensity = fmax(vec3_dot(hit->normal, light_info.direction) \
+	// 	* scene->light.ratio * 100, 0);
+	// light_info.colour = scene->light.colour;
 	return (light_info);
 }

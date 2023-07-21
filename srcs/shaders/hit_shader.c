@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 11:13:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:05:00 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 	col[ambient] = vec4_compmult(hit->colour, col[ambient]);
 	if (light_info->distance >= EPSILON)
 	{
-		col[diffuse] = vec4_multf(scene->light.colour, light_info->intensity);
+		// col[diffuse] = vec4_multf(scene->light.colour, light_info->intensity);
 		col[diffuse] = vec4_compmult(hit->colour,
 				col[diffuse]);
 		col[diffuse] = vec4_multf(col[diffuse],

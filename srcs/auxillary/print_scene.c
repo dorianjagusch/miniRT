@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 12:21:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:01:42 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,22 @@ void	print_camera(t_camera cam)
 void	print_scene(t_scene scene)
 {
 	int	i;
+	int	num;
 
 	i = 0;
+	num = 0;
 	printf("========= SCENE ==========\n");
 	printf("Ambient light\n");
 	printf("Ratio: %f\n", scene.amb.ratio);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		scene.amb.colour.x, scene.amb.colour.y, scene.amb.colour.z);
-	printf("--------------------------\n");
-	print_light(scene.light);
-	printf("--------------------------\n");
+	while (num < scene.n_lights)
+	{
+		printf("--------------------------\n");
+		print_light(scene.light[num]);
+		num++;
+		printf("--------------------------\n");
+	}
 	print_camera(scene.cam);
 	printf("--------------------------\n");
 	while (i < scene.n_objs)

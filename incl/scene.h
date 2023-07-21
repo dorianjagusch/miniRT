@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:29:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:26:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_light
 	t_vec3	pos;
 	float	ratio;
 	t_vec4	colour;
+	float	attenuation[3];
 	int		valid;
 }			t_light;
 
@@ -54,11 +55,12 @@ typedef struct s_amb
 typedef struct s_scene
 {
 	t_amb		amb;
-	t_light		light;
+	t_light		*light;
 	t_camera	cam;
 	int32_t		bounces;
 	t_object	*objs;
 	int			n_objs;
+	int			n_lights;
 
 }				t_scene;
 
