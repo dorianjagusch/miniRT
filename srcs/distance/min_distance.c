@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:28:27 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:33:34 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_cylinder,
 		dist_disk,
 		dist_triangle,
+		dist_cone,
 		dist_box,
-		dist_mesh,
-		dist_cone
+		dist_mesh
 	};
 
 	return (func[obj->type](ray, obj));

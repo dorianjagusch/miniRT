@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 18:26:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:32:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef enum e_obj
 	cylinder_obj,
 	disk_obj,
 	triangle_obj,
-	box_obj,
-	mesh_obj,
 	cone_obj,
+	box_obj,
+	mesh_obj
 }	t_obj_e;
 
 typedef struct s_meta

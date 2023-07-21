@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 10:12:23 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:25:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,22 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 	return (normal);
 }
 
-// t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
-// {
-// 	t_vec3	co;
-// 	t_vec3	normal;
-
-// 	if (cone->disk_hit)
-// 	{
-// 		normal = cone->normal;
-// 		cone->disk_hit = 0;
-// 	}
-// 	else
-// 	{
-// 		co = vec3_sub(hitpoint, cone->pos);
-// 		normal = vec3_sub(co, vec3_multf(cone->normal,
-// 					vec3_dot(cone->normal, co)));
-// 	}
-// 	return (normal);
-// }
 t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 {
-	t_vec3	norm;
-	const float mult = -1;
-	norm = vec3_sub(hitpoint, vec3_add(cone->vertex, vec3_compmult(cone->normal, vec3_multf(vec3_sub(hitpoint, cone->vertex), mult))));
+	t_vec3	co;
+	t_vec3	normal;
 
-	return (norm);
+	if (cone->disk_hit)
+	{
+		normal = cone->normal;
+		cone->disk_hit = 0;
+	}
+	else
+	{
+		co = vec3_sub(hitpoint, cone->vertex);
+		normal = vec3_cross(co, vec3_cross(co, cone->normal));
+	}
+	return (normal);
 }
 
 // calulcate the normal depending on whether we hit the surface from the inside or outside.

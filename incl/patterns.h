@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 16:25:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:31:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_vec2		cylinder_map(t_vec3 *point, t_object *obj);
 t_vec2		plane_map(t_vec3 *point, t_object *obj);
 t_vec2		disk_map(t_vec3 *point, t_object *obj);
 t_vec2		triangle_map(t_vec3 *point, t_object *obj);
+t_vec2		cone_map(t_vec3 *point, t_object *obj);
 
 t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
 t_checkers	set_board(int width, int height, t_vec4 light, t_vec4 dark);
