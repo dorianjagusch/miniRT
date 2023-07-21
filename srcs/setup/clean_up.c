@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 19:08:29 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:48:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	free_scene(t_scene *scene)
 		free(scene->objs[i].meta.texture);
 		i++;
 	}
-
 	if(scene->objs)
 		free(scene->objs);
 	if(scene->lights)
