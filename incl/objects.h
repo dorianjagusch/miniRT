@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:16:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:12:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ typedef enum e_obj
 typedef struct s_meta
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 }					t_meta;
 
 typedef struct s_sphere
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			pos;
 	float			radius;
@@ -52,7 +54,8 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
@@ -63,7 +66,8 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			pos;
 	t_object		*top;
@@ -78,7 +82,8 @@ typedef struct s_cylinder
 typedef struct s_disk
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
@@ -90,7 +95,8 @@ typedef struct s_disk
 typedef struct s_triangle
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec2			uv;
 	t_vec4			colour;
 	t_vec3			tri_point[3];
@@ -101,7 +107,8 @@ typedef struct s_triangle
 typedef struct s_mesh
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	float			n_triangles;
 	float			count_v;
@@ -119,7 +126,8 @@ typedef struct s_mesh
 typedef struct s_box
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			verts[2];
 	t_vec3			normal;
@@ -128,7 +136,8 @@ typedef struct s_box
 typedef struct s_cone
 {
 	t_obj_e			type;
-	t_texture		*texture;
+	t_texture		*tex_col;
+	t_texture		*tex_norm;
 	t_vec4			colour;
 	t_vec3			pos;
 	t_object		*bottom;
@@ -154,6 +163,5 @@ typedef union u_object
 	t_mesh		mesh;
 	t_cone		cone;
 }				t_object;
-
 
 #endif

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 18:49:42 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:18:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "print_helpers.h"
 
-void calloc_light_arrays(t_scene	*scene)
+void	calloc_light_arrays(t_scene	*scene)
 {
 	scene->distances = ft_calloc(sizeof(float), scene->n_lights);
 	scene->directions = ft_calloc(sizeof(t_vec3), scene->n_lights);

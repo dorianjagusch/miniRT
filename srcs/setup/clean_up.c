@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 20:48:52 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:27:56 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	free_scene(t_scene *scene)
 		}
 		if (scene->objs[i].type == cone_obj)
 			free(scene->objs[i].cone.bottom);
-		free(scene->objs[i].meta.texture);
+		free(scene->objs[i].meta.tex_col);
+		free(scene->objs[i].meta.tex_norm);
 		i++;
 	}
 	if(scene->objs)

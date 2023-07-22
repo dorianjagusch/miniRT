@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 14:00:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:28:57 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,27 @@ typedef t_vec4			(*t_col_func)(t_texture *, t_vec2);
 typedef enum e_pattern
 {
 	checkers_pat,
-	brick_pat
+	brick_pat,
+	texture_pat
 }	t_pattern;
 
 typedef struct s_proc_pat
 {
-	char	*file;
-	int		width;
-	int		height;
-	t_vec4	light;
-	t_vec4	dark;
-}			t_proc_pat;
+	char		*file;
+	t_pattern	pattern;
+	int			width;
+	int			height;
+	t_vec4		light;
+	t_vec4		dark;
+}				t_proc_pat;
 
 typedef struct s_picture
 {
 	char		*file;
+	t_pattern	pattern;
 	int			width;
 	int			height;
-	void		*mlx;
-	void		*picture;
-	void		*normal;
+	void		*texels;
 }			t_picture;
 
 typedef union u_texture
@@ -69,6 +70,7 @@ typedef union u_texture
 	t_pattern	pattern;
 	t_proc_pat	proc_pat;
 	t_picture	picture;
+	t_picture	normal;
 }				t_texture;
 
 t_vec2		spherical_map(t_vec3 *point, t_object *obj);
@@ -82,7 +84,8 @@ t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
 t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark);
 t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 
-void		set_meta(t_object *object, char *line);
+void		set_picture(t_texture *texture, t_vec4 *col, char *line);
+void		set_normals(t_texture *texture, t_vec4 *col, char *line);
 t_vec4		get_texture_colour(t_object *object, t_vec3 *point);
 
 #endif

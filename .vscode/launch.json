@@ -10,13 +10,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
-<<<<<<< HEAD
-            "args": ["${workspaceFolder}/test_files/cone.rt"],
-=======
-            "args": ["${workspaceFolder}/test_files/light_test.rt"],
->>>>>>> master
+            "args": ["${workspaceFolder}/test_files/bonus/cone_textures.rt"],
             "stopAtEntry": true,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"

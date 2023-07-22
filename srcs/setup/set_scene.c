@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 15:05:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:29:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,28 @@ static void	set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void	set_object(t_scene *scene, char *line, int id)
+static void	set_object(t_object *objs, char *line, int id)
 {
 	if (!ft_isspace(line[2]))
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
-		create_sphere(&scene->objs[id].sphere, line);
+		create_sphere(&objs[id].sphere, line);
 	// else if (!ft_strncmp("tm", line, 2))
-	// 	ascii_parser(&scene->objs[id].mesh, line);
+	// 	ascii_parser(&objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
-		create_plane(&scene->objs[id].plane, line);
+		create_plane(&objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
-		create_cylinder(&scene->objs[id].cylinder, line);
+		create_cylinder(&objs[id].cylinder, line);
 	else if (!ft_strncmp("di", line, 2))
-		create_disk(&scene->objs[id].disk, line);
+		create_disk(&objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
-		create_triangle(&scene->objs[id].triangle, line);
+		create_triangle(&objs[id].triangle, line);
 	else if (!ft_strncmp("co", line, 2))
-		create_cone(&scene->objs[id].cone, line);
+		create_cone(&objs[id].cone, line);
 	else
 		ft_error(ident_err);
-	set_meta(&scene->objs[id], line);
-	check_visibility(scene, id);
+	set_picture(objs[id].meta.tex_col, &objs[id].meta.colour, line);
+	set_normals(&objs[id].meta.tex_norm,  &objs[id].meta.colour, line);
 }
 
 static void	process_line(t_scene *scene, char *line)
@@ -91,7 +91,8 @@ static void	process_line(t_scene *scene, char *line)
 			set_unique(scene, &line);
 		else if (line)
 		{
-			set_object(scene, line, id);
+			set_object(scene->objs, line, id);
+			check_visibility(scene, id);
 			id++;
 		}
 	}

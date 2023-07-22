@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 14:15:19 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 18:38:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,95 @@
 #include "errors.h"
 #include "minirt.h"
 
-void	get_png(t_texture *texture)
+void	get_texture_dim(char **file, int *width, int *height)
+{
+	int		fd;
+	char	*line;
+	char	*tmp;
+	int		i;
+
+	fd = open(*file, O_RDONLY);
+	i = 0;
+	line = get_next_line(fd);
+	while (line && i < 4)
+	{
+		if (!ft_strncmp(line, "\"", 1))
+		{
+			tmp = line + 1;
+			*width = ft_atoi(tmp);
+			ft_skip_num(&tmp, INT, FALSE);
+			*height = ft_atoi(tmp);
+			free(line);
+			break ;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close (fd);
+}
+
+void	get_texels(t_picture *texture)
 {
 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init();
 	if (!mlx_ptr)
-	{
 		ft_error(ENOMEM);
-	}
-	texture->picture.picture = mlx_xpm_file_to_image(mlx_ptr, texture->file,
-			&(texture->picture.width),
-			&(texture->picture.height));
-	if (!(texture->picture.picture))
-		ft_error(png_err);
-	texture->picture.normal = mlx_xpm_file_to_image(mlx_ptr, texture->file,
-			&(texture->picture.width),
-			&(texture->picture.height));
-	if (!(texture->picture.normal))
-		ft_error(png_err);
+	get_texture_dim(&(texture->file), &(texture->width),
+		&(texture->height));
+	printf("Dims: width: %d, height %d\n", texture->width, texture->height);
+	if (!texture->width || texture->height)
+		ft_error(xpm_err);
+	texture->texels = mlx_xpm_file_to_image(mlx_ptr, texture->file,
+			&(texture->width),
+			&(texture->height));
+	if (!(texture->texels))
+		ft_error(xpm_err);
 }
 
-void	set_meta(t_object *object, char *line)
+void	set_picture(t_texture *texture, t_vec4 *col, char *line)
 {
-	object->meta.texture = ft_calloc(1, sizeof(t_texture));
-	if (!object->meta.texture)
-		ft_error(ENOMEM);
-	object->meta.texture->file = ft_strnstr(line, "-texture", 200);
-	if (!object->meta.texture->file)
+	char	*tmp;
+
+	tmp = ft_strnstr(line, "-texture", 200);
+	if (!tmp)
 		return ;
-	object->meta.texture->file += 9;
-	ft_skip_ws(&(object->meta.texture->file));
-	if (!ft_strncmp(object->meta.texture->file, "checkers", 8))
+	texture = ft_calloc(1, sizeof(t_texture));
+	if (!texture)
+		ft_error(ENOMEM);
+	texture->file = ft_strdup(tmp + 9);
+	if (!texture->file)
+		ft_error(ENOMEM);
+	ft_skip_ws(&(texture->file));
+	if (!ft_strncmp(texture->file, "\"checkers\"", 8))
 	{
-		object->meta.texture->proc_pat = set_board(10, 10, object->meta.colour,
-				vec4_multf(object->meta.colour, 0.5));
-		object->meta.texture->pattern = checkers_pat;
+		texture->proc_pat = set_board(10, 10, *col,
+				vec4_multf(*col, 0.5));
+		texture->pattern = checkers_pat;
 	}
-	else if (!ft_strncmp(object->meta.texture->file, "brick", 5))
-		object->meta.texture->pattern = brick_pat;
-	else if (object->meta.texture->file)
-		get_png(object->meta.texture);
+	else if (!ft_strncmp(texture->file + 1, "\"brick\"", 5))
+		texture->pattern = brick_pat;
+	else if (texture->file)
+	{
+		get_texels(&texture->picture);
+		texture->pattern = texture_pat;
+	}
+}
+
+void	set_normals(t_texture *texture, t_vec4 *col, char *line)
+{
+	char	*tmp;
+
+	tmp = ft_strnstr(line, "-normal", 200);
+	if (!tmp)
+		return ;
+	texture = ft_calloc(1, sizeof(t_texture));
+	if (!texture)
+		ft_error(ENOMEM);
+	texture->file = ft_strdup(tmp + 9);
+	if (texture->file)
+	{
+		get_texels(&texture->picture);
+		texture->pattern = texture_pat;
+	}
 }
