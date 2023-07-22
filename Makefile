@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/22 17:11:02 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/22 21:46:36 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,74 @@ O = objs
 I = incl
 
 FILES = camera \
+	colour_vec \
+	get_colour \
+	box_distance \
+	cylinder_distance \
+	disk_distance \
+	dist_cone \
+	get_normal \
+	light \
+	min_distance \
+	plane_distance \
+	sphere_distance \
+	triangle_distance \
+	cone_distance \
+	main \
+	render \
+	clean_up \
+	create_objs_bonus \
+	create_objs \
+	error_handling \
+	ft_help \
+	ft_split3 \
+	getters \
+	handlers \
+	input \
+	is_obj \
+	light_visibility \
+	set_image \
+	set_scene \
+	texture_setup \
+	brick_pattern \
+	checker_pattern \
+	hit_info \
+	hit_shader \
+	texture_colour \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	triangle_map \
+	cone_map \
+	vec_add \
+	vec_clamp \
+	vec_crossprod \
+	vec_dist \
+	vec_dotprod \
+	vec_inv \
+	vec_isnan \
+	vec_mag \
+	vec_mult \
+	vec_neg \
+	vec_normalize \
+	vec_propadd \
+	vec_reflect \
+	vec_rotate \
+	vec_scale \
+	vec_sub \
+	vec_add_array \
+	print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene
+# ascii_parser
+# mat4_add
+# mat4_identity
+# mat4_mult
+# mat4_rotate
+# mat4_sub
+
+FILES_BONUS = camera \
 	colour_vec \
 	get_colour \
 	box_distance \
@@ -102,12 +170,6 @@ FILES = camera \
 	print_misc2 \
 	print_objs \
 	print_scene
-# ascii_parser
-# mat4_add
-# mat4_identity
-# mat4_mult
-# mat4_rotate
-# mat4_sub
 
 HEADER = vector_math \
 	minirt \
@@ -123,14 +185,31 @@ HEADER = vector_math \
 	patterns \
 	print_helpers
 
+HEADER_BONUS = vector_math \
+	minirt \
+	objects \
+	linux_keys \
+	libft \
+	shaders \
+	macos_keys \
+	errors \
+	scene \
+	mat4_math \
+	mlx \
+	patterns \
+	print_helpers
+
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
+HEADER_BONUS := $(addprefix $I/,$(addsuffix .h,$(HEADER_BONUS)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
-BONUS_SRCS = # 
+BONUS_SRCS = $(foreach FILE,$(FILES_BONUS),$(shell find $S -type f -name "$(FILE).c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
+BONUS_OBJS := $(patsubst $S/%,$O/%,$(BONUS_SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
 NAME = miniRT
+NAME_BONUS = miniRT_bonus
 
 ### RULES ###
 all: $(NAME)
@@ -146,8 +225,11 @@ $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
-bonus: $(BONUS_OBJS)
-	ar rc $(NAME) $(BONUS_OBJS)
+bonus:  $(NAME_BONUS)
+
+$(NAME_BONUS): $(BONUS_OBJS) $(LIBFT) $(MINILIBX) $(HEADER_BONUS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) -I$I $(LIBS) -o $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN) $(NAME_BONUS) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -175,6 +257,7 @@ clean:
 fclean : clean
 	@$(MAKE) -C libft fclean
 	@$(RM) $(NAME)
+	@$(RM) $(NAME_BONUS)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 
 re: fclean $(NAME)
