@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:30:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:42:08 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 		return ((t_vec4){1, 0, 0, 0});
 	assert(!isinf(hit.distance));
 	set_hitpoint(scene, ray, &hit);
-	assert(!vec3_isnan(hit.position));
+	assert(!vec3_isnan(hit.position)); //TODO: i was up to here when i did the light stuff
 	light_info = light_distance(scene, &hit);
 	colour = hit_shader(ray, scene, &hit, &light_info);
 	reflected_ray = reflect_ray(ray, &hit);

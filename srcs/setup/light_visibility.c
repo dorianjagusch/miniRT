@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_visibility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 19:59:51 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:02:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,18 @@ static void	cap_visibility(t_cylinder *cylinder, t_camera *cam, t_light *light)
 
 void	check_visibility(t_scene *scene, int id)
 {
-	if (scene->objs[id].type == plane_obj)
-	{
+// 	while ()
+// 	if (scene->objs[id].type == plane_obj)
+// 	{
 
-		scene->objs[id].plane.isvisible = is_light_visible(scene->cam.pos,
-				scene->light.pos, scene->objs[id].plane.pos,
-				&scene->objs[id].plane.normal);
-	}
-	if (scene->objs[id].type == disk_obj)
-		scene->objs[id].disk.isvisible = is_light_visible(scene->cam.pos,
-				scene->light.pos, scene->objs[id].disk.pos,
-				&scene->objs[id].disk.normal);
-	if (scene->objs[id].type == cylinder_obj)
-		cap_visibility(&scene->objs[id].cylinder, &scene->cam, &scene->light);
+// 		scene->objs[id].plane.isvisible = is_light_visible(scene->cam.pos,
+// 				.pos, scene->objs[id].plane.pos,
+// 				&scene->objs[id].plane.normal);
+// 	}
+// 	if (scene->objs[id].type == disk_obj)
+// 		scene->objs[id].disk.isvisible = is_light_visible(scene->cam.pos,
+// 				.pos, scene->objs[id].disk.pos,
+// 				&scene->objs[id].disk.normal);
+// 	if (scene->objs[id].type == cylinder_obj)
+// 		cap_visibility(&scene->objs[id].cylinder, &scene->cam, &);
 }

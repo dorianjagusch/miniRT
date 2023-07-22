@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 20:21:01 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:48:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,16 @@ void	free_scene(t_scene *scene)
 		free(scene->objs[i].meta.texture);
 		i++;
 	}
-	free(scene->objs);
+	if(scene->objs)
+		free(scene->objs);
+	if(scene->lights)
+		free(scene->lights);
+	if(scene->specular)
+		free(scene->specular);
+	if(scene->distances)
+		free(scene->distances);
+	if(scene->directions)
+		free(scene->directions);
 }
 
 void	free_img(t_img *img)
