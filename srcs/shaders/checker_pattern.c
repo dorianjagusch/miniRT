@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   checker_pattern.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 16:31:57 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:11:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math.h"
 #include "patterns.h"
 
-t_checkers	set_board(int width, int height, t_vec4 light, t_vec4 dark)
+t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark)
 {
-	t_checkers	board;
+	t_proc_pat	board;
 
 	board.width = width;
 	board.height = height;
@@ -29,10 +29,10 @@ t_vec4	get_checkers(t_texture *texture, t_vec2 uv)
 	int	int_u;
 	int	int_v;
 
-	int_u = (int)floor(uv.y * texture->checkers.height);
-	int_v = (int)floor(uv.x * texture->checkers.width);
+	int_u = (int)floor(uv.y * texture->proc_pat.height);
+	int_v = (int)floor(uv.x * texture->proc_pat.width);
 	if ((int_u + int_v) & 0x01)
-		return (texture->checkers.light);
+		return (texture->proc_pat.light);
 	else
-		return (texture->checkers.dark);
+		return (texture->proc_pat.dark);
 }

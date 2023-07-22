@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 12:11:33 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:49:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_error(int error)
 		"Identifier not recognised.\n",
 		"Scene must have only one camera, ambient light and at least one point light.\n",
 		"Error opening .obj file.\n"
+		"Error opening .png file.\n"
 	};
 
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");

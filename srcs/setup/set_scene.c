@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 18:57:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:59:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_cone(&scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
-	set_meta(&scene->objs[id]);
+	set_meta(&scene->objs[id], line);
 	check_visibility(scene, id);
 }
 

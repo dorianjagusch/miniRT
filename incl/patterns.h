@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   patterns.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:15:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:00:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,30 @@ typedef enum e_pattern
 	brick_pat
 }	t_pattern;
 
-typedef struct s_checkers
+typedef struct s_proc_pat
 {
 	char	*file;
 	int		width;
 	int		height;
 	t_vec4	light;
 	t_vec4	dark;
-}			t_checkers;
+}			t_proc_pat;
 
 typedef struct s_picture
 {
-	char	*file;
-	int		width;
-	int		height;
-	int		*picture;
+	char		*file;
+	int			width;
+	int			height;
+	void		*mlx;
+	void		*picture;
+	void		*normal;
 }			t_picture;
 
 typedef union u_texture
 {
 	char		*file;
 	t_pattern	pattern;
-	t_checkers	checkers;
+	t_proc_pat	proc_pat;
 	t_picture	picture;
 }				t_texture;
 
@@ -77,10 +79,10 @@ t_vec2		triangle_map(t_vec3 *point, t_object *obj);
 t_vec2		cone_map(t_vec3 *point, t_object *obj);
 
 t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
-t_checkers	set_board(int width, int height, t_vec4 light, t_vec4 dark);
+t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark);
 t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 
-void		set_meta(t_object *object);
+void		set_meta(t_object *object, char *line);
 t_vec4		get_texture_colour(t_object *object, t_vec3 *point);
 
 #endif
