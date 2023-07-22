@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/22 13:41:36 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/22 17:11:02 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ HEADER = vector_math \
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
+BONUS_SRCS = # 
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
@@ -144,6 +145,9 @@ print:
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+
+bonus: $(BONUS_OBJS)
+	ar rc $(NAME) $(BONUS_OBJS)
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -165,7 +169,7 @@ clean:
 	@$(MAKE) -C libft clean
 	@echo "$(COLOUR_RED) $(MINILIBX) removed$(COLOUR_END)"
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean

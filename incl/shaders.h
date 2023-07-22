@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 18:48:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/22 17:49:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_light_info
 {
 	float	intensity;
 	t_vec4	colour;
+	int		num;
 }			t_light_info;
 
 typedef float	(*t_dist_function)(const t_ray *, t_object *);
