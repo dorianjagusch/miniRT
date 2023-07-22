@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 23:17:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:30:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vec4	trace_ray(t_ray *ray, t_scene *scene, int depth)
 	light_info = light_distance(scene, &hit);
 	colour = hit_shader(ray, scene, &hit, &light_info);
 	reflected_ray = reflect_ray(ray, &hit);
-	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.9);
+	reflection = vec4_multf(trace_ray(&reflected_ray, scene, depth + 1), 0.5);
 	colour = vec4_add(colour, reflection);
 	vec4_clamp(&colour, 0.0, 1.0);
 	return (colour);

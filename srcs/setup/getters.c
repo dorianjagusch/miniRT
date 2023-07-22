@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 13:39:15 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:23:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	ft_skip_ws(char **line)
 		*line += 1;
 }
 
-void	ft_skip_num(char **line, int mode)
+void	ft_skip_num(char **line, int mode, int allow_comma)
 {
 	int	flag;
 
 	flag = 0;
-	if(**line == '-' || **line == '+')
+	if (**line == '-' || **line == '+')
 		*line += 1;
-	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0') 
+	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
 	{
 		if (**line == '.')
 			flag++;
 		*line += 1;
 	}
-	if (ft_isspace(**line) || **line == ',')
+	if (ft_isspace(**line) || (**line == ',' && allow_comma))
 		return ;
 	ft_error(num_err);
 }
@@ -51,7 +51,7 @@ t_vec4	get_colour(char **line)
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
 		if (i == 3)
-			break;
+			break ;
 		while (**line != ',' || **line == '\n' || **line == '\0')
 			(*line)++;
 		if ((**line != ',') && i < 3)
@@ -70,7 +70,7 @@ float	get_float(char **line, int mode)
 
 	res = 0;
 	res = ft_atof(*line);
-	ft_skip_num(line, REAL);
+	ft_skip_num(line, REAL, FALSE);
 	if (mode == RATIO && 0 <= res && res <= 1)
 		return (res);
 	else if (mode == REAL)
@@ -90,18 +90,18 @@ t_vec3	get_vec3(char **line)
 
 	ft_skip_ws(line);
 	vec.x = ft_atof(*line);
-	ft_skip_num(line, REAL);
+	ft_skip_num(line, REAL, TRUE);
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1;
 	vec.y = ft_atof(*line);
-	ft_skip_num(line, REAL);
+	ft_skip_num(line, REAL, TRUE);
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1; 
 	vec.z = ft_atof(*line);
 	if (**line == '-')
 		*line += 1;
-	ft_skip_num(line, REAL);
+	ft_skip_num(line, REAL, FALSE);
 	return (vec);
 }
