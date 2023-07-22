@@ -10,7 +10,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
+<<<<<<< HEAD
             "args": ["${workspaceFolder}/test_files/cone.rt"],
+=======
+            "args": ["${workspaceFolder}/test_files/light_test.rt"],
+>>>>>>> master
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -22,7 +26,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
-            "args": ["${workspaceFolder}/test_files/cone.rt"],
+            "args": ["${workspaceFolder}/test_files/light_test.rt"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

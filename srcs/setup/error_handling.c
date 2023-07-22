@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 13:49:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:05:01 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_error(int error)
 		"Error opening .obj file.\n"
 		"Error opening .png file.\n"
 	};
-
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");
 	if (error < 160)
 		ft_printf_fd(STDERR_FILENO, "%s\n", strerror(error));
@@ -34,8 +33,15 @@ void	ft_error(int error)
 
 void	validate_scene(t_scene *scene)
 {
-	if (scene->light.valid != 1)
-		ft_error(content_err);
+	int num;
+
+	num = 0;
+	while (num < scene->n_lights && scene->lights[num].valid)
+	{
+		if (scene->lights[num].valid != 1)
+			ft_error(content_err);
+		num++;
+	}
 	if (scene->cam.valid != 1)
 		ft_error(content_err);
 	if (scene->amb.valid != 1)
