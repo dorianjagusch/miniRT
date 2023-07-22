@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 19:06:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:06:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->lights[flag[1]].colour = get_colour(line);
 		scene->lights[flag[1]].valid = 1;
 		scene->n_lights += 1;
-		printf("%d\n", flag[1]);
 		flag[1] += 1;
 
 	}
