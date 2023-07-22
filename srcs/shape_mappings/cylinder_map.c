@@ -6,11 +6,12 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:09:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 12:56:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:57:28 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns.h"
+
 #ifndef EPSILON
 # define EPSILON 10e-8
 #endif
@@ -37,6 +38,5 @@ t_vec2	cylinder_map(t_vec3 *point, t_object *obj)
 		angle += 2.0f * M_PI;
 	uv.x = angle * M_1_DIV_2PI;
 	uv.y = (projection.z + obj->cylinder.height / 2.0f) / obj->cylinder.height;
-
 	return (uv);
 }

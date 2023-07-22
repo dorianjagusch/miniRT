@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/21 12:51:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:37:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	cone_disk(t_cone *cone, int side)
 	disk->disk.normal = cone->normal;
 	disk->disk.radius = cone->radius;
 	disk->disk.colour = cone->colour;
-	disk->disk.pos = vec3_add(cone->vertex, vec3_multf(cone->normal, cone->height));
+	disk->disk.pos = vec3_add(cone->pos, vec3_multf(cone->normal, cone->height));
 	disk->disk.normal = cone->normal;
 	cone->bottom = disk;
 }
@@ -74,7 +74,7 @@ void	create_cone(t_cone *cone, char *line)
 {
 	cone->type = cone_obj;
 	line += 3;
-	cone->vertex = get_vec3(&line);
+	cone->pos = get_vec3(&line);
 	cone->normal = get_vec3(&line);
 	vec3_normalize(&cone->normal);
 	cone->disk_hit = 0;
@@ -85,6 +85,7 @@ void	create_cone(t_cone *cone, char *line)
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
 	cone_disk(cone, 'b');
-	cone->angle = cone->radius / cone->height;
+	cone->radius2 = cone->radius * cone->radius;
+	cone->height2 = cone->height * cone->height;
 	cone->disk_hit = 0;
 }

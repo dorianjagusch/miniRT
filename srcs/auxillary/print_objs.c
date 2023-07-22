@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:30:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:56:20 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,9 @@ void	print_cone(t_object *obj)
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		cone->normal.x, cone->normal.y, cone->normal.z);
 	printf("vertex:\nx:%f\ty:%f\tz:%f\n",
-		cone->vertex.x, cone->vertex.y, cone->vertex.z);
+		cone->pos.x, cone->pos.y, cone->pos.z);
 	printf("Radius:\n%f\n", cone->radius);
 	printf("Height:\n%f\n", cone->height);
-	printf("Angle:\n%f\n", cone->angle);
 	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
 		cone->colour.x, cone->colour.y, cone->colour.z);
 }

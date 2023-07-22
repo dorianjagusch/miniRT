@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 23:25:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:17:04 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "vector_math.h"
-#include "minirt.h" //
+#include "minirt.h"
 
 static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 {
@@ -21,7 +21,7 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 
 	if (cylinder->disk_hit)
 	{
-		normal = cylinder->normal;
+		normal = cylinder->bottom->disk.normal;
 		cylinder->disk_hit = 0;
 	}
 	else
@@ -40,12 +40,12 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 
 	if (cone->disk_hit)
 	{
-		normal = cone->normal;
+		normal = cone->bottom->disk.normal;
 		cone->disk_hit = 0;
 	}
 	else
 	{
-		co = vec3_sub(hitpoint, cone->vertex);
+		co = vec3_sub(hitpoint, cone->pos);
 		normal = vec3_cross(co, vec3_cross(co, cone->normal));
 	}
 	return (normal);

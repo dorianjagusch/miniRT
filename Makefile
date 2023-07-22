@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/21 23:31:44 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/22 10:17:46 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 23:32:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:16:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,16 @@ typedef struct s_box
 typedef struct s_cone
 {
 	t_obj_e			type;
-	t_vec3			pos;
-	t_vec3			vertex;
-	t_object		*bottom;
-	t_object		*top;
-	float			radius;
-	float			angle;
-	float			intersect_y;
-	int				disk_hit;
-	t_vec3			normal;
-	float			height;
+	t_texture		*texture;
 	t_vec4			colour;
+	t_vec3			pos;
+	t_object		*bottom;
+	t_vec3			normal;
+	float			radius;
+	float			radius2;
+	float			height;
+	float			height2;
+	int				disk_hit;
 }					t_cone;
 
 
