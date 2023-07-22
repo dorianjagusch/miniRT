@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/19 16:25:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:29:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 		plane_map,
 		cylinder_map,
 		disk_map,
-		triangle_map
+		triangle_map,
+		cone_map
 	};
 	t_vec4					colour;
 	t_vec2					uv;
