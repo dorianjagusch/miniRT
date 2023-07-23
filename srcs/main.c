@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 16:18:49 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:51:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,19 @@ void	calloc_light_arrays(t_scene	*scene)
 int	main(int ac, char **av)
 {
 	t_img	img;
+	t_scene	scene;
 
 	if (ac > 2 || av[1] == 0)
 		ft_error(E2BIG);
 	if (!ft_strncmp(av[1], "H", 2))
 		ft_options();
 	ft_bzero(&img, sizeof(img));
-	set_scene(&(img.scene), av[1]);
-	validate_scene(&img.scene);
-	calloc_light_arrays(&img.scene);
-	print_scene(img.scene);
 	set_image(&img);
+	img.scene = &scene;
+	set_scene(&img, img.scene, av[1]);
+	validate_scene(img.scene);
+	calloc_light_arrays(img.scene);
+	print_scene(*(img.scene));
 	user_input(&img);
 	render(&img);
 	mlx_loop(img.win.mlx);

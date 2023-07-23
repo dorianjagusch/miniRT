@@ -30,5 +30,17 @@
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb"
         },
+        {
+            "name": "(lldb) Test Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.out",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
     ]
 }

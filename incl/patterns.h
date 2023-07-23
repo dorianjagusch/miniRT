@@ -6,15 +6,17 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:28:57 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:10:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PATTERNS_H
 # define PATTERNS_H
 
-# include "vector_math.h"
 # include "objects.h"
+# include "scene.h"
+# include "vector_math.h"
+# include "minirt.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -32,6 +34,7 @@
 #  define V 1
 # endif
 
+typedef struct s_img	t_img;
 typedef union u_object	t_object;
 typedef union u_texture	t_texture;
 
@@ -62,6 +65,10 @@ typedef struct s_picture
 	int			width;
 	int			height;
 	void		*texels;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 }			t_picture;
 
 typedef union u_texture
@@ -84,8 +91,10 @@ t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
 t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark);
 t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 
-void		set_picture(t_texture *texture, t_vec4 *col, char *line);
-void		set_normals(t_texture *texture, t_vec4 *col, char *line);
+void		set_picture(t_img *img, t_texture **texture, t_vec4 *col,
+				char *line);
+void		set_normals(t_img *img, t_texture **texture, t_vec4 *col,
+				char *line);
 t_vec4		get_texture_colour(t_object *object, t_vec3 *point);
 
 #endif

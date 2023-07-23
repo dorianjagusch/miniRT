@@ -6,15 +6,15 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:12:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:13:30 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
-# include "scene.h"
 # include "patterns.h"
+# include "vector_math.h"
 
 typedef union u_object	t_object;
 typedef union u_texture	t_texture;
@@ -27,7 +27,6 @@ typedef enum e_obj
 	disk_obj,
 	triangle_obj,
 	cone_obj,
-	box_obj,
 	mesh_obj
 }	t_obj_e;
 
@@ -123,16 +122,6 @@ typedef struct s_mesh
 	t_object		*triangle_data;
 }					t_mesh;
 
-typedef struct s_box
-{
-	t_obj_e			type;
-	t_texture		*tex_col;
-	t_texture		*tex_norm;
-	t_vec4			colour;
-	t_vec3			verts[2];
-	t_vec3			normal;
-}					t_box;
-
 typedef struct s_cone
 {
 	t_obj_e			type;
@@ -159,7 +148,6 @@ typedef union u_object
 	t_cylinder	cylinder;
 	t_disk		disk;
 	t_triangle	triangle;
-	t_box		box;
 	t_mesh		mesh;
 	t_cone		cone;
 }				t_object;

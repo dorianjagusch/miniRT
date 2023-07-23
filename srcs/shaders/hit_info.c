@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 15:13:35 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:09:03 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->triangle.colour);
 	else if (obj->type == cone_obj)
 		return (obj->cone.colour);
-	else if (obj->type == box_obj)
-		return (obj->box.colour);
 	else
 		return (obj->mesh.colour);
 }

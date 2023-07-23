@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:46:53 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/12 12:45:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 09:39:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	ft_count_words(char const *s, char c)
 	return (i);
 }
 
-static void	ft_get_word(char **str, char const *s, char c, size_t *i)
+static void	ft_get_word2(char **str, char const *s, char c, size_t *i)
 {
 	size_t	len;
 	size_t	size;
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 		while (s[i] == c && s[i])
 			i++;
 		if (s[i] != c && s[i])
-			ft_get_word(&result[word], s, c, &i);
+			ft_get_word2(&result[word], s, c, &i);
 		if (!result[word])
 			return (ft_free_array(&result, word));
 		word++;

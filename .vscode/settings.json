@@ -17,6 +17,9 @@
         "__functional_03": "c",
         "functional": "c",
         "__locale": "c",
-        "locale": "c"
+        "locale": "c",
+        "sstream": "c",
+        "objects.h": "c",
+        "shaders.h": "c"
     }
 }

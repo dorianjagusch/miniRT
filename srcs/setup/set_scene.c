@@ -6,11 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:29:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:15:58 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "shaders.h"
+#include "scene.h"
 
 static void	set_unique(t_scene *scene, char **line)
 {
@@ -45,10 +47,10 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_float(line, ANGLE);
 		scene->cam.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 		vec3_normalize(&scene->cam.dir);
-		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3){0, 1.0f, -1e-2f});
-			vec3_normalize(&scene->cam.right);
+		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3){0, 1.0f, -1e-2});
+		vec3_normalize(&scene->cam.right);
 		scene->cam.up = vec3_cross(scene->cam.right, scene->cam.dir);
-			vec3_normalize(&scene->cam.up);
+		vec3_normalize(&scene->cam.up);
 		flag[2] = 1;
 		scene->cam.valid = 1;
 	}
@@ -56,31 +58,33 @@ static void	set_unique(t_scene *scene, char **line)
 		ft_error(ident_err);
 }
 
-static void	set_object(t_object *objs, char *line, int id)
+static void	set_object(t_img *img, char *line, int id)
 {
 	if (!ft_isspace(line[2]))
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
-		create_sphere(&objs[id].sphere, line);
+		create_sphere(&img->scene->objs[id].sphere, line);
 	// else if (!ft_strncmp("tm", line, 2))
-	// 	ascii_parser(&objs[id].mesh, line);
+	// 	ascii_parser(&img->scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
-		create_plane(&objs[id].plane, line);
+		create_plane(&img->scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
-		create_cylinder(&objs[id].cylinder, line);
+		create_cylinder(&img->scene->objs[id].cylinder, line);
 	else if (!ft_strncmp("di", line, 2))
-		create_disk(&objs[id].disk, line);
+		create_disk(&img->scene->objs[id].disk, line);
 	else if (!ft_strncmp("tr", line, 2))
-		create_triangle(&objs[id].triangle, line);
+		create_triangle(&img->scene->objs[id].triangle, line);
 	else if (!ft_strncmp("co", line, 2))
-		create_cone(&objs[id].cone, line);
+		create_cone(&img->scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
-	set_picture(objs[id].meta.tex_col, &objs[id].meta.colour, line);
-	set_normals(&objs[id].meta.tex_norm,  &objs[id].meta.colour, line);
+	set_picture(img, &img->scene->objs[id].meta.tex_col,
+			&img->scene->objs[id].meta.colour, line);
+	set_normals(img, &img->scene->objs[id].meta.tex_norm,
+			&img->scene->objs[id].meta.colour, line);
 }
 
-static void	process_line(t_scene *scene, char *line)
+static void	process_line(t_img *img, char *line)
 {
 	static int	id;
 
@@ -88,11 +92,11 @@ static void	process_line(t_scene *scene, char *line)
 	{
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))
-			set_unique(scene, &line);
+			set_unique(img->scene, &line);
 		else if (line)
 		{
-			set_object(scene->objs, line, id);
-			check_visibility(scene, id);
+			set_object(img, line, id);
+			check_visibility(img->scene, id);
 			id++;
 		}
 	}
@@ -120,7 +124,7 @@ static int	count_objects(int fd, char *av)
 	return (count);
 }
 
-void	set_scene(t_scene *scene, char *av)
+void	set_scene(t_img *img, t_scene *scene, char *av)
 {
 	int		fd;
 	char	*line;
@@ -142,7 +146,7 @@ void	set_scene(t_scene *scene, char *av)
 	while (line != NULL)
 	{
 		if (!ft_empty_str(line) && ft_strncmp(line, "#", 1))
-			process_line(scene, line);
+			process_line(img, line);
 		if (line)
 			free(line);
 		line = get_next_line(fd);

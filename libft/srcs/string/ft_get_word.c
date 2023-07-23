@@ -6,12 +6,23 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:51:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 19:25:12 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 09:36:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
+static int	check_quote(char c)
+{
+	int	flag;
+
+	flag = 0;
+	if (c == '\"')
+		flag = 1;
+	else if (c == '\'')
+		flag = 2;
+	return (flag);
+}
 
 char	*ft_get_word(const char *str)
 {
@@ -20,49 +31,24 @@ char	*ft_get_word(const char *str)
 	int		flag;
 	char	*word;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	len = 0;
-	flag = 0;
-	while (str && ft_isspace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
-	if (str && str[i] == '\"')
-		flag = 1;
-	else if (str && str[i] == '\'')
-		flag = 2;
-	while (str && str[i] && (!(str[i] == '\"' && flag == 1)
-			|| !(str[i] == '\'' && flag == 2)))
+	flag = check_quote(str[i]);
+	if (flag)
+		i++;
+	while (str[i] && (!(str[i] == '\"' && flag == 1)
+			&& !(str[i] == '\'' && flag == 2)) && !ft_isspace(str[i]))
+	{
 		len++;
+		i++;
+	}
 	word = ft_calloc(len + 1, sizeof(char));
-	if (!str || !word)
+	if (!word)
 		return (NULL);
-	ft_strlcpy(word, &str[i - (len + 1)], len + 1);
+	ft_strlcpy(word, &str[i - len], len + 1);
 	return (word);
-}
-
-int	main(void)
-{
-	static const char	*str[] = {"Hello",
-		NULL,
-		"a",
-		"",
-		"\'\'",
-		"wieyegfrj\"eroogher\"",
-		"    \"Success\n\""};
-	char				*word;
-
-	word = ft_get_word(str[0]);
-	printf("%s\t%p\t%p\n", word, str[0], word);
-	word = ft_get_word(str[1]);
-	printf("%s\t%p\t%p\n", word, str[1], word);
-	word = ft_get_word(str[2]);
-	printf("%s\t%p\t%p\n", word, str[2], word);
-	word = ft_get_word(str[3]);
-	printf("%s\t%p\t%p\n", word, str[3], word);
-	word = ft_get_word(str[4]);
-	printf("%s\t%p\t%p\n", word, str[4], word);
-	word = ft_get_word(str[5]);
-	printf("%s\t%p\t%p\n", word, str[5], word);
-	word = ft_get_word(str[6]);
-	printf("%s\t%p\t%p\n", word, str[6], word);
-	return (0);
 }

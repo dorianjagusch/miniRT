@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/21 15:37:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 12:57:02 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "objects.h"
 
 void	create_triangle(t_triangle *triangle, char *line)
 {
@@ -27,17 +27,6 @@ void	create_triangle(t_triangle *triangle, char *line)
 			triangle->tri_point[0]);
 	triangle->edges[1] = vec3_sub(triangle->tri_point[2],
 			triangle->tri_point[0]);
-}
-
-void	create_box(t_box *box, char *line)
-{
-	box->type = box_obj;
-	line += 3;
-	box->verts[0] = get_vec3(&line);
-	ft_skip_ws(&line);
-	box->verts[1] = get_vec3(&line);
-	ft_skip_ws(&line);
-	box->colour = get_colour(&line);
 }
 
 void	create_disk(t_disk *disk, char *line)

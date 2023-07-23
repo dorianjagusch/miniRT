@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:32:27 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:38:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 #include "minirt.h"
 #include "patterns.h"
 
-// t_vec4	get_texture(t_texture *texture, t_vec2 uv)
-// {
-// 	return;
-// }
+t_vec4	get_texture_col(t_texture *texture, t_vec2 uv)
+{
+	char	*dst;
+	t_vec4	colour;
+	t_vec2	pxl;
+
+	pxl.x = uv.x * texture->picture.width;
+	pxl.y = uv.y * texture->picture.height;
+	dst = texture->picture.addr + ((int)pxl.y * texture->picture.line_length
+			+ (int)pxl.x * (texture->picture.bits_per_pixel / 8));
+	colour = ft_int32tov4((int) *dst);
+	ft_rgbtonorm(&colour);
+	return (colour);
+}
 
 t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 {
 	static const t_col_func	colour_func[] = {
 		get_checkers,
-		get_brick //
-//		get_texture
+		get_brick,
+		get_texture_col
 	};
 	static const t_map_func	map_func[] = {
 		spherical_map,

@@ -6,11 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 14:20:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:04:57 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "vector_math.h"
+#include <float.h>
 
 void	ft_skip_ws(char **line)
 {

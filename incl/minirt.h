@@ -27,16 +27,9 @@
 # else
 #  include "linux_keys.h"
 # endif
+# include "scene.h"
 # include "libft.h"
 # include "errors.h"
-# include "vector_math.h"
-# include "scene.h"
-# include "shaders.h"
-# include <float.h>
-# include "objects.h"
-# include "patterns.h"
-//# include "mat4_math.h"
-# include "print_helpers.h"
 
 // DEFAULTS
 
@@ -68,6 +61,8 @@
 # define ORTHO 0
 # define AXIS 1
 
+typedef struct s_scene	t_scene;
+
 typedef struct s_window
 {
 	void	*mlx;
@@ -84,14 +79,14 @@ typedef struct s_img
 	int			endian;
 	int			move;
 	float		aspect_ratio;
-	t_scene		scene;
+	t_scene		*scene;
 	int			is_help;
 	int			error;
 }				t_img;
 
 // MINIRT
 void	set_image(t_img *img);
-void	set_scene(t_scene *scene, char *av);
+void	set_scene(t_img *img, t_scene *scene, char *av);
 void	render(t_img *img);
 void	free_img(t_img *img);
 void	ft_options(void);

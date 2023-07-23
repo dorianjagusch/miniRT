@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_distance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:49:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/13 15:49:59 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/23 12:59:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
-#include "minirt.h"
-#include <math.h>
-#include <stdio.h>
 
 float	dist_sphere(const t_ray *ray, t_object *obj)
 {

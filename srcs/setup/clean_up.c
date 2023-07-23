@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:27:56 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 12:39:06 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	free_img(t_img *img)
 		mlx_destroy_image(img->win.mlx, img->img);
 	if (img->win.win)
 		mlx_destroy_window(img->win.mlx, img->win.win);
-	if (img->scene.objs)
-		free_scene(&(img->scene));
+	if (img->scene->objs)
+		free_scene(img->scene);
 }

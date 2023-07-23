@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 18:38:47 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:11:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,55 +41,54 @@ void	get_texture_dim(char **file, int *width, int *height)
 	close (fd);
 }
 
-void	get_texels(t_picture *texture)
+static void	get_texels(void *mlx, t_picture *texture)
 {
-	void	*mlx_ptr;
+	int	line_len;
+	int	endian;
+	int	col_depth;
 
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		ft_error(ENOMEM);
 	get_texture_dim(&(texture->file), &(texture->width),
 		&(texture->height));
-	printf("Dims: width: %d, height %d\n", texture->width, texture->height);
-	if (!texture->width || texture->height)
+	if (!texture->width || !texture->height)
 		ft_error(xpm_err);
-	texture->texels = mlx_xpm_file_to_image(mlx_ptr, texture->file,
+	texture->texels = mlx_xpm_file_to_image(mlx, texture->file,
 			&(texture->width),
 			&(texture->height));
 	if (!(texture->texels))
 		ft_error(xpm_err);
+	texture->addr = mlx_get_data_addr(texture->texels, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
 }
 
-void	set_picture(t_texture *texture, t_vec4 *col, char *line)
+void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 {
 	char	*tmp;
 
 	tmp = ft_strnstr(line, "-texture", 200);
 	if (!tmp)
 		return ;
-	texture = ft_calloc(1, sizeof(t_texture));
-	if (!texture)
+	*texture = ft_calloc(1, sizeof(t_texture));
+	if (!*texture)
 		ft_error(ENOMEM);
-	texture->file = ft_strdup(tmp + 9);
-	if (!texture->file)
+	(*texture)->file = ft_get_word(tmp + 9);
+	if (!(*texture)->file)
 		ft_error(ENOMEM);
-	ft_skip_ws(&(texture->file));
-	if (!ft_strncmp(texture->file, "\"checkers\"", 8))
+	if (!ft_strncmp((*texture)->file, "checkers", 8))
 	{
-		texture->proc_pat = set_board(10, 10, *col,
+		(*texture)->proc_pat = set_board(10, 10, *col,
 				vec4_multf(*col, 0.5));
-		texture->pattern = checkers_pat;
+		(*texture)->pattern = checkers_pat;
 	}
-	else if (!ft_strncmp(texture->file + 1, "\"brick\"", 5))
-		texture->pattern = brick_pat;
-	else if (texture->file)
+	else if (!ft_strncmp((*texture)->file, "brick", 5))
+		(*texture)->pattern = brick_pat;
+	else if ((*texture)->file)
 	{
-		get_texels(&texture->picture);
-		texture->pattern = texture_pat;
+		get_texels(img->win.mlx, &(*texture)->picture);
+		(*texture)->pattern = texture_pat;
 	}
 }
 
-void	set_normals(t_texture *texture, t_vec4 *col, char *line)
+void	set_normals(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 {
 	char	*tmp;
 
@@ -99,10 +98,10 @@ void	set_normals(t_texture *texture, t_vec4 *col, char *line)
 	texture = ft_calloc(1, sizeof(t_texture));
 	if (!texture)
 		ft_error(ENOMEM);
-	texture->file = ft_strdup(tmp + 9);
-	if (texture->file)
+	(*texture)->file = ft_strdup(tmp + 9);
+	if ((*texture)->file)
 	{
-		get_texels(&texture->picture);
-		texture->pattern = texture_pat;
+		get_texels(img->win.mlx, &(*texture)->picture);
+		(*texture)->pattern = texture_pat;
 	}
 }

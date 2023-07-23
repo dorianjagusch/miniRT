@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:17:04 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:02:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
-#include "vector_math.h"
-#include "minirt.h"
 
 static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 {
@@ -74,8 +72,6 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		normal = get_cylinder_normal(&(obj->cylinder), hitpoint);
 	else if (obj->type == cone_obj)
 		normal = get_cone_normal(&(obj->cone), hitpoint);
-	else if (obj->type == box_obj)
-		return (obj->box.normal);
 	vec3_normalize(&normal);
 	return (normal);
 }

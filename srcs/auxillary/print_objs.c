@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   print_objs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 15:56:20 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:12:18 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "print_helpers.h"
 
 void	print_sphere(t_object *obj)
@@ -100,21 +99,6 @@ void	print_triangle(t_object *obj)
 	// 	triangle->normal.x, triangle->normal.y, triangle->normal.z);
 }
 
-void	print_box(t_object *obj)
-{
-	t_box	*box;
-
-	box = &obj->box;
-	printf("Box\n");
-	printf("Vertex 1:\nx:%f\ty:%f\tz:%f\n",
-		box->verts[0].x, box->verts[0].y, box->verts[0].z);
-	printf("Vertex 2:\nx:%f\ty:%f\tz:%f\n",
-		box->verts[1].x, box->verts[1].y, box->verts[1].z);
-	// printf("Normal:\nx:%f\ty:%f\tz:%f\n",
-	// 	box->verts.x, box->verts.y, box->verts.z);
-	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
-		box->colour.x, box->colour.y, box->colour.z);
-}
 void	print_mesh(t_object *obj)
 {
 	t_mesh	*mesh;

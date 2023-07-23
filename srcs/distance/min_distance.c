@@ -6,11 +6,10 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 23:33:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:12:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "shaders.h"
 #include "float.h"
 
@@ -45,7 +44,6 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_cone,
-		dist_box,
 		dist_mesh
 	};
 
