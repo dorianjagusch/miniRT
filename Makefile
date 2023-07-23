@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/22 21:46:36 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/23 14:13:28 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,39 +41,36 @@ S = srcs
 O = objs
 I = incl
 
-FILES = camera \
+
+FILES = camera_man \
 	colour_vec \
 	get_colour \
-	box_distance \
 	cylinder_distance \
 	disk_distance \
-	dist_cone \
-	get_normal \
+	get_normal_man \
 	light \
-	min_distance \
+	min_distance_man \
 	plane_distance \
 	sphere_distance \
 	triangle_distance \
-	cone_distance \
 	main \
 	render \
 	clean_up \
-	create_objs_bonus \
 	create_objs \
 	error_handling \
 	ft_help \
 	ft_split3 \
 	getters \
-	handlers \
+	handlers_man \
 	input \
-	is_obj \
+	is_obj_man \
 	light_visibility \
 	set_image \
-	set_scene \
+	set_scene_man \
 	texture_setup \
 	brick_pattern \
 	checker_pattern \
-	hit_info \
+	hit_info_man \
 	hit_shader \
 	texture_colour \
 	cylinder_map \
@@ -102,12 +99,20 @@ FILES = camera \
 	print_misc2 \
 	print_objs \
 	print_scene
-# ascii_parser
-# mat4_add
-# mat4_identity
-# mat4_mult
-# mat4_rotate
-# mat4_sub
+
+HEADER = vector_math \
+	minirt \
+	objects \
+	linux_keys \
+	libft \
+	shaders \
+	macos_keys \
+	errors \
+	scene \
+	mat4_math \
+	mlx \
+	patterns \
+	print_helpers
 
 FILES_BONUS = camera \
 	colour_vec \
@@ -169,47 +174,25 @@ FILES_BONUS = camera \
 	print_misc \
 	print_misc2 \
 	print_objs \
-	print_scene
-
-HEADER = vector_math \
-	minirt \
-	objects \
-	linux_keys \
-	libft \
-	shaders \
-	macos_keys \
-	errors \
-	scene \
-	mat4_math \
-	mlx \
-	patterns \
-	print_helpers
-
-HEADER_BONUS = vector_math \
-	minirt \
-	objects \
-	linux_keys \
-	libft \
-	shaders \
-	macos_keys \
-	errors \
-	scene \
-	mat4_math \
-	mlx \
-	patterns \
-	print_helpers
-
-HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
-HEADER_BONUS := $(addprefix $I/,$(addsuffix .h,$(HEADER_BONUS)))
-
-SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
-BONUS_SRCS = $(foreach FILE,$(FILES_BONUS),$(shell find $S -type f -name "$(FILE).c"))
-OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
-BONUS_OBJS := $(patsubst $S/%,$O/%,$(BONUS_SRCS:.c=.o))
-O_DIRS := $(dir $(OBJS))
+	print_scene \
+	#ascii_parser
+# mat4_add
+# mat4_identity
+# mat4_mult
+# mat4_rotate
+# mat4_sub
 
 NAME = miniRT
+HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
+SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
+OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
+O_DIRS := $(dir $(OBJS))
+
+
 NAME_BONUS = miniRT_bonus
+HEADER_BONUS := $(addprefix $I/,$(addsuffix .h,$(HEADER_BONUS)))
+BONUS_SRCS = $(foreach FILE,$(FILES_BONUS),$(shell find $S -type f -name "$(FILE).c"))
+BONUS_OBJS := $(patsubst $S/%,$O/%,$(BONUS_SRCS:.c=.o))
 
 ### RULES ###
 all: $(NAME)
@@ -224,12 +207,6 @@ print:
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-
-bonus:  $(NAME_BONUS)
-
-$(NAME_BONUS): $(BONUS_OBJS) $(LIBFT) $(MINILIBX) $(HEADER_BONUS)
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) -I$I $(LIBS) -o $(NAME_BONUS)
-	@echo "$(COLOUR_GREEN) $(NAME_BONUS) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -246,12 +223,18 @@ $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) -I$I -c $< -o $@ -g
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
+bonus:  $(NAME_BONUS)
+
+$(NAME_BONUS): $(BONUS_OBJS) $(LIBFT) $(MINILIBX) $(HEADER_BONUS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) -I$I $(LIBS) -o $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN) $(NAME_BONUS) successfully created$(COLOUR_END)"
+
 clean:
 	@$(MAKE) -C $(dir $(MINILIBX)) clean
 	@$(MAKE) -C libft clean
 	@echo "$(COLOUR_RED) $(MINILIBX) removed$(COLOUR_END)"
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
-	@$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean

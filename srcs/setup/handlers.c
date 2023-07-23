@@ -3,51 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 14:43:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:14:25 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// int	mouse_position(int x, int y, t_img *img)
-// {
-// 	static int	x_end;
-// 	static int	y_end;
-// 	int			delta_x;
-// 	int			delta_y;
-
-// 	delta_x = x_end - x;
-// 	delta_y = y_end - y;
-// 	calculate_rotation_angles(img, delta_x, delta_y);
-// 	return (0);
-// }
-
+//TODO: REMOVE ALL THIS FOR BONUS TOO AFTER DEBUGGING
 int	ft_close(t_img *img)
 {
 	free_img(img);
 	exit(img->error);
 }
-
-// int	ft_close_win(t_img *img)
-// {
-// 	static int		start;
-// 	static u_int8_t	active;
-
-// 	if (!start)
-// 	{
-// 		active = (img->win_num * img->win_num) - 1;
-// 		start++;
-// 	}
-// 	img->active = 0;
-// 	set_active(img, &active);
-// 	free_img(img);
-// 	if (!active)
-// 		ft_close(0);
-// 	return (0);
-// }
 
 int	key_handler(int key, t_img *img)
 {

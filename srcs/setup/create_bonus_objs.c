@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/21 15:37:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:58:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,6 @@ void	create_box(t_box *box, char *line)
 	box->colour = get_colour(&line);
 }
 
-void	create_disk(t_disk *disk, char *line)
-{
-	disk->type = disk_obj;
-	line += 3;
-	disk->pos = get_vec3(&line);
-	ft_skip_ws(&line);
-	disk->normal = get_vec3(&line);
-	vec3_normalize(&disk->normal);
-	ft_skip_ws(&line);
-	disk->radius = get_float(&line, REAL) / 2;
-	ft_skip_ws(&line);
-	disk->colour = get_colour(&line);
-	disk->d = -vec3_dot(disk->pos, disk->normal);
-}
 
 static void	cone_disk(t_cone *cone, int side)
 {
@@ -70,6 +56,7 @@ static void	cone_disk(t_cone *cone, int side)
 	disk->disk.normal = cone->normal;
 	cone->bottom = disk;
 }
+
 void	create_cone(t_cone *cone, char *line)
 {
 	cone->type = cone_obj;

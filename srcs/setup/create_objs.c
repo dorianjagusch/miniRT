@@ -3,15 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 19:54:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:56:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "patterns.h"
+
+
+void	create_disk(t_disk *disk, char *line)
+{
+	disk->type = disk_obj;
+	line += 3;
+	disk->pos = get_vec3(&line);
+	ft_skip_ws(&line);
+	disk->normal = get_vec3(&line);
+	vec3_normalize(&disk->normal);
+	ft_skip_ws(&line);
+	disk->radius = get_float(&line, REAL) / 2;
+	ft_skip_ws(&line);
+	disk->colour = get_colour(&line);
+	disk->d = -vec3_dot(disk->pos, disk->normal);
+}
 
 void	create_sphere(t_sphere *sphere, char *line)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_visibility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 19:02:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:54:33 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	return (0);
 }
 
-
+//TODO: CAN ALL OF THIS GO?????
 // cap visibility is weird here as well. One becomes visible and the other invisible
 static void	cap_visibility(t_cylinder *cylinder, t_camera *cam, t_light *light)
 {
