@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 16:00:24 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/24 16:02:08 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,6 @@ HEADER = vector_math \
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
-BONUS_SRCS = # 
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
@@ -144,9 +143,6 @@ print:
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
-
-bonus: $(BONUS_OBJS)
-	ar rc $(NAME) $(BONUS_OBJS)
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))

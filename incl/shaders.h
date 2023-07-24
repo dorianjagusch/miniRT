@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:05:59 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:02:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_light_info
 {
 	float	intensity;
 	t_vec4	colour;
-	int		num;
 }			t_light_info;
 
 typedef float	(*t_dist_function)(const t_ray *, t_object *);
