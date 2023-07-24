@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 12:22:12 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/24 16:00:24 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ FILES = camera \
 	main \
 	render \
 	clean_up \
+	create_bonus_objs \
 	create_objs \
 	error_handling \
 	ft_help \
@@ -107,85 +108,28 @@ HEADER = vector_math \
 	patterns \
 	print_helpers
 
-FILES_BONUS = camera_bonus \
-	colour_vec_bonus \
-	get_colour_bonus \
-	box_distance_bonus \
-	cylinder_distance_bonus \
-	disk_distance_bonus \
-	dist_cone_bonus \
-	get_normal_bonus \
-	light_bonus \
-	min_distance_bonus \
-	plane_distance_bonus \
-	sphere_distance_bonus \
-	triangle_distance_bonus \
-	cone_distance_bonus \
-	main_bonus \
-	render_bonus \
-	clean_up_bonus \
-	create_bonus_objs_bonus \
-	create_objs_bonus \
-	error_handling_bonus \
-	ft_help_bonus \
-	ft_split3_bonus \
-	getters_bonus \
-	handlers_bonus \
-	input_bonus \
-	is_obj_bonus \
-	light_visibility_bonus \
-	set_image_bonus \
-	set_scene_bonus \
-	texture_setup \
-	brick_pattern \
-	checker_pattern \
-	hit_info_bonus \
-	hit_shader_bonus \
-	texture_colour \
-	cylinder_map \
-	planar_map \
-	sphere_map \
-	triangle_map \
-	cone_map \
-	vec_add \
-	vec_clamp \
-	vec_crossprod \
-	vec_dist \
-	vec_dotprod \
-	vec_inv \
-	vec_isnan \
-	vec_mag \
-	vec_mult \
-	vec_neg \
-	vec_normalize \
-	vec_propadd \
-	vec_reflect \
-	vec_rotate \
-	vec_scale \
-	vec_sub \
-	vec_add_array \
-	print_misc \
-	print_misc2 \
-	print_objs \
-	print_scene \
-	#ascii_parser
-# mat4_add
-# mat4_identity
-# mat4_mult
-# mat4_rotate
-# mat4_sub
+HEADER = vector_math \
+	minirt \
+	objects \
+	linux_keys \
+	libft \
+	shaders \
+	macos_keys \
+	errors \
+	scene \
+	mat4_math \
+	mlx \
+	patterns \
+	print_helpers
 
-NAME = miniRT
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
+
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
+BONUS_SRCS = # 
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
-
-NAME_BONUS = miniRT_bonus
-HEADER_BONUS := $(addprefix $B/$(IB)/,$(addsuffix .h,$(HEADER_BONUS)))
-BONUS_SRCS = $(foreach FILE,$(FILES_BONUS),$(shell find $S -type f -name "$(FILE).c"))
-BONUS_OBJS := $(patsubst $B/$(SB)/%,$O/%,$(BONUS_SRCS:.c=.o))
+NAME = miniRT
 
 ### RULES ###
 all: $(NAME)
@@ -200,6 +144,9 @@ print:
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+
+bonus: $(BONUS_OBJS)
+	ar rc $(NAME) $(BONUS_OBJS)
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -233,7 +180,6 @@ clean:
 fclean : clean
 	@$(MAKE) -C libft fclean
 	@$(RM) $(NAME)
-	@$(RM) $(NAME_BONUS)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 
 re: fclean $(NAME)

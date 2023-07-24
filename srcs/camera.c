@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:53:06 by smorphet         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/24 16:00:12 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "minirt.h"
 #include <math.h>
@@ -30,6 +32,27 @@
 # define R 2
 #endif
 
+void	camera_move(int key, t_img *img)
+{
+	if (key == MAIN_PAD_UP)
+		img->scene.cam.pos.z += 0.501;
+	if (key == MAIN_PAD_DOWN)
+		img->scene.cam.pos.z -= 0.501;
+	if (key == MAIN_PAD_RIGHT)
+		img->scene.cam.pos.x += 0.501;
+	if (key == MAIN_PAD_LEFT)
+		img->scene.cam.pos.x -= 0.501;
+	if (key == MAIN_PAD_W)
+		img->scene.cam.pos.y += 0.501;
+	if (key == MAIN_PAD_S)
+		img->scene.cam.pos.y -= 0.501;
+	if (key == MAIN_PAD_D)
+		img->scene.cam.dir.x += 1;
+	if (key == MAIN_PAD_A)
+		img->scene.cam.dir.x -= 1;
+	render(img);
+}
+
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 {
 	float	norm_coord_x;
@@ -42,10 +65,11 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 		cam->aspect_ratio * tan(cam->fov * DEG2RAD);
 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * \
 		tan(cam->fov * DEG2RAD);
-	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * \
-		norm_coord_y);
+
+	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
-	fisheye[R] = fisheye[R] * 0.5f;
+
+	fisheye[R] = fisheye[R] * 0.1f;
 	fisheye[X] = fisheye[R] * cos(phi);
 	fisheye[Y] = fisheye[R] * sin(phi);
 	primary_ray.origin = cam->pos;
