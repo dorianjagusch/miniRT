@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:42:46 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:12:21 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,12 @@ void	free_scene(t_scene *scene)
 			free(scene->objs[i].cylinder.top);
 			free(scene->objs[i].cylinder.bottom);
 		}
-		if (scene->objs[i].type == cone_obj)
-			free(scene->objs[i].cone.bottom);
 		i++;
 	}
 	if (scene->objs)
 		free(scene->objs);
 	if (scene->lights)
 		free(scene->lights);
-	if (scene->specular)
-		free(scene->specular);
 	if (scene->distances)
 		free(scene->distances);
 	if (scene->directions)

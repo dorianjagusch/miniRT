@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 19:07:09 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:15:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ void	print_objs(t_object *obj)
 		&print_plane,
 		&print_cylinder,
 		&print_disk,
-		&print_triangle,
-		&print_box,
-		&print_mesh,
-		&print_cone
 	};
 	printf("type: %d\n", obj->type);
 	printfunc[obj->type]((void*)obj);

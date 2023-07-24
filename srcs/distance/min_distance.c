@@ -6,13 +6,14 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 11:28:34 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:29:58 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shaders.h"
 #include "float.h"
+
 
 float	get_dist(const t_ray *ray, t_object *obj)
 {
@@ -21,9 +22,8 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_plane,
 		dist_cylinder,
 		dist_disk,
-		dist_triangle,
 	};
-
+	
 	return (func[obj->type](ray, obj));
 }
 

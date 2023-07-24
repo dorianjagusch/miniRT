@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:39:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:13:22 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,12 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->cylinder.colour);
 	else if (obj->type == disk_obj)
 		return (obj->disk.colour);
-	else if (obj->type == triangle_obj)
-		return (obj->triangle.colour);
-	else if (obj->type == cone_obj)
-		return (obj->cone.colour);
-	else if (obj->type == box_obj)
-		return (obj->box.colour);
 	else
 		return ((t_vec4){1, 0, 0, 0});
 }
 
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 {
-	int	triangle_id;
-
 	hit->position = vec3_add(ray->origin,
 			vec3_multf(ray->direction, hit->distance));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 12:27:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:28:50 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	process_line(t_scene *scene, char *line)
 	}
 }
 
-static int	count_calloc_objects(int fd, char *av, t_scene *scene)
+static void	count_calloc_objects(int fd, char *av, t_scene *scene)
 {
 	char	*line;
 	int		count;
@@ -65,8 +65,8 @@ static int	count_calloc_objects(int fd, char *av, t_scene *scene)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
+	scene->n_objs = count;
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
-	return (count);
 }
 
 void	set_scene(t_scene *scene, char *av)
@@ -79,7 +79,7 @@ void	set_scene(t_scene *scene, char *av)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	scene->n_objs = count__calloc_objects(fd, av, scene);
+	count_calloc_objects(fd, av, scene);
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->lights = ft_calloc(sizeof(t_light) * 7, 1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_shader.c                                       :+:      :+:    :+:   */
+/*   hit_shader_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 20:45:33 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:07:50 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 		{
 			col[diffuse] = vec4_compmult(hit->colour,
 					light_info->colour);
-			assert(!vec4_isnan(col[diffuse]));
 		}
 		col[final] = vec4_add(col[diffuse], col[final]);
 		num++;

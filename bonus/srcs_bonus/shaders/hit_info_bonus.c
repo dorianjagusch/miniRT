@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hit_info.c                                         :+:      :+:    :+:   */
+/*   hit_info_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:17:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:13:02 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(ray->direction, hit->distance));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
-	// hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
 	hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
 			&(hit->position));
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:46:56 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:28:10 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	calloc_light_arrays(t_scene	*scene)
 {
 	scene->distances = ft_calloc(sizeof(float), scene->n_lights);
 	scene->directions = ft_calloc(sizeof(t_vec3), scene->n_lights);
-	scene->specular = ft_calloc(sizeof(t_vec4), scene->n_lights);
 	if (!scene->distances || !scene->directions)
 		ft_error(ENOMEM);
 }	

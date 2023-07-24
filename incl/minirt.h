@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
-# include <assert.h>
+
 # ifdef __APPLE__
 #  include "macos_keys.h"
 # else
@@ -32,7 +32,6 @@
 # include "shaders.h"
 # include <float.h>
 # include "objects.h"
-# include "patterns.h"
 # include "print_helpers.h"
 
 # define WIDTH 1080

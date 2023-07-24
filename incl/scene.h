@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 09:53:44 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:05:35 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
 typedef struct s_disk		t_disk;
-typedef struct s_triangle	t_triangle;
-typedef struct s_box		t_box;
-typedef struct s_mesh		t_mesh;
 
 typedef struct s_light
 {
@@ -62,7 +59,6 @@ typedef struct s_scene
 	int			n_lights;
 	float		*distances;
 	t_vec3		*directions;
-	t_vec4		*specular;
 }				t_scene;
 
 void	ft_skip_ws(char **line);
@@ -76,9 +72,6 @@ void	create_sphere(t_sphere *sphere, char *line);
 void	create_cylinder(t_cylinder *cylinder, char *line);
 void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
-void	create_triangle(t_triangle *triangle, char *line);
-void	create_box(t_box *box, char *line);
-void	ascii_parser(t_mesh *mesh, char *line);
 char	**ft_split3(char const *s, char c, char d);
 float	which_pos_min(float a, float b, float c);
 void	set_unique(t_scene *scene, char **line);
