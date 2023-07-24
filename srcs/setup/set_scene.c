@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:17:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:44:46 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "shaders.h"
 #include "scene.h"
 
-static void	set_object(t_scene *scene, char *line, int id)
+static void	set_object(t_img *img, char *line, int id)
 {
 	if (!ft_isspace(line[2]))
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
-		create_sphere(&scene->objs[id].sphere, line);
+		create_sphere(&img->scene->objs[id].sphere, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&img->scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
@@ -32,10 +31,10 @@ static void	set_object(t_scene *scene, char *line, int id)
 		create_cone(&img->scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
-	set_picture(img, &img->scene->objs[id].meta.tex_col,
-			&img->scene->objs[id].meta.colour, line);
-	set_normals(img, &img->scene->objs[id].meta.tex_norm,
-			&img->scene->objs[id].meta.colour, line);
+	// set_picture(img, &img->scene->objs[id].meta.tex_col,
+	// 		&img->scene->objs[id].meta.colour, line);
+	// set_normals(img, &img->scene->objs[id].meta.tex_norm,
+	// 		&img->scene->objs[id].meta.colour, line);
 }
 
 static void	process_line(t_img *img, char *line)
@@ -68,7 +67,7 @@ static void	count_calloc_objects(int fd, char *av, t_scene *scene)
 		if (!ft_empty_str(line) && is_obj(line))
 			count++;
 		free(line);
-		line = get_next_line(fd , FALSE);
+		line = get_next_line(fd, FALSE);
 	}
 	if (close(fd) < 0)
 		ft_error(errno);

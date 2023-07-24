@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:29:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:41:29 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_light_info light_distance(t_scene *scene, t_hitresult *hit)
 			colour = vec4_multf(vec4_multf(scene->lights[num].colour, light_info.intensity),
 								1.0f / (scene->distances[num] * scene->distances[num]));
 			light_info.colour = vec4_add(colour, light_info.colour);
-			scene->specular[num] = specular_colour(scene, hit, &light_info, num);
+			//scene->specular[num] = specular_colour(scene, hit, &light_info, num);
 		}
 		num++;
 	}

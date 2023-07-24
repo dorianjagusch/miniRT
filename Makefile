@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 16:28:32 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/24 18:27:06 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,16 +45,19 @@ SB = srcs_bonus
 IB = incl_bonus
 
 FILES = camera \
-	colour_vec \
 	get_colour \
+	box_distance \
 	cylinder_distance \
 	disk_distance \
+	dist_cone \
 	get_normal \
 	light \
+	set_unique \
 	min_distance \
 	plane_distance \
 	sphere_distance \
 	triangle_distance \
+	cone_distance \
 	main \
 	render \
 	clean_up \
@@ -65,14 +68,24 @@ FILES = camera \
 	ft_split3 \
 	getters \
 	handlers \
+	input \
 	is_obj \
 	light_visibility \
 	set_image \
 	set_scene \
+	texture_setup \
+	brick_pattern \
+	checker_pattern \
 	hit_info \
 	hit_shader \
+	texture_colour \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	triangle_map \
+	cone_map \
 	vec_add \
-	vec_addf	\
+	vec_addf \
 	vec_clamp \
 	vec_crossprod \
 	vec_dist \
@@ -88,7 +101,12 @@ FILES = camera \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
-	vec_add_array
+	vec_add_array \
+	print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene \
+	colour_vec
 
 HEADER = vector_math \
 	minirt \
@@ -101,20 +119,6 @@ HEADER = vector_math \
 	scene \
 	mlx \
 	patterns
-
-HEADER = vector_math \
-	minirt \
-	objects \
-	linux_keys \
-	libft \
-	shaders \
-	macos_keys \
-	errors \
-	scene \
-	mat4_math \
-	mlx \
-	patterns \
-	print_helpers
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 

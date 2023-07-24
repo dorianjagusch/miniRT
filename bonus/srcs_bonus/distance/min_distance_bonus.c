@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_distance.c                                     :+:      :+:    :+:   */
+/*   min_distance_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 23:33:34 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:50:06 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_disk,
 		dist_triangle,
 		dist_cone,
-		dist_box,
 		dist_mesh
 	};
 

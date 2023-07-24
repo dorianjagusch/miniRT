@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:19:18 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:17:18 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "vector_math.h"
 
 typedef union u_object	t_object;
+typedef union u_texture	t_texture;
 
 typedef enum e_obj
 {
@@ -47,6 +48,7 @@ typedef struct s_sphere
 	float			radius;
 	float			radius2;
 }					t_sphere;
+
 
 typedef struct s_plane
 {
@@ -140,6 +142,7 @@ typedef struct s_cone
 typedef union u_object
 {
 	t_obj_e		type;
+	t_meta		meta;
 	t_sphere	sphere;
 	t_plane		plane;
 	t_cylinder	cylinder;

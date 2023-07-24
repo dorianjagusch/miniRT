@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_vec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:22:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:26:29 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int32_t	vec4_toint32(t_vec4 colour)
 	return ((t << 24) | (r << 16) | (g << 8) | b);
 }
 
-t_vec4	ft_inttov4(int colour)
+t_vec4	ft_int32tov4(int32_t colour)
 {
 	t_vec4	result;
 
-	result.v = 1;
-	result.x = (float)((colour >> 16) & 0xFF);
-	result.y = (float)((colour >> 8) & 0xFF);
-	result.z = (float)(colour & 0xFF);
+	result.v = get_t(colour);
+	result.x = get_r(colour);
+	result.y = get_g(colour);
+	result.z = get_b(colour);
 	return (result);
 }
 
