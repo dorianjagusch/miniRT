@@ -61,6 +61,8 @@
 # define ORTHO 0
 # define AXIS 1
 
+int g_i;
+
 typedef struct s_scene	t_scene;
 
 typedef struct s_window

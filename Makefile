@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/23 13:47:12 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/24 15:20:08 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ HEADER = vector_math \
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
-SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
+SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE)_bonus.c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 

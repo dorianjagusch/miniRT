@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 11:14:58 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:40:37 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ t_vec4	get_texture_col(t_texture *texture, t_vec2 uv)
 	static int	i;
 	int			check;
 
-	pxl.x = uv.x * texture->picture.width;
-	pxl.y = uv.y * texture->picture.height;
+	pxl.x = uv.x * (texture->picture.width - 1) ;
+	pxl.y = uv.y * (texture->picture.height - 1);
+	g_i++;
 	dst = (int *)(texture->picture.addr
 			+ (int)pxl.y * texture->picture.line_length
 			+ (int)pxl.x * (texture->picture.bits_per_pixel / 8));
