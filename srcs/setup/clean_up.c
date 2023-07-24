@@ -6,12 +6,11 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 12:39:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:09:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "print_helpers.h"
 
 void	free_scene(t_scene *scene)
 {

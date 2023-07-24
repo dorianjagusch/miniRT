@@ -6,12 +6,11 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:05:55 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:08:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "print_helpers.h"
 
 void	calloc_light_arrays(t_scene	*scene)
 {
@@ -37,7 +36,6 @@ int	main(int ac, char **av)
 	set_scene(&img, img.scene, av[1]);
 	validate_scene(img.scene);
 	calloc_light_arrays(img.scene);
-	print_scene(*(img.scene));
 	user_input(&img);
 	render(&img);
 	mlx_loop(img.win.mlx);

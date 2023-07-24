@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 15:20:08 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/24 16:08:11 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,17 +97,7 @@ FILES = camera \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
-	vec_add_array \
-	print_misc \
-	print_misc2 \
-	print_objs \
-	print_scene
-# ascii_parser
-# mat4_add
-# mat4_identity
-# mat4_mult
-# mat4_rotate
-# mat4_sub
+	vec_add_array
 
 HEADER = vector_math \
 	minirt \
@@ -118,14 +108,12 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
-	mat4_math \
 	mlx \
-	patterns \
-	print_helpers
+	patterns
 
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
-SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE)_bonus.c"))
+SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 

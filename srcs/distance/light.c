@@ -6,12 +6,11 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:01:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:09:00 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
-#include "print_helpers.h"
 
 
 static t_vec4	specular_colour(const t_scene *scene,
@@ -66,10 +65,10 @@ t_light_info	light_distance(t_scene *scene, t_hitresult *hit)
 		if (scene->distances[num] >= EPSILON)
 		{
 			light_info.intensity = fmax(vec3_dot(hit->normal, scene->directions[num])
-										* scene->lights[num].ratio * 100, 0);
+					* scene->lights[num].ratio * 100, 0);
 			light_info.intensity /= scene->n_lights;
 			colour = vec4_multf(vec4_multf(scene->lights[num].colour, light_info.intensity),
-								1.0f / (scene->distances[num] * scene->distances[num]));
+					1.0f / (scene->distances[num] * scene->distances[num]));
 			light_info.colour = vec4_add(colour, light_info.colour);
 			scene->specular[num] = specular_colour(scene, hit, &light_info, num);
 		}
