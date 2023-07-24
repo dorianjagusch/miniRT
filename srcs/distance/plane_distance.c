@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   plane_distance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 14:09:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:28:45 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shaders.h"
-
 
 float	dist_plane(const t_ray *ray, t_object *obj)
 {

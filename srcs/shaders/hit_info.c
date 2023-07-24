@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:17:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:39:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec4	get_hitcolour(const t_object *obj)
 	else if (obj->type == box_obj)
 		return (obj->box.colour);
 	else
-		return (obj->mesh.colour);
+		return ((t_vec4){1, 0, 0, 0});
 }
 
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
@@ -43,17 +43,8 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(ray->direction, hit->distance));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
-	// hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
-	hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
-			&(hit->position));
+	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-3));
-	if (scene->objs[hit->obj_id].type == mesh_obj)
-	{
-		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
-		hit->normal = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.normal;
-		hit->colour = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.colour;
-		return ;
-	}
 	hit->type = scene->objs->type;
 }

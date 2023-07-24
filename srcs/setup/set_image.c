@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 13:55:51 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:34:27 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	user_input(t_img *img)
 {
 	mlx_key_hook(img->win.win, key_handler, img);
-	mlx_mouse_hook(img->win.win, mouse_handler, img);
 	mlx_hook(img->win.win, ON_DESTROY, 1L << 0, ft_close, img);
 	return (0);
 }

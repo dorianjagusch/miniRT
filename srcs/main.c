@@ -6,14 +6,14 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 18:49:42 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:46:56 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "print_helpers.h"
 
-void calloc_light_arrays(t_scene	*scene)
+void	calloc_light_arrays(t_scene	*scene)
 {
 	scene->distances = ft_calloc(sizeof(float), scene->n_lights);
 	scene->directions = ft_calloc(sizeof(t_vec3), scene->n_lights);
@@ -28,8 +28,6 @@ int	main(int ac, char **av)
 
 	if (ac > 2 || av[1] == 0)
 		ft_error(E2BIG);
-	if (!ft_strncmp(av[1], "H", 2))
-		ft_options();
 	ft_bzero(&img, sizeof(img));
 	set_scene(&(img.scene), av[1]);
 	validate_scene(&img.scene);

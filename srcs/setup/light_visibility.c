@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_visibility.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:54:33 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:21:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,15 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	return (0);
 }
 
-//TODO: CAN ALL OF THIS GO?????
 // cap visibility is weird here as well. One becomes visible and the other invisible
 static void	cap_visibility(t_cylinder *cylinder, t_camera *cam, t_light *light)
 {
-	// cylinder->top->disk.isvisible = is_light_visible(
-	// 		cam->pos,
-	// 		light->pos,
-	// 		cylinder->top->disk.pos,
-	// 		&(cylinder->top->disk.normal));
-	// printf("plane visisible: %d\n", cylinder->top->disk.isvisible);
-	// printf("!!!!!!!!!!!!!!!!!!!!!!\n");
 	cylinder->bottom->disk.isvisible = is_light_visible(
 			cam->pos,
 			light->pos,
 			cylinder->bottom->disk.pos,
 			&(cylinder->bottom->disk.normal));
 	cylinder->top->disk.isvisible = cylinder->bottom->disk.isvisible;
-	printf("plane visisible: %d\n", cylinder->bottom->disk.isvisible);
-	printf("!!!!!!!!!!!!!!!!!!!!!!\n");
 }
 
 void	check_visibility(t_scene *scene, int id)

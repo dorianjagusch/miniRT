@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:56:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:44:13 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "patterns.h"
-
 
 void	create_disk(t_disk *disk, char *line)
 {
@@ -41,7 +40,6 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->colour = get_colour(&line);
 }
 
-//TODO weird stuff with the mapping of which cap we hit
 static void	cyl_disk(t_cylinder *cylinder, int side)
 {
 	t_object	*disk;
@@ -66,7 +64,6 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 		cylinder->bottom = disk;
 	}
 }
-
 
 void	create_cylinder(t_cylinder *cylinder, char *line)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 13:41:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:53:44 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
 void	create_triangle(t_triangle *triangle, char *line);
 void	create_box(t_box *box, char *line);
-void	binary_parser(t_mesh *mesh, char *line); //
 void	ascii_parser(t_mesh *mesh, char *line);
 char	**ft_split3(char const *s, char c, char d);
 float	which_pos_min(float a, float b, float c);
+void	set_unique(t_scene *scene, char **line);
 
 #endif

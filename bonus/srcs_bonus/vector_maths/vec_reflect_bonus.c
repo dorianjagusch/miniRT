@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_add.c                                         :+:      :+:    :+:   */
+/*   vec_reflect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 12:30:23 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 12:31:20 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/25 22:14:14 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/05 19:03:08 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat4_math.h"
+#include "vector_math.h"
 
-t_mat4	mat4_add(t_mat4 mat1, t_mat4 mat2)
+t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 normal)
 {
-	t_mat4	result;
-	int		row;
-	int		col;
+	t_vec3	res;
 
-	row = -1;
-	while (++row < 4)
-	{
-		col = -1;
-		while (++col < 4)
-			result.data[row][col] = mat1.data[row][col] + mat2.data[row][col];
-	}
-	return (result);
+	res = vec3_add(v, vec3_multf(normal, -2.0 * vec3_dot(v, normal)));
+	return (res);
 }

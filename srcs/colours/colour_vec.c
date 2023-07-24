@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_vec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/07 15:52:56 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:56:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int32_t	vec4_toint32(t_vec4 colour)
 	int32_t	r;
 	int32_t	g;
 	int32_t	b;
+	int32_t	t;
 
-	int32_t t = 1; // transperancy was setting to negative number?
+	t = 1;
 	r = 255 * colour.x;
 	g = 255 * colour.y;
 	b = 255 * colour.z;
@@ -50,7 +51,7 @@ t_vec4	ft_trgbtov4(int colour[4])
 
 void	ft_rgbtonorm(t_vec4 *colour)
 {
-	colour->v /= 255.0;
+	colour->v = 1;
 	colour->x /= 255.0;
 	colour->y /= 255.0;
 	colour->z /= 255.0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 10:16:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:12:01 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_sphere
 	float			radius;
 	float			radius2;
 }					t_sphere;
-
 
 typedef struct s_plane
 {
@@ -140,7 +139,6 @@ typedef struct s_cone
 	int				disk_hit;
 }					t_cone;
 
-
 typedef union u_object
 {
 	t_obj_e		type;
@@ -154,6 +152,5 @@ typedef union u_object
 	t_mesh		mesh;
 	t_cone		cone;
 }				t_object;
-
 
 #endif

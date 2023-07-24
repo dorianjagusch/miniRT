@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_identity.c                                    :+:      :+:    :+:   */
+/*   vec_neg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 13:01:44 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/15 14:05:05 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/03 17:54:03 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/05 18:57:16 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat4_math.h"
+#include "vector_math.h"
 
-t_mat4	mat4_identity(void)
+t_vec3	vec3_neg(const t_vec3 v)
 {
-	t_mat4	result;
-	int		i;
-	int		j;
+	t_vec3	w;
 
-	i = -1;
-	ft_bzero(&result, sizeof(t_mat4));
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-		{
-			if (i == j)
-				result.data[i][j] = 1.0f;
-		}
-	}
-	return (result);
+	w.x = -v.x;
+	w.y = -v.y;
+	w.z = -v.z;
+	return (w);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/23 14:13:28 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/24 12:22:12 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,18 @@ LIBFT = libft/libft.a
 S = srcs
 O = objs
 I = incl
+B = bonus
+SB = srcs_bonus
+IB = incl_bonus
 
-
-FILES = camera_man \
+FILES = camera \
 	colour_vec \
 	get_colour \
 	cylinder_distance \
 	disk_distance \
-	get_normal_man \
+	get_normal \
 	light \
-	min_distance_man \
+	min_distance \
 	plane_distance \
 	sphere_distance \
 	triangle_distance \
@@ -61,24 +63,15 @@ FILES = camera_man \
 	ft_help \
 	ft_split3 \
 	getters \
-	handlers_man \
-	input \
-	is_obj_man \
+	handlers \
+	is_obj \
 	light_visibility \
 	set_image \
-	set_scene_man \
-	texture_setup \
-	brick_pattern \
-	checker_pattern \
-	hit_info_man \
+	set_scene \
+	hit_info \
 	hit_shader \
-	texture_colour \
-	cylinder_map \
-	planar_map \
-	sphere_map \
-	triangle_map \
-	cone_map \
 	vec_add \
+	vec_addf	\
 	vec_clamp \
 	vec_crossprod \
 	vec_dist \
@@ -98,7 +91,8 @@ FILES = camera_man \
 	print_misc \
 	print_misc2 \
 	print_objs \
-	print_scene
+	print_scene \
+	set_unique
 
 HEADER = vector_math \
 	minirt \
@@ -109,45 +103,44 @@ HEADER = vector_math \
 	macos_keys \
 	errors \
 	scene \
-	mat4_math \
 	mlx \
 	patterns \
 	print_helpers
 
-FILES_BONUS = camera \
-	colour_vec \
-	get_colour \
-	box_distance \
-	cylinder_distance \
-	disk_distance \
-	dist_cone \
-	get_normal \
-	light \
-	min_distance \
-	plane_distance \
-	sphere_distance \
-	triangle_distance \
-	cone_distance \
-	main \
-	render \
-	clean_up \
-	create_bonus_objs \
-	create_objs \
-	error_handling \
-	ft_help \
-	ft_split3 \
-	getters \
-	handlers \
-	input \
-	is_obj \
-	light_visibility \
-	set_image \
-	set_scene \
+FILES_BONUS = camera_bonus \
+	colour_vec_bonus \
+	get_colour_bonus \
+	box_distance_bonus \
+	cylinder_distance_bonus \
+	disk_distance_bonus \
+	dist_cone_bonus \
+	get_normal_bonus \
+	light_bonus \
+	min_distance_bonus \
+	plane_distance_bonus \
+	sphere_distance_bonus \
+	triangle_distance_bonus \
+	cone_distance_bonus \
+	main_bonus \
+	render_bonus \
+	clean_up_bonus \
+	create_bonus_objs_bonus \
+	create_objs_bonus \
+	error_handling_bonus \
+	ft_help_bonus \
+	ft_split3_bonus \
+	getters_bonus \
+	handlers_bonus \
+	input_bonus \
+	is_obj_bonus \
+	light_visibility_bonus \
+	set_image_bonus \
+	set_scene_bonus \
 	texture_setup \
 	brick_pattern \
 	checker_pattern \
-	hit_info \
-	hit_shader \
+	hit_info_bonus \
+	hit_shader_bonus \
 	texture_colour \
 	cylinder_map \
 	planar_map \
@@ -190,9 +183,9 @@ O_DIRS := $(dir $(OBJS))
 
 
 NAME_BONUS = miniRT_bonus
-HEADER_BONUS := $(addprefix $I/,$(addsuffix .h,$(HEADER_BONUS)))
+HEADER_BONUS := $(addprefix $B/$(IB)/,$(addsuffix .h,$(HEADER_BONUS)))
 BONUS_SRCS = $(foreach FILE,$(FILES_BONUS),$(shell find $S -type f -name "$(FILE).c"))
-BONUS_OBJS := $(patsubst $S/%,$O/%,$(BONUS_SRCS:.c=.o))
+BONUS_OBJS := $(patsubst $B/$(SB)/%,$O/%,$(BONUS_SRCS:.c=.o))
 
 ### RULES ###
 all: $(NAME)

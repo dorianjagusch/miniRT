@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 20:48:52 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:42:46 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,17 @@ void	free_scene(t_scene *scene)
 		}
 		if (scene->objs[i].type == cone_obj)
 			free(scene->objs[i].cone.bottom);
-		free(scene->objs[i].meta.texture);
 		i++;
 	}
-	if(scene->objs)
+	if (scene->objs)
 		free(scene->objs);
-	if(scene->lights)
+	if (scene->lights)
 		free(scene->lights);
-	if(scene->specular)
+	if (scene->specular)
 		free(scene->specular);
-	if(scene->distances)
+	if (scene->distances)
 		free(scene->distances);
-	if(scene->directions)
+	if (scene->directions)
 		free(scene->directions);
 }
 

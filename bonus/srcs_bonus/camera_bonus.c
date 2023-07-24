@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_man.c                                       :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:48:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/22 21:47:55 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@
 # define R 2
 #endif
 
+void	camera_move(int key, t_img *img) //TODO: remove this before submission
+{
+	if (key == MAIN_PAD_UP)
+		img->scene.cam.pos.z += 0.501;
+	if (key == MAIN_PAD_DOWN)
+		img->scene.cam.pos.z -= 0.501;
+	if (key == MAIN_PAD_RIGHT)
+		img->scene.cam.pos.x += 0.501;
+	if (key == MAIN_PAD_LEFT)
+		img->scene.cam.pos.x -= 0.501;
+	if (key == MAIN_PAD_W)
+		img->scene.cam.pos.y += 0.501;
+	if (key == MAIN_PAD_S)
+		img->scene.cam.pos.y -= 0.501;
+	if (key == MAIN_PAD_D)
+		img->scene.cam.dir.x += 1;
+	if (key == MAIN_PAD_A)
+		img->scene.cam.dir.x -= 1;
+	render(img);
+}
 
 t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 {

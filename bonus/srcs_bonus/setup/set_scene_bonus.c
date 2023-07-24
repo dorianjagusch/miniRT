@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_scene_man.c                                    :+:      :+:    :+:   */
+/*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:57:16 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:57:22 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->cam.fov = get_float(line, ANGLE);
 		scene->cam.aspect_ratio = (float)WIDTH / (float)HEIGHT;
 		vec3_normalize(&scene->cam.dir);
-		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3){0, 1.0f, -1e-2f});
+		scene->cam.right = vec3_cross(scene->cam.dir, (t_vec3) {0, 1.0f, -1e-2f});
 			vec3_normalize(&scene->cam.right);
 		scene->cam.up = vec3_cross(scene->cam.right, scene->cam.dir);
 			vec3_normalize(&scene->cam.up);
@@ -61,15 +61,21 @@ static void	set_object(t_scene *scene, char *line, int id)
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
 		create_sphere(&scene->objs[id].sphere, line);
+	// else if (!ft_strncmp("tm", line, 2))
+	// 	ascii_parser(&scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
 		create_cylinder(&scene->objs[id].cylinder, line);
 	else if (!ft_strncmp("di", line, 2))
 		create_disk(&scene->objs[id].disk, line);
+	else if (!ft_strncmp("tr", line, 2))
+		create_triangle(&scene->objs[id].triangle, line);
+	else if (!ft_strncmp("co", line, 2))
+		create_cone(&scene->objs[id].cone, line);
 	else
 		ft_error(ident_err);
-	set_meta(&scene->objs[id]); //TODO: is this needed?
+	set_meta(&scene->objs[id]);
 	check_visibility(scene, id);
 }
 
@@ -141,4 +147,3 @@ void	set_scene(t_scene *scene, char *av)
 	}
 	close(fd);
 }
-

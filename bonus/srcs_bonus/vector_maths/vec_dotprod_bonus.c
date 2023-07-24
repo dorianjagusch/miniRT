@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_sub.c                                         :+:      :+:    :+:   */
+/*   vec_dotprod.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 12:29:51 by djagusch          #+#    #+#             */
-/*   Updated: 2023/06/27 12:31:14 by djagusch         ###   ########.fr       */
+/*   Created: 2023/06/27 13:02:10 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/15 13:39:53 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat4_math.h"
+#include "vector_math.h"
 
-t_mat4	mat4_sub(t_mat4 mat1, t_mat4 mat2)
+float	vec3_dot(const t_vec3 v1, const t_vec3 v2)
 {
-	t_mat4	result;
-	int		row;
-	int		col;
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
 
-	row = -1;
-	while (++row < 4)
-	{
-		col = -1;
-		while (++col < 4)
-			result.data[row][col] = mat1.data[row][col] - mat2.data[row][col];
-	}
-	return (result);
+float	vec4_dot(const t_vec4 v1, const t_vec4 v2)
+{
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

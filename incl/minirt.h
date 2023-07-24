@@ -13,8 +13,6 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#include <stdio.h> //
-
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
@@ -35,20 +33,10 @@
 # include <float.h>
 # include "objects.h"
 # include "patterns.h"
-//# include "mat4_math.h"
 # include "print_helpers.h"
 
-// DEFAULTS
-
-# if 1
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) ((void)0)
-# else
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) __VA_ARGS__
-# endif
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define BOUNCES 3
 # define EXT_LEN 3
@@ -120,7 +108,6 @@ int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
 
-void	camera_move(int key, t_img *img);
 void	calculate_rotation_angles(t_img *img, int delta_x, int delta_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 19:23:17 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:45:24 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	ft_error(int error)
 		"Input format invalid. Consult the subject for format specifications.\n",
 		"Numerical value out of range\n",
 		"Identifier not recognised.\n",
-		"Scene must have only one camera, ambient light and at least one point light.\n",
+		"Scene must have only one camera, ambient light and one point light.\n",
 		"Error opening .obj file.\n"
 	};
+
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");
 	if (error < 160)
 		ft_printf_fd(STDERR_FILENO, "%s\n", strerror(error));
@@ -32,7 +33,7 @@ void	ft_error(int error)
 
 void	validate_scene(t_scene *scene)
 {
-	int num;
+	int	num;
 
 	num = 0;
 	while (num < scene->n_lights && scene->lights[num].valid)
