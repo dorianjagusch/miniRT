@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:14:47 by djagusch         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/24 16:29:07 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 		cam->aspect_ratio * tan(cam->fov * DEG2RAD);
 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * \
 		tan(cam->fov * DEG2RAD);
-	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * \
-		norm_coord_y);
+
+	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
-	fisheye[R] = fisheye[R] * 0.5f;
+	fisheye[R] = fisheye[R] * 0.1f;
 	fisheye[X] = fisheye[R] * cos(phi);
 	fisheye[Y] = fisheye[R] * sin(phi);
 	primary_ray.origin = cam->pos;
