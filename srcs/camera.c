@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:53:06 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:14:47 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <math.h>
+#include "vector_math.h"
+#include "scene.h"
+#include "shaders.h"
 
 #ifndef M_PI_4
 # define M_PI_4 0.78539816339744830962

@@ -50,7 +50,7 @@ static void	ft_word_len(char const *s, size_t *i, size_t *size)
 	}
 }
 
-static void	ft_get_word(char **str, char const *s, size_t *i)
+static void	ft_get_word2(char **str, char const *s, size_t *i)
 {
 	size_t	len;
 	size_t	size;
@@ -75,7 +75,7 @@ static void	ft_do_splitting(char **result, char const *s, int word, size_t *i)
 		(*i)++;
 	if (!ft_isspace(s[*i]) && s[*i])
 	{
-		ft_get_word(&result[word], s, i);
+		ft_get_word2(&result[word], s, i);
 		(*i)++;
 	}
 	if (!result[word] || !result[word][0])

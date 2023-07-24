@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/14 07:59:12 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:57:21 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
 {
 	char	*line;
 
-	line = get_next_line(fd);
+	line = get_next_line(fd, FALSE);
 	while (line)
 	{
 		if (!ft_empty_str(line) && !ft_strncmp("v", line, 1) && line[1] == ' ')
@@ -79,7 +79,7 @@ static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
 			mesh->count_f++;
 		if (line)
 			free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, FALSE);
 	}
 	if (line)
 		free(line);
@@ -109,7 +109,7 @@ static void	init_arrays(t_mesh *mesh, int fd)
 	char	*line;
 	int		count;
 
-	line = get_next_line(fd);
+	line = get_next_line(fd, FALSE);
 	count = 0;
 	while (line)
 	{
@@ -119,7 +119,7 @@ static void	init_arrays(t_mesh *mesh, int fd)
 			count++;
 			if (line)
 				free(line);
-			line = get_next_line(fd);
+			line = get_next_line(fd, FALSE);
 		}
 		count = 0;
 		while (!ft_empty_str(line) && !ft_strncmp("vn", line, 2) && line[2] == ' ' && line)
@@ -128,7 +128,7 @@ static void	init_arrays(t_mesh *mesh, int fd)
 			count++;
 			if (line)
 				free(line);
-			line = get_next_line(fd);
+			line = get_next_line(fd, FALSE);
 		}
 		count = 0;
 		while (!ft_empty_str(line) && !ft_strncmp("vt", line, 2) && line[2] == ' ' && line && mesh->count_vt != 0)
@@ -137,7 +137,7 @@ static void	init_arrays(t_mesh *mesh, int fd)
 			count++;
 			if (line)
 				free(line);
-			line = get_next_line(fd);
+			line = get_next_line(fd, FALSE);
 		}
 		count = 0;
 		while (!ft_empty_str(line) && !ft_strncmp("f", line, 1) && line[1] == ' ' && line)
@@ -146,11 +146,11 @@ static void	init_arrays(t_mesh *mesh, int fd)
 			count++;
 			if (line)
 				free(line);
-			line = get_next_line(fd);
+			line = get_next_line(fd, FALSE);
 		}
 		if (line)
 			free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, FALSE);
 	}
 	if (line)
 		free(line);

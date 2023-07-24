@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_bonus_objs.c                                :+:      :+:    :+:   */
+/*   create_bonus_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/23 13:58:14 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:15:17 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "objects.h"
 
 void	create_triangle(t_triangle *triangle, char *line)
 {
@@ -29,17 +29,20 @@ void	create_triangle(t_triangle *triangle, char *line)
 			triangle->tri_point[0]);
 }
 
-void	create_box(t_box *box, char *line)
+void	create_disk(t_disk *disk, char *line)
 {
-	box->type = box_obj;
+	disk->type = disk_obj;
 	line += 3;
-	box->verts[0] = get_vec3(&line);
+	disk->pos = get_vec3(&line);
 	ft_skip_ws(&line);
-	box->verts[1] = get_vec3(&line);
+	disk->normal = get_vec3(&line);
+	vec3_normalize(&disk->normal);
 	ft_skip_ws(&line);
-	box->colour = get_colour(&line);
+	disk->radius = get_float(&line, REAL) / 2;
+	ft_skip_ws(&line);
+	disk->colour = get_colour(&line);
+	disk->d = -vec3_dot(disk->pos, disk->normal);
 }
-
 
 static void	cone_disk(t_cone *cone, int side)
 {

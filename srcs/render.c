@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 12:13:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:21:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "shaders.h"
 #include "minirt.h"
 
 t_ray	reflect_ray(t_ray *ray, const t_hitresult *hit)
@@ -53,8 +54,8 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 
 	colour = (t_vec4){1, 0, 0, 0};
 	n_ray = 0;
-	ray = create_primary_ray(&img->scene.cam, pxl);
-	colour = vec4_add(colour, trace_ray(&ray, &img->scene, 0));
+	ray = create_primary_ray(&(img->scene->cam), pxl);
+	colour = vec4_add(colour, trace_ray(&ray, img->scene, 0));
 	vec4_clamp(&colour, 0, 1);
 	return (vec4_toint32(colour));
 }

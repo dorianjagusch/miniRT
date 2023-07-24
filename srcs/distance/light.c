@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 12:18:29 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:16:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "print_helpers.h"
+#include "shaders.h"
 
 static void	check_shadow(t_scene *scene, t_ray shadowray, \
 			t_hitresult *hit, int num)

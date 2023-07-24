@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:44:13 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:24:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minirt.h"
 #include "patterns.h"
@@ -75,7 +76,7 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	vec3_normalize(&cylinder->normal);
 	ft_skip_ws(&line);
 	cylinder->radius = get_float(&line, REAL) / 2;
-	cylinder->radius2 = pow(cylinder->radius, 2.0);
+	cylinder->radius2 = cylinder->radius * cylinder->radius;
 	ft_skip_ws(&line);
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);

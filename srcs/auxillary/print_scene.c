@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:32:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:15:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:23:55 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "print_helpers.h"
 
 typedef void	(*t_printfunc)(t_object *);
 
@@ -21,6 +21,9 @@ void	print_objs(t_object *obj)
 		&print_plane,
 		&print_cylinder,
 		&print_disk,
+		&print_triangle,
+		&print_mesh,
+		&print_cone
 	};
 	printf("type: %d\n", obj->type);
 	printfunc[obj->type]((void*)obj);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cone_distance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/22 10:15:57 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:01:59 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shaders.h"
 
 static void	check_height(const t_ray *ray, const t_cone *cone,
 			float *dist)

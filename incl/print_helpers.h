@@ -3,25 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   print_helpers.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:13:19 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 09:08:37 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:20:31 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINT_HELPERS_H
 # define PRINT_HELPERS_H
 
-# include "minirt.h"
+# include "scene.h"
+# include "shaders.h"
 # include "stdio.h"
+
+typedef union u_object			t_object;
+typedef struct s_sphere			t_sphere;
+typedef struct s_plane			t_plane;
+typedef struct s_cylinder		t_cylinder;
+typedef struct s_disk			t_disk;
+typedef struct s_triangle		t_triangle;
+typedef struct s_mesh			t_mesh;
+typedef struct s_scene			t_scene;
+typedef struct s_camera			t_camera;
+typedef struct s_light			t_light;
+typedef struct s_amb			t_amb;
+typedef struct s_ray			t_ray;
+typedef struct s_light_info 	t_light_info;
 
 void	print_sphere(t_object *obj);
 void	print_plane(t_object *obj);
 void	print_cylinder(t_object *obj);
 void	print_triangle(t_object *obj);
 void	print_disk(t_object *obj);
-void	print_box(t_object *obj);
 void	print_objs(t_object *obj);
 void	print_ray(t_ray ray);
 void	print_light(t_light light);

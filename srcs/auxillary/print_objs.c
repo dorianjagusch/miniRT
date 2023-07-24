@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   print_objs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:15:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:14:50 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:22:04 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "print_helpers.h"
 
 void	print_sphere(t_object *obj)
@@ -81,5 +80,64 @@ void	print_ray(t_ray ray)
 		ray.origin.x, ray.origin.y, ray.origin.z);
 	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
 		ray.direction.x, ray.direction.y, ray.direction.z);
+}
+
+//Needs to be adjusted for actual triangle obj
+void	print_triangle(t_object *obj)
+{
+	t_triangle	*triangle;
+
+	triangle = &obj->triangle;
+	printf("Triangle\n");
+	printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[0].x, triangle->tri_point[0].y, triangle->tri_point[0].z);
+	printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[1].x, triangle->tri_point[1].y, triangle->tri_point[1].z);
+	printf("postition 3:\nx:%f\ty:%f\tz:%f\n",
+		triangle->tri_point[2].x, triangle->tri_point[2].y, triangle->tri_point[2].z);
+	// printf("Normal:\nx:%f\ty:%f\tz:%f\n",
+	// 	triangle->normal.x, triangle->normal.y, triangle->normal.z);
+}
+
+void	print_mesh(t_object *obj)
+{
+	t_mesh	*mesh;
+	int		count;
+
+	count = 0;
+	mesh = &obj->mesh;
+
+	printf("Mesh\n");
+	printf("number of triangles: %f\n", mesh->n_triangles);
+	while (count < mesh->n_triangles)
+	{
+
+		printf("Triangle %d\n", count);
+		printf("Position 1:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[0].x, mesh->triangle_data[count].triangle.tri_point[0].y, mesh->triangle_data[count].triangle.tri_point[0].z);
+		printf("Position 2:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[1].x, mesh->triangle_data[count].triangle.tri_point[1].y, mesh->triangle_data[count].triangle.tri_point[1].z);
+		printf("postition 3:\nx:%f\ty:%f\tz:%f\n",
+			mesh->triangle_data[count].triangle.tri_point[2].x, mesh->triangle_data[count].triangle.tri_point[2].y, mesh->triangle_data[count].triangle.tri_point[2].z);
+		count++;
+	}
+}
+
+void	print_cone(t_object *obj)
+{
+	t_cone	*cone;
+
+	cone = &obj->cone;
+	printf("cone\n");
+	printf("Position:\nx:%f\ty:%f\tz:%f\n",
+		cone->pos.x, cone->pos.y, cone->pos.z);
+	printf("Normal:\nx:%f\ty:%f\tz:%f\n",
+		cone->normal.x, cone->normal.y, cone->normal.z);
+	printf("vertex:\nx:%f\ty:%f\tz:%f\n",
+		cone->pos.x, cone->pos.y, cone->pos.z);
+	printf("Radius:\n%f\n", cone->radius);
+	printf("Height:\n%f\n", cone->height);
+	printf("Colour:\nR:%f\tG:%f\tB:%f\n",
+		cone->colour.x, cone->colour.y, cone->colour.z);
 }
 

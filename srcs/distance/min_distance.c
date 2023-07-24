@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:29:58 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:23:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "shaders.h"
 #include "float.h"
 
@@ -22,8 +21,11 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_plane,
 		dist_cylinder,
 		dist_disk,
+		dist_triangle,
+		dist_cone,
+		dist_mesh
 	};
-	
+
 	return (func[obj->type](ray, obj));
 }
 

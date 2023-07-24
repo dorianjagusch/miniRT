@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 12:22:12 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/24 16:13:58 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -87,12 +87,7 @@ FILES = camera \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
-	vec_add_array \
-	print_misc \
-	print_misc2 \
-	print_objs \
-	print_scene \
-	set_unique
+	vec_add_array
 
 HEADER = vector_math \
 	minirt \
@@ -104,8 +99,7 @@ HEADER = vector_math \
 	errors \
 	scene \
 	mlx \
-	patterns \
-	print_helpers
+	patterns
 
 FILES_BONUS = camera_bonus \
 	colour_vec_bonus \

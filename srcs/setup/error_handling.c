@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:45:24 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:24:25 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_error(int error)
 		"Input format invalid. Consult the subject for format specifications.\n",
 		"Numerical value out of range\n",
 		"Identifier not recognised.\n",
-		"Scene must have only one camera, ambient light and one point light.\n",
-		"Error opening .obj file.\n"
+		"Scene must have at leat one camera.\n",
+		"Scene must have only one camera, ambient light and at least one point light.\n",
+		"Error opening .obj file.\n",
+		"Error opening .xpm file.\n"
 	};
 
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");

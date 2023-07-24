@@ -6,11 +6,13 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 12:23:03 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/23 13:04:57 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "vector_math.h"
+#include <float.h>
 
 void	ft_skip_ws(char **line)
 {
@@ -25,7 +27,8 @@ void	ft_skip_num(char **line, int mode, int allow_comma)
 	flag = 0;
 	if (**line == '-' || **line == '+')
 		*line += 1;
-	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag)) && **line != '\0')
+	while ((ft_isdigit(**line) || (mode != INT && **line == '.' && !flag))
+		&& **line != '\0')
 	{
 		if (**line == '.')
 			flag++;

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
@@ -61,6 +61,7 @@ void	ft_putchar(char c);
 void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 void	ft_putstr(char *s);
+char	*ft_get_word(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	**ft_split2(char const *s);
@@ -122,7 +123,7 @@ int		ft_puthex_c2(unsigned int n, int c, int fd);
 int		ft_putptr_c2(unsigned long long ptr, int fd);
 int		return_null2(int fd);
 // get_next_line
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int clear);
 //MISC
 long	ft_max(long a, long b);
 long	ft_min(long a, long b);
@@ -130,6 +131,7 @@ float	ft_frac(float a);
 int		ft_sign(float a);
 double	ft_powerf(double x, int exp);
 float	ft_scale(float value, t_range range_old, t_range range_new);
+int		ft_small_endian(void);
 void	ft_free(void *ptr);
 void	*ft_free_array(char ***array, size_t elements);
 void	*ft_free_anyarray(void ***array, size_t elements);

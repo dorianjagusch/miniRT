@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_normal_man.c                                   :+:      :+:    :+:   */
+/*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 14:06:16 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:22:48 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
-#include "vector_math.h"
-#include "minirt.h"
 
 static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 {
@@ -45,6 +43,8 @@ t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 		return (obj->disk.normal);
 	else if (obj->type == cylinder_obj)
 		normal = get_cylinder_normal(&(obj->cylinder), hitpoint);
+	else if (obj->type == cone_obj)
+		normal = get_cone_normal(&(obj->cone), hitpoint);
 	vec3_normalize(&normal);
 	return (normal);
 }

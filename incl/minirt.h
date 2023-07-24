@@ -25,17 +25,19 @@
 # else
 #  include "linux_keys.h"
 # endif
+# include "scene.h"
 # include "libft.h"
 # include "errors.h"
-# include "vector_math.h"
-# include "scene.h"
-# include "shaders.h"
-# include <float.h>
-# include "objects.h"
-# include "print_helpers.h"
 
-# define WIDTH 1080
-# define HEIGHT 720
+# if 1
+#  define WIDTH 500
+#  define HEIGHT 500
+#  define DEBUG_ONLY(...) ((void)0)
+# else
+#  define WIDTH 500
+#  define HEIGHT 500
+#  define DEBUG_ONLY(...) __VA_ARGS__
+# endif
 
 # define BOUNCES 3
 # define EXT_LEN 3
@@ -55,6 +57,10 @@
 # define ORTHO 0
 # define AXIS 1
 
+int g_i;
+
+typedef struct s_scene	t_scene;
+
 typedef struct s_window
 {
 	void	*mlx;
@@ -71,14 +77,14 @@ typedef struct s_img
 	int			endian;
 	int			move;
 	float		aspect_ratio;
-	t_scene		scene;
+	t_scene		*scene;
 	int			is_help;
 	int			error;
 }				t_img;
 
 // MINIRT
 void	set_image(t_img *img);
-void	set_scene(t_scene *scene, char *av);
+void	set_scene(t_img *img, t_scene *scene, char *av);
 void	render(t_img *img);
 void	free_img(t_img *img);
 void	ft_options(void);

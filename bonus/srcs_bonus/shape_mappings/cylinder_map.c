@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:09:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/21 15:57:28 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:27:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ t_vec2	cylinder_map(t_vec3 *point, t_object *obj)
 	t_vec3	axis[2];
 	float	angle;
 
-	if (obj->cylinder.disk_hit)
+	if (obj->cylinder.disk_hit == 1)
 		return (disk_map(point, obj->cylinder.bottom));
+	if (obj->cylinder.disk_hit == 2)
+		return (disk_map(point, obj->cylinder.top));
 	offset = vec3_sub(*point, obj->cylinder.pos);
 	axis[U] = vec3_cross((t_vec3){EPSILON, 1, EPSILON}, obj->cylinder.normal);
 	vec3_normalize(&(axis[U]));

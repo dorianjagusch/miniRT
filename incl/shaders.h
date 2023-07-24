@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:05:59 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:14:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHADERS_H
 # define SHADERS_H
 
+# include "objects.h"
 # include "scene.h"
 # include "vector_math.h"
 # include <float.h>
+# include <math.h>
 
 enum e_colour
 {

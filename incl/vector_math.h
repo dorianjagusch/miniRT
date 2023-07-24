@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 09:12:23 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:21:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int		vec4_isnan(const t_vec4 v);
 void	vec4_clamp(t_vec4 *v, const float min, const float max);
 void	vec4_scale(t_vec4 *v, const t_range old, const t_range new);
 t_vec4	vec4_add_array(const t_vec4 v, const t_vec4 *array,
-			const size_t arr_len);
+		const size_t arr_len);
+
 void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);
 t_vec4	ft_int32tov4(int32_t colour);

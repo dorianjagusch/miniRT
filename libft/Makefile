@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/20 07:05:33 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/24 10:04:19 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ ft_min \
 ft_pow \
 ft_scale \
 ft_which_extr \
+ft_small_endian \
 ft_lstadd_back \
 ft_lstadd_front \
 ft_lstclear \
@@ -96,6 +97,7 @@ ft_isdigit \
 ft_isprint \
 ft_isspace \
 ft_itoa \
+ft_get_word \
 ft_split \
 ft_split2 \
 ft_strchr \
@@ -128,7 +130,7 @@ $(NAME): $(OBJS) $(SRCS)
 	@ar rc $(NAME) $(OBJS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -g
 
 $O:
 	@mkdir -p $(O_DIRS)

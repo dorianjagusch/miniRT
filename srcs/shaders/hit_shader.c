@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 13:14:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:26:27 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shaders.h"
 
 t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 		const t_hitresult *hit, const t_light_info *light_info)
@@ -33,7 +33,7 @@ t_vec4	hit_shader(const t_ray *ray, const t_scene *scene,
 		num++;
 	}
 	col[final] = vec4_multf(col[final], 1.0f / scene->n_lights);
-	// col[final] = vec4_add_array(col[final], scene->n_lights);
+	// col[final] = vec4_add_array(col[final], col[specular], scene->n_lights);
 	col[final] = vec4_add(col[ambient], col[final]);
 	// if (ray->transparency < 1.0)
 	// {
