@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 15:38:36 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:14:58 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@
 
 t_vec4	get_texture_col(t_texture *texture, t_vec2 uv)
 {
-	char	*dst;
+	int		*dst;
 	t_vec4	colour;
 	t_vec2	pxl;
+	static int	i;
+	int			check;
 
 	pxl.x = uv.x * texture->picture.width;
 	pxl.y = uv.y * texture->picture.height;
-	dst = texture->picture.addr + ((int)pxl.y * texture->picture.line_length
+	dst = (int *)(texture->picture.addr
+			+ (int)pxl.y * texture->picture.line_length
 			+ (int)pxl.x * (texture->picture.bits_per_pixel / 8));
-	colour = ft_int32tov4((int) *dst);
+	colour = ft_int32tov4(*dst);
+	check = i++;
 	ft_rgbtonorm(&colour);
 	return (colour);
 }

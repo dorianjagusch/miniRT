@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:22:58 by djagusch          #+#    #+#             */
-/*   Updated: 2023/05/31 13:33:28 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:05:49 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,19 @@ static char	*ft_prep_buffer(char *buf)
 	return (tmp);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int clear)
 {
 	static char	*buf[1000];
 	char		*cur_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buf, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0 || (read(fd, buf, 0) && !clear))
 		return (NULL);
+	if (clear)
+	{
+		ft_bzero(buf[fd], sizeof(char) * ft_strlen(buf[fd]));
+		ft_printf("%s\n", buf[fd]);
+		return (NULL);
+	}
 	buf[fd] = ft_fill_buffer(fd, buf[fd]);
 	if (!buf[fd])
 		return (NULL);

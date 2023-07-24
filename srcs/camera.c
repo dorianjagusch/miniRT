@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:01:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:52:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_ray	create_primary_ray(t_camera *cam, t_vec2 pxl)
 	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
 
-	fisheye[R] = fisheye[R] * 0.1f;
+	fisheye[R] = fisheye[R] * 0.5f;
 	fisheye[X] = fisheye[R] * cos(phi);
 	fisheye[Y] = fisheye[R] * sin(phi);
 	primary_ray.origin = cam->pos;

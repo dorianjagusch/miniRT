@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planar_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:48:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 16:06:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:32:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ t_vec2	disk_map(t_vec3 *point, t_object *obj)
 	if (angle < 0.0)
 		angle += 2.0 * M_PI;
 	uv.x = angle * M_1_DIV_2PI;
-	uv.y = vec3_mag(point_t) / obj->disk.radius;
+	uv.y = ft_frac(vec3_mag(point_t) / obj->disk.radius);
 	return (uv);
 }

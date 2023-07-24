@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
@@ -123,7 +123,7 @@ int		ft_puthex_c2(unsigned int n, int c, int fd);
 int		ft_putptr_c2(unsigned long long ptr, int fd);
 int		return_null2(int fd);
 // get_next_line
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int clear);
 //MISC
 long	ft_max(long a, long b);
 long	ft_min(long a, long b);

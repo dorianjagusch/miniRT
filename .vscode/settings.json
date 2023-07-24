@@ -20,6 +20,7 @@
         "locale": "c",
         "sstream": "c",
         "objects.h": "c",
-        "shaders.h": "c"
+        "shaders.h": "c",
+        "libft.h": "c"
     }
 }

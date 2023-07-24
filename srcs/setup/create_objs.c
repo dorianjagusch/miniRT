@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/20 19:54:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:19:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 	}
 }
 
-
 void	create_cylinder(t_cylinder *cylinder, char *line)
 {
 	cylinder->type = cylinder_obj;
@@ -62,7 +61,7 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	vec3_normalize(&cylinder->normal);
 	ft_skip_ws(&line);
 	cylinder->radius = get_float(&line, REAL) / 2;
-	cylinder->radius2 = pow(cylinder->radius, 2.0);
+	cylinder->radius2 = cylinder->radius * cylinder->radius;
 	ft_skip_ws(&line);
 	cylinder->height = get_float(&line, REAL);
 	ft_skip_ws(&line);

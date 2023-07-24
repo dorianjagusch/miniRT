@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 15:11:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 09:58:04 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_texture_dim(char **file, int *width, int *height)
 
 	fd = open(*file, O_RDONLY);
 	i = 0;
-	line = get_next_line(fd);
+	line = get_next_line(fd, FALSE);
 	while (line && i < 4)
 	{
 		if (!ft_strncmp(line, "\"", 1))
@@ -36,9 +36,10 @@ void	get_texture_dim(char **file, int *width, int *height)
 			break ;
 		}
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, FALSE);
 	}
 	close (fd);
+	get_next_line(fd, TRUE);
 }
 
 static void	get_texels(void *mlx, t_picture *texture)

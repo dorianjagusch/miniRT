@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/23 14:58:42 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/24 10:04:19 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,7 +130,7 @@ $(NAME): $(OBJS) $(SRCS)
 	@ar rc $(NAME) $(OBJS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -g
 
 $O:
 	@mkdir -p $(O_DIRS)

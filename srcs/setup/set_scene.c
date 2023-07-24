@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:15:58 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:07:31 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	set_unique(t_scene *scene, char **line)
 		scene->lights[flag[1]].colour = get_colour(line);
 		scene->lights[flag[1]].valid = 1;
 		scene->n_lights += 1;
-		printf("%d\n", flag[1]);
 		flag[1] += 1;
 
 	}
@@ -107,14 +106,14 @@ static int	count_objects(int fd, char *av)
 	char	*line;
 	int		count;
 
-	line = get_next_line(fd);
+	line = get_next_line(fd, FALSE);
 	count = 0;
 	while (line)
 	{
 		if (!ft_empty_str(line) && is_obj(line))
 			count++;
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd , FALSE);
 	}
 	if (close(fd) < 0)
 		ft_error(errno);
@@ -142,14 +141,14 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	scene->n_lights = 0;
 	if (!scene->objs)
 		ft_error(ENOMEM);
-	line = get_next_line(fd);
+	line = get_next_line(fd, FALSE);
 	while (line != NULL)
 	{
 		if (!ft_empty_str(line) && ft_strncmp(line, "#", 1))
 			process_line(img, line);
 		if (line)
 			free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, FALSE);
 	}
 	close(fd);
 }

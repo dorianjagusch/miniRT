@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/23 13:02:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:17:01 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,19 @@ float	which_pos_min(float a, float b, float c)
 	return (min);
 }
 
-static float	dist_caps(const t_ray *ray, const t_object *obj)
+static void	dist_caps(const t_ray *ray, const t_object *obj,
+	float dist_cap[2])
 {
 	float	dist;
 
-	dist = dist_disk(ray, obj->cylinder.bottom);
-	dist = fminf(dist_disk(ray, obj->cylinder.top), dist);
-	return (dist);
+	dist_cap[0] = dist_disk(ray, obj->cylinder.bottom);
+	dist = fminf(dist_disk(ray, obj->cylinder.top), dist_cap[0]);
+	dist_cap[1] = 0;
+	if (dist_cap[0] != FLT_MAX && dist_cap[0] > EPSILON)
+		dist_cap[1] = 1;
+	if (dist > EPSILON && dist < dist_cap[0])
+		dist_cap[1] = 2;
+	dist_cap[0] = fmin(dist_cap[0], dist);
 }
 
 static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
@@ -49,7 +55,7 @@ static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
 				cylinder->height / 2));
 	bottom_cap = vec3_sub(cylinder->pos, vec3_multf(cylinder->normal,
 				cylinder->height / 2));
-	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist)); //TODO: could alter for cone, use angle to exclude the height
+	hitpoint = vec3_add(ray->origin, vec3_multf(ray->direction, *dist));
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, bottom_cap)) <= EPSILON)
 		*dist = FLT_MAX;
 	if (vec3_dot(cylinder->normal, vec3_sub(hitpoint, top_cap)) >= EPSILON)
@@ -73,7 +79,7 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 	t_vec3	params;
 	float	discriminant;
 	float	res[2];
-	float	dist_cap;
+	float	dist_cap[2];
 
 	calc_temps(ray, &(obj->cylinder), temp);
 	params.x = vec3_dot(temp[0], temp[0]);
@@ -88,9 +94,9 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 		check_height(ray, &(obj->cylinder), &(res[0]));
 	if (isnan(res[1]) == 0 && res[1] > EPSILON)
 		check_height(ray, &(obj->cylinder), &(res[1]));
-	dist_cap = dist_caps(ray, obj);
-	res[0] = which_pos_min(res[0], res[1], dist_cap);
-	if (isnan(res[0]) == 0 && res[0] == dist_cap && res[0] != FLT_MAX)
-		obj->cylinder.disk_hit = 1;
+	dist_caps(ray, obj, dist_cap);
+	res[0] = which_pos_min(res[0], res[1], dist_cap[0]);
+	if (isnan(res[0]) == 0 && res[0] == dist_cap[0] && res[0] != FLT_MAX)
+		obj->cylinder.disk_hit = dist_cap[0];
 	return (res[0]);
 }
