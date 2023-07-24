@@ -29,7 +29,7 @@
 # include "libft.h"
 # include "errors.h"
 
-# if 1
+# if 0
 #  define WIDTH 500
 #  define HEIGHT 500
 #  define DEBUG_ONLY(...) ((void)0)
