@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/25 14:00:12 by djagusch         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/25 17:10:45 by smorphet         ###   ########.fr       */
+>>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +74,11 @@ t_vec4	get_colour(char **line);
 float	get_float(char **line, int mode);
 t_vec3	get_vec3(char **line);
 void	validate_scene(t_scene *scene);
+void	check_line(char **line);
 void	create_sphere(t_sphere *sphere, char *line);
 void	create_cylinder(t_cylinder *cylinder, char *line);
 void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
-void	create_triangle(t_triangle *triangle, char *line);
-void	ascii_parser(t_mesh *mesh, char *line);
 char	**ft_split3(char const *s, char c, char d);
 float	which_pos_min(float a, float b, float c);
 void	set_unique(t_scene *scene, char **line);

@@ -10,7 +10,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT_bonus",
+<<<<<<< HEAD
             "args": ["${workspaceFolder}/test_files/bonus/cone.rt"],
+=======
+            "args": ["${workspaceFolder}/textures/cone_textures.rt"],
+>>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

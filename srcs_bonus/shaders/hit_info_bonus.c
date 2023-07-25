@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:32:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:34:54 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
-		hit->normal = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.normal;
-		hit->colour = scene->objs[hit->obj_id].mesh.triangle_data[triangle_id].triangle.colour;
+		hit->normal = scene->objs[hit->obj_id].mesh.\
+			triangle_data[triangle_id].triangle.normal;
+		hit->colour = scene->objs[hit->obj_id].mesh.\
+		triangle_data[triangle_id].triangle.colour;
 		return ;
 	}
 	hit->type = scene->objs->type;

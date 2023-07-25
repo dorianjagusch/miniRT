@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   planar_map_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:48:28 by djagusch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/25 16:57:41 by djagusch         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/25 17:01:38 by smorphet         ###   ########.fr       */
+>>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns_bonus.h"
 #include <float.h>
-#include <stdio.h>
 
 #ifndef EPSILON
 # define EPSILON 10e-8

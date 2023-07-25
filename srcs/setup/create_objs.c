@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 13:07:46 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:36:45 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	create_disk(t_disk *disk, char *line)
 	disk->radius = get_float(&line, REAL) / 2;
 	ft_skip_ws(&line);
 	disk->colour = get_colour(&line);
+	check_line(&line);
 	disk->d = -vec3_dot(disk->pos, disk->normal);
 }
 
@@ -36,9 +37,12 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->pos = get_vec3(&line);
 	ft_skip_ws(&line);
 	sphere->radius = get_float(&line, REAL) / 2;
+	if (sphere->radius < 0)
+		ft_error(range_err);
 	sphere->radius2 = pow(sphere->radius, 2.0);
 	ft_skip_ws(&line);
 	sphere->colour = get_colour(&line);
+	check_line(&line);
 }
 
 static void	cyl_disk(t_cylinder *cylinder, int side)
@@ -79,8 +83,11 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->radius2 = cylinder->radius * cylinder->radius;
 	ft_skip_ws(&line);
 	cylinder->height = get_float(&line, REAL);
+	if (cylinder->height < 0 || cylinder->radius < 0)
+		ft_error(range_err);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
+	check_line(&line);
 	cyl_disk(cylinder, 't');
 	cyl_disk(cylinder, 'b');
 }
@@ -95,5 +102,6 @@ void	create_plane(t_plane *plane, char *line)
 	vec3_normalize(&plane->normal);
 	ft_skip_ws(&line);
 	plane->colour = get_colour(&line);
+	check_line(&line);
 	plane->d = -vec3_dot(plane->pos, plane->normal);
 }

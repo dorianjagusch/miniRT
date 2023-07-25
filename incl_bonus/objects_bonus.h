@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:21:30 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:34:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_mesh
 	float			count_f;
 	t_vec3			*vertex;
 	t_vec3			*normals;
-	t_vec2			textures;
+	t_vec2			*textures;
 	t_vec3_face		**faces;
 	int				obj_id;
 	t_object		*triangle_data;

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/25 17:02:23 by djagusch         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/25 17:02:21 by smorphet         ###   ########.fr       */
+>>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
 /*                                                                            */
 /* ************************************************************************** */
 
