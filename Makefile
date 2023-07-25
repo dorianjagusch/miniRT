@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 11:50:29 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 11:57:25 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ IB = incl_bonus
 
 FILES = camera \
 	get_colour \
+	box_distance \
 	cylinder_distance \
 	disk_distance \
 	dist_cone \
@@ -66,21 +67,13 @@ FILES = camera \
 	ft_split3 \
 	getters \
 	handlers \
+	input \
 	is_obj \
 	light_visibility \
 	set_image \
 	set_scene \
-	texture_setup \
-	texture_colour \
-	brick_pattern \
-	checker_pattern \
 	hit_info \
 	hit_shader \
-	cylinder_map \
-	planar_map \
-	sphere_map \
-	triangle_map \
-	cone_map \
 	vec_add \
 	vec_addf \
 	vec_clamp \
@@ -117,8 +110,21 @@ HEADER_FILES = vector_math \
 	mlx \
 	patterns
 
-HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER_FILES)))
-HEADER_B := $(addprefix $(IB)/,$(addsuffix _bonus.h,$(HEADER_FILES)))
+HEADER = vector_math \
+	minirt \
+	objects \
+	linux_keys \
+	libft \
+	shaders \
+	macos_keys \
+	errors \
+	scene \
+	mat4_math \
+	mlx \
+	patterns \
+	print_helpers
+
+HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
