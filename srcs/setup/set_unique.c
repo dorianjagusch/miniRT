@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:51:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 15:19:58 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:00:00 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	set_light(t_scene *scene, char **line, int index)
 	scene->lights[index].colour = get_colour(line);
 	check_line(line);
 	scene->lights[index].valid = 1;
-	scene->n_lights += 1;	
+	scene->n_lights += 1;
 }
 
 void	set_unique(t_scene *scene, char **line)

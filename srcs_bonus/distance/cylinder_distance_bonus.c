@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_distance_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:37:02 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:54:55 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 	dist_caps(ray, obj, dist_cap);
 	res[0] = which_pos_min(res[0], res[1], dist_cap[0]);
 	if (isnan(res[0]) == 0 && res[0] == dist_cap[0] && res[0] != FLT_MAX)
-		obj->cylinder.disk_hit = dist_cap[0];
+		obj->cylinder.disk_hit = dist_cap[1];
 	return (res[0]);
 }

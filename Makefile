@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 13:47:47 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 17:11:30 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,8 @@ FILES = camera \
 	sphere_map \
 	triangle_map \
 	brick_pattern \
-	checkers_pattern
+	checkers_pattern \
+	ascii_parser
 	
 
 HEADER_FILES = vector_math \

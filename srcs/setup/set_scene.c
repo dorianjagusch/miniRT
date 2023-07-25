@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 08:03:56 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:05:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	int		fd;
 	char	*line;
 
-	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
+	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN) || ft_strncmp(av + strlen(av) - EXT_LEN, "OBJ", EXT_LEN))
 		ft_error(file_err);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)

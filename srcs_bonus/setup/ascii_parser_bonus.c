@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:31:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ t_vec3	get_vec3_mesh(char *line)
 
 	ft_skip_ws(&line);
 	vec.x = ft_atof(line);
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	ft_skip_ws(&line);
 	vec.y = ft_atof(line);
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	ft_skip_ws(&line);
 	vec.z = ft_atof(line);
 	if (*line == '-')
 		line += 1;
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	return (vec);
 }
 
@@ -59,7 +59,7 @@ void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 	ft_free_anyarray((void *) &split, 6);
 }
 
-static void	count_file_objects(int fd, char *file_name, t_mesh *mesh)
+static void	count_file_objects(int fd, t_mesh *mesh)
 {
 	char	*line;
 
@@ -93,14 +93,14 @@ t_vec2	get_textures(char *line)
 
 	ft_skip_ws(&line);
 	vec.x = ft_atof(line);
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	ft_skip_ws(&line);
 	vec.y = ft_atof(line);
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	ft_skip_ws(&line);
 	if (*line == '-')
 		line += 1;
-	ft_skip_num(&line, REAL);
+	ft_skip_num(&line, REAL, 1);
 	return (vec);
 }
 
@@ -179,34 +179,6 @@ void free_arrays(t_mesh *mesh)
 	}
 }
 
-void	create_mesh(t_mesh *mesh)
-{
-	int	index;
-
-	index = 0;
-	mesh->n_triangles = mesh->count_f;
-	mesh->triangle_data = malloc(mesh->n_triangles * sizeof(t_object));
-	while (index < mesh->n_triangles)
-	{
-		mesh->triangle_data[index].type = triangle_obj;
-		mesh->triangle_data[index].triangle.normal = \
-		mesh->normals[(mesh->faces[index]->n) - 1];
-		mesh->triangle_data[index].triangle.tri_point[0] = \
-		mesh->vertex[(mesh->faces[index][0].v) - 1];
-		mesh->triangle_data[index].triangle.tri_point[1] = \
-		mesh->vertex[(mesh->faces[index][1].v) - 1];
-		mesh->triangle_data[index].triangle.tri_point[2] = \
-		mesh->vertex[(mesh->faces[index][2].v) - 1];
-		mesh->triangle_data[index].triangle.colour = (t_vec4) {1, 1, 0, 1};
-		mesh->triangle_data[index].triangle.edges[0] = 
-		vec3_sub(mesh->triangle_data[index].triangle.tri_point[1],
-			mesh->triangle_data[index].triangle.tri_point[0]);
-		mesh->triangle_data[index].triangle.edges[1] = 
-		vec3_sub(mesh->triangle_data[index].triangle.tri_point[2],\
-			mesh->triangle_data[index].triangle.tri_point[0]);
-		index++;
-	}
-}
 
 void ascii_parser(t_mesh *mesh, char *line)
 {
@@ -222,7 +194,7 @@ void ascii_parser(t_mesh *mesh, char *line)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	count_file_objects(fd, file_name, mesh);
+	count_file_objects(fd, mesh);
 	mesh->vertex = malloc(mesh->count_v * sizeof(t_vec3));
 	mesh->normals = malloc(mesh->count_vn * sizeof(t_vec3));
 	if (mesh->count_vt != 0)

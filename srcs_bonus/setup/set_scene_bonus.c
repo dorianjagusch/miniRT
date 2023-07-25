@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:49:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:09:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	set_object(t_img *img, char *line, int id)
 		ft_error(ident_err);
 	if (!ft_strncmp("sp", line, 2))
 		create_sphere(&img->scene->objs[id].sphere, line);
-	// else if (!ft_strncmp("tm", line, 2))
-	// 	ascii_parser(&img->scene->objs[id].mesh, line);
+	else if (!ft_strncmp("tm", line, 2))
+		ascii_parser(&img->scene->objs[id].mesh, line);
 	else if (!ft_strncmp("pl", line, 2))
 		create_plane(&img->scene->objs[id].plane, line);
 	else if (!ft_strncmp("cy", line, 2))
