@@ -36,8 +36,7 @@
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF
-# define FOCALDEPTH
-# define RATIO 0
+# define RATIO 1
 # define REAL 1
 # define BALANCE 2
 # define INT 3
@@ -78,11 +77,9 @@ void	set_image(t_img *img);
 void	set_scene(t_img *img, t_scene *scene, char *av);
 void	render(t_img *img);
 void	free_img(t_img *img);
-void	ft_options(void);
 
 // INPUT HANDLERS
 int		user_input(t_img *img);
-int		mouse_handler(int mouse_action, int x, int y, t_img *img);
 int		ft_close(t_img *img);
 int		key_handler(int key, t_img *img);
 
