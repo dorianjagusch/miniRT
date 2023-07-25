@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 20:29:24 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/25 20:32:05 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,9 +187,9 @@ clean:
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
 	@$(RM) $(OBJS_B)
-	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
+	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $(OBJS_B) $O $(OB); fi
 
-fclean : clean
+fclean: clean
 	@$(MAKE) -C libft fclean
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
