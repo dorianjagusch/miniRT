@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:34:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:39:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_plane
 	t_vec3			pos;
 	t_vec3			normal;
 	float			d;
-	int				*isvisible;
+	int				isvisible;
 }					t_plane;
 
 typedef struct s_cylinder
@@ -87,7 +87,7 @@ typedef struct s_disk
 	t_vec3			normal;
 	float			d;
 	float			radius;
-	int				*isvisible;
+	int				isvisible;
 }					t_disk;
 
 typedef struct s_triangle
