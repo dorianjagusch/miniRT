@@ -6,15 +6,16 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:04:20 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 16:57:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:57:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math_bonus.h"
 #include "objects_bonus.h"
+#include <stdio.h> //
 
 #ifndef EPSILON
-# define EPSILON 10e-8
+# define EPSILON 10e-6
 #endif
 
 t_vec2	cone_map(t_vec3 *point, t_object *obj)
@@ -31,6 +32,7 @@ t_vec2	cone_map(t_vec3 *point, t_object *obj)
 	axis[U] = vec3_cross((t_vec3){EPSILON, 1, EPSILON}, obj->cone.normal);
 	vec3_normalize(&(axis[U]));
 	axis[V] = vec3_cross(obj->cone.normal, axis[U]);
+	vec3_normalize(&(axis[V]));
 	projection.x = vec3_dot(offset, axis[U]);
 	projection.y = vec3_dot(offset, axis[V]);
 	projection.z = vec3_dot(offset, obj->cone.normal);
@@ -38,6 +40,7 @@ t_vec2	cone_map(t_vec3 *point, t_object *obj)
 	if (angle < 0.0)
 		angle += 2.0f * M_PI;
 	uv.x = angle * M_1_DIV_2PI;
-	uv.y = (projection.z) / obj->cone.height;
+	uv.y = projection.z / obj->cone.height;
+	printf("UV: u: %f \tv: %f\n", uv.x, uv.y);
 	return (uv);
 }

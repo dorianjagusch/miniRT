@@ -6,14 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:03:03 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 16:57:41 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:57:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 #ifndef EPSILON
-# define EPSILON 10e-8
+# define EPSILON 10e-6
 #endif
 
 int	ft_sign(float a)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 20:28:11 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:57:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "vector_math_bonus.h"
 # include "objects_bonus.h"
 
-#ifndef MAX_LIGHTS
-#define MAX_LIGHTS 6
-#endif
+# ifndef MAX_LIGHTS
+#  define MAX_LIGHTS 6
+# endif
 
 typedef union u_object		t_object;
 typedef struct s_sphere		t_sphere;

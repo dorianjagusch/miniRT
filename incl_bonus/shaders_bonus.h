@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:32:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:57:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "vector_math_bonus.h"
 
 # ifndef EPSILON
-#  define EPSILON 10e-8
+#  define EPSILON 10e-6
 # endif
 
 enum e_colour

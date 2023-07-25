@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 15:35:32 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:49:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ static void	cone_disk(t_cone *cone)
 	disk->disk.radius = cone->radius;
 	disk->disk.colour = cone->colour;
 	disk->disk.pos = vec3_add(cone->pos,
-			vec3_multf(cone->normal, cone->height));
-	disk->disk.normal = cone->normal;
+			vec3_multf(cone->normal, cone->height * 0.99));
 	cone->bottom = disk;
 }
 

@@ -6,14 +6,14 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:09:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:37:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:57:36 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns_bonus.h"
 
 #ifndef EPSILON
-# define EPSILON 10e-8
+# define EPSILON 10e-6
 #endif
 
 t_vec2	cylinder_map(t_vec3 *point, t_object *obj)

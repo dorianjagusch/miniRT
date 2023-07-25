@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:24:42 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,9 @@ void	ft_rgbtonorm(t_vec4 *colour)
 	colour->x /= 255.0;
 	colour->y /= 255.0;
 	colour->z /= 255.0;
+}
+
+float	ft_luminance(t_vec4 colour)
+{
+	return (0.2126 * colour.x + 0.7152 * colour.y + 0.0722 * colour.z);
 }

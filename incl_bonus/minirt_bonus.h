@@ -29,10 +29,10 @@
 # include "libft_bonus.h"
 # include "errors_bonus.h"
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 2160
+# define HEIGHT 1820
 
-# define BOUNCES 2
+# define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF
@@ -41,7 +41,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
-# define EPSILON 10e-8
+# define EPSILON 10e-6
 
 # define TRUE 1
 # define FALSE 0
@@ -89,5 +89,7 @@ int		get_t(int trgb);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
+
+float	ft_luminance(t_vec4 colour); //
 
 #endif

@@ -42,7 +42,7 @@
 # define BALANCE 2
 # define INT 3
 # define ANGLE 4
-# define EPSILON 10e-8
+# define EPSILON 10e-6
 
 # define TRUE 1
 # define FALSE 0
