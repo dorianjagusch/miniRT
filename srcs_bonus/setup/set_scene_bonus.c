@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:37:45 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:11:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	if (scene->n_objs < 0)
 		ft_error(content_err);
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
-	scene->lights = ft_calloc(sizeof(t_light) * 7, 1);
+	scene->lights = ft_calloc(MAX_LIGHTS + 1, sizeof(t_light));
 	scene->n_lights = 0;
 	if (!scene->objs)
 		ft_error(ENOMEM);

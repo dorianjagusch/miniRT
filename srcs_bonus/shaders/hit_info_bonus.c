@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:34:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:53:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 		hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
 				&(hit->position));
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
-	hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-2));
+	//hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-2));
+	hit->position = vec3_add(hit->position,  vec3_multf(vec3_multf(hit->normal, 10e-3),
+				-ft_sign(vec3_dot(hit->normal, scene->cam.dir))));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;

@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 17:42:07 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 18:24:37 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,9 +119,11 @@ HEADER_FILES = vector_math \
 	errors \
 	scene \
 	mlx \
-	patterns
 
-HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
+HEADER_FILES2 = $(HEADER_FILES) patterns
+
+HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER_FILES)))
+HEADER_B := $(addprefix $(IB)/,$(addsuffix _bonus.h,$(HEADER_FILES2)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
@@ -138,7 +140,7 @@ NAME_BONUS = miniRT_bonus
 all: $(NAME) $(NAME_BONUS)
 
 print:
-	@echo $(OB) $(OBJS_B) $(O_DIRS_B)
+	@echo $(HEADER_B)
 
 minilib: $(MINILIBX)
 

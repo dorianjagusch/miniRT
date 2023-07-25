@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:19:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:08:48 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,22 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	return (0);
 }
 
-static void	cap_visibility(t_cylinder *cylinder, t_camera *cam, t_light *light)
+static void	cap_visibility(t_object *obj, t_camera *cam, t_light *light)
 {
-	cylinder->top->disk.isvisible = is_light_visible(
+	if (obj->type == cylinder_obj)
+	{
+		obj->cylinder.top->disk.isvisible = is_light_visible(
+				cam->pos,
+				light->pos,
+				obj->cylinder.top->disk.pos,
+				&(obj->cylinder.top->disk.normal));
+	}
+	obj->cone.bottom->disk.isvisible = is_light_visible(
 			cam->pos,
 			light->pos,
-			cylinder->top->disk.pos,
-			&(cylinder->top->disk.normal));
-	cylinder->bottom->disk.isvisible = is_light_visible(
-			cam->pos,
-			light->pos,
-			cylinder->bottom->disk.pos,
-			&(cylinder->bottom->disk.normal));
-	cylinder->bottom->disk.isvisible = cylinder->bottom->disk.isvisible;
+			obj->cone.bottom->disk.pos,
+			&(obj->cone.bottom->disk.normal));
+	obj->cone.bottom->disk.isvisible = obj->cone.bottom->disk.isvisible;
 }
 
 void	check_visibility(t_scene *scene, int id)
@@ -65,6 +68,7 @@ void	check_visibility(t_scene *scene, int id)
 		scene->objs[id].disk.isvisible = is_light_visible(scene->cam.pos,
 				scene->objs[id].plane.pos, scene->objs[id].disk.pos,
 				&scene->objs[id].disk.normal);
-	if (scene->objs[id].type == cylinder_obj)
-		cap_visibility(&scene->objs[id].cylinder, &scene->cam, scene->lights);
+	if (scene->objs[id].type == cylinder_obj
+		|| scene->objs[id].type == cone_obj)
+		cap_visibility(&scene->objs[id], &scene->cam, scene->lights);
 }

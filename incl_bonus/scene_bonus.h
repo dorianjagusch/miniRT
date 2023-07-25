@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:42:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:12:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "vector_math_bonus.h"
 # include "objects_bonus.h"
+
+#ifndef MAX_LIGHTS
+#define MAX_LIGHTS 6
+#endif
 
 typedef union u_object		t_object;
 typedef struct s_sphere		t_sphere;

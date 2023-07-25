@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:42:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:03:29 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,4 @@ void	render(t_img *img)
 		pxl.y++;
 	}
 	mlx_put_image_to_window(img->win.mlx, img->win.win, img->img, 0, 0);
-	mlx_string_put(img->win.mlx, img->win.win, WIDTH - 80,
-		20, WHITE, "[H] - Help");
 }
