@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 12:21:00 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 13:47:47 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ S = srcs
 O = objs
 I = incl
 SB = srcs_bonus
-OB = srcs_bonus
+OB = objs_bonus
 IB = incl_bonus
 
 FILES = camera \
@@ -136,6 +136,9 @@ NAME_BONUS = miniRT_bonus
 ### RULES ###
 all: $(NAME) $(NAME_BONUS)
 
+print:
+	@echo $(OB) $(OBJS_B) $(O_DIRS_B)
+
 minilib: $(MINILIBX)
 
 libft: $(LIBFT)
@@ -154,7 +157,10 @@ $(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
 
 $O:
 	@mkdir -p $@ $(O_DIRS)
-	@mkdir -p $@ $(OB_DIRS)
+	
+$O/%.o: $S/%.c $(HEADER) | $O
+	@$(CC) $(CFLAGS) -I$I -c $< -o $@
+	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 bonus:  $(NAME_BONUS)
 
@@ -162,11 +168,10 @@ $(NAME_BONUS): $(OBJS_B) $(LIBFT) $(MINILIBX) $(HEADER_B)
 	@$(CC) $(CFLAGS) $(XFLAGS) $(OBJS_B) -I$(IB) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(COLOUR_GREEN) $(NAME_BONUS) successfully created$(COLOUR_END)"
 
-$O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) $(CFLAGS) -I$I -c $< -o $@
-	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+$(OB):
+	@mkdir -p $@ $(O_DIRS_B)
 
-$(OB)/%.o: $(SB)/%.c $(HEADER_B) | $O
+$(OB)/%.o: $(SB)/%.c $(HEADER_B) | $(OB)
 	@$(CC) $(CFLAGS) -I$(IB) -c $< -o $@
 	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
@@ -176,12 +181,14 @@ clean:
 	@echo "$(COLOUR_RED) $(MINILIBX) removed$(COLOUR_END)"
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_B)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean
 	@$(MAKE) -C libft fclean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(NAME_BONUS)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
+	@echo "$(COLOUR_RED) $(NAME_BONUS) removed$(COLOUR_END)"
 
 re: fclean $(NAME)
 

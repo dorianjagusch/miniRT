@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 17:48:32 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:49:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ typedef struct s_scene
 	t_amb		amb;
 	t_light		*lights;
 	t_camera	cam;
-	int32_t		bounces;
 	t_object	*objs;
 	int			n_objs;
 	int			n_lights;
-	float		*distances;
-	t_vec3		*directions;
-	t_vec4		*specular;
+	// float		*distances;
+	// t_vec3		*directions;
+	// t_vec4		*specular;
 }				t_scene;
 
 void	ft_skip_ws(char **line);
