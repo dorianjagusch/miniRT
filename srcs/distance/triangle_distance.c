@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   triangle_distance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:42:44 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/23 12:59:15 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:07:20 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
+#include "minirt.h"
 
 #define U 0
 #define V 1

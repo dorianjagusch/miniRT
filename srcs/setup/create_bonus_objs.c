@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 08:01:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:07:36 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
+#include "minirt.h"
 
 void	create_triangle(t_triangle *triangle, char *line)
 {

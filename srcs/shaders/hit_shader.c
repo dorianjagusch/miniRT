@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 08:06:21 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:07:53 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
+#include "minirt.h"
 
 t_vec4	hit_shader(const t_scene *scene,
 		const t_hitresult *hit, const t_light_info *light_info)
