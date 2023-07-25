@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:43:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:04:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ void	free_scene(t_scene *scene)
 		free(scene->distances);
 	if (scene->directions)
 		free(scene->directions);
+}
+
+void	free_arrays(t_mesh *mesh)
+{
+	int	count;
+
+	if (mesh->normals)
+		free(mesh->normals);
+	if (mesh->vertex)
+		free(mesh->vertex);
+	if (mesh->textures)
+		free(mesh->textures);
+	if (mesh->faces)
+	{
+		count = 0;
+		while (count < mesh->count_f)
+		{
+			free(mesh->faces[count]);
+			count++;
+		}
+	}
 }
 
 void	free_img(t_img *img)

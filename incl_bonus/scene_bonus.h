@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 18:12:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:28:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ void	create_triangle(t_triangle *triangle, char *line);
 void	create_cone(t_cone *cone, char *line);
 void	create_mesh(t_mesh *mesh);
 void	ascii_parser(t_mesh *mesh, char *line);
+t_vec2	get_textures(char *line);
+t_vec3	get_vec3_mesh(char *line);
+char	*process_vertex(t_mesh *mesh, char *line, int fd);
+char	*process_normals(t_mesh *mesh, char *line, int fd);
+char	*process_faces(t_mesh *mesh, char *line, int fd);
+char	*process_textures(t_mesh *mesh, char *line, int fd);
+void	count_file_objects(int fd, t_mesh *mesh);
+void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh);
+void	allocate_arrays(t_mesh *mesh);
+void	free_arrays(t_mesh *mesh);
 char	**ft_split3(char const *s, char c, char d);
 float	which_pos_min(float a, float b, float c);
 void	set_unique(t_scene *scene, char **line);

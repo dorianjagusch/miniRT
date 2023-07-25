@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 18:24:37 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 20:29:24 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,9 @@ FILES = camera \
 	brick_pattern \
 	checkers_pattern \
 	ascii_parser \
-	create_mesh
+	create_mesh \
+	mesh_utils \
+	mesh_processors
 
 HEADER_FILES = vector_math \
 	minirt \
