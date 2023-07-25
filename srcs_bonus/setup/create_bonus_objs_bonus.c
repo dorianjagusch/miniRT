@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bonus_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 11:43:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:35:32 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	create_cone(t_cone *cone, char *line)
 	cone->radius = get_float(&line, REAL) / 2;
 	ft_skip_ws(&line);
 	cone->height = get_float(&line, REAL);
+	if (cone->height < 0 || cone->radius < 0)
+		ft_error(range_err);
 	ft_skip_ws(&line);
 	cone->colour = get_colour(&line);
 	cone_disk(cone);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:36:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	create_sphere(t_sphere *sphere, char *line)
 	sphere->pos = get_vec3(&line);
 	ft_skip_ws(&line);
 	sphere->radius = get_float(&line, REAL) / 2;
+	if (sphere->radius < 0)
+		ft_error(range_err);
 	sphere->radius2 = pow(sphere->radius, 2.0);
 	ft_skip_ws(&line);
 	sphere->colour = get_colour(&line);
 }
 
-//TODO weird stuff with the mapping of which cap we hit
 static void	cyl_disk(t_cylinder *cylinder, int side)
 {
 	t_object	*disk;
@@ -64,6 +65,8 @@ void	create_cylinder(t_cylinder *cylinder, char *line)
 	cylinder->radius2 = cylinder->radius * cylinder->radius;
 	ft_skip_ws(&line);
 	cylinder->height = get_float(&line, REAL);
+	if (cylinder->height < 0 || cylinder->radius < 0)
+		ft_error(range_err);
 	ft_skip_ws(&line);
 	cylinder->colour = get_colour(&line);
 	cyl_disk(cylinder, 't');
