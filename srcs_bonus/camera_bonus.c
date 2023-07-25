@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:36:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:12:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_ray	create_primary_ray(const t_camera *cam, const t_vec2 pxl)
 		cam->aspect_ratio * tan(cam->fov * DEG2RAD);
 	norm_coord_y = (1.0f - (2.0f * (pxl.y + 0.5f) / HEIGHT)) * \
 		tan(cam->fov * DEG2RAD);
-	fisheye[R] = sqrt(norm_coord_x * norm_coord_x + norm_coord_y * norm_coord_y);
+	fisheye[R] = sqrt(norm_coord_x * norm_coord_x \
+			+ norm_coord_y * norm_coord_y);
 	phi = atan2(norm_coord_y, norm_coord_x);
 	fisheye[R] = fisheye[R] * 0.5f;
 	fisheye[X] = fisheye[R] * cos(phi);

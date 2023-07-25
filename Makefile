@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 11:57:25 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 12:21:00 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ FILES = camera \
 	input \
 	is_obj \
 	light_visibility \
+	texture_setup \
+	texture_colour \
 	set_image \
 	set_scene \
 	hit_info \
@@ -96,7 +98,15 @@ FILES = camera \
 	print_misc2 \
 	print_objs \
 	print_scene \
-	colour_vec
+	colour_vec \
+	cone_map \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	triangle_map \
+	brick_pattern \
+	checkers_pattern
+	
 
 HEADER_FILES = vector_math \
 	minirt \
@@ -110,20 +120,6 @@ HEADER_FILES = vector_math \
 	mlx \
 	patterns
 
-HEADER = vector_math \
-	minirt \
-	objects \
-	linux_keys \
-	libft \
-	shaders \
-	macos_keys \
-	errors \
-	scene \
-	mat4_math \
-	mlx \
-	patterns \
-	print_helpers
-
 HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
@@ -131,7 +127,7 @@ OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
 SRCS_B := $(foreach FILE,$(FILES),$(shell find $(SB) -type f -name "$(FILE)_bonus.c"))
-OBJS_B := $(patsubst $S/%,$O/%,$(SRCS_B:.c=.o))
+OBJS_B := $(patsubst $(SB)/%,$(OB)/%,$(SRCS_B:.c=.o))
 O_DIRS_B := $(dir $(OBJS_B))
 
 NAME = miniRT

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:59:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:03:56 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void	set_object(t_img *img, char *line, int id)
 		create_cylinder(&img->scene->objs[id].cylinder, line);
 	else
 		ft_error(ident_err);
+	// set_picture(img, &img->scene->objs[id].meta.tex_col,
+	// 		&img->scene->objs[id].meta.colour, line);
+	// set_normals(img, &img->scene->objs[id].meta.tex_norm,
+	// 		&img->scene->objs[id].meta.colour, line);
 }
 
 static void	process_line(t_img *img, char *line)

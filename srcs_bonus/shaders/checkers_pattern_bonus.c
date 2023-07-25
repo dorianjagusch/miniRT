@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_pattern.c                                  :+:      :+:    :+:   */
+/*   checkers_pattern_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/22 14:11:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:21:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector_math.h"
-#include "patterns.h"
+#include "vector_math_bonus.h"
+#include "patterns_bonus.h"
 
 t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark)
 {
