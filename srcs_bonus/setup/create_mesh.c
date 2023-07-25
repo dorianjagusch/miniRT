@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_mesh.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/25 17:43:42 by djagusch          #+#    #+#             */
+/*   Updated: 2023/07/25 17:43:55 by djagusch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-#include "scene.h"
-#include "objects.h"
+#include "scene_bonus.h"
+#include "objects_bonus.h"
 
 static void	build_triangles(t_mesh *mesh, int index)
 {
@@ -22,7 +32,6 @@ static void	build_triangles(t_mesh *mesh, int index)
 		mesh->triangle_data[index].triangle.tri_point[2], \
 			mesh->triangle_data[index].triangle.tri_point[0]);
 }
-
 
 void	create_mesh(t_mesh *mesh)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 17:31:23 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:45:02 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ static void	init_arrays(t_mesh *mesh, int fd)
 		ft_error(errno);
 }
 
-void free_arrays(t_mesh *mesh)
+void	free_arrays(t_mesh *mesh)
 {
 	int	count;
 
@@ -179,8 +179,7 @@ void free_arrays(t_mesh *mesh)
 	}
 }
 
-
-void ascii_parser(t_mesh *mesh, char *line)
+void	ascii_parser(t_mesh *mesh, char *line)
 {
 	int		fd;
 	char	*file_name;

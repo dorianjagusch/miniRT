@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:15:06 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:48:09 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	}
 	return (normal);
 }
-
-// calulcate the normal depending on whether we hit the surface from the inside or outside.
-// Something along the lines of
-// 			// vec3_multf(vec3_multf(hit->normal, 10e-3),
-			// 	-ft_sign(vec3_dot(hit->normal, scene->cam.dir)));
 
 t_vec3	get_normal(t_object *obj, t_vec3 hitpoint)
 {
