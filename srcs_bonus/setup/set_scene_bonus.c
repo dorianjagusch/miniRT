@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:49:08 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:06:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	process_line(t_img *img, char *line)
 		else if (line)
 		{
 			set_object(img, line, id);
-			// check_visibility(img->scene, id);
+			check_visibility(img->scene, id);
 			id++;
 		}
 	}

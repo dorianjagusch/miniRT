@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:02:23 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_error(int error)
 	};
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");
 	if (error < 160)
-		ft_printf_fd(STDERR_FILENO, "%s\n", strerror(error));
+		ft_printf_fd(STDERR_FILENO, "%s", strerror(error));
 	else
-		ft_printf_fd(STDERR_FILENO, "%s\n", errors[error - 160]);
+		ft_printf_fd(STDERR_FILENO, "%s", errors[error - 160]);
 	exit(error);
 }
 

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:32:50 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(ray->direction, hit->distance));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
-	//hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
-	hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
-			&(hit->position));
+	if (!scene->objs[hit->obj_id].meta.tex_col)
+		hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
+	else
+		hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
+				&(hit->position));
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
-	hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-3));
+	hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-2));
 	if (scene->objs[hit->obj_id].type == mesh_obj)
 	{
 		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;

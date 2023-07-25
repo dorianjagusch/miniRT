@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:19:30 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 13:58:17 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:00:12 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	create_cylinder(t_cylinder *cylinder, char *line);
 void	create_plane(t_plane *plane, char *line);
 void	create_disk(t_disk *disk, char *line);
 void	create_triangle(t_triangle *triangle, char *line);
-void	binary_parser(t_mesh *mesh, char *line); //
 void	ascii_parser(t_mesh *mesh, char *line);
 char	**ft_split3(char const *s, char c, char d);
 float	which_pos_min(float a, float b, float c);

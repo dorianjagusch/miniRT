@@ -29,17 +29,10 @@
 # include "libft_bonus.h"
 # include "errors_bonus.h"
 
-# if 0
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) ((void)0)
-# else
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) __VA_ARGS__
-# endif
+# define WIDTH 500
+# define HEIGHT 500
 
-# define BOUNCES 3
+# define BOUNCES 2
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF

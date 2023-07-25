@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:45:52 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 	if (side == 't')
 	{
 		disk->disk.pos = vec3_add(cylinder->pos,
-				vec3_multf(cylinder->normal, cylinder->height / 2));
+				vec3_multf(cylinder->normal, cylinder->height / 2.0f));
 		cylinder->top = disk;
 	}
 	else
 	{
+		disk->disk.normal = vec3_neg(cylinder->normal);
 		disk->disk.pos = vec3_sub(cylinder->pos,
-				vec3_multf(cylinder->normal, cylinder->height / 2));
+				vec3_multf(cylinder->normal, cylinder->height / 2.0f));
 		cylinder->bottom = disk;
 	}
 }

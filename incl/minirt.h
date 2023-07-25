@@ -29,15 +29,8 @@
 # include "libft.h"
 # include "errors.h"
 
-# if 0
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) ((void)0)
-# else
-#  define WIDTH 500
-#  define HEIGHT 500
-#  define DEBUG_ONLY(...) __VA_ARGS__
-# endif
+# define WIDTH 500
+# define HEIGHT 500
 
 # define BOUNCES 1
 # define EXT_LEN 3

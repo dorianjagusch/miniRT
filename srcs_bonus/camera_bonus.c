@@ -6,10 +6,9 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:16 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 12:12:52 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:07:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minirt_bonus.h"
 #include <math.h>

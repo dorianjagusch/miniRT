@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:46:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:31:09 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	set_normals(t_img *img, t_texture **texture, char *line)
 	tmp = ft_strnstr(line, "-normal", 200);
 	if (!tmp)
 		return ;
-	texture = ft_calloc(1, sizeof(t_texture));
-	if (!texture)
+	*texture = ft_calloc(1, sizeof(t_texture));
+	if (!*texture)
 		ft_error(ENOMEM);
 	(*texture)->file = ft_strdup(tmp + 9);
 	if ((*texture)->file)
