@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/23 13:01:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:00:34 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static t_vec3	get_params(const t_ray *ray, const t_object	*obj)
 
 float	dist_cone(const t_ray *ray, t_object *obj)
 {
-	t_vec3	temp[2];
 	t_vec3	params;
 	float	discriminant;
 	float	res[2];

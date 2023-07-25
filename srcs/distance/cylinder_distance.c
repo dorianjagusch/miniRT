@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:23:00 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 07:43:51 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	check_height(const t_ray *ray, const t_cylinder *cylinder,
 	t_vec3	hitpoint;
 	t_vec3	top_cap;
 	t_vec3	bottom_cap;
-	float	cap_dist;
 
 	top_cap = vec3_add(cylinder->pos, vec3_multf(cylinder->normal,
 				cylinder->height / 2));

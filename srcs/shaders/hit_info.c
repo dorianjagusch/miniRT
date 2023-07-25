@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:24:54 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:15:26 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 			vec3_multf(ray->direction, hit->distance));
 	hit->point2cam = vec3_sub(hit->position, ray->origin);
 	vec3_normalize(&hit->point2cam);
-	//hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));
-	hit->colour = get_texture_colour(&(scene->objs[hit->obj_id]),
-			&(hit->position));
+	hit->colour = get_hitcolour(&(scene->objs[hit->obj_id]));  //TODO: WHEN TEXTURES  ALLOWED IT SEGFAULTS
 	hit->normal = get_normal(&(scene->objs[hit->obj_id]), hit->position);
 	hit->position = vec3_add(hit->position, vec3_multf(hit->normal, 10e-3));
 	hit->type = scene->objs->type;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 16:22:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:42:24 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder, const t_vec3 hitpoint)
 		co = vec3_sub(hitpoint, cylinder->pos);
 		normal = vec3_sub(co, vec3_multf(cylinder->normal,
 					vec3_dot(cylinder->normal, co)));
+	}
+	return (normal);
+}
+
+t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
+{
+	t_vec3	co;
+	t_vec3	normal;
+
+	if (cone->disk_hit)
+	{
+		normal = cone->bottom->disk.normal;
+		cone->disk_hit = 0;
+	}
+	else
+	{
+		co = vec3_sub(hitpoint, cone->pos);
+		normal = vec3_cross(co, vec3_cross(co, cone->normal));
 	}
 	return (normal);
 }

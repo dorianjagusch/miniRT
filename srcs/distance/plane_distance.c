@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_distance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 20:48:55 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 11:28:45 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:00:13 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 float	dist_plane(const t_ray *ray, t_object *obj)
 {
 	float	denominator;
-	t_vec3	oc;
 	float	distance;
 
 	denominator = vec3_dot(obj->plane.normal, ray->direction);

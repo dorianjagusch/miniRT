@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 18:43:37 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/24 12:19:57 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/25 08:07:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vec4	vec4_add_array(t_vec4 v, const t_vec4 *array, size_t arr_len)
 {
-	int		i;
+	size_t	i;
 	t_vec4	res;
 
 	i = 0;

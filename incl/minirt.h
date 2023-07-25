@@ -29,7 +29,7 @@
 # include "libft.h"
 # include "errors.h"
 
-# if 1
+# if 0
 #  define WIDTH 500
 #  define HEIGHT 500
 #  define DEBUG_ONLY(...) ((void)0)
@@ -39,7 +39,7 @@
 #  define DEBUG_ONLY(...) __VA_ARGS__
 # endif
 
-# define BOUNCES 3
+# define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF
@@ -56,8 +56,6 @@
 
 # define ORTHO 0
 # define AXIS 1
-
-int g_i;
 
 typedef struct s_scene	t_scene;
 
@@ -89,22 +87,11 @@ void	render(t_img *img);
 void	free_img(t_img *img);
 void	ft_options(void);
 
-// VIEW HANDLERS
-int		ft_toggle_help(t_img *img);
-void	ft_toggle_move(t_img *img);
-void	ft_change_bounces(t_img *img, int key);
-
 // INPUT HANDLERS
 int		user_input(t_img *img);
-int		mouse_position(int x, int y, t_img *img);
 int		mouse_handler(int mouse_action, int x, int y, t_img *img);
 int		ft_close(t_img *img);
 int		key_handler(int key, t_img *img);
-void	ft_focal(int mouse_action, int x, int y, t_img *img);
-void	ft_move(t_img *img, int key);
-
-int		ft_close_win(t_img *img);
-void	set_active(t_img *img, u_int8_t *active);
 
 // COLOUR FUNCTIONS
 int32_t	create_trgb(int t, int r, int g, int b);
@@ -112,7 +99,5 @@ int		get_t(int trgb);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
-
-void	calculate_rotation_angles(t_img *img, int delta_x, int delta_y);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 16:28:32 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/25 11:50:29 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
-CFLAGS += -framework OpenGL -framework AppKit
+XFLAGS = -framework OpenGL -framework AppKit
 MINILIBX = mlx/libmlx.a
 LIBS = -L$(dir $(MINILIBX)) -lmlx -Llibft -lft
 else
@@ -40,28 +40,29 @@ LIBFT = libft/libft.a
 S = srcs
 O = objs
 I = incl
-B = bonus
 SB = srcs_bonus
+OB = srcs_bonus
 IB = incl_bonus
 
 FILES = camera \
-	colour_vec \
 	get_colour \
 	cylinder_distance \
 	disk_distance \
+	dist_cone \
 	get_normal \
 	light \
+	set_unique \
 	min_distance \
 	plane_distance \
 	sphere_distance \
 	triangle_distance \
+	cone_distance \
 	main \
 	render \
 	clean_up \
 	create_bonus_objs \
 	create_objs \
 	error_handling \
-	ft_help \
 	ft_split3 \
 	getters \
 	handlers \
@@ -69,10 +70,19 @@ FILES = camera \
 	light_visibility \
 	set_image \
 	set_scene \
+	texture_setup \
+	texture_colour \
+	brick_pattern \
+	checker_pattern \
 	hit_info \
 	hit_shader \
+	cylinder_map \
+	planar_map \
+	sphere_map \
+	triangle_map \
+	cone_map \
 	vec_add \
-	vec_addf	\
+	vec_addf \
 	vec_clamp \
 	vec_crossprod \
 	vec_dist \
@@ -88,9 +98,14 @@ FILES = camera \
 	vec_rotate \
 	vec_scale \
 	vec_sub \
-	vec_add_array
+	vec_add_array \
+	print_misc \
+	print_misc2 \
+	print_objs \
+	print_scene \
+	colour_vec
 
-HEADER = vector_math \
+HEADER_FILES = vector_math \
 	minirt \
 	objects \
 	linux_keys \
@@ -102,41 +117,26 @@ HEADER = vector_math \
 	mlx \
 	patterns
 
-HEADER = vector_math \
-	minirt \
-	objects \
-	linux_keys \
-	libft \
-	shaders \
-	macos_keys \
-	errors \
-	scene \
-	mat4_math \
-	mlx \
-	patterns \
-	print_helpers
-
-HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER)))
+HEADER := $(addprefix $I/,$(addsuffix .h,$(HEADER_FILES)))
+HEADER_B := $(addprefix $(IB)/,$(addsuffix _bonus.h,$(HEADER_FILES)))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name "$(FILE).c"))
 OBJS := $(patsubst $S/%,$O/%,$(SRCS:.c=.o))
 O_DIRS := $(dir $(OBJS))
 
+SRCS_B := $(foreach FILE,$(FILES),$(shell find $(SB) -type f -name "$(FILE)_bonus.c"))
+OBJS_B := $(patsubst $S/%,$O/%,$(SRCS_B:.c=.o))
+O_DIRS_B := $(dir $(OBJS_B))
+
 NAME = miniRT
+NAME_BONUS = miniRT_bonus
 
 ### RULES ###
-all: $(NAME)
+all: $(NAME) $(NAME_BONUS)
 
 minilib: $(MINILIBX)
 
 libft: $(LIBFT)
-
-print:
-	@echo 	$(CC) $(CFLAGS) $(OBJS) -I$I $(HEADER) $(LIBS) -O3
-
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
-	@$(CC) $(CFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
-	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
 
 $(MINILIBX):
 	$(MAKE) -C $(dir $(MINILIBX))
@@ -146,18 +146,27 @@ $(LIBFT):
 	@$(MAKE) -C libft
 	@echo "$(COLOUR_GREEN) $(LIBFT) successfully created$(COLOUR_END)"
 
+$(NAME): $(OBJS) $(LIBFT) $(MINILIBX) $(HEADER)
+	@$(CC) $(CFLAGS) $(XFLAGS) $(OBJS) -I$I $(LIBS) -o $(NAME)
+	@echo "$(COLOUR_GREEN) $(NAME) successfully created$(COLOUR_END)"
+
 $O:
 	@mkdir -p $@ $(O_DIRS)
-
-$O/%.o: $S/%.c $(HEADER) | $O
-	@$(CC) -I$I -c $< -o $@ -g
-	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+	@mkdir -p $@ $(OB_DIRS)
 
 bonus:  $(NAME_BONUS)
 
-$(NAME_BONUS): $(BONUS_OBJS) $(LIBFT) $(MINILIBX) $(HEADER_BONUS)
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) -I$I $(LIBS) -o $(NAME_BONUS)
+$(NAME_BONUS): $(OBJS_B) $(LIBFT) $(MINILIBX) $(HEADER_B)
+	@$(CC) $(CFLAGS) $(XFLAGS) $(OBJS_B) -I$(IB) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(COLOUR_GREEN) $(NAME_BONUS) successfully created$(COLOUR_END)"
+
+$O/%.o: $S/%.c $(HEADER) | $O
+	@$(CC) $(CFLAGS) -I$I -c $< -o $@
+	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
+
+$(OB)/%.o: $(SB)/%.c $(HEADER_B) | $O
+	@$(CC) $(CFLAGS) -I$(IB) -c $< -o $@
+	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 clean:
 	@$(MAKE) -C $(dir $(MINILIBX)) clean

@@ -2,3 +2,4 @@
 *.h.gch
 .vscode
 *.txt
+.DS_store

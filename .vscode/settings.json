@@ -21,6 +21,22 @@
         "sstream": "c",
         "objects.h": "c",
         "shaders.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "ratio": "c",
+        "shaders_bonus.h": "c",
+        "vector_math_bonus.h": "c",
+        "minirt_bonus.h": "c",
+        "scene_bonus.h": "c",
+        "__functional_base": "c",
+        "__functional_base_03": "c",
+        "__hash_table": "c",
+        "__tuple": "c",
+        "array": "c",
+        "chrono": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "memory": "c",
+        "tuple": "c",
+        "utility": "c"
     }
 }
