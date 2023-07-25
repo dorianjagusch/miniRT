@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/25 17:06:46 by djagusch         ###   ########.fr       */
-=======
-/*   Updated: 2023/07/25 17:09:43 by smorphet         ###   ########.fr       */
->>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
+/*   Updated: 2023/07/25 17:37:45 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

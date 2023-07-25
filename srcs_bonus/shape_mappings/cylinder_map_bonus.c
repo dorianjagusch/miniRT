@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:09:42 by djagusch          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/25 16:57:41 by djagusch         ###   ########.fr       */
-=======
-/*   Updated: 2023/07/25 16:56:01 by smorphet         ###   ########.fr       */
->>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
+/*   Updated: 2023/07/25 17:37:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

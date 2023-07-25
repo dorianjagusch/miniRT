@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/07/25 14:36:18 by djagusch         ###   ########.fr        #
-=======
-#    Updated: 2023/07/25 17:11:30 by smorphet         ###   ########.fr        #
->>>>>>> f2f1fc9e24b7421aab88e94c4f2d4c5b343cf962
+#    Updated: 2023/07/25 17:37:17 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
