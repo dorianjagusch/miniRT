@@ -6,22 +6,19 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:28:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:25:03 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math_bonus.h"
 #include "patterns_bonus.h"
 
-t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark)
-{
-	t_proc_pat	board;
-	
-	board.width = width;
-	board.height = height;
-	board.light = light;
-	board.dark = dark;
-	return (board);
+void	set_board(t_proc_pat *board, int width, int height, t_vec4 light, t_vec4 dark)
+{	
+	board->width = width;
+	board->height = height;
+	board->light = light;
+	board->dark = dark;
 }
 
 t_vec4	get_checkers(t_texture *texture, t_vec2 uv)

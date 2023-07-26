@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 10:38:37 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:02:16 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ float			dist_disk(const t_ray *ray, t_object *disk);
 float			dist_triangle(const t_ray *ray, t_object *obj);
 float			dist_cone(const t_ray *ray, t_object *obj);
 t_light_info	light_distance(t_scene *scene, t_hitresult *hit);
-void			check_visibility(t_scene *scene, int id);
 t_vec3			get_normal(t_object *obj, t_vec3 hitpoint);
 t_vec4			hit_shader(const t_scene *scene,
 					const t_hitresult *hit, const t_light_info *light_info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_setup_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:38:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:40:33 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ static void	get_texels(void *mlx, t_picture *texture)
 		ft_error(xpm_err);
 	texture->addr = mlx_get_data_addr(texture->texels, &texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
-	free(texture->file);
 }
 
 void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 {
-	char	*tmp;
-
+	char		*tmp;
+	
 	tmp = ft_strnstr(line, "-texture", 0xFF);
 	if (!tmp)
 		return ;
@@ -94,24 +93,21 @@ void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 	if (!*texture)
 		ft_error(ENOMEM);
 	(*texture)->file = ft_get_word(tmp + 9);
-	printf("%s\n", (*texture)->file);
 	if (!(*texture)->file)
 		ft_error(ENOMEM);
 	if (!ft_strncmp((*texture)->file, "checkers", 8))
 	{
-		(*texture)->proc_pat = set_board(10, 10, *col,
-				vec4_multf(*col, 0.5));
-		(*texture)->pattern = checkers_pat;
-			//printf("%s\n", (*texture)->file);
+		set_board(&(*texture)->proc_pat, 10, 10, *col, vec4_multf(*col, 0.5));
+		(*texture)->picture.pattern = checkers_pat;
 	}
 	else if (!ft_strncmp((*texture)->file, "brick", 5))
-		(*texture)->pattern = brick_pat;
+		(*texture)->picture.pattern = brick_pat;
 	else if ((*texture)->file)
 	{
 		get_texels(img->win.mlx, &(*texture)->picture);
-		(*texture)->pattern = colour_pat;
+		(*texture)->picture.pattern = colour_pat;
 	}
-
+	free((*texture)->file);
 }
 
 void	set_normals(t_img *img, t_texture **texture, char *line)
@@ -128,8 +124,8 @@ void	set_normals(t_img *img, t_texture **texture, char *line)
 	if ((*texture)->file)
 	{
 		get_texels(img->win.mlx, &(*texture)->picture);
-		if ((*texture)->pattern)
+		if ((*texture)->picture.pattern)
 			get_normals(&(*texture)->picture);
-		(*texture)->pattern = normal_pat;
+		(*texture)->picture.pattern = normal_pat;
 	}
 }

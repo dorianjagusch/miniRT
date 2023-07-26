@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:05:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:00:17 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ static void	set_object(t_img *img, char *line, int id)
 		create_cylinder(&img->scene->objs[id].cylinder, line);
 	else
 		ft_error(ident_err);
-	// set_picture(img, &img->scene->objs[id].meta.tex_col,
-	// 		&img->scene->objs[id].meta.colour, line);
-	// set_normals(img, &img->scene->objs[id].meta.tex_norm,
-	// 		&img->scene->objs[id].meta.colour, line);
 }
 
 static void	process_line(t_img *img, char *line)
@@ -43,7 +39,7 @@ static void	process_line(t_img *img, char *line)
 		else if (line)
 		{
 			set_object(img, line, id);
-			//check_visibility(img->scene, id);
+			check_visibility(img->scene, id);
 			id++;
 		}
 	}
@@ -77,7 +73,7 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	int		fd;
 	char	*line;
 
-	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN) || ft_strncmp(av + strlen(av) - EXT_LEN, "OBJ", EXT_LEN))
+	if (ft_strncmp(av + strlen(av) - EXT_LEN, EXTENSION, EXT_LEN))
 		ft_error(file_err);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)

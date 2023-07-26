@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   patterns_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:38:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:55:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef t_vec4			(*t_col_func)(t_texture *, t_vec2);
 
 typedef enum e_pattern
 {
+	no_pat,
 	checkers_pat,
 	brick_pat,
 	colour_pat,
@@ -76,7 +77,6 @@ typedef struct s_picture
 typedef union u_texture
 {
 	char		*file;
-	t_pattern	pattern;
 	t_proc_pat	proc_pat;
 	t_picture	picture;
 	t_picture	normal;
@@ -90,7 +90,7 @@ t_vec2		triangle_map(t_vec3 *point, t_object *obj);
 t_vec2		cone_map(t_vec3 *point, t_object *obj);
 
 t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
-t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark);
+void		set_board(t_proc_pat *board, int width, int height, t_vec4 light, t_vec4 dark);
 t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 
 void		set_picture(t_img *img, t_texture **texture, t_vec4 *col,

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 13:40:59 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:55:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	get_texture_info(t_object *object, t_vec3 *point,
 	t_vec2					uv;
 
 	uv = map_func[object->type](point, object);
-	if (object->meta.tex_col && object->meta.tex_col->pattern == colour_pat)
-		*colour = colour_func[object->meta.tex_col->pattern](object->meta.tex_col,
+	if (object->meta.tex_col && object->meta.tex_col->picture.pattern != normal_pat)
+		*colour = colour_func[object->meta.tex_col->picture.pattern - 1](object->meta.tex_col,
 				uv);
-	if (object->meta.tex_norm && object->meta.tex_norm->pattern == normal_pat)
+	if (object->meta.tex_norm && object->meta.tex_norm->picture.pattern == normal_pat)
 		*normal = get_texture_norm(object->meta.tex_norm, uv);
 }

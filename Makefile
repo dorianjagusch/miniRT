@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/26 14:37:40 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/26 15:00:22 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)

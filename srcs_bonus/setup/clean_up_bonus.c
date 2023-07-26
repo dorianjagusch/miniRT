@@ -6,22 +6,13 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:16:13 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:05:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include <stdio.h>
 
-
-// void print_texture_file_contents(const t_texture *texture)
-// {
-//     if (texture->file != NULL) {
-//         printf("Texture file contents: %s\n", texture->file);
-//     } else {
-//         printf("Texture file is empty or not initialized.\n");
-//     }
-// }
 
 void	free_scene(t_scene *scene)
 {
@@ -30,7 +21,6 @@ void	free_scene(t_scene *scene)
 	i = 0;
 	while (i < scene->n_objs)
 	{
-		// print_texture_file_contents(&scene->objs[i].meta.tex_col);
 		if (scene->objs[i].type == cylinder_obj)
 		{
 			free(scene->objs[i].cylinder.top);
