@@ -6,14 +6,13 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 18:08:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns_bonus.h"
 #include "errors_bonus.h"
 #include "minirt_bonus.h"
-#include <stdio.h>
 
 static void	get_normals(t_texture **texture)
 {
@@ -29,8 +28,8 @@ static void	get_normals(t_texture **texture)
 	i = 0;
 	while (i < dim)
 	{
-		dst = (int *)((*texture)->picture.addr + i * 
-				((*texture)->picture.bits_per_pixel / 8));
+		dst = (int *)((*texture)->picture.addr + i
+				* ((*texture)->picture.bits_per_pixel / 8));
 		col = ft_int32tov4(*dst);
 		ft_rgbtonorm(&col);
 		(*texture)->picture.norm_vecs[i] = (t_vec3){col.x, col.y, col.z};

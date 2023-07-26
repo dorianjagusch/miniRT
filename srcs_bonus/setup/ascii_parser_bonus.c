@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 20:29:04 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:28:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ static void	init_arrays(t_mesh *mesh, int fd)
 void	ascii_parser(t_mesh *mesh, char *line)
 {
 	int		fd;
-	char	*file_name;
+	char	**file_name;
 	int		index;
 
 	line += 3;
 	mesh->type = mesh_obj;
 	mesh->obj_id = -1;
-	file_name = *ft_split2(line);
-	fd = open(file_name, O_RDONLY);
+	file_name = ft_split2(line);
+	fd = open(file_name[0], O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
 	count_file_objects(fd, mesh);
 	allocate_arrays(mesh);
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name[0], O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
 	init_arrays(mesh, fd);
@@ -61,6 +61,5 @@ void	ascii_parser(t_mesh *mesh, char *line)
 		index++;
 	close(fd);
 	create_mesh(mesh);
-	free_arrays(mesh);
-	free(file_name);
+	ft_free_array(&file_name, ft_count_elements(file_name));
 }

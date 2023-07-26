@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/26 16:59:15 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/26 20:15:51 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,6 @@ FILES = camera \
 	vec_normalize \
 	vec_propadd \
 	vec_reflect \
-	vec_rotate \
 	vec_scale \
 	vec_sub \
 	vec_add_array \

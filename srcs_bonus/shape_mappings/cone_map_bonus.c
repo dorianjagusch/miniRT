@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cone_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:04:20 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:39:07 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:27 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math_bonus.h"
 #include "objects_bonus.h"
-#include <stdio.h> //
 
 #ifndef EPSILON
 # define EPSILON 10e-6

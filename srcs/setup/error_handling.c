@@ -6,13 +6,11 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 15:34:36 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:06 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-#include <stdio.h>
 
 void	ft_error(int error)
 {

@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:29:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/26 10:59:18 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:12:31 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	create_disk(t_disk *disk, char *line)
 	disk->radius = get_float(&line, REAL) / 2;
 	ft_skip_ws(&line);
 	disk->colour = get_colour(&line);
-	disk->d = -vec3_dot(disk->pos, disk->normal);
 }
 
 static void	cone_disk(t_cone *cone)

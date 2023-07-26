@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:19:51 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:19:07 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ float	get_dist(const t_ray *ray, t_object *obj)
 		dist_plane,
 		dist_cylinder,
 		dist_disk,
-		dist_triangle,
-		dist_cone,
 	};
 
 	return (func[obj->type](ray, obj));

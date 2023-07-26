@@ -131,8 +131,9 @@ float	ft_frac(float a);
 int		ft_sign(float a);
 double	ft_powerf(double x, int exp);
 float	ft_scale(float value, t_range range_old, t_range range_new);
-int		ft_small_endian(void);
 void	ft_free(void *ptr);
 void	*ft_free_array(char ***array, size_t elements);
 void	*ft_free_anyarray(void ***array, size_t elements);
+size_t	ft_count_elements(char **array);
+
 #endif

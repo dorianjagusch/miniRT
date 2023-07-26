@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   light_visibility_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 18:08:48 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene_bonus.h"
-#include <stdio.h>
 
 int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	const t_vec3 pos, t_vec3 *normal)

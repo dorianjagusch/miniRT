@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 07:32:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 18:00:37 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:35 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include "objects_bonus.h"
 #include "shaders_bonus.h"
 #include "minirt_bonus.h"
-#include <stdio.h>
 
-t_vec4	get_hitcolour(const t_object *obj)
+static t_vec4	get_hitcolour(const t_object *obj)
 {
 	if (obj->type == sphere_obj)
 		return (obj->sphere.colour);
@@ -34,16 +33,25 @@ t_vec4	get_hitcolour(const t_object *obj)
 		return (obj->mesh.colour);
 }
 
+static void	set_mesh_hitpoint(t_scene *scene, t_hitresult *hit)
+{
+	int	triangle_id;
+
+	triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
+	hit->normal = scene->objs[hit->obj_id].mesh.\
+			triangle_data[triangle_id].triangle.normal;
+	hit->colour = scene->objs[hit->obj_id].mesh.\
+	triangle_data[triangle_id].triangle.colour;
+	return ;
+}
+
 void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 {
-	int		triangle_id;
 	t_vec3	normal;
 	t_vec4	colour;
 
 	hit->position = vec3_add(ray->origin,
 			vec3_multf(ray->direction, hit->distance));
-	hit->point2cam = vec3_sub(hit->position, ray->origin);
-	vec3_normalize(&hit->point2cam);
 	get_texture_info(&(scene->objs[hit->obj_id]),
 		&(hit->position), &colour, &normal);
 	if (!scene->objs[hit->obj_id].meta.tex_col)
@@ -57,12 +65,5 @@ void	set_hitpoint(t_scene *scene, t_ray *ray, t_hitresult *hit)
 	if (scene->objs[hit->obj_id].meta.tex_norm)
 		hit->normal = vec3_propadd(hit->normal, vec3_neg(normal), 0.55);
 	if (scene->objs[hit->obj_id].type == mesh_obj)
-	{
-		triangle_id = scene->objs[hit->obj_id].mesh.obj_id;
-		hit->normal = scene->objs[hit->obj_id].mesh.\
-			triangle_data[triangle_id].triangle.normal;
-		hit->colour = scene->objs[hit->obj_id].mesh.\
-		triangle_data[triangle_id].triangle.colour;
-		return ;
-	}
+		set_mesh_hitpoint(scene, hit);
 }

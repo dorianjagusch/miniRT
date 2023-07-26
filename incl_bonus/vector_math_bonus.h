@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:42:43 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:17:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,22 @@ t_vec2	vec2_add(const t_vec2 v, const t_vec2 u);
 t_vec3	vec3_add(const t_vec3 v, const t_vec3 u);
 t_vec3	vec3_addf(const t_vec3 v, const float val);
 t_vec3	vec3_sub(const t_vec3 v, const t_vec3 u);
-t_vec3	vec3_subf(const t_vec3 v, const float val);
 float	vec3_mag(const t_vec3 v);
 float	vec3_mag2(const t_vec3 v);
 t_vec3	vec3_multf(const t_vec3 v, const float val);
 float	vec3_dot(const t_vec3 v, const t_vec3 u);
 t_vec3	vec3_cross(const t_vec3 v, const t_vec3 u);
 t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 normal);
-t_vec3	vec3_rotate(const t_vec3 vec, const t_vec3 normal);
 t_vec3	vec3_compmult(const t_vec3 v, const t_vec3 u);
 float	vec3_dist(const t_vec3 v1, const t_vec3 v2);
 t_vec3	vec3_neg(const t_vec3 v);
 void	vec3_normalize(t_vec3 *v);
-void	vec3_scale(t_vec3 *v, const t_range old, const t_range new);
-void	vec3_clamp(t_vec4 *v, const float min, const float max);
-t_vec3	vec3_inv(const t_vec3 v);
 t_vec3	vec3_propadd(const t_vec3 v1, const t_vec3 v2,
 			const float prop);
 
 t_vec4	vec4_add(const t_vec4 v, const t_vec4 u);
 t_vec4	vec4_addf(const t_vec4 v, const float val);
 t_vec4	vec4_sub(const t_vec4 v, const t_vec4 u);
-t_vec4	vec4_subf(const t_vec4 v, const float val);
 float	vec4_mag(const t_vec4 v);
 float	vec4_mag2(const t_vec4 v);
 t_vec4	vec4_multf(const t_vec4 v, const float val);

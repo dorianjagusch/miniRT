@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:04:24 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:41:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	get_texture_info(t_object *object, t_vec3 *point,
 		t_vec4 *colour, t_vec3 *normal)
 {
 	static const t_col_func	colour_func[] = {
-		get_checkers,
-		get_brick,
-		get_texture_col
+		get_checkers, get_brick, get_texture_col
 	};
 	static const t_map_func	map_func[] = {
 		spherical_map,
@@ -60,6 +58,8 @@ void	get_texture_info(t_object *object, t_vec3 *point,
 	};
 	t_vec2					uv;
 
+	if (object->type == mesh_obj)
+		return ;
 	uv = map_func[object->type](point, object);
 	if (object->meta.tex_col && object->meta.tex_col->picture.pattern \
 		!= normal_pat)

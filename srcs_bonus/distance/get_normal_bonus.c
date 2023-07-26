@@ -6,12 +6,11 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:11:42 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:05:10 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders_bonus.h"
-#include <stdio.h>//
 
 static t_vec3	pertub_disk_normal(const t_disk *disk, const t_vec3 *hit)
 {

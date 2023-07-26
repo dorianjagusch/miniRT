@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 18:41:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:12:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void	create_plane(t_plane *plane, char *line)
 	vec3_normalize(&plane->normal);
 	ft_skip_ws(&line);
 	plane->colour = get_colour(&line);
-	plane->d = -vec3_dot(plane->pos, plane->normal);
 }

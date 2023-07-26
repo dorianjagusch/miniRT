@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:39:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:10:53 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_plane
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
-	float			d;
 	int				isvisible;
 }					t_plane;
 
@@ -85,7 +84,6 @@ typedef struct s_disk
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
-	float			d;
 	float			radius;
 	int				isvisible;
 }					t_disk;

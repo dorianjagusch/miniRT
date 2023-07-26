@@ -134,5 +134,6 @@ float	ft_scale(float value, t_range range_old, t_range range_new);
 void	ft_free(void *ptr);
 void	*ft_free_array(char ***array, size_t elements);
 void	*ft_free_anyarray(void ***array, size_t elements);
+size_t	ft_count_elements(char **array);
 
 #endif

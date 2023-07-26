@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shaders_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 10:38:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:22:23 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ enum e_colour
 	ambient,
 	diffuse,
 	specular,
-	transparent,
 	final
 };
 
@@ -34,7 +33,6 @@ typedef struct s_ray
 {
 	t_vec3	origin;
 	t_vec3	direction;
-	float	transparency;
 }			t_ray;
 
 typedef struct s_hitresult
@@ -44,7 +42,6 @@ typedef struct s_hitresult
 	t_vec3			position;
 	t_vec2			uv;
 	t_vec3			normal;
-	t_vec3			point2cam;
 	t_vec4			colour;
 }					t_hitresult;
 
