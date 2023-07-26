@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 08:06:46 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:39:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ int32_t	perpixel(t_img *img, t_vec2 pxl)
 {
 	t_ray			ray;
 	t_vec4			colour;
-	int				n_ray;
 
 	colour = (t_vec4){1, 0, 0, 0};
-	n_ray = 0;
 	ray = create_primary_ray(&(img->scene->cam), pxl);
 	colour = vec4_add(colour, trace_ray(&ray, img->scene, 0));
 	vec4_clamp(&colour, 0, 1);

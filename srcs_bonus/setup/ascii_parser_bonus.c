@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_parser_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 08:51:29 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/26 19:28:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:51:55 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 static void	init_arrays(t_mesh *mesh, int fd)
 {
 	char	*line;
-	int		count;
 
 	line = get_next_line(fd, FALSE);
-	count = 0;
 	while (line)
 	{
 		line = process_vertex(mesh, line, fd);

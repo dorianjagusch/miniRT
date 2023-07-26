@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_setup_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:05:23 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:50:33 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ static void	get_texture_dim(char **file, int *width, int *height)
 	int		fd;
 	char	*line;
 	char	*tmp;
-	int		i;
+
 
 	fd = open(*file, O_RDONLY);
-	i = 0;
 	line = get_next_line(fd, FALSE);
 	while (line)
 	{

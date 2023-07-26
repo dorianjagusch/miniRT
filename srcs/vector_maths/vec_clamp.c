@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_clamp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:16:50 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:40:25 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 void	vec4_clamp(t_vec4 *v, const float min, const float max)
 {
 	float	overflow;
-	int		i;
 
-	i = 0;
 	overflow = 0;
 	if (v->x - max > 0)
 		overflow += v->x - max;

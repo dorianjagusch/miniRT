@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 10:34:27 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:40:09 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_image(t_img *img)
 			WIDTH, HEIGHT, "miniRT");
 	if (!img->win.win)
 		ft_error (ENOMEM);
-		img->img = mlx_new_image(img->win.mlx, WIDTH, HEIGHT);
+	img->img = mlx_new_image(img->win.mlx, WIDTH, HEIGHT);
 	if (!img->img)
 		ft_error(ENOMEM);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,

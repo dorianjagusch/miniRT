@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 20:20:30 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/26 17:08:09 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 23:10:15 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	count_file_objects(int fd, t_mesh *mesh)
 		ft_error(errno);
 }
 
-void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
+void	get_faces(char *line, t_vec3_face *key, t_mesh *mesh)
 {
 	char	**split ;
 	int		i;
@@ -84,7 +84,8 @@ void	get_faces(char *line, t_vec3_face	*key, t_mesh *mesh)
 		}
 		i++;
 	}
-	ft_free_anyarray((void *) &split, 6);
+			
+	ft_free_anyarray((void *) &split, 10); //TODO: its something to do with the number of elements?
 }
 
 t_vec2	get_textures(char *line)
