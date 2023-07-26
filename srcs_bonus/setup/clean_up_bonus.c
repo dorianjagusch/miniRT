@@ -6,13 +6,12 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 15:05:11 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:10:44 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include <stdio.h>
-
 
 void	free_scene(t_scene *scene)
 {
@@ -29,7 +28,7 @@ void	free_scene(t_scene *scene)
 		if (scene->objs[i].type == cone_obj)
 			free(scene->objs[i].cone.bottom);
 		free(scene->objs[i].meta.tex_col);
-    	free(scene->objs[i].meta.tex_norm);
+		free(scene->objs[i].meta.tex_norm);
 		i++;
 	}
 	if (scene->objs)

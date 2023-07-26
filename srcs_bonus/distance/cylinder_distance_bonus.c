@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 11:01:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:15:41 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ float	dist_cylinder(const t_ray *ray, t_object *obj)
 	float	discriminant;
 	float	res[2];
 	float	dist_cap[2];
-	
+
 	dist_cap[1] = 0;
 	calc_temps(ray, &(obj->cylinder), temp);
 	params.x = vec3_dot(temp[0], temp[0]);

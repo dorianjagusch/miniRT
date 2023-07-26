@@ -6,7 +6,7 @@
 #    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/26 15:00:22 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/26 16:59:15 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ FILES = camera \
 	vec_dist \
 	vec_dotprod \
 	vec_inv \
-	vec_isnan \
 	vec_mag \
 	vec_mult \
 	vec_neg \

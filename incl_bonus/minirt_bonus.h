@@ -90,6 +90,4 @@ int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
 
-float	ft_luminance(t_vec4 colour); //
-
 #endif

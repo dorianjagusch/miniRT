@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 13:07:53 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:17:44 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ t_vec4	hit_shader(const t_scene *scene,
 		num++;
 	}
 	col[final] = vec4_multf(col[final], 1.0f / scene->n_lights);
-	// col[final] = vec4_add_array(col[final], col[specular], scene->n_lights);
 	col[final] = vec4_add(col[ambient], col[final]);
-	// if (ray->transparency < 1.0)
-	// {
-	// 	col[transparent] = vec4_multf(col[final], 1.0 - ray->transparency);
-	// 	col[final] = vec4_add(vec4_multf(col[final], ray->transparency),
-	// 			col[transparent]);
-	// }
 	return (col[final]);
 }

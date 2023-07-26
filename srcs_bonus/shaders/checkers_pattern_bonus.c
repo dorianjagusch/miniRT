@@ -6,17 +6,18 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 15:25:03 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:14:50 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_math_bonus.h"
 #include "patterns_bonus.h"
 
-void	set_board(t_proc_pat *board, int width, int height, t_vec4 light, t_vec4 dark)
+void	set_board(t_proc_pat *board, int dim, t_vec4 light, \
+		t_vec4 dark)
 {	
-	board->width = width;
-	board->height = height;
+	board->width = dim;
+	board->height = dim;
 	board->light = light;
 	board->dark = dark;
 }

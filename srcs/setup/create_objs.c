@@ -6,13 +6,11 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 15:36:45 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:19:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minirt.h"
-
 
 void	create_disk(t_disk *disk, char *line)
 {

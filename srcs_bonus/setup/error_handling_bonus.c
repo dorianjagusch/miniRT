@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 13:27:40 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:09:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void	ft_error(int error)
 		"Numerical value out of range\n",
 		"Identifier not recognised.\n",
 		"Scene must have at leat one camera.\n",
-		"Scene must have only one camera, ambient light and at least one point light.\n",
+		"Scene must have only one camera, ambient light and at least one \
+		point light.\n",
 		"Error opening .obj file.\n",
 		"Error opening .xpm file.\n",
 		"Line exceeds 255 characters\n"
 	};
+
 	ft_printf_fd(STDERR_FILENO, "\e[2;31mError\x1b[m:\n");
 	if (error < 160)
 		ft_printf_fd(STDERR_FILENO, "%s", strerror(error));

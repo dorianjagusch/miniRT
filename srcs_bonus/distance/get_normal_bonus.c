@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 14:43:55 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:11:42 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static t_vec3	get_cylinder_normal(t_cylinder *cylinder,
 	t_vec3				co;
 	t_vec3				normal;
 
-
 	if (cylinder->disk_hit == 1)
 		normal = pertub_disk_normal(&cylinder->bottom->disk, hitpoint);
 	if (cylinder->disk_hit == 2)
@@ -51,7 +50,6 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	t_vec3			co;
 	t_vec3			normal;
 	static t_vec3	prev_normal;
-
 
 	if (cone->disk_hit)
 		normal = cone->bottom->disk.normal;

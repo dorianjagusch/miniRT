@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 15:55:26 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:45:37 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_vec2		triangle_map(t_vec3 *point, t_object *obj);
 t_vec2		cone_map(t_vec3 *point, t_object *obj);
 
 t_vec4		get_checkers(t_texture *checkers, t_vec2 uv);
-void		set_board(t_proc_pat *board, int width, int height, t_vec4 light, t_vec4 dark);
+void		set_board(t_proc_pat *board, int dim, t_vec4 light, t_vec4 dark);
 t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 
 void		set_picture(t_img *img, t_texture **texture, t_vec4 *col,

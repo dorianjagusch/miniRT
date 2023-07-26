@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 15:40:33 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:07:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	get_texels(void *mlx, t_picture *texture)
 void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 {
 	char		*tmp;
-	
+
 	tmp = ft_strnstr(line, "-texture", 0xFF);
 	if (!tmp)
 		return ;
@@ -97,7 +97,7 @@ void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 		ft_error(ENOMEM);
 	if (!ft_strncmp((*texture)->file, "checkers", 8))
 	{
-		set_board(&(*texture)->proc_pat, 10, 10, *col, vec4_multf(*col, 0.5));
+		set_board(&(*texture)->proc_pat, 10, *col, vec4_multf(*col, 0.5));
 		(*texture)->picture.pattern = checkers_pat;
 	}
 	else if (!ft_strncmp((*texture)->file, "brick", 5))

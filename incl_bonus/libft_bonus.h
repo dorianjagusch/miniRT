@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_BONUS_BONUS_H
-# define LIBFT_BONUS_BONUS_H
+#ifndef LIBFT_BONUS_H
+# define LIBFT_BONUS_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -20,7 +20,7 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  	define BUFFER_SIZE 42
 # endif
 
 # define MY_INT_MAX 2147483647
@@ -134,4 +134,5 @@ float	ft_scale(float value, t_range range_old, t_range range_new);
 void	ft_free(void *ptr);
 void	*ft_free_array(char ***array, size_t elements);
 void	*ft_free_anyarray(void ***array, size_t elements);
+
 #endif

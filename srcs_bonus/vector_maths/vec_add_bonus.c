@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:01:14 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ t_vec2	vec2_add(const t_vec2 v, const t_vec2 u)
 
 	res.x = v.x + u.x;
 	res.y = v.y + u.y;
-	return (res);
-}
-
-t_vec2	vec2_addf(const t_vec2 v, const float val)
-{
-	t_vec2	res;
-
-	res.x = v.x + val;
-	res.y = v.y + val;
 	return (res);
 }
 

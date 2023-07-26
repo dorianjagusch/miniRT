@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_scale_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:56:28 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:56:35 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	vec3_scale(t_vec3 *v, const t_range old, const t_range new)
 	(*v).y = ft_scale((*v).y, old, new);
 	(*v).z = ft_scale((*v).z, old, new);
 }
-
 
 void	vec4_scale(t_vec4 *v, const t_range old, const t_range new)
 {

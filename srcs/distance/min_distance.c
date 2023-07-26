@@ -6,13 +6,12 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/24 18:05:14 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:19:51 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "float.h"
-
 
 float	get_dist(const t_ray *ray, t_object *obj)
 {

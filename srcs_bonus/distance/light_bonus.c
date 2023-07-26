@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:39:26 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:15:34 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_vec4	specular_colour(const t_scene *scene,
 	half_vec = vec3_add(scene->directions[num], vec3_neg(scene->cam.dir));
 	vec3_normalize(&half_vec);
 	spec_angle = fmaxf(vec3_dot(hit->normal, half_vec), 0.0f);
-	specular = powf(spec_angle, 60); // object specific
+	specular = powf(spec_angle, 60);
 	colour = vec4_multf(vec4_multf(light_info->colour, specular * 100),
 			1 / (scene->distances[num] * scene->distances[num]));
 	return (colour);

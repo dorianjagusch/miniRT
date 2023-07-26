@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 10:02:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:42:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_vec4
 // VECTOR MATHS
 
 t_vec2	vec2_multf(const t_vec2 v, const float val);
-t_vec2	vec2_addf(const t_vec2 v, const float val);
 t_vec2	vec2_add(const t_vec2 v, const t_vec2 u);
 
 t_vec3	vec3_add(const t_vec3 v, const t_vec3 u);
@@ -64,8 +63,6 @@ t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 normal);
 t_vec3	vec3_rotate(const t_vec3 vec, const t_vec3 normal);
 t_vec3	vec3_compmult(const t_vec3 v, const t_vec3 u);
 float	vec3_dist(const t_vec3 v1, const t_vec3 v2);
-int		vec3_isnan(const t_vec3 v);
-int		vec3_isinf(const t_vec3 v);
 t_vec3	vec3_neg(const t_vec3 v);
 void	vec3_normalize(t_vec3 *v);
 void	vec3_scale(t_vec3 *v, const t_range old, const t_range new);
@@ -84,7 +81,6 @@ t_vec4	vec4_multf(const t_vec4 v, const float val);
 float	vec4_dot(const t_vec4 v, const t_vec4 u);
 t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const float prop);
 t_vec4	vec4_compmult(const t_vec4 v, const t_vec4 u);
-int		vec4_isnan(const t_vec4 v);
 void	vec4_clamp(t_vec4 *v, const float min, const float max);
 void	vec4_scale(t_vec4 *v, const t_range old, const t_range new);
 t_vec4	vec4_add_array(const t_vec4 v, const t_vec4 *array,

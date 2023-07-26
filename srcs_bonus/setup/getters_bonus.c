@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:32:13 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:08:45 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_vec3	get_vec3(char **line)
 	ft_skip_num(line, REAL, TRUE);
 	ft_skip_ws(line);
 	if (**line == ',')
-		*line += 1; 
+		*line += 1;
 	vec.z = ft_atof(*line);
 	if (**line == '-')
 		*line += 1;

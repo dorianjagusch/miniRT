@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_vec_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:28:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 19:24:42 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:12:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int32_t	vec4_toint32(t_vec4 colour)
 	int32_t	r;
 	int32_t	g;
 	int32_t	b;
+	int32_t	t;
 
-	int32_t t = 1; // transperancy was setting to negative number?
+	t = 1;
 	r = 255 * colour.x;
 	g = 255 * colour.y;
 	b = 255 * colour.z;
@@ -65,9 +66,4 @@ void	ft_rgbtonorm(t_vec4 *colour)
 	colour->x /= 255.0;
 	colour->y /= 255.0;
 	colour->z /= 255.0;
-}
-
-float	ft_luminance(t_vec4 colour)
-{
-	return (0.2126 * colour.x + 0.7152 * colour.y + 0.0722 * colour.z);
 }

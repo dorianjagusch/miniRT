@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 16:02:31 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:18:49 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	check_visibility(t_scene *scene, int id)
 {
 	if (scene->objs[id].type == plane_obj)
 	{
-
 		scene->objs[id].plane.isvisible = is_light_visible(scene->cam.pos,
 				scene->objs[id].plane.pos, scene->objs[id].plane.pos,
 				&scene->objs[id].plane.normal);

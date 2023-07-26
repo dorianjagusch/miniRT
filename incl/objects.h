@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 13:06:16 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:44:32 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_sphere
 	float			radius;
 	float			radius2;
 }					t_sphere;
-
 
 typedef struct s_plane
 {
@@ -114,7 +113,6 @@ typedef struct s_cone
 	float			height2;
 	int				disk_hit;
 }					t_cone;
-
 
 typedef union u_object
 {

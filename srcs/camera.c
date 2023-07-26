@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/25 09:31:31 by djagusch         ###   ########.fr       */
+/*   Created: 2023/07/26 17:22:41 by smorphet          #+#    #+#             */
+/*   Updated: 2023/07/26 17:22:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

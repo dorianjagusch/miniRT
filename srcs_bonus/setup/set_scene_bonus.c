@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_scene_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 13:57:10 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:04:19 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,18 @@ static int	count_objects(int fd, char *av)
 	return (count);
 }
 
+void	count_allocate_scene(t_scene *scene, char *av, int fd)
+{
+	scene->n_objs = count_objects(fd, av);
+	if (scene->n_objs < 0)
+		ft_error(content_err);
+	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
+	scene->lights = ft_calloc(MAX_LIGHTS + 1, sizeof(t_light));
+	scene->n_lights = 0;
+	if (!scene->objs)
+		ft_error(ENOMEM);
+}
+
 void	set_scene(t_img *img, t_scene *scene, char *av)
 {
 	int		fd;
@@ -93,14 +105,7 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_error(errno);
-	scene->n_objs = count_objects(fd, av);
-	if (scene->n_objs < 0)
-		ft_error(content_err);
-	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
-	scene->lights = ft_calloc(MAX_LIGHTS + 1, sizeof(t_light));
-	scene->n_lights = 0;
-	if (!scene->objs)
-		ft_error(ENOMEM);
+	count_allocate_scene(scene, av, fd);
 	line = get_next_line(fd, FALSE);
 	while (line != NULL)
 	{
