@@ -29,8 +29,8 @@
 # include "libft_bonus.h"
 # include "errors_bonus.h"
 
-# define WIDTH 2160
-# define HEIGHT 1820
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define BOUNCES 1
 # define EXT_LEN 3

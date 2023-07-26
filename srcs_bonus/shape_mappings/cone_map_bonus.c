@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:04:20 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 19:57:36 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:08:38 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ t_vec2	cone_map(t_vec3 *point, t_object *obj)
 		angle += 2.0f * M_PI;
 	uv.x = angle * M_1_DIV_2PI;
 	uv.y = projection.z / obj->cone.height;
-	printf("UV: u: %f \tv: %f\n", uv.x, uv.y);
 	return (uv);
 }

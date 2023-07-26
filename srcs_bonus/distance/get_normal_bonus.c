@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 10:56:52 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:07:41 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 		if ((fabsf(normal.x - prev_normal.x) < 0.01
 				&& fabsf(normal.y - prev_normal.y) < 0.01
 				&& fabsf(normal.z - prev_normal.z) < 0.01))
-			printf("body normal: x:%f\ty:%f\tz:%f\n", normal.x, normal.y, normal.z);
 		prev_normal = normal;
 	}
 	cone->disk_hit = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_colour_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:47:14 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:31:05 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ t_vec4	get_texture_colour(t_object *object, t_vec3 *point)
 
 	uv = map_func[object->type](point, object);
 	texture = object->meta.tex_col;
-	colour = colour_func[texture->pattern](texture, uv);
+	colour = colour_func[texture->picture.pattern](texture, uv);
 	return (colour);
 }

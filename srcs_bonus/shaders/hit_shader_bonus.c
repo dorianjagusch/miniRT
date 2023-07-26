@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_shader_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:08:00 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 19:31:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:10:21 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vec4	hit_shader(const t_scene *scene,
 		num++;
 	}
 	col[final] = vec4_multf(col[final], 1.0f / scene->n_lights);
-	// col[final] = vec4_add_array(col[final], scene->specular, scene->n_lights);
+	col[final] = vec4_add_array(col[final], scene->specular, scene->n_lights);
 	col[final] = vec4_add(col[ambient], col[final]);
 	// if (ray->transparency < 1.0)
 	// {
