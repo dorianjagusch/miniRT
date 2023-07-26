@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normal_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 20:46:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:56:52 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,9 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	t_vec3			co;
 	t_vec3			normal;
 	static t_vec3	prev_normal;
-	// static int		prev_diskhit;
 
 	if (cone->disk_hit)
-	{
 		normal = cone->bottom->disk.normal;
-		// printf("disk normal: x:%f\ty:%f\tz:%f\n", normal.x, normal.y, normal.z);
-	}
 	else
 	{
 		co = vec3_sub(hitpoint, cone->pos);
@@ -68,7 +64,6 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 			printf("body normal: x:%f\ty:%f\tz:%f\n", normal.x, normal.y, normal.z);
 		prev_normal = normal;
 	}
-	// prev_diskhit = cone->disk_hit;
 	cone->disk_hit = 0;
 	return (normal);
 }

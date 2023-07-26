@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_distance_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:28:17 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/25 19:45:05 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:58:06 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ float	dist_cone(const t_ray *ray, t_object *obj)
 	float	res[2];
 	float	dist_cap;
 
+	obj->cone.disk_hit = 0;
 	params = get_params(ray, obj);
 	discriminant = params.y * params.y - 4 * params.x * params.z;
 	if (discriminant < EPSILON)
