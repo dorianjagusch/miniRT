@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   texture_colour_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:55:38 by djagusch          #+#    #+#             */
 /*   Updated: 2023/07/26 13:40:59 by djagusch         ###   ########.fr       */

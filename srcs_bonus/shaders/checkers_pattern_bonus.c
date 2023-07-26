@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers_pattern_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:58:46 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 12:21:23 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:28:41 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_proc_pat	set_board(int width, int height, t_vec4 light, t_vec4 dark)
 {
 	t_proc_pat	board;
-
+	
 	board.width = width;
 	board.height = height;
 	board.light = light;
