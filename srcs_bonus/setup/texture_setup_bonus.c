@@ -6,15 +6,40 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 17:31:09 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:46:33 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "patterns_bonus.h"
 #include "errors_bonus.h"
 #include "minirt_bonus.h"
+#include "minirt_bonus.h"
 
-void	get_texture_dim(char **file, int *width, int *height)
+static void	get_normals(t_picture *map)
+{
+	int		i;
+	int		dim;
+	int		*dst;
+	t_vec4	colour;
+
+	dim = map->width * map->height;
+	map->norm_vecs = ft_calloc(dim, sizeof(t_vec3));
+	if (!map->norm_vecs)
+		ft_error(ENOMEM);
+	i = 0;
+	while (i < dim)
+	{
+		dst = (int *)(map->addr + i * (map->bits_per_pixel / 8));
+		colour = ft_int32tov4(*dst);
+		ft_rgbtonorm(&colour);
+		map->norm_vecs[i] = (t_vec3){colour.x, colour.y, colour.z};
+		map->norm_vecs[i] = vec3_addf(vec3_multf(map->norm_vecs[i], 2),
+				- 1);
+		i++;
+	}
+}
+
+static void	get_texture_dim(char **file, int *width, int *height)
 {
 	int		fd;
 	char	*line;
@@ -24,7 +49,7 @@ void	get_texture_dim(char **file, int *width, int *height)
 	fd = open(*file, O_RDONLY);
 	i = 0;
 	line = get_next_line(fd, FALSE);
-	while (line && i < 4)
+	while (line)
 	{
 		if (!ft_strncmp(line, "\"", 1))
 		{
@@ -61,7 +86,7 @@ void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 {
 	char	*tmp;
 
-	tmp = ft_strnstr(line, "-texture", 200);
+	tmp = ft_strnstr(line, "-texture", 0xFF);
 	if (!tmp)
 		return ;
 	*texture = ft_calloc(1, sizeof(t_texture));
@@ -81,7 +106,7 @@ void	set_picture(t_img *img, t_texture **texture, t_vec4 *col, char *line)
 	else if ((*texture)->file)
 	{
 		get_texels(img->win.mlx, &(*texture)->picture);
-		(*texture)->pattern = texture_pat;
+		(*texture)->pattern = colour_pat;
 	}
 }
 
@@ -89,16 +114,18 @@ void	set_normals(t_img *img, t_texture **texture, char *line)
 {
 	char	*tmp;
 
-	tmp = ft_strnstr(line, "-normal", 200);
+	tmp = ft_strnstr(line, "-normal", 0xFF);
 	if (!tmp)
 		return ;
 	*texture = ft_calloc(1, sizeof(t_texture));
 	if (!*texture)
 		ft_error(ENOMEM);
-	(*texture)->file = ft_strdup(tmp + 9);
+	(*texture)->file = ft_get_word(tmp + 8);
 	if ((*texture)->file)
 	{
 		get_texels(img->win.mlx, &(*texture)->picture);
-		(*texture)->pattern = texture_pat;
+		if ((*texture)->pattern)
+			get_normals(&(*texture)->picture);
+		(*texture)->pattern = normal_pat;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 18:11:29 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:57:10 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ static void	set_object(t_img *img, char *line, int id)
 static void	process_line(t_img *img, char *line)
 {
 	static int	id;
+	int			line_len;
 
 	if (line && line[0] != '\n')
 	{
+		line_len = ft_strlen(line);
+		if (line_len > 255)
+			ft_error(line_err);
 		ft_skip_ws(&line);
 		if (line && ft_isupper(*line))
 			set_unique(img->scene, &line);
@@ -69,7 +73,7 @@ static int	count_objects(int fd, char *av)
 		if (!ft_empty_str(line) && is_obj(line))
 			count++;
 		free(line);
-		line = get_next_line(fd , FALSE);
+		line = get_next_line(fd, FALSE);
 	}
 	if (close(fd) < 0)
 		ft_error(errno);

@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:57:50 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:38:37 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_ray
 typedef struct s_hitresult
 {
 	int				obj_id;
-	t_obj_e			type;
 	float			distance;
 	t_vec3			position;
 	t_vec2			uv;

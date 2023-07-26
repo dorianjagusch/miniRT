@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/25 20:32:05 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/26 13:34:49 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -195,6 +195,6 @@ fclean: clean
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 	@echo "$(COLOUR_RED) $(NAME_BONUS) removed$(COLOUR_END)"
 
-re: fclean $(NAME)
+re: fclean $(NAME) $(NAME_BONUS)
 
 .PHONY: all clean fclean re

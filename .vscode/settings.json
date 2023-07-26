@@ -37,6 +37,7 @@
         "limits": "c",
         "memory": "c",
         "tuple": "c",
-        "utility": "c"
+        "utility": "c",
+        "patterns_bonus.h": "c"
     }
 }

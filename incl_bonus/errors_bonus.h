@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 10:58:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:28:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ enum e_errors
 	unique_err,
 	object_open_err,
 	xpm_err,
+	line_err
 };
 
 // Bitmapping image info

@@ -6,12 +6,19 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/24 10:04:19 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/26 13:02:11 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+### COLOURS ###
+
+COLOUR_GREEN=\033[0;32m
+COLOUR_RED=\033[0;31m
+COLOUR_BLUE=\033[0;34m
+COLOUR_END=\033[0m
+
 CC = cc
-CFLAGS = -I$I -std=c99 -O3 -Wall -Wextra -Werror
+CFLAGS = -I$I -std=c99 -g -Wall -Wextra -Werror
 OS = $(shell uname)
 
 #ifneq ($(OS),Darwin)
@@ -126,11 +133,12 @@ O_DIRS := $(dir $(OBJS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(SRCS)
+$(NAME): $(OBJS) $(SRCS) $(HEADER)
 	@ar rc $(NAME) $(OBJS)
 
 $O/%.o: $S/%.c $(HEADER) | $O
 	@$(CC) $(CFLAGS) -c $< -o $@ -g
+	@echo "$(COLOUR_GREEN) $@ successfully created$(COLOUR_END)"
 
 $O:
 	@mkdir -p $(O_DIRS)

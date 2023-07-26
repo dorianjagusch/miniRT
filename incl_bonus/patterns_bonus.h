@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:03:47 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 10:58:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:31:22 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef enum e_pattern
 {
 	checkers_pat,
 	brick_pat,
-	texture_pat
+	colour_pat,
+	normal_pat
 }	t_pattern;
 
 typedef struct s_proc_pat
@@ -65,6 +66,7 @@ typedef struct s_picture
 	int			width;
 	int			height;
 	void		*texels;
+	t_vec3		*norm_vecs;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
@@ -94,6 +96,8 @@ t_vec4		get_brick(t_texture *texture, t_vec2 uv);
 void		set_picture(t_img *img, t_texture **texture, t_vec4 *col,
 				char *line);
 void		set_normals(t_img *img, t_texture **texture, char *line);
-t_vec4		get_texture_colour(t_object *object, t_vec3 *point);
+t_vec3		get_texture_norm(t_texture *texture, t_vec2 uv);
+void		get_texture_info(t_object *object, t_vec3 *point,
+				t_vec4 *colour, t_vec3 *normal);
 
 #endif

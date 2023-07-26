@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:28:12 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 20:46:22 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:24:14 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 {
 	t_vec3			co;
 	t_vec3			normal;
-	static t_vec3	prev_normal;
+	// static t_vec3	prev_normal;
 	// static int		prev_diskhit;
 
 	if (cone->disk_hit)
@@ -62,11 +62,11 @@ t_vec3	get_cone_normal( t_cone *cone, const t_vec3 hitpoint)
 	{
 		co = vec3_sub(hitpoint, cone->pos);
 		normal = vec3_cross(co, vec3_cross(co, cone->normal));
-		if ((fabsf(normal.x - prev_normal.x) < 0.01
-				&& fabsf(normal.y - prev_normal.y) < 0.01
-				&& fabsf(normal.z - prev_normal.z) < 0.01))
-			printf("body normal: x:%f\ty:%f\tz:%f\n", normal.x, normal.y, normal.z);
-		prev_normal = normal;
+		// if ((fabsf(normal.x - prev_normal.x) < 0.01
+		// 		&& fabsf(normal.y - prev_normal.y) < 0.01
+		// 		&& fabsf(normal.z - prev_normal.z) < 0.01))
+		// 	printf("body normal: x:%f\ty:%f\tz:%f\n", normal.x, normal.y, normal.z);
+		// prev_normal = normal;
 	}
 	// prev_diskhit = cone->disk_hit;
 	cone->disk_hit = 0;
