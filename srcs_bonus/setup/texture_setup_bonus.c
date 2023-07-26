@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:49:01 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:07:28 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:08:28 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,27 @@
 #include "minirt_bonus.h"
 #include <stdio.h>
 
-static void	get_normals(t_picture *map)
+static void	get_normals(t_texture **texture)
 {
 	int		i;
 	int		dim;
 	int		*dst;
-	t_vec4	colour;
+	t_vec4	col;
 
-	dim = map->width * map->height;
-	map->norm_vecs = ft_calloc(dim, sizeof(t_vec3));
-	if (!map->norm_vecs)
+	dim = (*texture)->picture.width * (*texture)->picture.height;
+	(*texture)->picture.norm_vecs = ft_calloc(dim, sizeof(t_vec3));
+	if (!(*texture)->picture.norm_vecs)
 		ft_error(ENOMEM);
 	i = 0;
 	while (i < dim)
 	{
-		dst = (int *)(map->addr + i * (map->bits_per_pixel / 8));
-		colour = ft_int32tov4(*dst);
-		ft_rgbtonorm(&colour);
-		map->norm_vecs[i] = (t_vec3){colour.x, colour.y, colour.z};
-		map->norm_vecs[i] = vec3_addf(vec3_multf(map->norm_vecs[i], 2),
+		dst = (int *)((*texture)->picture.addr + i * 
+				((*texture)->picture.bits_per_pixel / 8));
+		col = ft_int32tov4(*dst);
+		ft_rgbtonorm(&col);
+		(*texture)->picture.norm_vecs[i] = (t_vec3){col.x, col.y, col.z};
+		(*texture)->picture.norm_vecs[i] = vec3_addf(
+				vec3_multf((*texture)->picture.norm_vecs[i], 2),
 				- 1);
 		i++;
 	}
@@ -124,8 +126,8 @@ void	set_normals(t_img *img, t_texture **texture, char *line)
 	if ((*texture)->file)
 	{
 		get_texels(img->win.mlx, &(*texture)->picture);
-		if ((*texture)->picture.pattern)
-			get_normals(&(*texture)->picture);
+		if ((*texture)->picture.texels)
+			get_normals(texture);
 		(*texture)->picture.pattern = normal_pat;
 	}
 }

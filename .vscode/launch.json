@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT_bonus",
-            "args": ["${workspaceFolder}/test_files/bonus/cone.rt"],
+            "args": ["${workspaceFolder}/test_files/bonus/triangle.rt"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
