@@ -24,8 +24,7 @@ sp	-5,10,-2	4.2					140,140,140 -texture "textures/colour/154.xpm" -normal "text
 sp	5,10,-2		4.2					140,140,140 -texture "textures/colour/154.xpm" -normal "textures/normal/154_norm.xpm"
 
 #floor plane
-pl	0,0,0		0,1,0				0		0 0 0	104,104,104 -texture "textures/colour/167.xpm" -normal "textures/normal/167_norm.xpm"
-
+pl	0,0,0		0,1,0				0		0 0 0	104,104,104 -texture "checkers"
 #back plane, weird af behavior?
 pl	0,0,16		0,0,-1				0		0 0 0	25,25,178 -texture "textures/colour/154.xpm" -normal "textures/normal/154_norm.xpm"
 
