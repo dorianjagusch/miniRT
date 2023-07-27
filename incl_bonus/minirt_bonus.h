@@ -29,10 +29,10 @@
 # include "libft_bonus.h"
 # include "errors_bonus.h"
 
-# define WIDTH 300
-# define HEIGHT 300
+# define WIDTH 1080
+# define HEIGHT 720
 
-# define BOUNCES 1
+# define BOUNCES 4
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF

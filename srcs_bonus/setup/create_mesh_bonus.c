@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:43:42 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/27 09:30:48 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:31:42 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	build_triangles(t_mesh *mesh, int index)
 	mesh->vertex[(mesh->faces[index][1].v) - 1];
 	mesh->triangle_data[index].triangle.tri_point[2] = \
 	mesh->vertex[(mesh->faces[index][2].v) - 1];
-	mesh->triangle_data[index].triangle.colour = (t_vec4){1, 0, 1, 1};
+	mesh->triangle_data[index].triangle.colour = (t_vec4){1, 100, 0, 100};
 	mesh->triangle_data[index].triangle.edges[0] = vec3_sub(\
 	mesh->triangle_data[index].triangle.tri_point[1],
 			mesh->triangle_data[index].triangle.tri_point[0]);

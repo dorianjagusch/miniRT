@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:19:39 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:23:48 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	create_disk(t_disk *disk, char *line)
 	ft_skip_ws(&line);
 	disk->colour = get_colour(&line);
 	check_line(&line);
-	disk->d = -vec3_dot(disk->pos, disk->normal);
 }
 
 void	create_sphere(t_sphere *sphere, char *line)
@@ -101,5 +100,4 @@ void	create_plane(t_plane *plane, char *line)
 	ft_skip_ws(&line);
 	plane->colour = get_colour(&line);
 	check_line(&line);
-	plane->d = -vec3_dot(plane->pos, plane->normal);
 }
