@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
+#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/27 10:44:00 by smorphet         ###   ########.fr        #
+#    Updated: 2023/07/27 11:00:16 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,10 +92,6 @@ FILES = camera \
 	vec_scale \
 	vec_sub \
 	vec_add_array \
-	print_misc \
-	print_misc2 \
-	print_objs \
-	print_scene \
 	colour_vec \
 	cone_map \
 	cylinder_map \

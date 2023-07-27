@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"*.json": "c",
-		"": "",
-		"minishell.h": "c",
-		"ft_hash.h": "c",
-		"errors_bonus.h": "c"
-	}
-}
