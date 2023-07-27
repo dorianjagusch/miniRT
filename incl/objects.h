@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:42:32 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:44:32 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:03:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_plane
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
-	float			d;
 	int				isvisible;
 }					t_plane;
 
@@ -68,7 +67,6 @@ typedef struct s_disk
 	t_vec4			colour;
 	t_vec3			pos;
 	t_vec3			normal;
-	float			d;
 	float			radius;
 	int				isvisible;
 }					t_disk;

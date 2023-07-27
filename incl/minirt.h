@@ -35,8 +35,6 @@
 # define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
-# define WHITE 0xFFFFFFFF
-# define FOCALDEPTH
 # define RATIO 0
 # define REAL 1
 # define BALANCE 2
@@ -66,10 +64,8 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			move;
 	float		aspect_ratio;
 	t_scene		*scene;
-	int			is_help;
 	int			error;
 }				t_img;
 

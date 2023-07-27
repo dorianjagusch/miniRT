@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:17:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:05:24 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_vec2	vec2_add(const t_vec2 v, const t_vec2 u);
 t_vec3	vec3_add(const t_vec3 v, const t_vec3 u);
 t_vec3	vec3_addf(const t_vec3 v, const float val);
 t_vec3	vec3_sub(const t_vec3 v, const t_vec3 u);
-t_vec3	vec3_subf(const t_vec3 v, const float val);
 float	vec3_mag(const t_vec3 v);
 t_vec3	vec3_multf(const t_vec3 v, const float val);
 float	vec3_dot(const t_vec3 v, const t_vec3 u);
@@ -72,7 +71,6 @@ t_vec4	vec4_multf(const t_vec4 v, const float val);
 float	vec4_dot(const t_vec4 v, const t_vec4 u);
 t_vec4	vec4_propadd(const t_vec4 v1, const t_vec4 v2, const float prop);
 t_vec4	vec4_compmult(const t_vec4 v, const t_vec4 u);
-int		vec4_isnan(const t_vec4 v);
 void	vec4_clamp(t_vec4 *v, const float min, const float max);
 void	vec4_scale(t_vec4 *v, const t_range old, const t_range new);
 t_vec4	vec4_add_array(const t_vec4 v, const t_vec4 *array,
@@ -82,4 +80,5 @@ void	ft_rgbtonorm(t_vec4 *colour);
 t_vec4	ft_trgbtov4(int colour[4]);
 t_vec4	ft_int32tov4(int32_t colour);
 int32_t	vec4_toint32(t_vec4 colour);
+
 #endif

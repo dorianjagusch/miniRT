@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_objs_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:02:25 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:12:47 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:28:46 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 	{
 		disk->disk.pos = vec3_add(cylinder->pos,
 				vec3_multf(cylinder->normal, cylinder->height / 2.0f \
-					* 0.99f));
+					* 0.999f));
 		cylinder->top = disk;
 	}
 	else
@@ -50,7 +50,7 @@ static void	cyl_disk(t_cylinder *cylinder, int side)
 		disk->disk.normal = vec3_neg(cylinder->normal);
 		disk->disk.pos = vec3_sub(cylinder->pos,
 				vec3_multf(cylinder->normal, cylinder->height / 2.0f \
-					* 0.99f));
+					* 0.999f));
 		cylinder->bottom = disk;
 	}
 }

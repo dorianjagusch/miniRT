@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT_bonus",
-            "args": ["${workspaceFolder}/test_files/mesh_files/ascii_check.rt"],
+            "args": ["${workspaceFolder}/test_files/this_one.rt"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

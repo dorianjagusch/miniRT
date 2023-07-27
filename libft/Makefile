@@ -6,7 +6,7 @@
 #    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 15:27:30 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/26 13:02:11 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/27 08:19:27 by djagusch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 CC = cc
-CFLAGS = -I$I -std=c99 -g -Wall -Wextra -Werror
+CFLAGS = -I$I -std=c99 -O3 -Wall -Wextra -Werror
 OS = $(shell uname)
 
 #ifneq ($(OS),Darwin)

@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 23:10:41 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:10:44 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
-void free_arrays(t_object mesh)
+void	free_arrays(t_object mesh)
 {
 	int	i;
 
-    if (mesh.mesh.vertex)
-        free(mesh.mesh.vertex);
-    if (mesh.mesh.normals)
-        free(mesh.mesh.normals);
-    if (mesh.mesh.count_vt != 0)
-        free(mesh.mesh.textures);
-    i = 0;
-    while (i < mesh.mesh.count_f)
-    {
-        free(mesh.mesh.faces[i]);
-        i++;
-    }
-    if (mesh.mesh.faces)
-        free(mesh.mesh.faces);
-    if (mesh.mesh.triangle_data)
-        free(mesh.mesh.triangle_data);
+	if (mesh.mesh.vertex)
+		free(mesh.mesh.vertex);
+	if (mesh.mesh.normals)
+		free(mesh.mesh.normals);
+	if (mesh.mesh.count_vt != 0)
+		free(mesh.mesh.textures);
+	i = 0;
+	while (i < mesh.mesh.count_f)
+	{
+		free(mesh.mesh.faces[i]);
+		i++;
+	}
+	if (mesh.mesh.faces)
+		free(mesh.mesh.faces);
+	if (mesh.mesh.triangle_data)
+		free(mesh.mesh.triangle_data);
 }
 
 void	free_scene_arrays(t_scene *scene)
@@ -75,7 +75,7 @@ void	free_scene(t_scene *scene)
 
 void	free_img(t_img *img)
 {
-    if (img->scene)
+	if (img->scene)
 	{
 		free_scene(img->scene);
 	}

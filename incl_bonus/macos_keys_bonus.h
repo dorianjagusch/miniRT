@@ -6,7 +6,7 @@
 /*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 10:58:38 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/27 08:06:40 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define MAIN_PAD_E 14
 # define MAIN_PAD_F 3
 # define MAIN_PAD_G 5
-# define MAIN_PAD_BONUS_H 4
+# define MAIN_PAD_H 4
 # define MAIN_PAD_I 34
 # define MAIN_PAD_J 38
 # define MAIN_PAD_K 40

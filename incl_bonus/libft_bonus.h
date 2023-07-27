@@ -20,7 +20,7 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  	define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42
 # endif
 
 # define MY_INT_MAX 2147483647
