@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 20:20:30 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/26 23:10:15 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/27 09:08:21 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ void	get_faces(char *line, t_vec3_face *key, t_mesh *mesh)
 		}
 		i++;
 	}
-			
-	ft_free_anyarray((void *) &split, 10); //TODO: its something to do with the number of elements?
+	ft_free_anyarray((void *) &split, ft_count_elements(split));
 }
 
 t_vec2	get_textures(char *line)

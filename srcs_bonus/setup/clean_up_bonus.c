@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/27 08:10:44 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:44:11 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
-void	free_arrays(t_object mesh)
+void	free_arrays(t_object object)
 {
 	int	i;
 
-	if (mesh.mesh.vertex)
-		free(mesh.mesh.vertex);
-	if (mesh.mesh.normals)
-		free(mesh.mesh.normals);
-	if (mesh.mesh.count_vt != 0)
-		free(mesh.mesh.textures);
+	if (object.mesh.vertex)
+		free(object.mesh.vertex);
+	if (object.mesh.normals)
+		free(object.mesh.normals);
+	if (object.mesh.count_vt != 0)
+		free(object.mesh.textures);
 	i = 0;
-	while (i < mesh.mesh.count_f)
+	while (i < object.mesh.count_f)
 	{
-		free(mesh.mesh.faces[i]);
+		free(object.mesh.faces[i]);
 		i++;
 	}
-	if (mesh.mesh.faces)
-		free(mesh.mesh.faces);
-	if (mesh.mesh.triangle_data)
-		free(mesh.mesh.triangle_data);
+	if (object.mesh.faces)
+		free(object.mesh.faces);
+	if (object.mesh.triangle_data)
+		free(object.mesh.triangle_data);
 }
 
 void	free_scene_arrays(t_scene *scene)
@@ -76,9 +76,7 @@ void	free_scene(t_scene *scene)
 void	free_img(t_img *img)
 {
 	if (img->scene)
-	{
 		free_scene(img->scene);
-	}
 	if (img->img)
 		mlx_destroy_image(img->win.mlx, img->img);
 	if (img->win.win)
