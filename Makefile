@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+         #
+#    By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 11:46:33 by djagusch          #+#    #+#              #
-#    Updated: 2023/07/27 08:19:15 by djagusch         ###   ########.fr        #
+#    Updated: 2023/07/27 10:44:00 by smorphet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -O3
+CFLAGS = -Wall -Werror -Wextra -g -O3
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
