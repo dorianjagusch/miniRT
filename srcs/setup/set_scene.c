@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 10:10:35 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:00:10 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	set_scene(t_img *img, t_scene *scene, char *av)
 	line = get_next_line(fd, FALSE);
 	while (line != NULL)
 	{
-		if (!ft_empty_str(line) && ft_strncmp(line, "#", 1))
+		if (!ft_empty_str(line))
 			process_line(img, line);
 		if (line)
 			free(line);

@@ -6,13 +6,12 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 10:25:16 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:54:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "vector_math.h"
-#include <float.h>
 
 void	ft_skip_ws(char **line)
 {

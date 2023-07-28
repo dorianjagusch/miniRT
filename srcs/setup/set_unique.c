@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:51:04 by smorphet          #+#    #+#             */
-/*   Updated: 2023/07/28 10:17:02 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:26:54 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ void	set_unique(t_scene *scene, char **line)
 		set_light(scene, line, flag[1]);
 		flag[1] += 1;
 	}
-	else if (ft_strncmp("C", *line, 1) == 0 && !flag[2])
+	else if (ft_strncmp("C", *line, 1) == 0)
 	{
+		if (flag[2])
+			ft_error(unique_err);
 		set_camera(scene, line);
 		flag[2] = 1;
 	}

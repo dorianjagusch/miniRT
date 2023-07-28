@@ -6,14 +6,13 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 22:11:40 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 13:06:34 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:54:43 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders.h"
 #include "vector_math.h"
 #include "minirt.h"
-#include <float.h>
 
 float	which_pos_min(float a, float b, float c)
 {

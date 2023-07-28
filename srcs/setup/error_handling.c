@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 11:24:11 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:24:26 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_error(int error)
 		"Input format invalid. Consult the subject for format specifications.\n",
 		"Numerical value out of range\n",
 		"Identifier not recognised.\n",
-		"Scene must have only one camera, ambient light and one point light.\n",
+		"Scene must have only one camera and ambient light.\n",
 		"Scene must have one camera.\n",
 	};
 

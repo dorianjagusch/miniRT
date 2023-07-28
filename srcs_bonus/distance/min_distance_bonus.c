@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   min_distance_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:55:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/25 11:39:53 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:54:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shaders_bonus.h"
-#include <float.h>
 
 float	dist_mesh(const t_ray *ray, t_object *obj)
 {

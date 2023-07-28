@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/27 08:05:24 by djagusch         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:53:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "libft.h"
 # include <math.h>
+
+# ifndef FLT_MAX
+#  define FLT_MAX 1.7976931348623157e+308
+# endif
 
 typedef struct s_vec2
 {

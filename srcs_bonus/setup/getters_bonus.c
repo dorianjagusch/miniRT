@@ -6,13 +6,12 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 10:30:53 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:54:39 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include "vector_math_bonus.h"
-#include <float.h>
 
 void	ft_skip_ws(char **line)
 {
@@ -36,7 +35,7 @@ void	ft_skip_num(char **line, int mode, int allow_comma)
 	}
 	if (ft_isspace(**line) || (**line == ',' && allow_comma))
 		return ;
-	ft_error(num_err);
+	ft_error(input_err);
 }
 
 t_vec4	get_colour(char **line)
@@ -58,7 +57,7 @@ t_vec4	get_colour(char **line)
 		while (**line != ',' || **line == '\n' || **line == '\0')
 			(*line)++;
 		if ((**line != ',') && i < 3)
-			ft_error(file_err); //
+			ft_error(file_err);
 		*line += 1;
 		ft_skip_ws(line);
 		i++;
@@ -84,7 +83,7 @@ float	get_float(char **line, int mode)
 	else if (mode == ANGLE && 0 <= res && res <= 180)
 		return (res);
 	else
-		ft_error(num_err);
+		ft_error(input_err);
 	return (FLT_MAX);
 }
 

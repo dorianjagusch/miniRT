@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:17:19 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:55:30 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include "libft_bonus.h"
 # include <math.h>
-# include <float.h>
+
+# ifndef FLT_MAX
+#  define FLT_MAX 1.7976931348623157e+308
+# endif
 
 typedef struct s_vec2
 {

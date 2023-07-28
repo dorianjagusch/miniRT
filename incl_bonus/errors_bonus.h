@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:57:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:20:03 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:42:47 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 enum e_errors
 {
 	file_err = 160,
-	num_err,
+	input_err,
 	range_err,
 	ident_err,
 	content_err,
