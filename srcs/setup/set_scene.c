@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:47:09 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/27 16:08:17 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:10:35 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static void	count_calloc_objects(int fd, char *av, t_scene *scene)
 		ft_error(errno);
 	scene->n_objs = count;
 	scene->objs = ft_calloc(scene->n_objs, sizeof(t_object));
+	if (!scene->objs)
+	{
+		close(fd);
+		ft_error(ENOMEM);
+	}
 }
 
 void	set_scene(t_img *img, t_scene *scene, char *av)

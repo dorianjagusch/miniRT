@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:18:49 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:10:12 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	if (side1 < 0)
 	{
 		*normal = vec3_neg(*normal);
-		return (1);
+		return (0);
 	}
 	return (0);
 }

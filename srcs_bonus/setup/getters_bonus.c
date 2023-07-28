@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 14:21:22 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:08:45 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:30:53 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,19 @@ t_vec4	get_colour(char **line)
 	i = 1;
 	while (i <= 3)
 	{
-		ft_skip_ws(line);
 		colour[i] = ft_atoi(*line);
 		if (colour[i] < 0 || colour[i] > 255)
 			ft_error(range_err);
 		if (i == 3)
 			break ;
+		ft_skip_ws(line);
 		while (**line != ',' || **line == '\n' || **line == '\0')
 			(*line)++;
 		if ((**line != ',') && i < 3)
-			ft_error(num_err);
-		i++;
+			ft_error(file_err); //
 		*line += 1;
+		ft_skip_ws(line);
+		i++;
 	}
 	res = ft_trgbtov4(colour);
 	ft_rgbtonorm(&res);
@@ -97,11 +98,13 @@ t_vec3	get_vec3(char **line)
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1;
+	ft_skip_ws(line);
 	vec.y = ft_atof(*line);
 	ft_skip_num(line, REAL, TRUE);
 	ft_skip_ws(line);
 	if (**line == ',')
 		*line += 1;
+	ft_skip_ws(line);
 	vec.z = ft_atof(*line);
 	if (**line == '-')
 		*line += 1;

@@ -32,7 +32,7 @@
 # define WIDTH 1080
 # define HEIGHT 720
 
-# define BOUNCES 4
+# define BOUNCES 1
 # define EXT_LEN 3
 # define EXTENSION ".rt"
 # define WHITE 0xFFFFFFFF

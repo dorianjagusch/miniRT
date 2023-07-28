@@ -6,7 +6,7 @@
 /*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 10:36:39 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 20:05:19 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:11:04 by smorphet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	is_light_visible(const t_vec3 cam_pos, const t_vec3 light_pos,
 	side1 = vec3_dot(vec3_sub(cam_pos, pos), *normal);
 	normal_light = vec3_sub(light_pos, pos);
 	side2 = vec3_dot(normal_light, *normal);
-	if ((side1 < EPSILON && side2 < EPSILON)
-		|| (side1 > EPSILON && side2 > EPSILON))
+	if ((side1 < 0 && side2 < 0)
+		|| (side1 > 0 && side2 > 0))
 	{
-		if (side1 < EPSILON && side2 < EPSILON)
+		if (side1 < 0 && side2 < 0)
 			*normal = vec3_neg(*normal);
 		return (1);
 	}
-	if (side1 < EPSILON)
+	if (side1 < 0)
 	{
 		*normal = vec3_neg(*normal);
-		return (1);
+		return (0);
 	}
 	return (0);
 }
