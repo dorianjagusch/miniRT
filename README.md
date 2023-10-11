@@ -21,27 +21,55 @@ The implementation of MiniRT involved a variety of technical skills:
 - **C Programming:** The entire project was implemented in the C programming language, adhering to the Norm guidelines provided.
 - **Memory Management:** Careful memory allocation and deallocation were crucial to avoid memory leaks and unexpected program behavior.
 - **MiniLibX:** We used the MiniLibX library to manage the window and display the generated images.
-- **Raytracing Algorithm:** The core of the project involved implementing the raytracing algorithm to calculate intersections, handle reflections, shadows, and ambient lighting.
+- **Raytracing Algorithm:** The core of the project involved implementing the raytracing algorithm to calculate intersections, shadows, and ambient lighting.
 - **Parsing:** We developed a parser to read and interpret the scene description file in the ".rt" format.
 - **Mathematics:** Mathematical calculations were essential for handling rotations, translations, and geometric properties of objects.
-- **Phong Reflection Model:** As a bonus feature, we implemented the Phong reflection model, including specular reflection.
+
+#### Bonus
+- **Diffuse Reflections:** Materials can be reflective and their surroundings can be visible on their surface.
+- **Blinn-Phong Reflection Model:** We implemented the Phong reflection model for specular reflections.
+- **Textures & Normalmappoing:** We handle the application of pictures as well as adding apparent physical textures to different objects.
+- **Procedurally Generated Textures:** A prodecurally generated checkerboard or brick-wall textutue can be applied.
+- **3D-Meshes from `.obj` Files:** Object files as you generate them in eg. Blender can be rendered monochromatically as well.
   
  <img src="imgs/bump_map.png" width="385px" align="center"> <img src="imgs/colour_disruption.png" width="385px" align="center">
 
+
+### Prerequisites
+
+Before you start, ensure you have the following:
+
+- `gcc` (GNU Compiler Collection)
+- `make`
+- A compatible C library
+
+The provided repo comes with the Minilibx library for both Linux and OSx systems. Unfortunately, the school library does not come for Windows systems.
+
+### Installation
+
+Clone this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/dorianjagusch/miniRT.git
+   cd miniRT
+   ```
+   
 ## Usage
 
 To use MiniRT, simply run the compiled executable with a scene description file as its argument:
 
 ```bash
-./miniRT scene.rt
+./miniRT <scene.rt>
 ```
 ```bash
-./miniRT_bonus scene.rt
+./miniRT_bonus <scene.rt>
 ```
+
+Exemplary scenes can be found in the testfiles directory. Use `./miniRT testfiles/<scene.rt>` to check them out.
 
 ## Installation
 
-To compile MiniRT, ensure you have the required libraries and run the provided Makefile:
+To compile MiniRT run the provided Makefile:
 
 ```bash
 make
@@ -49,3 +77,11 @@ make
 This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
 <img src="imgs/texture_sphere.png" width="385px" align="center"> <img src="imgs/complex_cone.png" width="385px" align="left">
+
+
+## Future steps
+ - Add transparency of objects
+ - Allow different materials
+ - Global illumination
+ - Camera movement
+ - Move the rendering to the GPU
