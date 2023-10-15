@@ -62,7 +62,7 @@ make
 
 This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
-<img src="imgs/texture_sphere.png" height="300px" align="center"> <img src="imgs/complex_cone.png" height="300px" align="left">
+<img src="imgs/texture_sphere.png" height="400px" align="center"> <img src="imgs/complex_cone.png" height="400px" align="left">
    
 ## Usage
 
