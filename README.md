@@ -49,10 +49,20 @@ The provided repo comes with the Minilibx library for both Linux and OSx systems
 
 Clone this repository to your local machine:
 
-   ```bash
-   git clone https://github.com/dorianjagusch/miniRT.git
-   cd miniRT
-   ```
+```bash
+git clone https://github.com/dorianjagusch/miniRT.git
+cd miniRT
+```
+
+To compile MiniRT run the provided Makefile:
+
+```bash
+make
+```
+
+This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
+
+<img src="imgs/texture_sphere.png" width="385px" align="center"> <img src="imgs/complex_cone.png" width="385px" align="left">
    
 ## Usage
 
@@ -66,18 +76,6 @@ To use MiniRT, simply run the compiled executable with a scene description file 
 ```
 
 Exemplary scenes can be found in the testfiles directory. Use `./miniRT testfiles/<scene.rt>` to check them out.
-
-## Installation
-
-To compile MiniRT run the provided Makefile:
-
-```bash
-make
-```
-This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
-
-<img src="imgs/texture_sphere.png" width="385px" align="center"> <img src="imgs/complex_cone.png" width="385px" align="left">
-
 
 ## Future steps
  - Add transparency of objects
