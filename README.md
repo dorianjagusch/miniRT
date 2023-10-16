@@ -6,7 +6,20 @@
 MiniRT is a raytracing program written in C that generates computer-generated images representing scenes with simple geometric objects and their own lighting systems. The goal of this project is to familiarize developers with the Raytracing protocol and basic Computer Graphics concepts.
 The program takes a scene description file with the ".rt" extension as its first argument, which defines various elements in the scene, such as ambient lighting, cameras, lights, spheres, planes, and cylinders. The images are displayed in a window using the miniLibX graphics library, and the program supports resizing and fluid window management.
 
-<img src="imgs/teapot.png" height="50%" align="left"> <img src="imgs/coloured_lights.png" height="50%" align="right">
+
+<div class="image-container" styles="max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;;">
+  <img src="imgs/teapot.png">
+</div>
+
+<div class="image-container" styles="max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;;">
+  <img src="imgs/coloured_lights.png">
+</div>
 
 ## Implementation
 
