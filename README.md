@@ -45,7 +45,7 @@ The implementation of MiniRT involved a variety of technical skills:
 - **Procedurally Generated Textures:** A prodecurally generated checkerboard or brick-wall textutue can be applied.
 - **3D-Meshes from `.obj` Files:** Object files as you generate them in eg. Blender can be rendered monochromatically as well.
   
- <img src="imgs/bump_map.png" height="300px" align="center"> <img src="imgs/colour_disruption.png" height="300px" align="center">
+ <img src="imgs/bump_map.png" height="48%" align="center"> <img src="imgs/colour_disruption.png" height="48%" align="center">
 
 
 ### Prerequisites
@@ -75,7 +75,7 @@ make
 
 This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
-<img src="imgs/texture_sphere.png" width = "300px" align="left"> <img src="imgs/complex_cone.png" height="300px" align="right">
+<img src="imgs/texture_sphere.png" width = "48%" align="left"> <img src="imgs/complex_cone.png" width="48%" align="right">
 
 <br>
 
