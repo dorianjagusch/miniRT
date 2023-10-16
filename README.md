@@ -1,29 +1,16 @@
 # MiniRT - Raytracing Image Generator
 *This project was a group project. Co-creator:* [Sheree Morphett](https://github.com/ShereeMorphett)
 
-<style>
-.image-container {
-
-}
-
-.image-container img {
-  max-width: 48%;
-  height: auto;
-  box-sizing: border-box;
-}
-</style>
-
-
 ## Description
 
-MiniRT is a raytracing program written in C that generates computer-generated images representing scenes with simple geometric objects and their own lighting systems. The goal of this project is to familiarize developers with the Raytracing protocol and basic Computer Graphics concepts.
+MiniRT is a raytracing program written in C that generates images representing scenes with simple geometric objects and their own lighting systems. The goal of this project is to familiarize developers with the Raytracing protocol and basic Computer Graphics concepts.
 The program takes a scene description file with the ".rt" extension as its first argument, which defines various elements in the scene, such as ambient lighting, cameras, lights, spheres, planes, and cylinders. The images are displayed in a window using the miniLibX graphics library, and the program supports resizing and fluid window management.
 
 <div class="image-container" styles ="display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
+  max-width: 48%;
   margin: 0 auto;">
   <img src="imgs/teapot.png" styles ="max-width: 48%;
   height: auto;
@@ -89,7 +76,9 @@ make
 This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
 <img src="imgs/texture_sphere.png" width = "300px" align="left"> <img src="imgs/complex_cone.png" height="300px" align="right">
-   
+
+<br>
+
 ## Usage
 
 To use MiniRT, simply run the compiled executable with a scene description file as its argument:
