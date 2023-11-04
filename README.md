@@ -35,6 +35,7 @@ The implementation of MiniRT involved a variety of technical skills:
   
  <img src="imgs/bump_map.png" width="46%" align="center"> <img src="imgs/colour_disruption.png" widtht="46%" align="center">
 
+<br>
 
 ### Prerequisites
 
@@ -65,12 +66,7 @@ This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
 <img src="imgs/texture_sphere.png" width = "48%" align="left"> <img src="imgs/complex_cone.png" width ="48%" align="right">
 
-
-
-
-
-
-
+<br> 
 
 ## Usage
 
