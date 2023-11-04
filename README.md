@@ -64,7 +64,7 @@ make
 
 This will generate the "miniRT" and "miniRT_bonus" executable, ready to be used.
 
-<img src="imgs/textured_sphere.png" width = "48%" align="left">  <img src="imgs/multicolour_sphere.png" width="48%" align="center">
+<img src="imgs/textured_sphere.png" width = "48%" align="left">  <img src="imgs/multicolour_sphere.png" width="50%" align="center">
 
 <br> 
 <br> 
