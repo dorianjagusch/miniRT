@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:30:13 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 11:22:54 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:30:38 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_error(int error)
 
 static float	offset_light(int *state)
 {
-	uint32_t	x;
+	int			x;
 	float		new_x;
 
 	x = *state;

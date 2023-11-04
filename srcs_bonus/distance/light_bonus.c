@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:52:27 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/26 17:15:34 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:57:41 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec4	get_light_colour(t_scene *scene, t_hitresult *hit,
 
 	colour = (t_vec4){1, 0, 0, 0};
 	light_info->intensity = fmax(vec3_dot(hit->normal, scene->directions[num]) \
-	* scene->lights[num].ratio * 100, 0);
+	* scene->lights[num].ratio * 100, EPSILON);
 	light_info->intensity /= scene->n_lights;
 	colour = vec4_multf(vec4_multf(scene->lights[num].colour,
 				light_info->intensity),

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smorphet <smorphet@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: djagusch <djagusch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:16:11 by djagusch          #+#    #+#             */
-/*   Updated: 2023/07/28 12:55:30 by smorphet         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:38:22 by djagusch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <math.h>
 
 # ifndef FLT_MAX
-#  define FLT_MAX 1.7976931348623157e+308
+#  define FLT_MAX 3.40282346638528859811704183484516925e+38F
 # endif
 
 typedef struct s_vec2
