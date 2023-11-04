@@ -82,6 +82,7 @@ To use MiniRT, simply run the compiled executable with a scene description file 
 Exemplary scenes can be found in the testfiles directory. Use `./miniRT testfiles/<scene.rt>` to check them out.
 
 ## Future steps
+ - Anti-aliasing
  - Add transparency of objects
  - Allow different materials
  - Global illumination
